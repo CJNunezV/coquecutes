@@ -2,57 +2,57 @@ export const metadata = {
   title: "Coquecutes | TCG Store",
   description: "Eleva el nivel de tu colección. Marcos y cases encajables premium para tus cartas Pokémon favoritas.",
 };
-
 export default function RootLayout({ children }) {
   return (
     <html lang="es">
       <body style={{
         margin: 0,
         fontFamily: "system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif",
-        background: "#0f0f11", // Fondo oscuro premium mate
-        color: "#f4f4f5",      // Texto claro y suave para la vista
+        background: "#fafafa", // Fondo claro y limpio original
+        color: "#1a1a1a",      // Texto principal oscuro para buena legibilidad
         minHeight: "100vh",
         display: "flex",
         flexDirection: "column"
       }}>
         
-        {/* Barra de navegación mejorada */}
+        {/* Barra de navegación Coquecutes */}
         <header style={{
           padding: "20px 24px",
-          borderBottom: "1px solid #27272a", // Borde sutil oscuro
+          borderBottom: "1px solid #eee", // Borde sutil original
           display: "flex",
           alignItems: "center",
           justifyContent: "space-between",
-          backgroundColor: "#18181b", // Un tono ligeramente más claro para el header
+          backgroundColor: "#ffffff", // Fondo blanco limpio
           position: "sticky",
           top: 0,
           zIndex: 50
         }}>
+          {/* Nombre de la marca alineado a tu estilo */}
           <a href="/" style={{ 
             fontSize: "22px", 
-            fontWeight: "800", 
-            letterSpacing: "-0.5px",
-            color: "#fff",
+            fontWeight: "bold", 
+            color: "#1a1a1a",
             textDecoration: "none"
           }}>
-            Coquecutes<span style={{ color: "#e11d48" }}>.</span>
+            Coquecutes
           </a>
           
+          {/* Botón Ir a pagar adaptado a la estética cute/minimalista */}
           <a href="/checkout" style={{
-            backgroundColor: "#e11d48", // Botón rojo vibrante (estilo Pokébola)
-            color: "#fff",
-            padding: "8px 16px",
-            borderRadius: "8px",
+            backgroundColor: "#7c3aed", // Un morado estético que va con la onda de las tarjetas
+            color: "#ffffff",
+            padding: "10px 20px",
+            borderRadius: "20px", // Bordes más redondeados y amigables
             fontWeight: "600",
             textDecoration: "none",
             fontSize: "14px",
-            transition: "background 0.2s"
+            boxShadow: "0 2px 4px rgba(124, 58, 237, 0.1)"
           }}>
             Ir a pagar
           </a>
         </header>
 
-        {/* Contenedor principal para centrar tu catálogo */}
+        {/* Contenedor principal */}
         <main style={{
           flex: 1,
           width: "100%",
@@ -64,16 +64,16 @@ export default function RootLayout({ children }) {
           {children}
         </main>
 
-        {/* Footer elegante */}
+        {/* Footer adaptado */}
         <footer style={{
           padding: "24px",
           textAlign: "center",
           fontSize: "14px",
-          color: "#71717a",
-          borderTop: "1px solid #27272a",
-          backgroundColor: "#18181b"
+          color: "#888888",
+          backgroundColor: "#ffffff",
+          borderTop: "1px solid #eee"
         }}>
-          © {new Date().getFullYear()} Coquecutes. Diseñado para coleccionistas.
+          © {new Date().getFullYear()} Coquecutes
         </footer>
 
       </body>

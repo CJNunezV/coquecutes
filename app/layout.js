@@ -1,5 +1,5 @@
 export const metadata = {
-  title: "Coquecutes | Protectores TCG Premium",
+  title: "Coquecutes | TCG Store",
   description: "Eleva el nivel de tu colección. Marcos y cases encajables premium para tus cartas Pokémon favoritas.",
 };
 

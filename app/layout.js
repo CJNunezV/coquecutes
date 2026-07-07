@@ -1,41 +1,81 @@
 export const metadata = {
-  title: "Coquecutes",
-  description: "Tienda online de Coquecutes",
+  title: "Coquecutes | Protectores TCG Premium",
+  description: "Eleva el nivel de tu colección. Marcos y cases encajables premium para tus cartas Pokémon favoritas.",
 };
 
 export default function RootLayout({ children }) {
   return (
     <html lang="es">
-      <body
-        style={{
-          margin: 0,
-          fontFamily: "system-ui, -apple-system, Segoe UI, Roboto, sans-serif",
-          background: "#fafafa",
-          color: "#1a1a1a",
-        }}
-      >
-        <header
-          style={{
-            padding: "20px 24px",
-            borderBottom: "1px solid #eee",
-            display: "flex",
-            alignItems: "center",
-            justifyContent: "space-between",
-          }}
-        >
-          <a href="/" style={{ textDecoration: "none", color: "#1a1a1a" }}>
-            <strong style={{ fontSize: 22 }}>Coquecutes</strong>
+      <body style={{
+        margin: 0,
+        fontFamily: "system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif",
+        background: "#0f0f11", // Fondo oscuro premium mate
+        color: "#f4f4f5",      // Texto claro y suave para la vista
+        minHeight: "100vh",
+        display: "flex",
+        flexDirection: "column"
+      }}>
+        
+        {/* Barra de navegación mejorada */}
+        <header style={{
+          padding: "20px 24px",
+          borderBottom: "1px solid #27272a", // Borde sutil oscuro
+          display: "flex",
+          alignItems: "center",
+          justifyContent: "space-between",
+          backgroundColor: "#18181b", // Un tono ligeramente más claro para el header
+          position: "sticky",
+          top: 0,
+          zIndex: 50
+        }}>
+          <a href="/" style={{ 
+            fontSize: "22px", 
+            fontWeight: "800", 
+            letterSpacing: "-0.5px",
+            color: "#fff",
+            textDecoration: "none"
+          }}>
+            Coquecutes<span style={{ color: "#e11d48" }}>.</span>
           </a>
-          <a href="/checkout" style={{ textDecoration: "none", color: "#7c3aed", fontWeight: 600 }}>
+          
+          <a href="/checkout" style={{
+            backgroundColor: "#e11d48", // Botón rojo vibrante (estilo Pokébola)
+            color: "#fff",
+            padding: "8px 16px",
+            borderRadius: "8px",
+            fontWeight: "600",
+            textDecoration: "none",
+            fontSize: "14px",
+            transition: "background 0.2s"
+          }}>
             Ir a pagar
           </a>
         </header>
-        <main style={{ maxWidth: 1100, margin: "0 auto", padding: "32px 24px" }}>
+
+        {/* Contenedor principal para centrar tu catálogo */}
+        <main style={{
+          flex: 1,
+          width: "100%",
+          maxWidth: "1200px",
+          margin: "0 auto",
+          padding: "40px 24px",
+          boxSizing: "border-box"
+        }}>
           {children}
         </main>
-        <footer style={{ padding: "24px", textAlign: "center", color: "#888", fontSize: 14 }}>
-          © {new Date().getFullYear()} Coquecutes
+
+        {/* Footer elegante */}
+        <footer style={{
+          padding: "24px",
+          textAlign: "center",
+          fontSize: "14px",
+          color: "#71717a",
+          borderTop: "1px solid #27272a",
+          backgroundColor: "#18181b"
+        }}>
+          © {new Date().getFullYear()} Coquecutes. Diseñado para coleccionistas.
         </footer>
+
       </body>
     </html>
   );

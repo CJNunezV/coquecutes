@@ -79,7 +79,7 @@ export default function CheckoutPage() {
           boxShadow: "0 4px 10px rgba(0,0,0,0.05)"
         }}>
           <img 
-            src="/placeholder.svg" 
+            src="/qr.jpg"
             alt="Código QR de Pago Yape/Plin" 
             style={{ width: "100%", height: "100%", objectFit: "cover", padding: "8px" }} 
           />

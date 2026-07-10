@@ -62,7 +62,7 @@ export default function CheckoutPage() {
           <h4 style={{ margin: "0 0 12px 0", color: "#6b21a8", fontSize: "16px", fontWeight: "700" }}>Datos para el pago</h4>
           <p style={{ margin: "6px 0", color: "#4c1d95", fontSize: "14px" }}><strong>Yape / Plin:</strong> 999 999 999 (Coquecutes Store)</p>
           <p style={{ margin: "6px 0", color: "#4c1d95", fontSize: "14px" }}><strong>Transferencia BCP:</strong> 191-XXXXXXXX-X-XX</p>
-          <p style={{ margin: "12px 0 0 0", color: "#7c3aed", fontSize: "13px", italic: "true" }}>💡 Escanea el QR de la derecha para pagar directamente desde tu app bancaria.</p>
+          <p style={{ margin: "12px 0 0 0", color: "#7c3aed", fontSize: "13px", fontStyle: "italic" }}>💡 Escanea el QR de la derecha para pagar directamente desde tu app bancaria.</p>
         </div>
         
         {/* CONTENEDOR PARA TU IMAGEN DE QR */}
@@ -78,7 +78,6 @@ export default function CheckoutPage() {
           overflow: "hidden",
           boxShadow: "0 4px 10px rgba(0,0,0,0.05)"
         }}>
-          {/* Aquí puedes cambiar el src por tu QR real ej: "/qr-yape.png" desde la carpeta public */}
           <img 
             src="/placeholder.svg" 
             alt="Código QR de Pago Yape/Plin" 
@@ -100,7 +99,7 @@ export default function CheckoutPage() {
         <div style={{ 
           flex: "1 1 350px", 
           position: "sticky", 
-          top: "100px", // Se queda fijo debajo del header global
+          top: "100px", 
           backgroundColor: "#fafafa",
           padding: "24px",
           borderRadius: "24px",
@@ -111,7 +110,7 @@ export default function CheckoutPage() {
             {cart.map((item) => (
               <div key={item.id} style={{ display: "flex", alignItems: "center", justifyContent: "space-between", padding: "12px 14px", backgroundColor: "#ffffff", borderRadius: "16px", border: "1px solid #e5e7eb" }}>
                 <div>
-                  <p style={{ margin: "0",尊 fontWeight: "700", color: "#374151", fontSize: "14px" }}>{item.name}</p>
+                  <p style={{ margin: "0", fontWeight: "700", color: "#374151", fontSize: "14px" }}>{item.name}</p>
                   <p style={{ margin: "4px 0 0 0", color: "#7c3aed", fontSize: "13px", fontWeight: "600" }}>PEN {item.price.toFixed(2)} x {item.quantity}</p>
                 </div>
                 <div style={{ display: "flex", alignItems: "center", gap: "10px" }}>
@@ -128,7 +127,7 @@ export default function CheckoutPage() {
           </div>
         </div>
 
-        {/* COLUMNA DERECHA: FORMULARIO DE RECOLECCIÓN DE DATOS (SCROLLEABLE) */}
+        {/* COLUMNA DERECHA: FORMULARIO (SCROLLEABLE) */}
         <div style={{ flex: "1.2 1 400px", display: "flex", flexDirection: "column", gap: "20px" }}>
           <h3 style={{ fontSize: "18px", fontWeight: "700", color: "#1f2937", marginBottom: "4px" }}>Datos de Envío</h3>
           
@@ -157,8 +156,7 @@ export default function CheckoutPage() {
             fontSize: "16px", 
             cursor: "pointer", 
             boxShadow: "0 4px 12px rgba(124, 58, 237, 0.2)",
-            marginTop: "12px",
-            transition: "transform 0.1s, background-color 0.2s"
+            marginTop: "12px"
           }}>
             Confirmar mi pedido por WhatsApp
           </button>

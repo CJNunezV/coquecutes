@@ -1,170 +1,105 @@
 "use client";
-
-import { useState } from "react";
-import { products } from "@/data/products";
+import React, { useState, useEffect } from "react";
+import Link from "next/link";
 
 export default function CheckoutPage() {
-  const [selectedSlug, setSelectedSlug] = useState(products[0]?.slug || "");
-  const [name, setName] = useState("");
-  const [phone, setPhone] = useState("");
-  const [address, setAddress] = useState("");
-  const [file, setFile] = useState(null);
-  const [status, setStatus] = useState("idle"); // idle | sending | done | error
-  const [errorMsg, setErrorMsg] = useState("");
+  const [cart, setCart] = useState([]);
 
-  async function handleSubmit(e) {
-    e.preventDefault();
-    if (!file) {
-      setErrorMsg("Por favor adjunta la captura de tu pago.");
-      return;
-    }
-    setErrorMsg("");
-    setStatus("sending");
+  useEffect(() => {
+    const savedCart = localStorage.getItem("coquecutes_cart");
+    if (savedCart) setCart(JSON.parse(savedCart));
+  }, []);
 
-    try {
-      const formData = new FormData();
-      formData.append("producto", selectedSlug);
-      formData.append("name", name);
-      formData.append("phone", phone);
-      formData.append("address", address);
-      formData.append("screenshot", file);
+  const updateCart = (newCart) => {
+    setCart(newCart);
+    localStorage.setItem("coquecutes_cart", JSON.stringify(newCart));
+    window.dispatchEvent(new Event("cartUpdate"));
+  };
 
-      const res = await fetch("/api/orders", {
-        method: "POST",
-        body: formData,
-      });
+  const changeQuantity = (id, delta) => {
+    const updated = cart.map(item => {
+      if (item.id === id) {
+        const newQty = item.quantity + delta;
+        return newQty > 0 ? { ...item, quantity: newQty } : null;
+      }
+      return item;
+    }).filter(Boolean);
+    updateCart(updated);
+  };
 
-      if (!res.ok) throw new Error("Error al enviar el pedido");
+  const totalPrice = cart.reduce((acc, item) => acc + (item.price * item.quantity), 0);
 
-      setStatus("done");
-    } catch (err) {
-      console.error(err);
-      setStatus("error");
-      setErrorMsg("Algo salió mal enviando tu pedido. Intenta de nuevo.");
-    }
-  }
-
-  if (status === "done") {
+  if (cart.length === 0) {
     return (
-      <div style={{ textAlign: "center", padding: "60px 0" }}>
-        <h1>¡Gracias por tu compra! 🎉</h1>
-        <p style={{ color: "#666" }}>
-          Recibimos tu comprobante. Te confirmaremos por WhatsApp en cuanto revisemos el pago.
-        </p>
+      <div style={{ textAlign: "center", padding: "60px 20px" }}>
+        <h2 style={{ fontSize: "24px", color: "#1e1b4b", marginBottom: "12px" }}>Tu carrito está vacío 😢</h2>
+        <p style={{ color: "#6b7280", marginBottom: "24px" }}>Agrega algunos marcos premium en el catálogo para continuar.</p>
+        <Link href="/" style={{ backgroundColor: "#7c3aed", color: "#fff", padding: "12px 24px", borderRadius: "20px", textDecoration: "none", fontWeight: "700" }}>
+          Volver a la tienda
+        </Link>
       </div>
     );
   }
 
   return (
-    <div style={{ maxWidth: 600, margin: "0 auto" }}>
-      <h1 style={{ fontSize: 28, marginBottom: 24 }}>Finalizar compra</h1>
-
-      <div
-        style={{
-          background: "#f3e8ff",
-          borderRadius: 12,
-          padding: 20,
-          marginBottom: 28,
-        }}
-      >
-        <div style={{ fontWeight: 700, marginBottom: 8 }}>Datos para el pago</div>
-        <div style={{ lineHeight: 1.8 }}>
-          Yape / Plin: <strong>999 999 999</strong> (Nombre Apellido)
-          <br />
-          Transferencia BCP: <strong>000-000000000-0-00</strong>
-          <br />
-          <span style={{ color: "#555" }}>
-            Edita estos datos en app/checkout/page.js con tu número y cuenta real.
-          </span>
-        </div>
+    <div style={{ background: "#ffffff", borderRadius: "32px", padding: "32px", boxShadow: "0 10px 30px rgba(0,0,0,0.02)", border: "1px solid #f1f5f9" }}>
+      <h2 style={{ fontSize: "28px", fontWeight: "800", color: "#1e1b4b", marginBottom: "24px" }}>Finalizar compra</h2>
+      
+      <div style={{ backgroundColor: "#f5f3ff", padding: "20px", borderRadius: "20px", marginBottom: "32px", border: "1px dashed #c084fc" }}>
+        <h4 style={{ margin: "0 0 8px 0", color: "#6b21a8", fontWeight: "700" }}>Datos para el pago</h4>
+        <p style={{ margin: "4px 0", color: "#4c1d95", fontSize: "14px" }}><strong>Yape / Plin:</strong> 999 999 999 (Coquecutes Store)</p>
+        <p style={{ margin: "4px 0", color: "#4c1d95", fontSize: "14px" }}><strong>Transferencia BCP:</strong> 191-XXXXXXXX-X-XX</p>
       </div>
 
-      <form onSubmit={handleSubmit}>
-        <label style={labelStyle}>Producto</label>
-        <select
-          value={selectedSlug}
-          onChange={(e) => setSelectedSlug(e.target.value)}
-          style={inputStyle}
-        >
-          {products.map((p) => (
-            <option key={p.slug} value={p.slug}>
-              {p.name} — {p.currency} {p.price.toFixed(2)}
-            </option>
-          ))}
-        </select>
+      <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(320px, 1fr))", gap: "40px" }}>
+        {/* LISTADO INTERACTIVO */}
+        <div>
+          <h3 style={{ fontSize: "18px", fontWeight: "700", color: "#1f2937", marginBottom: "16px" }}>Tus Productos</h3>
+          <div style={{ display: "flex", flexDirection: "column", gap: "16px" }}>
+            {cart.map((item) => (
+              <div key={item.id} style={{ display: "flex", alignItems: "center", justifyContent: "space-between", padding: "12px 16px", backgroundColor: "#fafafa", borderRadius: "16px", border: "1px solid #f3f4f6" }}>
+                <div>
+                  <p style={{ margin: "0", fontWeight: "700", color: "#374151", fontSize: "14px" }}>{item.name}</p>
+                  <p style={{ margin: "4px 0 0 0", color: "#7c3aed", fontSize: "13px", fontWeight: "600" }}>PEN {item.price.toFixed(2)} x {item.quantity}</p>
+                </div>
+                <div style={{ display: "flex", alignItems: "center", gap: "10px" }}>
+                  <button onClick={() => changeQuantity(item.id, -1)} style={qtyBtnStyle}>-</button>
+                  <span style={{ fontWeight: "700" }}>{item.quantity}</span>
+                  <button onClick={() => changeQuantity(item.id, 1)} style={qtyBtnStyle}>+</button>
+                </div>
+              </div>
+            ))}
+          </div>
+          <div style={{ marginTop: "24px", paddingTop: "16px", borderTop: "2px solid #f3f4f6", display: "flex", justifyContent: "space-between", alignItems: "center" }}>
+            <span style={{ fontSize: "18px", fontWeight: "700" }}>Total:</span>
+            <span style={{ fontSize: "24px", fontWeight: "900", color: "#7c3aed" }}>PEN {totalPrice.toFixed(2)}</span>
+          </div>
+        </div>
 
-        <label style={labelStyle}>Nombre completo</label>
-        <input
-          value={name}
-          onChange={(e) => setName(e.target.value)}
-          required
-          style={inputStyle}
-        />
-
-        <label style={labelStyle}>WhatsApp</label>
-        <input
-          value={phone}
-          onChange={(e) => setPhone(e.target.value)}
-          required
-          style={inputStyle}
-        />
-
-        <label style={labelStyle}>Dirección de entrega</label>
-        <textarea
-          value={address}
-          onChange={(e) => setAddress(e.target.value)}
-          required
-          rows={3}
-          style={{ ...inputStyle, resize: "vertical" }}
-        />
-
-        <label style={labelStyle}>Captura de tu pago</label>
-        <input
-          type="file"
-          accept="image/*"
-          onChange={(e) => setFile(e.target.files?.[0] || null)}
-          required
-          style={{ marginBottom: 16 }}
-        />
-
-        {errorMsg && (
-          <div style={{ color: "#c0392b", marginBottom: 16 }}>{errorMsg}</div>
-        )}
-
-        <button
-          type="submit"
-          disabled={status === "sending"}
-          style={{
-            width: "100%",
-            background: "#7c3aed",
-            color: "#fff",
-            padding: "14px",
-            borderRadius: 10,
-            border: "none",
-            fontWeight: 600,
-            fontSize: 16,
-            cursor: "pointer",
-          }}
-        >
-          {status === "sending" ? "Enviando..." : "Enviar pedido"}
-        </button>
-      </form>
+        {/* FORMULARIO */}
+        <div style={{ display: "flex", flexDirection: "column", gap: "20px" }}>
+          <h3 style={{ fontSize: "18px", fontWeight: "700", color: "#1f2937" }}>Datos de Envío</h3>
+          <div>
+            <label style={lblStyle}>Nombre completo</label>
+            <input type="text" placeholder="Ej. Juan Pérez" style={inStyle} />
+          </div>
+          <div>
+            <label style={lblStyle}>WhatsApp</label>
+            <input type="tel" placeholder="Ej. 987654321" style={inStyle} />
+          </div>
+          <div>
+            <label style={lblStyle}>Subir comprobante de pago (Yape/Plin/Transferencia)</label>
+            <input type="file" style={inStyle} />
+          </div>
+          <button style={{ backgroundColor: "#7c3aed", color: "#fff", border: "none", padding: "14px", borderRadius: "16px", fontWeight: "700", fontSize: "16px", cursor: "pointer", boxShadow: "0 4px 12px rgba(124, 58, 237, 0.2)", marginTop: "10px" }}>
+            Confirmar por WhatsApp
+          </button>
+        </div>
+      </div>
     </div>
   );
 }
 
-const labelStyle = {
-  display: "block",
-  fontWeight: 600,
-  marginBottom: 6,
-  marginTop: 16,
-};
-
-const inputStyle = {
-  width: "100%",
-  padding: "10px 12px",
-  borderRadius: 8,
-  border: "1px solid #ddd",
-  fontSize: 15,
-  boxSizing: "border-box",
-};
+const qtyBtnStyle = { backgroundColor: "#e9d5ff", color: "#6b21a8", border: "none", width: "28px", height: "28px", borderRadius: "8px", fontWeight: "700", cursor: "pointer" };
+const lblStyle = { display: "block", fontSize: "14px", fontWeight: "600", color: "#4b5563", marginBottom: "6px" };
+const inStyle = { width: "100%", padding: "12px 16px", borderRadius: "12px", border: "1px solid #d1d5db", fontSize: "14px", boxSizing: "border-box", background: "#fff", outline: "none" };

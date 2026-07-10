@@ -43,50 +43,9 @@ export default function CheckoutPage() {
 
   return (
     <div style={{ background: "#ffffff", borderRadius: "32px", padding: "32px", boxShadow: "0 10px 30px rgba(0,0,0,0.02)", border: "1px solid #f1f5f9" }}>
-      <h2 style={{ fontSize: "28px", fontWeight: "800", color: "#1e1b4b", marginBottom: "24px" }}>Finalizar compra</h2>
+      <h2 style={{ fontSize: "28px", fontWeight: "800", color: "#1e1b4b", marginBottom: "32px" }}>Finalizar compra</h2>
       
-      {/* SECCIÓN SUPERIOR: DATOS DE PAGO + QR */}
-      <div style={{ 
-        backgroundColor: "#f5f3ff", 
-        padding: "24px", 
-        borderRadius: "24px", 
-        marginBottom: "32px", 
-        border: "1px dashed #c084fc",
-        display: "flex",
-        flexWrap: "wrap",
-        gap: "24px",
-        alignItems: "center",
-        justifyContent: "space-between"
-      }}>
-        <div style={{ flex: "1 1 300px" }}>
-          <h4 style={{ margin: "0 0 12px 0", color: "#6b21a8", fontSize: "16px", fontWeight: "700" }}>Datos para el pago</h4>
-          <p style={{ margin: "6px 0", color: "#4c1d95", fontSize: "14px" }}><strong>Yape / Plin:</strong> 999 999 999 (Coquecutes Store)</p>
-          <p style={{ margin: "6px 0", color: "#4c1d95", fontSize: "14px" }}><strong>Transferencia BCP:</strong> 191-XXXXXXXX-X-XX</p>
-          <p style={{ margin: "12px 0 0 0", color: "#7c3aed", fontSize: "13px", fontStyle: "italic" }}>💡 Escanea el QR de la derecha para pagar directamente desde tu app bancaria.</p>
-        </div>
-        
-        {/* CONTENEDOR PARA TU IMAGEN DE QR */}
-        <div style={{ 
-          width: "120px", 
-          height: "120px", 
-          backgroundColor: "#ffffff", 
-          borderRadius: "16px", 
-          border: "1px solid #e9d5ff",
-          display: "flex", 
-          alignItems: "center", 
-          justifyContent: "center",
-          overflow: "hidden",
-          boxShadow: "0 4px 10px rgba(0,0,0,0.05)"
-        }}>
-          <img 
-            src="/qr.jpg"
-            alt="Código QR de Pago Yape/Plin" 
-            style={{ width: "100%", height: "100%", objectFit: "cover", padding: "8px" }} 
-          />
-        </div>
-      </div>
-
-      {/* CONTENIDO PRINCIPAL: DOS COLUMNAS */}
+      {/* CONTENIDO PRINCIPAL EN DOS COLUMNAS */}
       <div style={{ 
         display: "flex", 
         flexDirection: "row", 
@@ -95,7 +54,7 @@ export default function CheckoutPage() {
         alignItems: "flex-start" 
       }}>
         
-        {/* COLUMNA IZQUIERDA: "TUS PRODUCTOS" (ESTÁTICA/STICKY) */}
+        {/* COLUMNA IZQUIERDA: "TUS PRODUCTOS" (ESTÁTICA / STICKY) */}
         <div style={{ 
           flex: "1 1 350px", 
           position: "sticky", 
@@ -108,8 +67,8 @@ export default function CheckoutPage() {
           <h3 style={{ fontSize: "18px", fontWeight: "700", color: "#1f2937", marginBottom: "16px" }}>Tus Productos</h3>
           <div style={{ display: "flex", flexDirection: "column", gap: "16px" }}>
             {cart.map((item) => (
-              <div key={item.id} style={{ display: "flex", alignItems: "center", justifyContent: "space-between", padding: "12px 14px", backgroundColor: "#ffffff", borderRadius: "16px", border: "1px solid #e5e7eb" }}>
-                <div>
+              <div key={item.id} style={{ display: "flex", alignItems: "center", justifycontent: "space-between", padding: "12px 14px", backgroundColor: "#ffffff", borderRadius: "16px", border: "1px solid #e5e7eb" }}>
+                <div style={{ flex: 1, marginRight: "10px" }}>
                   <p style={{ margin: "0", fontWeight: "700", color: "#374151", fontSize: "14px" }}>{item.name}</p>
                   <p style={{ margin: "4px 0 0 0", color: "#7c3aed", fontSize: "13px", fontWeight: "600" }}>PEN {item.price.toFixed(2)} x {item.quantity}</p>
                 </div>
@@ -127,39 +86,83 @@ export default function CheckoutPage() {
           </div>
         </div>
 
-        {/* COLUMNA DERECHA: FORMULARIO (SCROLLEABLE) */}
-        <div style={{ flex: "1.2 1 400px", display: "flex", flexDirection: "column", gap: "20px" }}>
-          <h3 style={{ fontSize: "18px", fontWeight: "700", color: "#1f2937", marginBottom: "4px" }}>Datos de Envío</h3>
+        {/* COLUMNA DERECHA: FINALIZAR COMPRA (PAGO + ENVÍO) */}
+        <div style={{ flex: "1.2 1 400px", display: "flex", flexDirection: "column", gap: "28px" }}>
           
-          <div>
-            <label style={lblStyle}>Nombre completo</label>
-            <input type="text" placeholder="Ej. Juan Pérez" style={inStyle} />
-          </div>
-          
-          <div>
-            <label style={lblStyle}>WhatsApp</label>
-            <input type="tel" placeholder="Ej. 987654321" style={inStyle} />
-          </div>
-          
-          <div>
-            <label style={lblStyle}>Subir comprobante de pago (Captura de Yape/Plin/Voucher)</label>
-            <input type="file" style={{ ...inStyle, padding: "10px" }} />
-          </div>
-          
-          <button style={{ 
-            backgroundColor: "#7c3aed", 
-            color: "#fff", 
-            border: "none", 
-            padding: "16px", 
-            borderRadius: "16px", 
-            fontWeight: "700", 
-            fontSize: "16px", 
-            cursor: "pointer", 
-            boxShadow: "0 4px 12px rgba(124, 58, 237, 0.2)",
-            marginTop: "12px"
+          {/* BLOQUE DE PAGO REUBICADO AQUÍ (ORIENTADO A LA DERECHA) */}
+          <div style={{ 
+            backgroundColor: "#f5f3ff", 
+            padding: "24px", 
+            borderRadius: "24px", 
+            border: "1px dashed #c084fc",
+            display: "flex",
+            gap: "20px",
+            alignItems: "center",
+            justifyContent: "space-between"
           }}>
-            Confirmar mi pedido por WhatsApp
-          </button>
+            <div style={{ flex: 1 }}>
+              <h4 style={{ margin: "0 0 12px 0", color: "#6b21a8", fontSize: "16px", fontWeight: "700" }}>Datos para el pago</h4>
+              <p style={{ margin: "6px 0", color: "#4c1d95", fontSize: "14px" }}><strong>Yape / Plin:</strong> 999 999 999 (Coquecutes Store)</p>
+              <p style={{ margin: "6px 0", color: "#4c1d95", fontSize: "14px" }}><strong>Transferencia BCP:</strong> 191-XXXXXXXX-X-XX</p>
+              <p style={{ margin: "12px 0 0 0", color: "#7c3aed", fontSize: "12px", fontStyle: "italic" }}>💡 Escanea para pagar directamente desde tu app bancaria.</p>
+            </div>
+            
+            <div style={{ 
+              width: "110px", 
+              height: "110px", 
+              backgroundColor: "#ffffff", 
+              borderRadius: "16px", 
+              border: "1px solid #e9d5ff",
+              display: "flex", 
+              alignItems: "center", 
+              justifyContent: "center",
+              overflow: "hidden",
+              boxShadow: "0 4px 10px rgba(0,0,0,0.05)",
+              flexShrink: 0
+            }}>
+              <img 
+                src="/qr.jpg" 
+                alt="Código QR de Pago" 
+                style={{ width: "100%", height: "100%", objectFit: "cover", padding: "6px" }} 
+              />
+            </div>
+          </div>
+
+          {/* FORMULARIO DE ENVÍO */}
+          <div style={{ display: "flex", flexDirection: "column", gap: "20px" }}>
+            <h3 style={{ fontSize: "18px", fontWeight: "700", color: "#1f2937", margin: "0 0 4px 0" }}>Datos de Envío</h3>
+            
+            <div>
+              <label style={lblStyle}>Nombre completo</label>
+              <input type="text" placeholder="Ej. Juan Pérez" style={inStyle} />
+            </div>
+            
+            <div>
+              <label style={lblStyle}>WhatsApp</label>
+              <input type="tel" placeholder="Ej. 987654321" style={inStyle} />
+            </div>
+            
+            <div>
+              <label style={lblStyle}>Subir comprobante de pago (Captura de Yape/Plin/Voucher)</label>
+              <input type="file" style={{ ...inStyle, padding: "10px" }} />
+            </div>
+            
+            <button style={{ 
+              backgroundColor: "#7c3aed", 
+              color: "#fff", 
+              border: "none", 
+              padding: "16px", 
+              borderRadius: "16px", 
+              fontWeight: "700", 
+              fontSize: "16px", 
+              cursor: "pointer", 
+              boxShadow: "0 4px 12px rgba(124, 58, 237, 0.2)",
+              marginTop: "12px"
+            }}>
+              Confirmar mi pedido por WhatsApp
+            </button>
+          </div>
+
         </div>
 
       </div>

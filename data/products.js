@@ -1,11 +1,30 @@
-// Catálogo de productos de Coquecutes.
-// Edita, agrega o quita productos aquí. Cada producto necesita un "slug" único
-// (se usa en la URL, ej: /producto/polera-coque).
-
 export const products = [
-  { id: 1, name: "Case Premium - Edición Pokébola Clásica", price: 49.90, tag: "Popular", bgGradient: "linear-gradient(135deg, #fee2e2 0%, #fff1f2 100%)" },
-  { id: 2, name: "Case Premium - Edición Especial 30 Aniversario Oro", price: 59.90, tag: "Nuevo", bgGradient: "linear-gradient(135deg, #fef3c7 0%, #fffbeb 100%)" },
-  { id: 3, name: "Case Premium - Edición Team Rocket / Premier Ball", price: 39.90, tag: "Exclusivo", bgGradient: "linear-gradient(135deg, #f3e8ff 0%, #fae8ff 100%)" },
-  { id: 4, name: "Case Premium - Edición Ultra Ball (Negro/Amarillo)", price: 49.90, tag: "Top Ventas", bgGradient: "linear-gradient(135deg, #f3f4f6 0%, #e5e7eb 100%)" },
-  { id: 5, name: "Case Premium - Edición Master Ball Pro", price: 54.90, tag: "Limitado", bgGradient: "linear-gradient(135deg, #e0e7ff 0%, #e0f2fe 100%)" }
+  {
+    id: 1,
+    slug: "case-pokebola-clasica",
+    name: "Case Premium - Edición Pokebola Clásica",
+    price: 49.90,
+    images: ["/pokebola-1.jpg", "/pokebola-2.jpg", "/pokebola-3.jpg"], // Añade tus fotos reales aquí
+    description: "Protector premium diseñado especialmente para cartas coleccionables de formato estándar. Inspirado en el diseño icónico de la Pokebola original, ofrece un acabado rígido de alta resistencia frente a caídas y polvo.",
+    specs: {
+      medidas: "Exteriores: 10.5 cm x 8.2 cm | Interiores (para la carta): 9.2 cm x 6.8 cm",
+      material: "Plástico técnico de alta densidad (impresión 3D de precisión con post-procesado liso)",
+      compatibilidad: "Cartas Pokémon TCG, Magic: The Gathering y similares (Standard Size)",
+      peso: "45 gramos"
+    }
+  },
+  {
+    id: 2,
+    slug: "edicion-especial-30-aniversario-oro",
+    name: "Case Premium - Edición Especial 30 Aniversario Oro",
+    price: 59.90,
+    images: ["/oro-1.jpg", "/oro-2.jpg"],
+    description: "Edición conmemorativa de lujo con acabados dorados metalizados reflectantes para tus cartas de máxima rareza.",
+    specs: {
+      medidas: "Exteriores: 10.5 cm x 8.2 cm",
+      material: "Filamento premium metalizado con protección UV interna",
+      compatibilidad: "Cartas estándar (Sleeved o Raw)",
+      peso: "48 gramos"
+    }
+  }
 ];

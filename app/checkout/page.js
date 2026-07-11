@@ -76,10 +76,10 @@ export default function CheckoutPage() {
         throw new Error(data.error || "No se pudo guardar el pedido");
       }
 
-      // Pedido guardado en la base de datos. Ahora abrimos WhatsApp con el
-      // mensaje del pedido ya redactado para que lo envíe con un toque.
-      const waUrl = `https://wa.me/${STORE_WHATSAPP_NUMBER}?text=${encodeURIComponent(buildWhatsAppMessage())}`;
-      window.open(waUrl, "_blank");
+      // Paso 1: por ahora solo confirmamos que se guardó. La apertura de
+      // WhatsApp la agregamos en el siguiente paso.
+      console.log("Pedido guardado:", data);
+      alert(`Pedido guardado correctamente (ID: ${data.orderId ?? "sin ID, revisa la base de datos"})`);
 
       // Vaciar el carrito
       localStorage.removeItem("coquecutes_cart");

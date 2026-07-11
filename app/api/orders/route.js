@@ -41,54 +41,66 @@ export async function POST(req) {
     const total = formData.get("total");
     const screenshot = formData.get("screenshot");
 
-    if (!screenshot || typeof screenshot === "string") {
-      return Response.json({ error: "Falta la captura de pago" }, { status: 400 });
+    if (!name || !phone) {
+      return Response.json({ error: "Falta el nombre o el WhatsApp" }, { status: 400 });
     }
 
-    // 1. Subir la imagen a Vercel Blob
-    const blob = await put(
-      `orders/${Date.now()}-${screenshot.name}`,
-      screenshot,
-      { access: "public" }
-    );
+    // 1. Subir la imagen a Vercel Blob (si falla, seguimos igual sin foto)
+    let screenshotUrl = null;
+    if (screenshot && typeof screenshot !== "string") {
+      try {
+        const blob = await put(
+          `orders/${Date.now()}-${screenshot.name}`,
+          screenshot,
+          { access: "public" }
+        );
+        screenshotUrl = blob.url;
+      } catch (blobErr) {
+        console.error("Error subiendo la captura a Blob:", blobErr);
+      }
+    }
 
     // 2. Guardar el pedido en la base de datos
     let orderId = null;
+    let dbError = null;
     try {
       await ensureTable();
       const items = itemsRaw ? JSON.parse(itemsRaw) : [];
       const result = await sql`
         INSERT INTO orders (customer_name, customer_phone, items, total, screenshot_url)
-        VALUES (${name}, ${phone}, ${JSON.stringify(items)}, ${total || 0}, ${blob.url})
+        VALUES (${name}, ${phone}, ${JSON.stringify(items)}, ${total || 0}, ${screenshotUrl})
         RETURNING id;
       `;
       orderId = result.rows[0]?.id ?? null;
-    } catch (dbErr) {
-      // Si la base de datos no está configurada todavía, no bloqueamos el pedido:
-      // el email y la captura ya quedaron guardados igual.
-      console.error("Error guardando el pedido en la base de datos:", dbErr);
+    } catch (err) {
+      console.error("Error guardando el pedido en la base de datos:", err);
+      dbError = err.message || "No se pudo guardar en la base de datos";
     }
 
     // 3. Enviar email de notificación (si configuraste Resend)
     if (process.env.RESEND_API_KEY) {
-      const resend = new Resend(process.env.RESEND_API_KEY);
-      await resend.emails.send({
-        from: process.env.NOTIFY_EMAIL_FROM || "pedidos@resend.dev",
-        to: process.env.NOTIFY_EMAIL_TO,
-        subject: `Nuevo pedido: ${producto}`,
-        html: `
-          <h2>Nuevo pedido en Coquecutes</h2>
-          <p><strong>Producto:</strong> ${producto}</p>
-          <p><strong>Nombre:</strong> ${name}</p>
-          <p><strong>WhatsApp:</strong> ${phone}</p>
-          <p><strong>Dirección:</strong> ${address || "-"}</p>
-          <p><strong>Total:</strong> PEN ${total || "-"}</p>
-          <p><strong>Captura de pago:</strong> <a href="${blob.url}">${blob.url}</a></p>
-        `,
-      });
+      try {
+        const resend = new Resend(process.env.RESEND_API_KEY);
+        await resend.emails.send({
+          from: process.env.NOTIFY_EMAIL_FROM || "pedidos@resend.dev",
+          to: process.env.NOTIFY_EMAIL_TO,
+          subject: `Nuevo pedido: ${producto}`,
+          html: `
+            <h2>Nuevo pedido en Coquecutes</h2>
+            <p><strong>Producto:</strong> ${producto}</p>
+            <p><strong>Nombre:</strong> ${name}</p>
+            <p><strong>WhatsApp:</strong> ${phone}</p>
+            <p><strong>Dirección:</strong> ${address || "-"}</p>
+            <p><strong>Total:</strong> PEN ${total || "-"}</p>
+            <p><strong>Captura de pago:</strong> ${screenshotUrl ? `<a href="${screenshotUrl}">${screenshotUrl}</a>` : "No adjuntada"}</p>
+          `,
+        });
+      } catch (emailErr) {
+        console.error("Error enviando email:", emailErr);
+      }
     }
 
-    return Response.json({ ok: true, orderId, screenshotUrl: blob.url });
+    return Response.json({ ok: true, orderId, screenshotUrl, dbError });
   } catch (err) {
     console.error("Error procesando pedido:", err);
     return Response.json({ error: "Error interno" }, { status: 500 });

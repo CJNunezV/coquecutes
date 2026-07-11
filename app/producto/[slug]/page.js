@@ -67,8 +67,8 @@ export default function ProductDetailPage() {
 
       <div style={{ display: "flex", flexDirection: "row", flexWrap: "wrap", gap: "48px", alignItems: "flex-start" }}>
         
-        {/* COLUMNA IZQUIERDA: GALERÍA DE IMÁGENES */}
-        <div style={{ flex: "1 1 400px", display: "flex", flexDirection: "column", gap: "16px" }}>
+        {/* COLUMNA IZQUIERDA: GALERÍA DE IMÁGENES (fija al hacer scroll) */}
+        <div style={{ flex: "1 1 400px", display: "flex", flexDirection: "column", gap: "16px", position: "sticky", top: "24px", alignSelf: "flex-start" }}>
           {/* Foto Principal */}
           <div style={{ width: "100%", height: "450px", backgroundColor: "#fcfbfe", borderRadius: "24px", border: "1px solid #f3e8ff", display: "flex", alignItems: "center", justifyContent: "center", overflow: "hidden" }}>
             <img 

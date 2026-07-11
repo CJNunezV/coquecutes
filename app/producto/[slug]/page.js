@@ -18,12 +18,12 @@ export default function ProductDetailPage() {
     }
   }, [slug]);
 
-  const handleAddToCart = () => {
+  const addToCart = () => {
     if (!product) return;
-    
+
     const savedCart = localStorage.getItem("coquecutes_cart");
     let cart = savedCart ? JSON.parse(savedCart) : [];
-    
+
     const existingItem = cart.find(item => item.id === product.id);
     if (existingItem) {
       existingItem.quantity += 1;
@@ -35,9 +35,17 @@ export default function ProductDetailPage() {
         quantity: 1
       });
     }
-    
+
     localStorage.setItem("coquecutes_cart", JSON.stringify(cart));
     window.dispatchEvent(new Event("cartUpdate")); // Notifica al Header dinámico
+  };
+
+  const handleAddToCart = () => {
+    addToCart();
+  };
+
+  const handleAddToCartAndPay = () => {
+    addToCart();
     router.push("/checkout"); // Redirecciona directo al checkout de dos columnas
   };
 
@@ -128,32 +136,59 @@ export default function ProductDetailPage() {
             </div>
           </div>
 
-          {/* Botón de Acción Principal */}
-          <button 
-            onClick={handleAddToCart}
-            style={{ 
-              backgroundColor: "#7c3aed", 
-              color: "#ffffff", 
-              border: "none", 
-              padding: "18px", 
-              borderRadius: "16px", 
-              fontWeight: "700", 
-              fontSize: "16px", 
-              cursor: "pointer", 
-              boxShadow: "0 4px 14px rgba(124, 58, 237, 0.25)",
-              display: "flex",
-              alignItems: "center",
-              justifyContent: "center",
-              gap: "12px",
-              transition: "background 0.2s"
-            }}
-          >
-            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
-              <circle cx="8" cy="21" r="1"/><circle cx="19" cy="21" r="1"/>
-              <path d="M2.05 2.05h2l2.66 12.42a2 2 0 0 0 2 1.58h9.78a2 2 0 0 0 1.95-1.57l1.65-7.43H5.12"/>
-            </svg>
-            Adquirir y finalizar compra
-          </button>
+          {/* Botones de Acción */}
+          <div style={{ display: "flex", flexDirection: "column", gap: "12px" }}>
+            <button
+              onClick={handleAddToCart}
+              style={{
+                backgroundColor: "#ffffff",
+                color: "#7c3aed",
+                border: "2px solid #7c3aed",
+                padding: "16px",
+                borderRadius: "16px",
+                fontWeight: "700",
+                fontSize: "16px",
+                cursor: "pointer",
+                display: "flex",
+                alignItems: "center",
+                justifyContent: "center",
+                gap: "12px",
+                transition: "background 0.2s"
+              }}
+            >
+              <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+                <circle cx="8" cy="21" r="1"/><circle cx="19" cy="21" r="1"/>
+                <path d="M2.05 2.05h2l2.66 12.42a2 2 0 0 0 2 1.58h9.78a2 2 0 0 0 1.95-1.57l1.65-7.43H5.12"/>
+              </svg>
+              Agregar
+            </button>
+
+            <button
+              onClick={handleAddToCartAndPay}
+              style={{
+                backgroundColor: "#7c3aed",
+                color: "#ffffff",
+                border: "none",
+                padding: "18px",
+                borderRadius: "16px",
+                fontWeight: "700",
+                fontSize: "16px",
+                cursor: "pointer",
+                boxShadow: "0 4px 14px rgba(124, 58, 237, 0.25)",
+                display: "flex",
+                alignItems: "center",
+                justifyContent: "center",
+                gap: "12px",
+                transition: "background 0.2s"
+              }}
+            >
+              <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+                <circle cx="8" cy="21" r="1"/><circle cx="19" cy="21" r="1"/>
+                <path d="M2.05 2.05h2l2.66 12.42a2 2 0 0 0 2 1.58h9.78a2 2 0 0 0 1.95-1.57l1.65-7.43H5.12"/>
+              </svg>
+              Agregar y pagar
+            </button>
+          </div>
         </div>
 
       </div>

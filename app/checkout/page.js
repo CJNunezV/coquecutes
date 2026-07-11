@@ -2,8 +2,16 @@
 import React, { useState, useEffect } from "react";
 import Link from "next/link";
 
+// Número de WhatsApp de la tienda (con código de país, sin espacios ni signos).
+// Ejemplo Perú: "51987654321". Reemplázalo por el número real de tu negocio.
+const STORE_WHATSAPP_NUMBER = "51999999999";
+
 export default function CheckoutPage() {
   const [cart, setCart] = useState([]);
+  const [name, setName] = useState("");
+  const [phone, setPhone] = useState("");
+  const [screenshot, setScreenshot] = useState(null);
+  const [status, setStatus] = useState("idle"); // idle | sending | error
 
   useEffect(() => {
     const savedCart = localStorage.getItem("coquecutes_cart");
@@ -29,6 +37,62 @@ export default function CheckoutPage() {
 
   const totalPrice = cart.reduce((acc, item) => acc + (item.price * item.quantity), 0);
 
+  const buildWhatsAppMessage = () => {
+    const lines = cart.map(
+      (item) => `- ${item.name} x${item.quantity} (PEN ${(item.price * item.quantity).toFixed(2)})`
+    );
+    return (
+      `Hola! Quiero confirmar mi pedido:\n\n` +
+      lines.join("\n") +
+      `\n\nTotal: PEN ${totalPrice.toFixed(2)}` +
+      `\n\nNombre: ${name}` +
+      `\nWhatsApp: ${phone}`
+    );
+  };
+
+  const handleConfirmOrder = async (e) => {
+    e.preventDefault();
+
+    if (!name || !phone || !screenshot) {
+      alert("Completa tu nombre, WhatsApp y sube el comprobante de pago.");
+      return;
+    }
+
+    setStatus("sending");
+
+    try {
+      const formData = new FormData();
+      formData.append("producto", cart.map((i) => `${i.name} x${i.quantity}`).join(", "));
+      formData.append("name", name);
+      formData.append("phone", phone);
+      formData.append("items", JSON.stringify(cart));
+      formData.append("total", totalPrice.toFixed(2));
+      formData.append("screenshot", screenshot);
+
+      const res = await fetch("/api/orders", { method: "POST", body: formData });
+      const data = await res.json();
+
+      if (!res.ok) {
+        throw new Error(data.error || "No se pudo guardar el pedido");
+      }
+
+      // Pedido guardado en la base de datos. Ahora abrimos WhatsApp con el
+      // mensaje del pedido ya redactado para que lo envíe con un toque.
+      const waUrl = `https://wa.me/${STORE_WHATSAPP_NUMBER}?text=${encodeURIComponent(buildWhatsAppMessage())}`;
+      window.open(waUrl, "_blank");
+
+      // Vaciar el carrito
+      localStorage.removeItem("coquecutes_cart");
+      window.dispatchEvent(new Event("cartUpdate"));
+      setCart([]);
+      setStatus("idle");
+    } catch (err) {
+      console.error(err);
+      setStatus("error");
+      alert("Hubo un problema al guardar tu pedido. Intenta de nuevo.");
+    }
+  };
+
   if (cart.length === 0) {
     return (
       <div style={{ textAlign: "center", padding: "60px 20px" }}>
@@ -46,7 +110,7 @@ export default function CheckoutPage() {
       <h2 style={{ fontSize: "28px", fontWeight: "800", color: "#1e1b4b", marginBottom: "32px" }}>Finalizar compra</h2>
       
       {/* CONTENIDO PRINCIPAL EN DOS COLUMNAS */}
-      <div style={{ 
+      <form onSubmit={handleConfirmOrder} style={{ 
         display: "flex", 
         flexDirection: "row", 
         flexWrap: "wrap", 
@@ -73,9 +137,9 @@ export default function CheckoutPage() {
                   <p style={{ margin: "4px 0 0 0", color: "#7c3aed", fontSize: "13px", fontWeight: "600" }}>PEN {item.price.toFixed(2)} x {item.quantity}</p>
                 </div>
                 <div style={{ display: "flex", alignItems: "center", gap: "10px" }}>
-                  <button onClick={() => changeQuantity(item.id, -1)} style={qtyBtnStyle}>-</button>
+                  <button type="button" onClick={() => changeQuantity(item.id, -1)} style={qtyBtnStyle}>-</button>
                   <span style={{ fontWeight: "700", fontSize: "14px" }}>{item.quantity}</span>
-                  <button onClick={() => changeQuantity(item.id, 1)} style={qtyBtnStyle}>+</button>
+                  <button type="button" onClick={() => changeQuantity(item.id, 1)} style={qtyBtnStyle}>+</button>
                 </div>
               </div>
             ))}
@@ -134,38 +198,63 @@ export default function CheckoutPage() {
             
             <div>
               <label style={lblStyle}>Nombre completo</label>
-              <input type="text" placeholder="Ej. Juan Pérez" style={inStyle} />
+              <input
+                type="text"
+                placeholder="Ej. Juan Pérez"
+                style={inStyle}
+                value={name}
+                onChange={(e) => setName(e.target.value)}
+                required
+              />
             </div>
             
             <div>
               <label style={lblStyle}>WhatsApp</label>
-              <input type="tel" placeholder="Ej. 987654321" style={inStyle} />
+              <input
+                type="tel"
+                placeholder="Ej. 987654321"
+                style={inStyle}
+                value={phone}
+                onChange={(e) => setPhone(e.target.value)}
+                required
+              />
             </div>
             
             <div>
               <label style={lblStyle}>Subir comprobante de pago (Captura de Yape/Plin/Voucher)</label>
-              <input type="file" style={{ ...inStyle, padding: "10px" }} />
+              <input
+                type="file"
+                accept="image/*"
+                style={{ ...inStyle, padding: "10px" }}
+                onChange={(e) => setScreenshot(e.target.files[0])}
+                required
+              />
             </div>
             
-            <button style={{ 
-              backgroundColor: "#7c3aed", 
-              color: "#fff", 
-              border: "none", 
-              padding: "16px", 
-              borderRadius: "16px", 
-              fontWeight: "700", 
-              fontSize: "16px", 
-              cursor: "pointer", 
-              boxShadow: "0 4px 12px rgba(124, 58, 237, 0.2)",
-              marginTop: "12px"
-            }}>
-              Confirmar mi pedido por WhatsApp
+            <button
+              type="submit"
+              disabled={status === "sending"}
+              style={{ 
+                backgroundColor: "#7c3aed", 
+                color: "#fff", 
+                border: "none", 
+                padding: "16px", 
+                borderRadius: "16px", 
+                fontWeight: "700", 
+                fontSize: "16px", 
+                cursor: status === "sending" ? "not-allowed" : "pointer", 
+                opacity: status === "sending" ? 0.7 : 1,
+                boxShadow: "0 4px 12px rgba(124, 58, 237, 0.2)",
+                marginTop: "12px"
+              }}
+            >
+              {status === "sending" ? "Guardando pedido..." : "Confirmar mi pedido por WhatsApp"}
             </button>
           </div>
 
         </div>
 
-      </div>
+      </form>
     </div>
   );
 }

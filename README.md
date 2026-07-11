@@ -54,6 +54,30 @@ Esto es necesario para que las capturas de pago se guarden.
 3. Conéctalo a tu proyecto. Vercel agrega automáticamente la variable
    `BLOB_READ_WRITE_TOKEN` — no necesitas hacer nada más.
 
+## 6b. Activar la base de datos de pedidos (Vercel Postgres)
+
+Esto es necesario para que cada pedido (nombre, WhatsApp, productos, total)
+quede guardado, no solo la captura de pago.
+
+1. En tu proyecto en Vercel, ve a la pestaña "Storage".
+2. Click en "Create Database" > selecciona "Postgres" (a veces aparece como "Neon").
+3. Conéctalo a tu proyecto. Vercel agrega automáticamente las variables
+   `POSTGRES_URL` y similares — no necesitas hacer nada más.
+4. La primera vez que alguien complete una compra, el endpoint crea
+   automáticamente la tabla `orders` si todavía no existe.
+5. Para ver tus pedidos, entra a la pestaña "Storage" > tu base de datos >
+   "Data" (o "Query"), y corre: `SELECT * FROM orders ORDER BY created_at DESC;`
+
+## 6c. Configurar el número de WhatsApp de la tienda
+
+Abre `app/checkout/page.js` y busca la constante `STORE_WHATSAPP_NUMBER`
+cerca del inicio del archivo. Reemplázala por tu número real, con código de
+país y sin espacios ni signos (ej: `"51987654321"`).
+
+Cuando un cliente confirma su pedido, se guarda en la base de datos y
+automáticamente se abre WhatsApp con el resumen del pedido ya escrito,
+listo para que lo envíe con un toque a ese número.
+
 ## 7. Activar las notificaciones por email (opcional pero recomendado)
 
 Para que te llegue un correo cada vez que alguien compra:

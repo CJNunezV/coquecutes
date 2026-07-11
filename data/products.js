@@ -26,7 +26,7 @@ export const products = [
       compatibilidad: "Cartas estándar (Sleeved o Raw)",
       peso: "48 gramos"
     }
-  }
+  },
   {
     id: 3,
     slug: "case-tipo-agua",

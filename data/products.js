@@ -27,4 +27,60 @@ export const products = [
       peso: "48 gramos"
     }
   }
+  {
+    id: 3,
+    slug: "case-tipo-agua",
+    name: "Case Premium - Edición Tipo Agua",
+    price: 49.90,
+    images: [],
+    description: "Case con acabado translúcido celeste, ideal para colecciones temáticas de tipo agua. Misma resistencia y precisión de encastre que el resto de la línea premium.",
+    specs: {
+      medidas: "Exteriores: 10.5 cm x 8.2 cm | Interiores (para la carta): 9.2 cm x 6.8 cm",
+      material: "Plástico técnico de alta densidad (impresión 3D de precisión con post-procesado liso)",
+      compatibilidad: "Cartas Pokémon TCG, Magic: The Gathering y similares (Standard Size)",
+      peso: "45 gramos"
+    }
+  },
+  {
+    id: 4,
+    slug: "case-tipo-fuego",
+    name: "Case Premium - Edición Tipo Fuego",
+    price: 49.90,
+    images: [],
+    description: "Case con acabado translúcido rojo/naranja, pensado para tus cartas de tipo fuego. Edición limitada de la línea temática por tipos.",
+    specs: {
+      medidas: "Exteriores: 10.5 cm x 8.2 cm | Interiores (para la carta): 9.2 cm x 6.8 cm",
+      material: "Plástico técnico de alta densidad (impresión 3D de precisión con post-procesado liso)",
+      compatibilidad: "Cartas Pokémon TCG, Magic: The Gathering y similares (Standard Size)",
+      peso: "45 gramos"
+    }
+  },
+  {
+    id: 5,
+    slug: "case-tipo-planta",
+    name: "Case Premium - Edición Tipo Planta",
+    price: 49.90,
+    images: [],
+    description: "Case con acabado translúcido verde, para completar tu colección temática por tipos. Resistencia y encastre perfecto garantizados.",
+    specs: {
+      medidas: "Exteriores: 10.5 cm x 8.2 cm | Interiores (para la carta): 9.2 cm x 6.8 cm",
+      material: "Plástico técnico de alta densidad (impresión 3D de precisión con post-procesado liso)",
+      compatibilidad: "Cartas Pokémon TCG, Magic: The Gathering y similares (Standard Size)",
+      peso: "45 gramos"
+    }
+  },
+  {
+    id: 6,
+    slug: "case-personalizado-grabado",
+    name: "Case Premium - Personalizado con Grabado",
+    price: 64.90,
+    images: [],
+    description: "Case a medida con grabado de tu nombre o iniciales. Ideal para regalos o para identificar tus piezas más valiosas de la colección.",
+    specs: {
+      medidas: "Exteriores: 10.5 cm x 8.2 cm | Interiores (para la carta): 9.2 cm x 6.8 cm",
+      material: "Plástico técnico de alta densidad (impresión 3D de precisión con post-procesado liso)",
+      compatibilidad: "Cartas Pokémon TCG, Magic: The Gathering y similares (Standard Size)",
+      peso: "46 gramos"
+    }
+  }
 ];

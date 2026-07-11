@@ -1,8 +1,6 @@
 import Link from "next/link";
 import { products } from "../data/products";
-
-// Acentos de color rotativos para las tarjetas de producto (fondo del contenedor de imagen)
-const accents = ["#f3e8ff", "#e0e7ff", "#ffe4e6", "#fef3c7"];
+import ProductCarousel from "./ProductCarousel";
 
 export default function HomePage() {
   return (
@@ -136,109 +134,7 @@ export default function HomePage() {
         >
           Catálogo
         </h2>
-        <div
-          style={{
-            display: "grid",
-            gridTemplateColumns: "repeat(auto-fit, minmax(240px, 1fr))",
-            gap: "24px",
-          }}
-        >
-          {products.map((product, index) => (
-            <Link
-              href={`/producto/${product.slug}`}
-              key={product.id}
-              passHref
-              style={{
-                textDecoration: "none",
-                color: "inherit",
-                display: "block",
-              }}
-            >
-              <div
-                style={{
-                  display: "flex",
-                  flexDirection: "column",
-                  height: "100%",
-                  cursor: "pointer",
-                  backgroundColor: "#ffffff",
-                  borderRadius: "24px",
-                  border: "1px solid #f1f5f9",
-                  overflow: "hidden",
-                  transition: "box-shadow 0.2s",
-                }}
-              >
-                {/* Contenedor de la imagen */}
-                <div
-                  style={{
-                    background: accents[index % accents.length],
-                    height: "220px",
-                    display: "flex",
-                    alignItems: "center",
-                    justifyContent: "center",
-                    overflow: "hidden",
-                  }}
-                >
-                  <img
-                    src={(product.images && product.images[0]) || "/placeholder.svg"}
-                    alt={product.name}
-                    style={{ width: "70%", height: "70%", objectFit: "contain" }}
-                  />
-                </div>
-
-                {/* Info: título, precio y CTA */}
-                <div
-                  style={{
-                    padding: "20px",
-                    display: "flex",
-                    flexDirection: "column",
-                    flexGrow: 1,
-                    background: "#ffffff",
-                  }}
-                >
-                  <h3
-                    style={{
-                      fontSize: "16px",
-                      fontWeight: "750",
-                      color: "#1f2937",
-                      margin: "0 0 12px 0",
-                      minHeight: "44px",
-                      lineHeight: "1.4",
-                    }}
-                  >
-                    {product.name}
-                  </h3>
-
-                  <div
-                    style={{
-                      display: "flex",
-                      alignItems: "center",
-                      justifyContent: "space-between",
-                      marginTop: "auto",
-                      paddingTop: "12px",
-                      borderTop: "1px solid #f3f4f6",
-                    }}
-                  >
-                    <span style={{ fontSize: "18px", fontWeight: "800", color: "#7c3aed" }}>
-                      PEN {product.price.toFixed(2)}
-                    </span>
-                    <span
-                      style={{
-                        backgroundColor: "#f5f3ff",
-                        color: "#7c3aed",
-                        padding: "8px 16px",
-                        borderRadius: "12px",
-                        fontWeight: "700",
-                        fontSize: "13px",
-                      }}
-                    >
-                      Ver detalles
-                    </span>
-                  </div>
-                </div>
-              </div>
-            </Link>
-          ))}
-        </div>
+        <ProductCarousel products={products} />
       </section>
 
       {/* PRUEBA SOCIAL */}

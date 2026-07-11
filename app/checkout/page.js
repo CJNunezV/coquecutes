@@ -12,6 +12,7 @@ export default function CheckoutPage() {
   const [phone, setPhone] = useState("");
   const [screenshot, setScreenshot] = useState(null);
   const [status, setStatus] = useState("idle"); // idle | sending | error
+  const [confirmedOrder, setConfirmedOrder] = useState(null); // { id, name } cuando el pedido se guardó
 
   useEffect(() => {
     const savedCart = localStorage.getItem("coquecutes_cart");
@@ -79,19 +80,95 @@ export default function CheckoutPage() {
       // Paso 1: por ahora solo confirmamos que se guardó. La apertura de
       // WhatsApp la agregamos en el siguiente paso.
       console.log("Pedido guardado:", data);
-      alert(`Pedido guardado correctamente (ID: ${data.orderId ?? "sin ID, revisa la base de datos"})`);
 
       // Vaciar el carrito
       localStorage.removeItem("coquecutes_cart");
       window.dispatchEvent(new Event("cartUpdate"));
       setCart([]);
       setStatus("idle");
+      setConfirmedOrder({ id: data.orderId, name });
     } catch (err) {
       console.error(err);
       setStatus("error");
       alert("Hubo un problema al guardar tu pedido. Intenta de nuevo.");
     }
   };
+
+  if (confirmedOrder) {
+    return (
+      <div
+        style={{
+          textAlign: "center",
+          padding: "60px 24px",
+          background: "#ffffff",
+          borderRadius: "32px",
+          border: "1px solid #f1f5f9",
+          maxWidth: "480px",
+          margin: "0 auto",
+        }}
+      >
+        <div
+          style={{
+            width: "72px",
+            height: "72px",
+            borderRadius: "50%",
+            backgroundColor: "#f5f3ff",
+            display: "flex",
+            alignItems: "center",
+            justifyContent: "center",
+            margin: "0 auto 20px auto",
+          }}
+        >
+          <svg xmlns="http://www.w3.org/2000/svg" width="34" height="34" viewBox="0 0 24 24" fill="none" stroke="#7c3aed" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+            <path d="M20 6L9 17l-5-5" />
+          </svg>
+        </div>
+
+        <h2 style={{ fontSize: "24px", fontWeight: "800", color: "#1e1b4b", margin: "0 0 8px 0" }}>
+          ¡Pedido confirmado! 🎉
+        </h2>
+        <p style={{ fontSize: "15px", color: "#6b7280", margin: "0 0 4px 0", lineHeight: "1.6" }}>
+          Gracias{confirmedOrder.name ? `, ${confirmedOrder.name}` : ""}. Ya guardamos tu pedido y tu comprobante de pago.
+        </p>
+        {confirmedOrder.id && (
+          <p
+            style={{
+              display: "inline-block",
+              fontSize: "13px",
+              fontWeight: "700",
+              color: "#7c3aed",
+              backgroundColor: "#f5f3ff",
+              padding: "6px 14px",
+              borderRadius: "20px",
+              margin: "12px 0 24px 0",
+            }}
+          >
+            Pedido N.º {confirmedOrder.id}
+          </p>
+        )}
+        <p style={{ fontSize: "14px", color: "#9ca3af", margin: "0 0 28px 0", lineHeight: "1.6" }}>
+          Te vamos a contactar por WhatsApp para confirmar el pago y coordinar el envío.
+        </p>
+
+        <Link
+          href="/"
+          style={{
+            display: "inline-block",
+            backgroundColor: "#7c3aed",
+            color: "#fff",
+            padding: "14px 28px",
+            borderRadius: "16px",
+            textDecoration: "none",
+            fontWeight: "700",
+            fontSize: "15px",
+            boxShadow: "0 4px 14px rgba(124, 58, 237, 0.25)",
+          }}
+        >
+          Volver a la tienda
+        </Link>
+      </div>
+    );
+  }
 
   if (cart.length === 0) {
     return (

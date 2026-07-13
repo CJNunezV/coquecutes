@@ -1,11 +1,12 @@
 import React from "react";
 import Header from "./Header"; // Importamos el componente cliente de forma segura
-
+import WhatsAppBubble from "./WhatsAppBubble";
+ 
 export const metadata = {
   title: "Coquecutes",
   description: "Tienda online de Coquecutes",
 };
-
+ 
 export default function RootLayout({ children }) {
   return (
     <html lang="es">
@@ -21,15 +22,17 @@ export default function RootLayout({ children }) {
         
         {/* Renderiza el Header dinámico aquí */}
         <Header />
-
+ 
         <main style={{ flex: 1, width: "100%", maxWidth: "1200px", margin: "0 auto", padding: "40px 24px", boxSizing: "border-box" }}>
           {children}
         </main>
-
+ 
         <footer style={{ padding: "24px", textAlign: "center", fontSize: "14px", color: "#888888", backgroundColor: "#ffffff", borderTop: "1px solid #eee" }}>
           © {new Date().getFullYear()} Coquecutes
         </footer>
-
+ 
+        <WhatsAppBubble />
+ 
       </body>
     </html>
   );

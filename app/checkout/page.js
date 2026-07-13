@@ -46,13 +46,13 @@ export default function CheckoutPage() {
 
   const buildDeliveryText = () => {
     if (deliveryMethod === "fullmarket") {
-      return `Recojo en FullMarket/Arenales - Tienda: ${storeName}`;
+      return `Recojo en FullMarket / Arenales — Tienda: ${storeName}`;
     }
     if (deliveryMethod === "shalom") {
-      return `Envío por Shalom (fuera de Lima) - DNI: ${dni} - Agencia: ${shalomLocation}`;
+      return `Envío por agencia Shalom (fuera de Lima) — DNI: ${dni} — Agencia: ${shalomLocation}`;
     }
     if (deliveryMethod === "motorizado") {
-      return `Envío por motorizado - A coordinar por WhatsApp`;
+      return `Envío con motorizado — Punto de entrega a coordinar por WhatsApp`;
     }
     return "";
   };
@@ -361,13 +361,13 @@ export default function CheckoutPage() {
                     style={{ marginRight: "10px" }}
                   />
                   <span style={{ fontWeight: "600", fontSize: "14px", color: "#374151" }}>
-                    FullMarket / Arenales
+                    Recojo en FullMarket / Arenales
                   </span>
                 </label>
                 {deliveryMethod === "fullmarket" && (
                   <input
                     type="text"
-                    placeholder="¿En qué tienda dejarías el pedido?"
+                    placeholder="¿En qué tienda deseas que dejemos tu pedido?"
                     style={{ ...inStyle, marginLeft: "8px" }}
                     value={storeName}
                     onChange={(e) => setStoreName(e.target.value)}
@@ -392,14 +392,15 @@ export default function CheckoutPage() {
                     style={{ marginRight: "10px" }}
                   />
                   <span style={{ fontWeight: "600", fontSize: "14px", color: "#374151" }}>
-                    Shalom <span style={{ color: "#9ca3af", fontWeight: "500" }}>(solo para fuera de Lima)</span>
+                    Envío por agencia Shalom{" "}
+                    <span style={{ color: "#9ca3af", fontWeight: "500" }}>— Solo para pedidos fuera de Lima</span>
                   </span>
                 </label>
                 {deliveryMethod === "shalom" && (
                   <div style={{ display: "flex", flexDirection: "column", gap: "10px", marginLeft: "8px" }}>
                     <input
                       type="text"
-                      placeholder="Tu DNI"
+                      placeholder="Número de DNI"
                       style={inStyle}
                       value={dni}
                       onChange={(e) => setDni(e.target.value)}
@@ -407,7 +408,7 @@ export default function CheckoutPage() {
                     />
                     <input
                       type="text"
-                      placeholder="¿En qué agencia Shalom recogerías el pedido?"
+                      placeholder="Agencia Shalom donde recogerás el pedido"
                       style={inStyle}
                       value={shalomLocation}
                       onChange={(e) => setShalomLocation(e.target.value)}
@@ -433,7 +434,8 @@ export default function CheckoutPage() {
                     style={{ marginRight: "10px" }}
                   />
                   <span style={{ fontWeight: "600", fontSize: "14px", color: "#374151" }}>
-                    Motorizado <span style={{ color: "#9ca3af", fontWeight: "500" }}>(coordinamos por WhatsApp)</span>
+                    Envío con motorizado{" "}
+                    <span style={{ color: "#9ca3af", fontWeight: "500" }}>— Coordinaremos el punto de entrega por WhatsApp</span>
                   </span>
                 </label>
               </div>

@@ -14,6 +14,12 @@ export default function CheckoutPage() {
   const [status, setStatus] = useState("idle"); // idle | sending | error
   const [confirmedOrder, setConfirmedOrder] = useState(null); // { id, name } cuando el pedido se guardó
 
+  // Datos de entrega
+  const [deliveryMethod, setDeliveryMethod] = useState(""); // "fullmarket" | "shalom" | "motorizado"
+  const [storeName, setStoreName] = useState(""); // Tienda de FullMarket/Arenales
+  const [dni, setDni] = useState(""); // DNI para envíos por Shalom
+  const [shalomLocation, setShalomLocation] = useState(""); // Agencia Shalom donde recoger
+
   useEffect(() => {
     const savedCart = localStorage.getItem("coquecutes_cart");
     if (savedCart) setCart(JSON.parse(savedCart));
@@ -38,6 +44,19 @@ export default function CheckoutPage() {
 
   const totalPrice = cart.reduce((acc, item) => acc + (item.price * item.quantity), 0);
 
+  const buildDeliveryText = () => {
+    if (deliveryMethod === "fullmarket") {
+      return `Recojo en FullMarket/Arenales - Tienda: ${storeName}`;
+    }
+    if (deliveryMethod === "shalom") {
+      return `Envío por Shalom (fuera de Lima) - DNI: ${dni} - Agencia: ${shalomLocation}`;
+    }
+    if (deliveryMethod === "motorizado") {
+      return `Envío por motorizado - A coordinar por WhatsApp`;
+    }
+    return "";
+  };
+
   const buildWhatsAppMessage = () => {
     const lines = cart.map(
       (item) => `- ${item.name} x${item.quantity} (PEN ${(item.price * item.quantity).toFixed(2)})`
@@ -47,7 +66,8 @@ export default function CheckoutPage() {
       lines.join("\n") +
       `\n\nTotal: PEN ${totalPrice.toFixed(2)}` +
       `\n\nNombre: ${name}` +
-      `\nWhatsApp: ${phone}`
+      `\nWhatsApp: ${phone}` +
+      `\nEntrega: ${buildDeliveryText()}`
     );
   };
 
@@ -56,6 +76,21 @@ export default function CheckoutPage() {
 
     if (!name || !phone || !screenshot) {
       alert("Completa tu nombre, WhatsApp y sube el comprobante de pago.");
+      return;
+    }
+
+    if (!deliveryMethod) {
+      alert("Selecciona un lugar de entrega.");
+      return;
+    }
+
+    if (deliveryMethod === "fullmarket" && !storeName) {
+      alert("Indica la tienda de FullMarket/Arenales donde dejarías el pedido.");
+      return;
+    }
+
+    if (deliveryMethod === "shalom" && (!dni || !shalomLocation)) {
+      alert("Completa tu DNI y la agencia Shalom donde recogerías el pedido.");
       return;
     }
 
@@ -69,6 +104,8 @@ export default function CheckoutPage() {
       formData.append("items", JSON.stringify(cart));
       formData.append("total", totalPrice.toFixed(2));
       formData.append("screenshot", screenshot);
+      formData.append("deliveryMethod", deliveryMethod);
+      formData.append("address", buildDeliveryText());
 
       const res = await fetch("/api/orders", { method: "POST", body: formData });
       const data = await res.json();
@@ -86,7 +123,7 @@ export default function CheckoutPage() {
       window.dispatchEvent(new Event("cartUpdate"));
       setCart([]);
       setStatus("idle");
-      setConfirmedOrder({ id: data.orderId, name });
+      setConfirmedOrder({ id: data.orderId, name, delivery: buildDeliveryText() });
     } catch (err) {
       console.error(err);
       setStatus("error");
@@ -140,10 +177,15 @@ export default function CheckoutPage() {
               backgroundColor: "#f5f3ff",
               padding: "6px 14px",
               borderRadius: "20px",
-              margin: "12px 0 24px 0",
+              margin: "12px 0 12px 0",
             }}
           >
             Pedido N.º {confirmedOrder.id}
+          </p>
+        )}
+        {confirmedOrder.delivery && (
+          <p style={{ fontSize: "13px", color: "#6b7280", margin: "0 0 24px 0" }}>
+            📦 {confirmedOrder.delivery}
           </p>
         )}
         <p style={{ fontSize: "14px", color: "#9ca3af", margin: "0 0 28px 0", lineHeight: "1.6" }}>
@@ -296,7 +338,107 @@ export default function CheckoutPage() {
                 required
               />
             </div>
-            
+
+            {/* LUGAR DE ENTREGA */}
+            <div>
+              <label style={lblStyle}>Lugar de entrega</label>
+              <div style={{ display: "flex", flexDirection: "column", gap: "10px" }}>
+
+                {/* Opción 1: FullMarket / Arenales */}
+                <label
+                  style={{
+                    ...deliveryOptionStyle,
+                    borderColor: deliveryMethod === "fullmarket" ? "#7c3aed" : "#d1d5db",
+                    backgroundColor: deliveryMethod === "fullmarket" ? "#f5f3ff" : "#fff",
+                  }}
+                >
+                  <input
+                    type="radio"
+                    name="deliveryMethod"
+                    value="fullmarket"
+                    checked={deliveryMethod === "fullmarket"}
+                    onChange={() => setDeliveryMethod("fullmarket")}
+                    style={{ marginRight: "10px" }}
+                  />
+                  <span style={{ fontWeight: "600", fontSize: "14px", color: "#374151" }}>
+                    FullMarket / Arenales
+                  </span>
+                </label>
+                {deliveryMethod === "fullmarket" && (
+                  <input
+                    type="text"
+                    placeholder="¿En qué tienda dejarías el pedido?"
+                    style={{ ...inStyle, marginLeft: "8px" }}
+                    value={storeName}
+                    onChange={(e) => setStoreName(e.target.value)}
+                    required
+                  />
+                )}
+
+                {/* Opción 2: Shalom (solo fuera de Lima) */}
+                <label
+                  style={{
+                    ...deliveryOptionStyle,
+                    borderColor: deliveryMethod === "shalom" ? "#7c3aed" : "#d1d5db",
+                    backgroundColor: deliveryMethod === "shalom" ? "#f5f3ff" : "#fff",
+                  }}
+                >
+                  <input
+                    type="radio"
+                    name="deliveryMethod"
+                    value="shalom"
+                    checked={deliveryMethod === "shalom"}
+                    onChange={() => setDeliveryMethod("shalom")}
+                    style={{ marginRight: "10px" }}
+                  />
+                  <span style={{ fontWeight: "600", fontSize: "14px", color: "#374151" }}>
+                    Shalom <span style={{ color: "#9ca3af", fontWeight: "500" }}>(solo para fuera de Lima)</span>
+                  </span>
+                </label>
+                {deliveryMethod === "shalom" && (
+                  <div style={{ display: "flex", flexDirection: "column", gap: "10px", marginLeft: "8px" }}>
+                    <input
+                      type="text"
+                      placeholder="Tu DNI"
+                      style={inStyle}
+                      value={dni}
+                      onChange={(e) => setDni(e.target.value)}
+                      required
+                    />
+                    <input
+                      type="text"
+                      placeholder="¿En qué agencia Shalom recogerías el pedido?"
+                      style={inStyle}
+                      value={shalomLocation}
+                      onChange={(e) => setShalomLocation(e.target.value)}
+                      required
+                    />
+                  </div>
+                )}
+
+                {/* Opción 3: Motorizado */}
+                <label
+                  style={{
+                    ...deliveryOptionStyle,
+                    borderColor: deliveryMethod === "motorizado" ? "#7c3aed" : "#d1d5db",
+                    backgroundColor: deliveryMethod === "motorizado" ? "#f5f3ff" : "#fff",
+                  }}
+                >
+                  <input
+                    type="radio"
+                    name="deliveryMethod"
+                    value="motorizado"
+                    checked={deliveryMethod === "motorizado"}
+                    onChange={() => setDeliveryMethod("motorizado")}
+                    style={{ marginRight: "10px" }}
+                  />
+                  <span style={{ fontWeight: "600", fontSize: "14px", color: "#374151" }}>
+                    Motorizado <span style={{ color: "#9ca3af", fontWeight: "500" }}>(coordinamos por WhatsApp)</span>
+                  </span>
+                </label>
+              </div>
+            </div>
+
             <div>
               <label style={lblStyle}>Subir comprobante de pago (Captura de Yape/Plin/Voucher)</label>
               <input
@@ -339,3 +481,4 @@ export default function CheckoutPage() {
 const qtyBtnStyle = { backgroundColor: "#e9d5ff", color: "#6b21a8", border: "none", width: "28px", height: "28px", borderRadius: "8px", fontWeight: "700", cursor: "pointer", display: "flex", alignItems: "center", justifyContent: "center" };
 const lblStyle = { display: "block", fontSize: "14px", fontWeight: "600", color: "#4b5563", marginBottom: "6px" };
 const inStyle = { width: "100%", padding: "14px 16px", borderRadius: "12px", border: "1px solid #d1d5db", fontSize: "14px", boxSizing: "border-box", background: "#fff", outline: "none" };
+const deliveryOptionStyle = { display: "flex", alignItems: "center", padding: "12px 14px", borderRadius: "12px", border: "1.5px solid #d1d5db", cursor: "pointer", transition: "border-color 0.15s, background-color 0.15s" };

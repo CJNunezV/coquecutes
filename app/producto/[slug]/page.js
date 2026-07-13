@@ -9,6 +9,7 @@ export default function ProductDetailPage() {
   const router = useRouter();
   const [product, setProduct] = useState(null);
   const [activeImage, setActiveImage] = useState("");
+  const [quantity, setQuantity] = useState(1);
 
   useEffect(() => {
     const foundProduct = products.find((p) => p.slug === slug);
@@ -26,13 +27,13 @@ export default function ProductDetailPage() {
 
     const existingItem = cart.find(item => item.id === product.id);
     if (existingItem) {
-      existingItem.quantity += 1;
+      existingItem.quantity += quantity;
     } else {
       cart.push({
         id: product.id,
         name: product.name,
         price: product.price,
-        quantity: 1
+        quantity: quantity
       });
     }
 
@@ -138,31 +139,84 @@ export default function ProductDetailPage() {
 
           {/* Botones de Acción */}
           <div style={{ display: "flex", flexDirection: "column", gap: "12px" }}>
-            <button
-              onClick={handleAddToCart}
-              style={{
-                backgroundColor: "#ffffff",
-                color: "#7c3aed",
-                border: "2px solid #7c3aed",
-                padding: "16px",
-                borderRadius: "16px",
-                fontWeight: "700",
-                fontSize: "16px",
-                cursor: "pointer",
-                display: "flex",
-                alignItems: "center",
-                justifyContent: "center",
-                gap: "12px",
-                transition: "background 0.2s"
-              }}
-            >
-              <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
-                <circle cx="8" cy="21" r="1"/><circle cx="19" cy="21" r="1"/>
-                <path d="M2.05 2.05h2l2.66 12.42a2 2 0 0 0 2 1.58h9.78a2 2 0 0 0 1.95-1.57l1.65-7.43H5.12"/>
-              </svg>
-              Agregar
-            </button>
+            {/* Fila: selector de cantidad + Añadir al carrito */}
+            <div style={{ display: "flex", gap: "12px" }}>
+              <div
+                style={{
+                  display: "flex",
+                  alignItems: "center",
+                  justifyContent: "space-between",
+                  border: "1px solid #e5e7eb",
+                  borderRadius: "16px",
+                  padding: "0 6px",
+                  minWidth: "110px",
+                }}
+              >
+                <button
+                  type="button"
+                  onClick={() => setQuantity((q) => Math.max(1, q - 1))}
+                  style={{
+                    background: "none",
+                    border: "none",
+                    fontSize: "18px",
+                    fontWeight: "700",
+                    color: "#374151",
+                    cursor: "pointer",
+                    width: "32px",
+                    height: "48px",
+                  }}
+                  aria-label="Restar cantidad"
+                >
+                  −
+                </button>
+                <span style={{ fontWeight: "700", fontSize: "16px", color: "#1f2937" }}>{quantity}</span>
+                <button
+                  type="button"
+                  onClick={() => setQuantity((q) => q + 1)}
+                  style={{
+                    background: "none",
+                    border: "none",
+                    fontSize: "18px",
+                    fontWeight: "700",
+                    color: "#374151",
+                    cursor: "pointer",
+                    width: "32px",
+                    height: "48px",
+                  }}
+                  aria-label="Sumar cantidad"
+                >
+                  +
+                </button>
+              </div>
 
+              <button
+                onClick={handleAddToCart}
+                style={{
+                  flex: 1,
+                  backgroundColor: "#111111",
+                  color: "#ffffff",
+                  border: "none",
+                  padding: "0 16px",
+                  borderRadius: "16px",
+                  fontWeight: "700",
+                  fontSize: "15px",
+                  letterSpacing: "0.3px",
+                  cursor: "pointer",
+                  display: "flex",
+                  alignItems: "center",
+                  justifyContent: "center",
+                  gap: "10px",
+                }}
+              >
+                <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+                  <circle cx="8" cy="21" r="1"/><circle cx="19" cy="21" r="1"/>
+                  <path d="M2.05 2.05h2l2.66 12.42a2 2 0 0 0 2 1.58h9.78a2 2 0 0 0 1.95-1.57l1.65-7.43H5.12"/>
+                </svg>
+                AÑADIR AL CARRITO
+              </button>
+            </div>
+
+            {/* Botón ancho: Ir a pagar */}
             <button
               onClick={handleAddToCartAndPay}
               style={{
@@ -175,18 +229,9 @@ export default function ProductDetailPage() {
                 fontSize: "16px",
                 cursor: "pointer",
                 boxShadow: "0 4px 14px rgba(124, 58, 237, 0.25)",
-                display: "flex",
-                alignItems: "center",
-                justifyContent: "center",
-                gap: "12px",
-                transition: "background 0.2s"
               }}
             >
-              <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
-                <circle cx="8" cy="21" r="1"/><circle cx="19" cy="21" r="1"/>
-                <path d="M2.05 2.05h2l2.66 12.42a2 2 0 0 0 2 1.58h9.78a2 2 0 0 0 1.95-1.57l1.65-7.43H5.12"/>
-              </svg>
-              Agregar y pagar
+              Ir a pagar
             </button>
           </div>
         </div>

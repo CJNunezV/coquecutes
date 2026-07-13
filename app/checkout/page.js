@@ -49,6 +49,25 @@ export default function CheckoutPage() {
 
   const isFormComplete = !!name.trim() && !!phone.trim() && !!deliveryMethod && isDeliveryComplete && !!screenshot;
 
+  const getMissingFields = () => {
+    const missing = [];
+    if (!name.trim()) missing.push("Nombre completo");
+    if (!phone.trim()) missing.push("WhatsApp");
+    if (!deliveryMethod) {
+      missing.push("Selecciona un lugar de entrega");
+    } else if (deliveryMethod === "fullmarket" && !storeName.trim()) {
+      missing.push("Tienda donde dejaremos tu pedido");
+    } else if (deliveryMethod === "shalom" && !dni.trim()) {
+      missing.push("Número de DNI");
+    } else if (deliveryMethod === "shalom" && !shalomLocation.trim()) {
+      missing.push("Agencia Shalom/Olva donde recogerás el pedido");
+    }
+    if (!screenshot) missing.push("Comprobante de pago");
+    return missing;
+  };
+
+  const missingFields = getMissingFields();
+
   const totalPrice = cart.reduce((acc, item) => acc + (item.price * item.quantity), 0);
 
   const buildDeliveryText = () => {
@@ -56,7 +75,7 @@ export default function CheckoutPage() {
       return `Recojo en FullMarket / Arenales — Tienda: ${storeName}`;
     }
     if (deliveryMethod === "shalom") {
-      return `Envío por agencia Shalom (fuera de Lima) — DNI: ${dni} — Agencia: ${shalomLocation}`;
+      return `Envío por agencia Shalom/Olva (fuera de Lima) — DNI: ${dni} — Agencia: ${shalomLocation}`;
     }
     if (deliveryMethod === "motorizado") {
       return `Envío con motorizado — Punto de entrega a coordinar por WhatsApp`;
@@ -97,7 +116,7 @@ export default function CheckoutPage() {
     }
 
     if (deliveryMethod === "shalom" && (!dni || !shalomLocation)) {
-      alert("Completa tu DNI y la agencia Shalom donde recogerías el pedido.");
+      alert("Completa tu DNI y la agencia Shalom/Olva donde recogerías el pedido.");
       return;
     }
 
@@ -408,7 +427,7 @@ export default function CheckoutPage() {
                     style={{ marginRight: "10px" }}
                   />
                   <span style={{ fontWeight: "600", fontSize: "14px", color: "#374151" }}>
-                    Envío por agencia Shalom{" "}
+                    Envío por agencia Shalom/Olva{" "}
                     <span style={{ color: "#9ca3af", fontWeight: "500" }}>— Solo para pedidos fuera de Lima</span>
                   </span>
                 </label>
@@ -428,7 +447,7 @@ export default function CheckoutPage() {
                     <div style={{ position: "relative" }}>
                       <input
                         type="text"
-                        placeholder="Agencia Shalom donde recogerás el pedido"
+                        placeholder="Agencia Shalom/Olva donde recogerás el pedido"
                         style={inStyle}
                         value={shalomLocation}
                         onChange={(e) => setShalomLocation(e.target.value)}
@@ -501,10 +520,27 @@ export default function CheckoutPage() {
             >
               {status === "sending" ? "Guardando pedido..." : "Confirmar mi pedido por WhatsApp"}
             </button>
-            {!isFormComplete && (
-              <p style={{ fontSize: "12px", color: "#9ca3af", textAlign: "center", margin: "-8px 0 0 0" }}>
-                Completa todos los datos para poder confirmar tu pedido.
-              </p>
+            {!isFormComplete && missingFields.length > 0 && (
+              <div
+                style={{
+                  backgroundColor: "#fffbeb",
+                  border: "1px solid #fde68a",
+                  borderRadius: "12px",
+                  padding: "12px 14px",
+                  marginTop: "-8px",
+                }}
+              >
+                <p style={{ fontSize: "12px", fontWeight: "700", color: "#92400e", margin: "0 0 6px 0" }}>
+                  Te falta completar:
+                </p>
+                <ul style={{ margin: 0, paddingLeft: "18px" }}>
+                  {missingFields.map((field) => (
+                    <li key={field} style={{ fontSize: "12px", color: "#92400e" }}>
+                      {field}
+                    </li>
+                  ))}
+                </ul>
+              </div>
             )}
           </div>
 

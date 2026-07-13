@@ -49,7 +49,7 @@ export default function CheckoutPage() {
       return `Recojo en FullMarket / Arenales — Tienda: ${storeName}`;
     }
     if (deliveryMethod === "shalom") {
-      return `Envío por agencia Shalom (fuera de Lima) — DNI: ${dni} — Agencia: ${shalomLocation}`;
+      return `Envío por agencia Shalom/Olva (fuera de Lima) — DNI: ${dni} — Agencia: ${shalomLocation}`;
     }
     if (deliveryMethod === "motorizado") {
       return `Envío con motorizado — Punto de entrega a coordinar por WhatsApp`;
@@ -90,7 +90,7 @@ export default function CheckoutPage() {
     }
 
     if (deliveryMethod === "shalom" && (!dni || !shalomLocation)) {
-      alert("Completa tu DNI y la agencia Shalom donde recogerías el pedido.");
+      alert("Completa tu DNI y la agencia Shalom/Olva donde recogerías el pedido.");
       return;
     }
 
@@ -285,8 +285,8 @@ export default function CheckoutPage() {
           }}>
             <div style={{ flex: 1 }}>
               <h4 style={{ margin: "0 0 12px 0", color: "#6b21a8", fontSize: "16px", fontWeight: "700" }}>Datos para el pago</h4>
-              <p style={{ margin: "6px 0", color: "#4c1d95", fontSize: "14px" }}><strong>Yape / Plin:</strong> 999 999 999 (Coquecutes Store)</p>
-              <p style={{ margin: "6px 0", color: "#4c1d95", fontSize: "14px" }}><strong>Transferencia BCP:</strong> 191-XXXXXXXX-X-XX</p>
+              <p style={{ margin: "6px 0", color: "#4c1d95", fontSize: "14px" }}><strong>Yape / Plin:</strong> 962167068 (Christopher Nuñez)</p>
+              <p style={{ margin: "6px 0", color: "#4c1d95", fontSize: "14px" }}><strong>Transferencia CCI - INTERBANK:</strong> 00308201327151581659</p>
               <p style={{ margin: "12px 0 0 0", color: "#7c3aed", fontSize: "12px", fontStyle: "italic" }}>💡 Escanea para pagar directamente desde tu app bancaria.</p>
             </div>
             
@@ -408,7 +408,7 @@ export default function CheckoutPage() {
                     />
                     <input
                       type="text"
-                      placeholder="Agencia Shalom donde recogerás el pedido"
+                      placeholder="Agencia Shalom/Olva donde recogerás el pedido"
                       style={inStyle}
                       value={shalomLocation}
                       onChange={(e) => setShalomLocation(e.target.value)}

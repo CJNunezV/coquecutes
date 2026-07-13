@@ -42,6 +42,13 @@ export default function CheckoutPage() {
     updateCart(updated);
   };
 
+  const isDeliveryComplete =
+    (deliveryMethod === "fullmarket" && !!storeName.trim()) ||
+    (deliveryMethod === "shalom" && !!dni.trim() && !!shalomLocation.trim()) ||
+    (deliveryMethod === "motorizado");
+
+  const isFormComplete = !!name.trim() && !!phone.trim() && !!deliveryMethod && isDeliveryComplete && !!screenshot;
+
   const totalPrice = cart.reduce((acc, item) => acc + (item.price * item.quantity), 0);
 
   const buildDeliveryText = () => {
@@ -49,7 +56,7 @@ export default function CheckoutPage() {
       return `Recojo en FullMarket / Arenales — Tienda: ${storeName}`;
     }
     if (deliveryMethod === "shalom") {
-      return `Envío por agencia Shalom/Olva (fuera de Lima) — DNI: ${dni} — Agencia: ${shalomLocation}`;
+      return `Envío por agencia Shalom (fuera de Lima) — DNI: ${dni} — Agencia: ${shalomLocation}`;
     }
     if (deliveryMethod === "motorizado") {
       return `Envío con motorizado — Punto de entrega a coordinar por WhatsApp`;
@@ -90,7 +97,7 @@ export default function CheckoutPage() {
     }
 
     if (deliveryMethod === "shalom" && (!dni || !shalomLocation)) {
-      alert("Completa tu DNI y la agencia Shalom/Olva donde recogerías el pedido.");
+      alert("Completa tu DNI y la agencia Shalom donde recogerías el pedido.");
       return;
     }
 
@@ -285,8 +292,8 @@ export default function CheckoutPage() {
           }}>
             <div style={{ flex: 1 }}>
               <h4 style={{ margin: "0 0 12px 0", color: "#6b21a8", fontSize: "16px", fontWeight: "700" }}>Datos para el pago</h4>
-              <p style={{ margin: "6px 0", color: "#4c1d95", fontSize: "14px" }}><strong>Yape / Plin:</strong> 962167068 (Christopher Nuñez)</p>
-              <p style={{ margin: "6px 0", color: "#4c1d95", fontSize: "14px" }}><strong>Transferencia CCI - INTERBANK:</strong> 00308201327151581659</p>
+              <p style={{ margin: "6px 0", color: "#4c1d95", fontSize: "14px" }}><strong>Yape / Plin:</strong> 999 999 999 (Coquecutes Store)</p>
+              <p style={{ margin: "6px 0", color: "#4c1d95", fontSize: "14px" }}><strong>Transferencia BCP:</strong> 191-XXXXXXXX-X-XX</p>
               <p style={{ margin: "12px 0 0 0", color: "#7c3aed", fontSize: "12px", fontStyle: "italic" }}>💡 Escanea para pagar directamente desde tu app bancaria.</p>
             </div>
             
@@ -317,26 +324,32 @@ export default function CheckoutPage() {
             
             <div>
               <label style={lblStyle}>Nombre completo</label>
-              <input
-                type="text"
-                placeholder="Ej. Juan Pérez"
-                style={inStyle}
-                value={name}
-                onChange={(e) => setName(e.target.value)}
-                required
-              />
+              <div style={{ position: "relative" }}>
+                <input
+                  type="text"
+                  placeholder="Ej. Juan Pérez"
+                  style={inStyle}
+                  value={name}
+                  onChange={(e) => setName(e.target.value)}
+                  required
+                />
+                {name.trim() && <CheckIcon />}
+              </div>
             </div>
             
             <div>
               <label style={lblStyle}>WhatsApp</label>
-              <input
-                type="tel"
-                placeholder="Ej. 987654321"
-                style={inStyle}
-                value={phone}
-                onChange={(e) => setPhone(e.target.value)}
-                required
-              />
+              <div style={{ position: "relative" }}>
+                <input
+                  type="tel"
+                  placeholder="Ej. 987654321"
+                  style={inStyle}
+                  value={phone}
+                  onChange={(e) => setPhone(e.target.value)}
+                  required
+                />
+                {phone.trim() && <CheckIcon />}
+              </div>
             </div>
 
             {/* LUGAR DE ENTREGA */}
@@ -365,14 +378,17 @@ export default function CheckoutPage() {
                   </span>
                 </label>
                 {deliveryMethod === "fullmarket" && (
-                  <input
-                    type="text"
-                    placeholder="¿En qué tienda deseas que dejemos tu pedido?"
-                    style={{ ...inStyle, marginLeft: "8px" }}
-                    value={storeName}
-                    onChange={(e) => setStoreName(e.target.value)}
-                    required
-                  />
+                  <div style={{ position: "relative", marginLeft: "8px" }}>
+                    <input
+                      type="text"
+                      placeholder="¿En qué tienda deseas que dejemos tu pedido?"
+                      style={inStyle}
+                      value={storeName}
+                      onChange={(e) => setStoreName(e.target.value)}
+                      required
+                    />
+                    {storeName.trim() && <CheckIcon />}
+                  </div>
                 )}
 
                 {/* Opción 2: Shalom (solo fuera de Lima) */}
@@ -392,28 +408,34 @@ export default function CheckoutPage() {
                     style={{ marginRight: "10px" }}
                   />
                   <span style={{ fontWeight: "600", fontSize: "14px", color: "#374151" }}>
-                    Envío por agencia Shalom/Olva{" "}
+                    Envío por agencia Shalom{" "}
                     <span style={{ color: "#9ca3af", fontWeight: "500" }}>— Solo para pedidos fuera de Lima</span>
                   </span>
                 </label>
                 {deliveryMethod === "shalom" && (
                   <div style={{ display: "flex", flexDirection: "column", gap: "10px", marginLeft: "8px" }}>
-                    <input
-                      type="text"
-                      placeholder="Número de DNI"
-                      style={inStyle}
-                      value={dni}
-                      onChange={(e) => setDni(e.target.value)}
-                      required
-                    />
-                    <input
-                      type="text"
-                      placeholder="Agencia Shalom/Olva donde recogerás el pedido"
-                      style={inStyle}
-                      value={shalomLocation}
-                      onChange={(e) => setShalomLocation(e.target.value)}
-                      required
-                    />
+                    <div style={{ position: "relative" }}>
+                      <input
+                        type="text"
+                        placeholder="Número de DNI"
+                        style={inStyle}
+                        value={dni}
+                        onChange={(e) => setDni(e.target.value)}
+                        required
+                      />
+                      {dni.trim() && <CheckIcon />}
+                    </div>
+                    <div style={{ position: "relative" }}>
+                      <input
+                        type="text"
+                        placeholder="Agencia Shalom donde recogerás el pedido"
+                        style={inStyle}
+                        value={shalomLocation}
+                        onChange={(e) => setShalomLocation(e.target.value)}
+                        required
+                      />
+                      {shalomLocation.trim() && <CheckIcon />}
+                    </div>
                   </div>
                 )}
 
@@ -443,18 +465,26 @@ export default function CheckoutPage() {
 
             <div>
               <label style={lblStyle}>Subir comprobante de pago (Captura de Yape/Plin/Voucher)</label>
-              <input
-                type="file"
-                accept="image/*"
-                style={{ ...inStyle, padding: "10px" }}
-                onChange={(e) => setScreenshot(e.target.files[0])}
-                required
-              />
+              <div style={{ position: "relative" }}>
+                <input
+                  type="file"
+                  accept="image/*"
+                  style={{ ...inStyle, padding: "10px" }}
+                  onChange={(e) => setScreenshot(e.target.files[0])}
+                  required
+                />
+                {screenshot && <CheckIcon />}
+              </div>
+              {!screenshot && (
+                <p style={{ fontSize: "12px", color: "#f59e0b", margin: "6px 0 0 0" }}>
+                  ⚠ Debes subir el comprobante de pago para poder confirmar tu pedido.
+                </p>
+              )}
             </div>
             
             <button
               type="submit"
-              disabled={status === "sending"}
+              disabled={status === "sending" || !isFormComplete}
               style={{ 
                 backgroundColor: "#7c3aed", 
                 color: "#fff", 
@@ -463,14 +493,19 @@ export default function CheckoutPage() {
                 borderRadius: "16px", 
                 fontWeight: "700", 
                 fontSize: "16px", 
-                cursor: status === "sending" ? "not-allowed" : "pointer", 
-                opacity: status === "sending" ? 0.7 : 1,
+                cursor: (status === "sending" || !isFormComplete) ? "not-allowed" : "pointer", 
+                opacity: (status === "sending" || !isFormComplete) ? 0.5 : 1,
                 boxShadow: "0 4px 12px rgba(124, 58, 237, 0.2)",
                 marginTop: "12px"
               }}
             >
               {status === "sending" ? "Guardando pedido..." : "Confirmar mi pedido por WhatsApp"}
             </button>
+            {!isFormComplete && (
+              <p style={{ fontSize: "12px", color: "#9ca3af", textAlign: "center", margin: "-8px 0 0 0" }}>
+                Completa todos los datos para poder confirmar tu pedido.
+              </p>
+            )}
           </div>
 
         </div>
@@ -484,3 +519,29 @@ const qtyBtnStyle = { backgroundColor: "#e9d5ff", color: "#6b21a8", border: "non
 const lblStyle = { display: "block", fontSize: "14px", fontWeight: "600", color: "#4b5563", marginBottom: "6px" };
 const inStyle = { width: "100%", padding: "14px 16px", borderRadius: "12px", border: "1px solid #d1d5db", fontSize: "14px", boxSizing: "border-box", background: "#fff", outline: "none" };
 const deliveryOptionStyle = { display: "flex", alignItems: "center", padding: "12px 14px", borderRadius: "12px", border: "1.5px solid #d1d5db", cursor: "pointer", transition: "border-color 0.15s, background-color 0.15s" };
+
+// Ícono de check verde que se muestra dentro de un campo cuando está completo
+function CheckIcon() {
+  return (
+    <div
+      style={{
+        position: "absolute",
+        right: "12px",
+        top: "50%",
+        transform: "translateY(-50%)",
+        width: "20px",
+        height: "20px",
+        borderRadius: "50%",
+        backgroundColor: "#22c55e",
+        display: "flex",
+        alignItems: "center",
+        justifyContent: "center",
+        pointerEvents: "none",
+      }}
+    >
+      <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#fff" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round">
+        <path d="M20 6L9 17l-5-5" />
+      </svg>
+    </div>
+  );
+}

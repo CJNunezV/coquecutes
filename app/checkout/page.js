@@ -392,7 +392,7 @@ export default function CheckoutPage() {
                     style={{ marginRight: "10px" }}
                   />
                   <span style={{ fontWeight: "600", fontSize: "14px", color: "#374151" }}>
-                    Envío por agencia Shalom{" "}
+                    Envío por agencia Shalom/Olva{" "}
                     <span style={{ color: "#9ca3af", fontWeight: "500" }}>— Solo para pedidos fuera de Lima</span>
                   </span>
                 </label>

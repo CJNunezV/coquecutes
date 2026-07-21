@@ -1,11 +1,11 @@
 export const products = [
   {
     id: 1,
-    slug: "case-pokebola-clasica",
-    name: "Case Premium - Edición Pokebola Clásica",
+    slug: "case-team-rocket",
+    name: "Case Premium - Edición Team Rocket",
     price: 30.00,
-    images: ["/pokebola-1.jpg", "/pokebola-2.jpg", "/pokebola-3.jpg"], // Añade tus fotos reales aquí
-    description: "Protector premium diseñado especialmente para cartas coleccionables de formato estándar. Inspirado en el diseño icónico de la Pokebola original, ofrece un acabado rígido de alta resistencia frente a caídas y polvo.",
+    images: ["/team-rocket-1.jpg"], // Añade tus fotos reales aquí
+    description: "Protector premium diseñado especialmente para cartas coleccionables de formato estándar. Acabado negro y rojo con el icónico logo \"R\" del Team Rocket, para tus cartas con más actitud.",
     specs: {
       medidas: "Exteriores: 10.5 cm x 8.2 cm | Interiores (para la carta): 9.2 cm x 6.8 cm",
       material: "Plástico técnico de alta densidad (impresión 3D de precisión con post-procesado liso)",
@@ -15,25 +15,25 @@ export const products = [
   },
   {
     id: 2,
-    slug: "edicion-especial-30-aniversario-oro",
-    name: "Case Premium - Edición Especial 30 Aniversario Oro",
+    slug: "case-ultra-ball",
+    name: "Case Premium - Edición Ultra Ball",
     price: 30.00,
-    images: ["/oro-1.jpg", "/oro-2.jpg"],
-    description: "Edición conmemorativa de lujo con acabados dorados metalizados reflectantes para tus cartas de máxima rareza.",
+    images: ["/ultra-ball-1.jpg"],
+    description: "Inspirado en la Ultra Ball: acabado negro con banda amarilla y botón central blanco. Misma resistencia y precisión de encastre que el resto de la línea premium.",
     specs: {
-      medidas: "Exteriores: 10.5 cm x 8.2 cm",
-      material: "Filamento premium metalizado con protección UV interna",
-      compatibilidad: "Cartas estándar (Sleeved o Raw)",
-      peso: "48 gramos"
+      medidas: "Exteriores: 10.5 cm x 8.2 cm | Interiores (para la carta): 9.2 cm x 6.8 cm",
+      material: "Plástico técnico de alta densidad (impresión 3D de precisión con post-procesado liso)",
+      compatibilidad: "Cartas Pokémon TCG, Magic: The Gathering y similares (Standard Size)",
+      peso: "45 gramos"
     }
   },
   {
     id: 3,
-    slug: "case-tipo-agua",
-    name: "Case Premium - Edición Tipo Agua",
+    slug: "case-premier-ball",
+    name: "Case Premium - Edición Premier Ball",
     price: 30.00,
-    images: [],
-    description: "Case con acabado translúcido celeste, ideal para colecciones temáticas de tipo agua. Misma resistencia y precisión de encastre que el resto de la línea premium.",
+    images: ["/premier-ball-1.jpg"],
+    description: "Inspirado en la Premier Ball: acabado blanco con franja roja central y botón blanco. Elegante y minimalista para tus cartas más valiosas.",
     specs: {
       medidas: "Exteriores: 10.5 cm x 8.2 cm | Interiores (para la carta): 9.2 cm x 6.8 cm",
       material: "Plástico técnico de alta densidad (impresión 3D de precisión con post-procesado liso)",
@@ -43,44 +43,16 @@ export const products = [
   },
   {
     id: 4,
-    slug: "case-tipo-fuego",
-    name: "Case Premium - Edición Tipo Fuego",
+    slug: "case-pokebola-clasica",
+    name: "Case Premium - Edición Poké Ball Clásica",
     price: 30.00,
-    images: [],
-    description: "Case con acabado translúcido rojo/naranja, pensado para tus cartas de tipo fuego. Edición limitada de la línea temática por tipos.",
+    images: ["/pokebola-1.jpg"],
+    description: "Inspirado en el diseño icónico de la Poké Ball original: rojo arriba, blanco abajo, con línea negra divisoria. El clásico que nunca falla.",
     specs: {
       medidas: "Exteriores: 10.5 cm x 8.2 cm | Interiores (para la carta): 9.2 cm x 6.8 cm",
       material: "Plástico técnico de alta densidad (impresión 3D de precisión con post-procesado liso)",
       compatibilidad: "Cartas Pokémon TCG, Magic: The Gathering y similares (Standard Size)",
       peso: "45 gramos"
-    }
-  },
-  {
-    id: 5,
-    slug: "case-tipo-planta",
-    name: "Case Premium - Edición Tipo Planta",
-    price: 30.00,
-    images: [],
-    description: "Case con acabado translúcido verde, para completar tu colección temática por tipos. Resistencia y encastre perfecto garantizados.",
-    specs: {
-      medidas: "Exteriores: 10.5 cm x 8.2 cm | Interiores (para la carta): 9.2 cm x 6.8 cm",
-      material: "Plástico técnico de alta densidad (impresión 3D de precisión con post-procesado liso)",
-      compatibilidad: "Cartas Pokémon TCG, Magic: The Gathering y similares (Standard Size)",
-      peso: "45 gramos"
-    }
-  },
-  {
-    id: 6,
-    slug: "case-personalizado-grabado",
-    name: "Case Premium - Personalizado con Grabado",
-    price: 30.00,
-    images: [],
-    description: "Case a medida con grabado de tu nombre o iniciales. Ideal para regalos o para identificar tus piezas más valiosas de la colección.",
-    specs: {
-      medidas: "Exteriores: 10.5 cm x 8.2 cm | Interiores (para la carta): 9.2 cm x 6.8 cm",
-      material: "Plástico técnico de alta densidad (impresión 3D de precisión con post-procesado liso)",
-      compatibilidad: "Cartas Pokémon TCG, Magic: The Gathering y similares (Standard Size)",
-      peso: "46 gramos"
     }
   }
 ];

@@ -96,6 +96,30 @@ guardan en Vercel Blob, pero no te llegará el aviso por correo (tendrías que
 revisar los links manualmente, lo cual no es práctico — por eso se recomienda
 configurar el email).
 
+## 8. Conectar los pedidos con tu Notion
+
+Esto hace que cada pedido que se guarda en la tienda también aparezca
+automáticamente como una fila nueva en tu base de datos **Pedidos** de Notion
+(con cliente, contacto, detalle del pedido, total, captura de pago, dirección
+y fecha).
+
+1. Ve a https://www.notion.so/profile/integrations y crea una integración
+   nueva ("+ New integration"). Ponle un nombre como "Coquecutes Store".
+2. Copia el **"Internal Integration Secret"** que te muestra (empieza con
+   `ntn_...` o `secret_...`).
+3. Abre tu base de datos **Pedidos** en Notion, click en los "..." (arriba a
+   la derecha) > "Connections" > busca y selecciona la integración que
+   creaste, para darle acceso.
+4. En Vercel, ve a Project Settings > Environment Variables y agrega:
+   - `NOTION_API_KEY` = el secret que copiaste en el paso 2
+   - `NOTION_PEDIDOS_DATA_SOURCE_ID` = `a2dc79ac-efb5-4728-81af-6bad4d6d5f4c`
+     (el ID de tu base "Pedidos")
+5. Vuelve a desplegar el proyecto (Deployments > tres puntos > Redeploy).
+
+Si no configuras esto, la tienda sigue funcionando igual (los pedidos se
+siguen guardando en Postgres y por email); simplemente no se crearán filas
+en Notion.
+
 ## Importante sobre el flujo de pago manual
 
 Como los pagos se verifican a mano (revisando capturas), recuerda:

@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { products } from "../data/products";
 import ProductCarousel from "./ProductCarousel";
+import Reveal from "./Reveal";
 
 export default function HomePage() {
   return (
@@ -17,6 +18,7 @@ export default function HomePage() {
         }}
       >
         <span
+          className="hero-badge"
           style={{
             display: "inline-flex",
             alignItems: "center",
@@ -33,6 +35,7 @@ export default function HomePage() {
           Impresión 3D premium
         </span>
         <h1
+          className="hero-title"
           style={{
             fontSize: "34px",
             fontWeight: "800",
@@ -44,6 +47,7 @@ export default function HomePage() {
           Protegé tus cartas más valiosas
         </h1>
         <p
+          className="hero-desc"
           style={{
             fontSize: "16px",
             color: "#6b7280",
@@ -57,6 +61,7 @@ export default function HomePage() {
         </p>
         <a
           href="#catalogo"
+          className="hero-cta btn-primary"
           style={{
             display: "inline-block",
             backgroundColor: "#7c3aed",
@@ -74,7 +79,8 @@ export default function HomePage() {
       </section>
 
       {/* BENEFICIOS */}
-      <section
+      <Reveal
+        as="section"
         style={{
           display: "grid",
           gridTemplateColumns: "repeat(auto-fit, minmax(200px, 1fr))",
@@ -98,6 +104,7 @@ export default function HomePage() {
         ].map((item) => (
           <div
             key={item.title}
+            className="reveal-item benefit-card"
             style={{
               backgroundColor: "#ffffff",
               border: "1px solid #f1f5f9",
@@ -120,10 +127,10 @@ export default function HomePage() {
             </p>
           </div>
         ))}
-      </section>
+      </Reveal>
 
       {/* CATÁLOGO */}
-      <section id="catalogo" style={{ marginBottom: "48px" }}>
+      <Reveal as="section" id="catalogo" style={{ marginBottom: "48px" }}>
         <h2
           style={{
             fontSize: "22px",
@@ -135,10 +142,12 @@ export default function HomePage() {
           Catálogo
         </h2>
         <ProductCarousel products={products} />
-      </section>
+      </Reveal>
 
       {/* PRUEBA SOCIAL */}
-      <section
+      <Reveal
+        as="section"
+        className="testimonial-box"
         style={{
           backgroundColor: "#f5f3ff",
           border: "1px dashed #c084fc",
@@ -162,10 +171,10 @@ export default function HomePage() {
         <p style={{ fontSize: "13px", color: "#7c3aed", margin: 0, fontWeight: "600" }}>
           — Cliente verificado
         </p>
-      </section>
+      </Reveal>
 
       {/* CTA FINAL */}
-      <section style={{ textAlign: "center", padding: "12px 0 24px 0" }}>
+      <Reveal as="section" style={{ textAlign: "center", padding: "12px 0 24px 0" }}>
         <p
           style={{
             fontSize: "16px",
@@ -178,6 +187,7 @@ export default function HomePage() {
         </p>
         <a
           href="#catalogo"
+          className="btn-primary"
           style={{
             display: "inline-block",
             backgroundColor: "#7c3aed",
@@ -192,7 +202,7 @@ export default function HomePage() {
         >
           Elegí tu case
         </a>
-      </section>
+      </Reveal>
     </div>
   );
 }

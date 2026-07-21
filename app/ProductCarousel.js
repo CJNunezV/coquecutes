@@ -22,6 +22,7 @@ export default function ProductCarousel({ products }) {
       <button
         onClick={() => scrollByCards(-1)}
         aria-label="Ver anteriores"
+        className="carousel-arrow"
         style={{
           position: "absolute",
           left: "-18px",
@@ -50,6 +51,7 @@ export default function ProductCarousel({ products }) {
       <button
         onClick={() => scrollByCards(1)}
         aria-label="Ver siguientes"
+        className="carousel-arrow"
         style={{
           position: "absolute",
           right: "-18px",
@@ -100,6 +102,7 @@ export default function ProductCarousel({ products }) {
             }}
           >
             <div
+              className="product-card"
               style={{
                 display: "flex",
                 flexDirection: "column",
@@ -113,6 +116,7 @@ export default function ProductCarousel({ products }) {
             >
               {/* Contenedor de la imagen */}
               <div
+                className="product-card-img-wrap"
                 style={{
                   background: accents[index % accents.length],
                   height: "180px",

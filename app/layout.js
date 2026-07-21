@@ -1,6 +1,7 @@
 import React from "react";
 import Header from "./Header"; // Importamos el componente cliente de forma segura
 import WhatsAppBubble from "./WhatsAppBubble";
+import "./globals.css";
  
 export const metadata = {
   title: "Coquecutes",

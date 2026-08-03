@@ -19,6 +19,7 @@ export default function CheckoutPage() {
   const [storeName, setStoreName] = useState(""); // Tienda de FullMarket/Arenales
   const [dni, setDni] = useState(""); // DNI para envíos por Shalom
   const [shalomLocation, setShalomLocation] = useState(""); // Agencia Shalom donde recoger
+  const [acceptedTerms, setAcceptedTerms] = useState(false); // Checkbox de Términos y Condiciones
 
   useEffect(() => {
     const savedCart = localStorage.getItem("coquecutes_cart");
@@ -47,7 +48,7 @@ export default function CheckoutPage() {
     (deliveryMethod === "shalom" && !!dni.trim() && !!shalomLocation.trim()) ||
     (deliveryMethod === "motorizado");
 
-  const isFormComplete = !!name.trim() && !!phone.trim() && !!deliveryMethod && isDeliveryComplete && !!screenshot;
+  const isFormComplete = !!name.trim() && !!phone.trim() && !!deliveryMethod && isDeliveryComplete && !!screenshot && acceptedTerms;
 
   const getMissingFields = () => {
     const missing = [];
@@ -63,6 +64,7 @@ export default function CheckoutPage() {
       missing.push("Agencia Shalom/Olva donde recogerás el pedido");
     }
     if (!screenshot) missing.push("Comprobante de pago");
+    if (!acceptedTerms) missing.push("Aceptar los Términos y Condiciones");
     return missing;
   };
 
@@ -502,6 +504,33 @@ export default function CheckoutPage() {
               )}
             </div>
             
+            <label
+              style={{
+                display: "flex",
+                alignItems: "flex-start",
+                gap: "10px",
+                backgroundColor: "#faf5ff",
+                border: "1px solid #e9d5ff",
+                borderRadius: "12px",
+                padding: "12px 14px",
+                cursor: "pointer",
+              }}
+            >
+              <input
+                type="checkbox"
+                checked={acceptedTerms}
+                onChange={(e) => setAcceptedTerms(e.target.checked)}
+                style={{ marginTop: "3px", width: "16px", height: "16px", accentColor: "#7c3aed", flexShrink: 0 }}
+              />
+              <span style={{ fontSize: "13px", color: "#4b5563", lineHeight: "1.5" }}>
+                He leído y acepto los{" "}
+                <Link href="/terminos" target="_blank" style={{ color: "#7c3aed", fontWeight: "700", textDecoration: "underline" }}>
+                  Términos y Condiciones
+                </Link>{" "}
+                de compra.
+              </span>
+            </label>
+
             <button
               type="submit"
               disabled={status === "sending" || !isFormComplete}

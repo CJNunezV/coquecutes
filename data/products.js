@@ -40,7 +40,7 @@ export const products = [
     price: 30.00,
     images: ["/premier-ball-1.jpg", "/premier-ball-2.jpg", "/premier-ball-3.jpg"],
     thumbnail: "/premier-ball-png.png",
-    thumbnailOffsetY: 40,
+    thumbnailOffsetY: 20,
     thumbnailScale: 1,
     description: "Inspirado en la Premier Ball: acabado blanco con franja roja central y botón blanco. Elegante y minimalista para tus cartas más valiosas.",
     specs: {
@@ -57,7 +57,7 @@ export const products = [
     price: 30.00,
     images: ["/pokebola-1.jpg", "/pokebola-2.jpg", "/pokebola-3.jpg"],
     thumbnail: "/pokebola-png.png",
-    thumbnailOffsetY: 60,
+    thumbnailOffsetY: 10,
     thumbnailScale: 1,
     description: "Inspirado en el diseño icónico de la Poké Ball original: rojo arriba, blanco abajo, con línea negra divisoria. El clásico que nunca falla.",
     specs: {

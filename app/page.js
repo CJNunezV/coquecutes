@@ -44,7 +44,7 @@ export default function HomePage() {
             boxShadow: "0 1px 3px rgba(0,0,0,0.06)",
           }}
         >
-          Impresión 3D premium
+          Coquecutes — Impresión 3D hecha en Perú
         </span>
         <h1
           className="hero-title"
@@ -57,7 +57,7 @@ export default function HomePage() {
             textShadow: "0 1px 12px rgba(255,255,255,0.8)",
           }}
         >
-          Protegé tus cartas más valiosas
+          Protege tus cartas más valiosas con Coquecutes
         </h1>
         <p
           className="hero-desc"
@@ -71,8 +71,9 @@ export default function HomePage() {
             textShadow: "0 1px 12px rgba(255,255,255,0.8)",
           }}
         >
-          Cases 3D a medida para toploaders, resistentes, transparentes y con
-          encastre perfecto para tu colección.
+          En Coquecutes diseñamos e imprimimos cada case a medida para
+          toploaders: resistentes, transparentes y con encastre perfecto
+          para tu colección.
         </p>
         <a
           href="#catalogo"
@@ -216,7 +217,7 @@ export default function HomePage() {
             boxShadow: "0 4px 14px rgba(124, 58, 237, 0.25)",
           }}
         >
-          Elegí tu case
+          Elige tu case
         </a>
       </Reveal>
     </div>

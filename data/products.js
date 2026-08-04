@@ -7,7 +7,7 @@ export const products = [
     images: ["/team-rocket-1.jpg", "/team-rocket-2.jpg", "/team-rocket-3.jpg"],
     thumbnail: "/team-rocket-png.png",
     thumbnailOffsetY: 40, // px: negativo sube la imagen, positivo la baja
-    thumbnailScale: 1,
+    thumbnailScale: 1.1,
     description: "Protector premium diseñado especialmente para cartas coleccionables de formato estándar. Acabado negro y rojo con el icónico logo \"R\" del Team Rocket, para tus cartas con más actitud.",
     specs: {
       medidas: "Exteriores: 10.5 cm x 8.2 cm | Interiores (para la carta): 9.2 cm x 6.8 cm",
@@ -23,8 +23,8 @@ export const products = [
     price: 30.00,
     images: ["/ultra-ball-1.jpg", "/ultra-ball-2.jpg", "/ultra-ball-3.jpg"],
     thumbnail: "/ultra-ball-png.png",
-    thumbnailOffsetY: 45,
-    thumbnailScale: 1,
+    thumbnailOffsetY: 50,
+    thumbnailScale: 1.05,
     description: "Inspirado en la Ultra Ball: acabado negro con banda amarilla y botón central blanco. Misma resistencia y precisión de encastre que el resto de la línea premium.",
     specs: {
       medidas: "Exteriores: 10.5 cm x 8.2 cm | Interiores (para la carta): 9.2 cm x 6.8 cm",

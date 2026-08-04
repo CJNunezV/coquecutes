@@ -34,8 +34,12 @@ export default function Header() {
       top: 0,
       zIndex: 100
     }}>
-      <Link href="/" style={{ fontSize: "22px", fontWeight: "bold", color: "#1a1a1a", textDecoration: "none" }}>
-        Coquecutes
+      <Link href="/" style={{ display: "flex", alignItems: "center", textDecoration: "none" }}>
+        <img
+          src="/logo.png"
+          alt="Coquecutes"
+          style={{ height: "48px", width: "auto", display: "block" }}
+        />
       </Link>
       
       <Link href="/checkout" style={{

@@ -11,7 +11,10 @@ export default function HomePage() {
         style={{
           textAlign: "center",
           padding: "56px 24px",
-          background: "#ffffff",
+          background:
+            "linear-gradient(rgba(255,255,255,0.82), rgba(255,255,255,0.88)), url('/hero-bg.jpg')",
+          backgroundSize: "cover",
+          backgroundPosition: "center 45%",
           borderRadius: "32px",
           border: "1px solid #f1f5f9",
           marginBottom: "48px",

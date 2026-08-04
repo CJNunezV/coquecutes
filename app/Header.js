@@ -24,7 +24,7 @@ export default function Header() {
 
   return (
     <header style={{
-      padding: "20px 24px",
+      padding: "12px 24px",
       borderBottom: "1px solid #eee",
       display: "flex",
       alignItems: "center",
@@ -38,7 +38,7 @@ export default function Header() {
         <img
           src="/logo.png"
           alt="Coquecutes"
-          style={{ height: "48px", width: "auto", display: "block" }}
+          style={{ height: "72px", width: "auto", display: "block" }}
         />
       </Link>
       

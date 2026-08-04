@@ -129,7 +129,7 @@ export default function ProductCarousel({ products }) {
                 <img
                   src={product.thumbnail || (product.images && product.images[0]) || "/placeholder.svg"}
                   alt={product.name}
-                  style={{ width: "120%", height: "120%", objectFit: "contain" }}
+                  style={{ width: "150%", height: "150%", objectFit: "cover", objectPosition: "top" }}
                 />
               </div>
 

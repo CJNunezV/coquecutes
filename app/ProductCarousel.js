@@ -134,6 +134,7 @@ export default function ProductCarousel({ products }) {
                     height: "100%",
                     objectFit: "cover",
                     objectPosition: product.thumbnailPosition || "center",
+                    transform: `scale(${product.thumbnailScale || 1})`,
                   }}
                 />
               </div>

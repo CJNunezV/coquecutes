@@ -1,0 +1,31 @@
+<svg width="64" height="64" viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="64" y2="64" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#8b5cf6"/>
+      <stop offset="1" stop-color="#6d28d9"/>
+    </linearGradient>
+  </defs>
+
+  <!-- Fondo -->
+  <rect width="64" height="64" rx="16" fill="url(#bg)"/>
+
+  <!-- Pollito -->
+  <g>
+    <!-- Cuerpo -->
+    <ellipse cx="32" cy="40" rx="15" ry="13" fill="#fde047"/>
+    <!-- Cabeza -->
+    <circle cx="32" cy="23" r="11" fill="#fde047"/>
+    <!-- Tupé -->
+    <path d="M28 13 Q30 8 32 13" stroke="#fde047" stroke-width="3" stroke-linecap="round" fill="none"/>
+    <!-- Ala -->
+    <ellipse cx="41" cy="42" rx="5.5" ry="8" fill="#facc15" transform="rotate(20 41 42)"/>
+    <!-- Pico -->
+    <path d="M40 22 L48 24 L40 27 Z" fill="#f97316"/>
+    <!-- Ojo -->
+    <circle cx="35" cy="21" r="2.3" fill="#3b0764"/>
+    <circle cx="35.8" cy="20.2" r="0.7" fill="#ffffff"/>
+    <!-- Patitas -->
+    <path d="M27 52 L25 57 M27 52 L27 57 M27 52 L29 57" stroke="#f97316" stroke-width="2" stroke-linecap="round"/>
+    <path d="M37 52 L35 57 M37 52 L37 57 M37 52 L39 57" stroke="#f97316" stroke-width="2" stroke-linecap="round"/>
+  </g>
+</svg>

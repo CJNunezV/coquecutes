@@ -29,7 +29,7 @@ export default function TerminosPage() {
       <section style={sectionStyle}>
         <h2 style={h2Style}>1. Sobre nuestros productos</h2>
         <p style={pStyle}>
-          Los cases de Coquecutes son productos artesanales impresos en 3D. Cada
+          Los cases de Coquecutes son productos impresos en 3D. Cada
           unidad puede presentar pequeñas variaciones naturales del proceso de
           impresión (líneas de capa, leves diferencias de tono) que no se
           consideran defectos y forman parte del acabado del producto.

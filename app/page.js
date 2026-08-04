@@ -9,10 +9,8 @@ export default function HomePage() {
       {/* HERO */}
       <section
         style={{
-          textAlign: "center",
-          padding: "56px 24px",
-          background:
-            "linear-gradient(rgba(255,255,255,0.93), rgba(255,255,255,0.95)), url('/hero-bg.jpg')",
+          padding: "16px",
+          background: "url('/hero-bg.jpg')",
           backgroundSize: "cover",
           backgroundPosition: "center 45%",
           borderRadius: "32px",
@@ -20,6 +18,16 @@ export default function HomePage() {
           marginBottom: "48px",
         }}
       >
+        <div
+          style={{
+            textAlign: "center",
+            padding: "40px 24px",
+            borderRadius: "24px",
+            background: "rgba(255,255,255,0.72)",
+            backdropFilter: "blur(10px)",
+            WebkitBackdropFilter: "blur(10px)",
+          }}
+        >
         <span
           className="hero-badge"
           style={{
@@ -33,6 +41,7 @@ export default function HomePage() {
             padding: "6px 14px",
             borderRadius: "20px",
             marginBottom: "20px",
+            boxShadow: "0 1px 3px rgba(0,0,0,0.06)",
           }}
         >
           Impresión 3D premium
@@ -45,6 +54,7 @@ export default function HomePage() {
             color: "#1e1b4b",
             margin: "0 0 14px 0",
             lineHeight: "1.2",
+            textShadow: "0 1px 12px rgba(255,255,255,0.8)",
           }}
         >
           Protegé tus cartas más valiosas
@@ -53,10 +63,12 @@ export default function HomePage() {
           className="hero-desc"
           style={{
             fontSize: "16px",
-            color: "#6b7280",
+            color: "#4b5563",
+            fontWeight: "500",
             maxWidth: "480px",
             margin: "0 auto 28px auto",
             lineHeight: "1.6",
+            textShadow: "0 1px 12px rgba(255,255,255,0.8)",
           }}
         >
           Cases 3D a medida para toploaders, resistentes, transparentes y con
@@ -79,6 +91,7 @@ export default function HomePage() {
         >
           Ver catálogo
         </a>
+        </div>
       </section>
 
       {/* BENEFICIOS */}

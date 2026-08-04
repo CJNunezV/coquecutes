@@ -23,7 +23,7 @@ export const products = [
     price: 30.00,
     images: ["/ultra-ball-1.jpg", "/ultra-ball-2.jpg", "/ultra-ball-3.jpg"],
     thumbnail: "/ultra-ball-png.png",
-    thumbnailPosition: "30% top",
+    thumbnailPosition: "60% top",
     thumbnailScale: 1.5,
     description: "Inspirado en la Ultra Ball: acabado negro con banda amarilla y botón central blanco. Misma resistencia y precisión de encastre que el resto de la línea premium.",
     specs: {

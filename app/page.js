@@ -12,7 +12,7 @@ export default function HomePage() {
           textAlign: "center",
           padding: "56px 24px",
           background:
-            "linear-gradient(rgba(255,255,255,0.82), rgba(255,255,255,0.88)), url('/hero-bg.jpg')",
+            "linear-gradient(rgba(255,255,255,0.93), rgba(255,255,255,0.95)), url('/hero-bg.jpg')",
           backgroundSize: "cover",
           backgroundPosition: "center 45%",
           borderRadius: "32px",

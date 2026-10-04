@@ -37,9 +37,8 @@ const slides = [
     desc: "Completa tu mazo o arma tu colección sin gastar de más. Escríbenos y te cotizamos.",
     badges: ["Impresión de calidad", "Envíos a todo el país", "Pedidos por WhatsApp"],
     cta: {
-      label: "Cotizar proxys",
-      href: `https://wa.me/${WA}?text=${encodeURIComponent("Hola Coquecutes, quiero cotizar proxys")}`,
-      external: true,
+      label: "Ver proxys",
+      href: "/proxys",
     },
   },
 ];

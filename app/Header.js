@@ -17,10 +17,10 @@ const menus = [
   {
     label: "Proxys",
     items: [
-      { label: "Cartas sueltas", href: "/#proxys-sueltas", emoji: "🃏" },
-      { label: "Extended Art", href: "/#proxys-extended-art", emoji: "🎨" },
-      { label: "Personalizados", href: "/#proxys-personalizados", emoji: "✨" },
-      { label: "Decks", href: "/#proxys-decks", emoji: "📚" },
+      { label: "Cartas sueltas", href: "/proxys#sueltas", emoji: "🃏" },
+      { label: "Extended Art", href: "/proxys#extended-art", emoji: "🎨" },
+      { label: "Personalizados", href: "/proxys#personalizados", emoji: "✨" },
+      { label: "Decks", href: "/proxys#decks", emoji: "📚" },
     ],
   },
 ];

@@ -5,15 +5,35 @@ import Link from "next/link";
 const WA = "51962167068";
 const waLink = (msg) => `https://wa.me/${WA}?text=${encodeURIComponent(msg)}`;
 
+const menus = [
+  {
+    label: "Pokemon",
+    items: [
+      { label: "Cases", href: "/#catalogo", emoji: "📦" },
+      { label: "Cartas sueltas", href: "/#cartas-sueltas", emoji: "🃏" },
+      { label: "Productos sellados", href: "/#sellados", emoji: "🎁" },
+    ],
+  },
+  {
+    label: "Proxys",
+    items: [
+      { label: "Cartas sueltas", href: "/#proxys-sueltas", emoji: "🃏" },
+      { label: "Extended Art", href: "/#proxys-extended-art", emoji: "🎨" },
+      { label: "Personalizados", href: "/#proxys-personalizados", emoji: "✨" },
+      { label: "Decks", href: "/#proxys-decks", emoji: "📚" },
+    ],
+  },
+];
+
 export default function Header() {
   const [totalItems, setTotalItems] = useState(0);
-  const [menuOpen, setMenuOpen] = useState(false);
+  const [openMenu, setOpenMenu] = useState(null);
   const menuRef = useRef(null);
 
   // Cierra el menú al hacer clic fuera
   useEffect(() => {
     const onDoc = (e) => {
-      if (menuRef.current && !menuRef.current.contains(e.target)) setMenuOpen(false);
+      if (menuRef.current && !menuRef.current.contains(e.target)) setOpenMenu(null);
     };
     document.addEventListener("mousedown", onDoc);
     return () => document.removeEventListener("mousedown", onDoc);
@@ -92,38 +112,36 @@ export default function Header() {
 
         {/* Izquierda: categorías */}
         <nav style={{ display: "flex", alignItems: "center", gap: "22px" }}>
-          <div
-            ref={menuRef}
-            style={{ position: "relative" }}
-            onMouseEnter={() => setMenuOpen(true)}
-            onMouseLeave={() => setMenuOpen(false)}
-          >
-            <button
-              type="button"
-              className="hd-link hd-trigger"
-              onClick={() => setMenuOpen((o) => !o)}
-              aria-haspopup="true"
-              aria-expanded={menuOpen}
+          {menus.map((m) => (
+            <div
+              key={m.label}
+              ref={openMenu === m.label ? menuRef : null}
+              style={{ position: "relative" }}
+              onMouseEnter={() => setOpenMenu(m.label)}
+              onMouseLeave={() => setOpenMenu(null)}
             >
-              Pokemon
-              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.6" strokeLinecap="round" strokeLinejoin="round" style={{ transition: "transform .25s", transform: menuOpen ? "rotate(180deg)" : "none" }}>
-                <polyline points="6 9 12 15 18 9" />
-              </svg>
-            </button>
-            <div className={`hd-menu ${menuOpen ? "is-open" : ""}`}>
-              {[
-                { label: "Cases", href: "/#catalogo", emoji: "📦" },
-                { label: "Cartas sueltas", href: "/#cartas-sueltas", emoji: "🃏" },
-                { label: "Productos sellados", href: "/#sellados", emoji: "🎁" },
-              ].map((it) => (
-                <Link key={it.label} href={it.href} className="hd-menu-item" onClick={() => setMenuOpen(false)}>
-                  <span className="hd-menu-emoji">{it.emoji}</span>
-                  {it.label}
-                </Link>
-              ))}
+              <button
+                type="button"
+                className="hd-link hd-trigger"
+                onClick={() => setOpenMenu((o) => (o === m.label ? null : m.label))}
+                aria-haspopup="true"
+                aria-expanded={openMenu === m.label}
+              >
+                {m.label}
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.6" strokeLinecap="round" strokeLinejoin="round" style={{ transition: "transform .25s", transform: openMenu === m.label ? "rotate(180deg)" : "none" }}>
+                  <polyline points="6 9 12 15 18 9" />
+                </svg>
+              </button>
+              <div className={`hd-menu ${openMenu === m.label ? "is-open" : ""}`}>
+                {m.items.map((it) => (
+                  <Link key={it.label} href={it.href} className="hd-menu-item" onClick={() => setOpenMenu(null)}>
+                    <span className="hd-menu-emoji">{it.emoji}</span>
+                    {it.label}
+                  </Link>
+                ))}
+              </div>
             </div>
-          </div>
-          <Link href="/#proxys" className="hd-link">Proxys</Link>
+          ))}
         </nav>
 
         <div style={{ flex: 1 }} />

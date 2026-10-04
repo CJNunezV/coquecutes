@@ -2,98 +2,13 @@ import Link from "next/link";
 import { products } from "../data/products";
 import ProductCarousel from "./ProductCarousel";
 import Reveal from "./Reveal";
+import Hero from "./Hero";
 
 export default function HomePage() {
   return (
     <div>
       {/* HERO */}
-      <section
-        style={{
-          padding: "16px",
-          background: "url('/hero-bg.jpg')",
-          backgroundSize: "cover",
-          backgroundPosition: "center 45%",
-          borderRadius: "32px",
-          border: "1px solid #f1f5f9",
-          marginBottom: "48px",
-        }}
-      >
-        <div
-          style={{
-            textAlign: "center",
-            padding: "40px 24px",
-            borderRadius: "24px",
-            background: "rgba(255,255,255,0.72)",
-            backdropFilter: "blur(10px)",
-            WebkitBackdropFilter: "blur(10px)",
-          }}
-        >
-        <span
-          className="hero-badge"
-          style={{
-            display: "inline-flex",
-            alignItems: "center",
-            gap: "6px",
-            backgroundColor: "#f5f3ff",
-            color: "#7c3aed",
-            fontSize: "13px",
-            fontWeight: "700",
-            padding: "6px 14px",
-            borderRadius: "20px",
-            marginBottom: "20px",
-            boxShadow: "0 1px 3px rgba(0,0,0,0.06)",
-          }}
-        >
-          Coquecutes — Impresión 3D hecha en Perú
-        </span>
-        <h1
-          className="hero-title"
-          style={{
-            fontSize: "34px",
-            fontWeight: "800",
-            color: "#1e1b4b",
-            margin: "0 0 14px 0",
-            lineHeight: "1.2",
-            textShadow: "0 1px 12px rgba(255,255,255,0.8)",
-          }}
-        >
-          Protege tus cartas más valiosas con Coquecutes
-        </h1>
-        <p
-          className="hero-desc"
-          style={{
-            fontSize: "16px",
-            color: "#4b5563",
-            fontWeight: "500",
-            maxWidth: "480px",
-            margin: "0 auto 28px auto",
-            lineHeight: "1.6",
-            textShadow: "0 1px 12px rgba(255,255,255,0.8)",
-          }}
-        >
-          En Coquecutes diseñamos e imprimimos cada case a medida para
-          toploaders: resistentes, transparentes y con encastre perfecto
-          para tu colección.
-        </p>
-        <a
-          href="#catalogo"
-          className="hero-cta btn-primary"
-          style={{
-            display: "inline-block",
-            backgroundColor: "#7c3aed",
-            color: "#ffffff",
-            padding: "14px 28px",
-            borderRadius: "16px",
-            fontWeight: "700",
-            fontSize: "15px",
-            textDecoration: "none",
-            boxShadow: "0 4px 14px rgba(124, 58, 237, 0.25)",
-          }}
-        >
-          Ver catálogo
-        </a>
-        </div>
-      </section>
+      <Hero />
 
       {/* BENEFICIOS */}
       <Reveal

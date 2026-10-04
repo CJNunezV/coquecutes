@@ -81,12 +81,6 @@ function Singles({ cart }) {
 function Extended({ cart }) {
   const [sel, setSel] = useState(0);
   const pack = extendedPacks[sel];
-  const centerCell = (
-    <div style={{ gridColumn: 2, gridRow: 2, background: "rgba(15,10,40,0.78)", backdropFilter: "grayscale(1) blur(1px)", border: "2px dashed rgba(255,255,255,0.6)", borderRadius: "10px", display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "center", textAlign: "center", color: "#fff", fontSize: "12px", fontWeight: 800, gap: "4px", padding: "6px", boxSizing: "border-box", lineHeight: 1.3 }}>
-      <span style={{ fontSize: "20px" }}>🚫</span>
-      No incluida
-    </div>
-  );
   return (
     <div className="px-ext">
       <div className="px-binder">
@@ -94,7 +88,9 @@ function Extended({ cart }) {
         {pack.image ? (
           <div style={{ position: "relative", borderRadius: "12px", overflow: "hidden", lineHeight: 0 }}>
             <img src={pack.image} alt={`Extended Art ${pack.name}`} style={{ width: "100%", height: "auto", display: "block" }} />
-            <div style={{ position: "absolute", inset: 0, display: "grid", gridTemplateColumns: "repeat(3,1fr)", gridTemplateRows: "repeat(3,1fr)", gap: "0" }}>{centerCell}</div>
+            {/* marca la carta central (solo referencia) */}
+            <div style={{ position: "absolute", left: "35.2%", top: "34.5%", width: "29.8%", height: "30.4%", border: "2.5px dashed rgba(255,255,255,0.95)", borderRadius: "6px", background: "rgba(10,8,30,0.35)", pointerEvents: "none" }} />
+            <div style={{ position: "absolute", left: "50%", top: "66.2%", transform: "translateX(-50%)", background: "#1e1b4b", color: "#fff", fontSize: "12px", fontWeight: 800, lineHeight: 1.2, padding: "7px 12px", borderRadius: "999px", whiteSpace: "nowrap", boxShadow: "0 6px 14px rgba(0,0,0,0.35)", border: "1.5px solid rgba(255,255,255,0.8)" }}>🚫 Carta central no incluida</div>
           </div>
         ) : (
           <div style={{ display: "grid", gridTemplateColumns: "repeat(3,1fr)", gap: "10px" }}>

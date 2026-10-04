@@ -11,13 +11,11 @@ export const singles = [
   { id: "px-s6", name: "Poncho Pikachu Gyarados", set: "Silver T    empest", price: 15, grad: ["#bae6fd", "#6366f1"], image: "/proxys/poncho-gyarados.avif" },
 ];
 
-
-// Extended Art: cada pack = las 8 cartas que rodean a la carta central de un arte de 3x3.
-// La carta del CENTRO no está incluida. Sube la imagen completa del arte 3x3 y ponla en `image`.
+// Extended Art: cada item = el arte completo de 3x3. Se venden las 8 cartas que rodean al centro;
+// la carta CENTRAL no está incluida (en la foto aparece solo de referencia).
+// Para agregar otro: sube la imagen a /public/proxys/ y copia un bloque.
 export const extendedPacks = [
-  { id: "px-e1", name: "Mega Gengar", price: 40, image: "/proxys/extended-mega-gengar.webp", grad: ["#7c3aed", "#16a34a"] },
-  { id: "px-e2", name: "Pack ejemplo 2", price: 40, grad: ["#f9a8d4", "#6366f1"] },
-  { id: "px-e3", name: "Pack ejemplo 3", price: 45, grad: ["#38bdf8", "#4c1d95"] },
+  { id: "px-e1", name: "Eevee · Bosque", price: 40, image: "/proxys/EA-GemPack-Eevee.png", grad: ["#4ade80", "#166534"] },
 ];
 
 // Personalizados: tipos de pedido

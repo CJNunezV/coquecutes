@@ -3,14 +3,12 @@
 
 // Cartas sueltas (1 proxy por ítem)
 export const singles = [
-  { id: "px-s1", name: "Charizard ex", set: "Obsidian Flames", price: 5, grad: ["#fb923c", "#ef4444"] },
-  { id: "px-s2", name: "Pikachu ex", set: "Surging Sparks", price: 5, grad: ["#fde047", "#f59e0b"] },
-  { id: "px-s3", name: "Mewtwo ex", set: "151", price: 5, grad: ["#c4b5fd", "#ec4899"] },
-  { id: "px-s4", name: "Umbreon VMAX", set: "Evolving Skies", price: 6, grad: ["#1e1b4b", "#6366f1"] },
-  { id: "px-s5", name: "Gengar", set: "Fusion Strike", price: 5, grad: ["#7c3aed", "#312e81"] },
-  { id: "px-s6", name: "Lugia V", set: "Silver Tempest", price: 5, grad: ["#bae6fd", "#6366f1"] },
-  { id: "px-s7", name: "Gardevoir ex", set: "Paldea Evolved", price: 5, grad: ["#f9a8d4", "#a78bfa"] },
-  { id: "px-s8", name: "Rayquaza VMAX", set: "Evolving Skies", price: 6, grad: ["#34d399", "#065f46"] },
+  { id: "px-s1", name: "Poncho Pikachu Charizard X", set: "Obsidian Flames", price: 15, grad: ["#fb923c", "#ef4444"], image: "/proxys/poncho-charizard-x.avif" },
+  { id: "px-s2", name: "Poncho Pikachu Charizard Y", set: "Surging Sparks", price: 15, grad: ["#fde047", "#f59e0b"], image: "/proxys/poncho-charizard-y.avif" },
+  { id: "px-s3", name: "Poncho Pikachu Rayquaza", set: "151", price: 15, grad: ["#c4b5fd", "#ec4899"], image: "/proxys/poncho-rayquaza.avif" },
+  { id: "px-s4", name: "Poncho Pikachu Rayquaza Shiny", set: "Evolving Skies", price: 16, grad: ["#1e1b4b", "#6366f1"], image: "/proxys/poncho-rayquaza-shiny.avif" },
+  { id: "px-s5", name: "Poncho Pikachu Magikarp", set: "Fusion Strike", price: 15, grad: ["#7c3aed", "#312e81"], image: "/proxys/poncho-magikarp.avif" },
+  { id: "px-s6", name: "Poncho Pikachu Gyarados", set: "Silver T    empest", price: 15, grad: ["#bae6fd", "#6366f1"], image: "/proxys/poncho-gyarados.avif" },
 ];
 
 // Extended Art: pack de 8 cartas para una hoja de binder 3x3

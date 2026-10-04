@@ -28,7 +28,7 @@ const slides = [
     title: (<>Tu mejor colección de <span className="zh-grad">cases para toploaders</span></>),
     desc: "Cada case de Coquecutes se diseña e imprime a medida para proteger y lucir tus cartas más valiosas.",
     badges: ["Hecho en Perú", "Envíos a todo el país", "Pago con Yape / Plin"],
-    cta: { label: "Ver catálogo", href: "#catalogo" },
+    cta: { label: "Ver catálogo", href: "/catalogo" },
   },
   {
     id: "proxys",

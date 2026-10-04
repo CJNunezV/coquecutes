@@ -9,7 +9,7 @@ const menus = [
   {
     label: "Pokemon",
     items: [
-      { label: "Cases", href: "/#catalogo", emoji: "📦" },
+      { label: "Cases", href: "/catalogo", emoji: "📦" },
       { label: "Cartas sueltas", href: "/#cartas-sueltas", emoji: "🃏" },
       { label: "Productos sellados", href: "/#sellados", emoji: "🎁" },
     ],

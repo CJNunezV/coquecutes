@@ -1,5 +1,5 @@
 "use client";
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import Link from "next/link";
 
 const WA = "51962167068";
@@ -7,6 +7,17 @@ const waLink = (msg) => `https://wa.me/${WA}?text=${encodeURIComponent(msg)}`;
 
 export default function Header() {
   const [totalItems, setTotalItems] = useState(0);
+  const [menuOpen, setMenuOpen] = useState(false);
+  const menuRef = useRef(null);
+
+  // Cierra el menú al hacer clic fuera
+  useEffect(() => {
+    const onDoc = (e) => {
+      if (menuRef.current && !menuRef.current.contains(e.target)) setMenuOpen(false);
+    };
+    document.addEventListener("mousedown", onDoc);
+    return () => document.removeEventListener("mousedown", onDoc);
+  }, []);
 
   const updateItemsCount = () => {
     try {
@@ -46,6 +57,13 @@ export default function Header() {
         .hd-link:hover { color:#7c3aed; }
         .hd-link::after { content:""; position:absolute; left:4px; right:4px; bottom:2px; height:2px; background:#7c3aed; transform:scaleX(0); transition:transform .25s; border-radius:2px; }
         .hd-link:hover::after { transform:scaleX(1); }
+        .hd-trigger { background:none; border:none; cursor:pointer; font-family:inherit; display:flex; align-items:center; gap:5px; }
+        .hd-menu { position:absolute; top:100%; left:-12px; min-width:230px; padding:10px; margin-top:6px; background:#fff; border:1px solid #ede9fe; border-radius:16px; box-shadow:0 18px 40px rgba(76,29,149,0.18); opacity:0; visibility:hidden; transform:translateY(-6px); transition:opacity .2s, transform .2s, visibility .2s; z-index:200; }
+        .hd-menu::before { content:""; position:absolute; top:-12px; left:0; right:0; height:12px; }
+        .hd-menu.is-open { opacity:1; visibility:visible; transform:translateY(0); }
+        .hd-menu-item { display:flex; align-items:center; gap:12px; padding:12px 14px; border-radius:12px; color:#1f2937; text-decoration:none; font-weight:600; font-size:15px; transition:background .15s, color .15s; }
+        .hd-menu-item:hover { background:#f5f3ff; color:#7c3aed; }
+        .hd-menu-emoji { width:34px; height:34px; display:flex; align-items:center; justify-content:center; background:#f5f3ff; border-radius:10px; font-size:18px; }
         .hd-icon { background:none; border:none; cursor:pointer; color:#1f2937; padding:8px; display:flex; border-radius:50%; transition:background .2s,color .2s; }
         .hd-icon:hover { background:#f5f3ff; color:#7c3aed; }
         .hd-sell { color:#7c3aed; text-decoration:none; font-weight:700; font-size:14px; padding:9px 16px; border:1.5px solid #7c3aed; border-radius:999px; white-space:nowrap; transition:all .2s; }
@@ -74,7 +92,37 @@ export default function Header() {
 
         {/* Izquierda: categorías */}
         <nav style={{ display: "flex", alignItems: "center", gap: "22px" }}>
-          <Link href="/#catalogo" className="hd-link">Pokemon</Link>
+          <div
+            ref={menuRef}
+            style={{ position: "relative" }}
+            onMouseEnter={() => setMenuOpen(true)}
+            onMouseLeave={() => setMenuOpen(false)}
+          >
+            <button
+              type="button"
+              className="hd-link hd-trigger"
+              onClick={() => setMenuOpen((o) => !o)}
+              aria-haspopup="true"
+              aria-expanded={menuOpen}
+            >
+              Pokemon
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.6" strokeLinecap="round" strokeLinejoin="round" style={{ transition: "transform .25s", transform: menuOpen ? "rotate(180deg)" : "none" }}>
+                <polyline points="6 9 12 15 18 9" />
+              </svg>
+            </button>
+            <div className={`hd-menu ${menuOpen ? "is-open" : ""}`}>
+              {[
+                { label: "Cases", href: "/#catalogo", emoji: "📦" },
+                { label: "Cartas sueltas", href: "/#cartas-sueltas", emoji: "🃏" },
+                { label: "Productos sellados", href: "/#sellados", emoji: "🎁" },
+              ].map((it) => (
+                <Link key={it.label} href={it.href} className="hd-menu-item" onClick={() => setMenuOpen(false)}>
+                  <span className="hd-menu-emoji">{it.emoji}</span>
+                  {it.label}
+                </Link>
+              ))}
+            </div>
+          </div>
           <Link href="/#proxys" className="hd-link">Proxys</Link>
         </nav>
 

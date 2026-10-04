@@ -77,39 +77,52 @@ function Singles({ cart }) {
   );
 }
 
-/* ---------- Extended Art: hoja de binder 3x3 ---------- */
+/* ---------- Extended Art: arte 3x3, 8 cartas (sin la central) ---------- */
 function Extended({ cart }) {
   const [sel, setSel] = useState(0);
   const pack = extendedPacks[sel];
+  const centerCell = (
+    <div style={{ gridColumn: 2, gridRow: 2, background: "rgba(15,10,40,0.78)", backdropFilter: "grayscale(1) blur(1px)", border: "2px dashed rgba(255,255,255,0.6)", borderRadius: "10px", display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "center", textAlign: "center", color: "#fff", fontSize: "12px", fontWeight: 800, gap: "4px", padding: "6px", boxSizing: "border-box", lineHeight: 1.3 }}>
+      <span style={{ fontSize: "20px" }}>🚫</span>
+      No incluida
+    </div>
+  );
   return (
     <div className="px-ext">
       <div className="px-binder">
-        <div style={{ fontSize: "12px", fontWeight: 800, letterSpacing: "2px", color: "#c4b5fd", marginBottom: "12px", textAlign: "center" }}>HOJA DE BINDER 3×3</div>
-        <div style={{ display: "grid", gridTemplateColumns: "repeat(3,1fr)", gap: "10px" }}>
-          {pack.cards.map((c, i) => (
-            <MiniCard key={pack.id + i} grad={[pack.grad[0], pack.grad[1]]} title={c} style={{ animation: `pxPop .5s ${i * 0.05}s both` }} />
-          ))}
-          {/* 9º bolsillo */}
-          <div style={{ aspectRatio: "63 / 88", borderRadius: "10px", border: "2px dashed rgba(255,255,255,0.45)", display: "flex", alignItems: "center", justifyContent: "center", textAlign: "center", color: "#e9d5ff", fontSize: "11px", fontWeight: 700, padding: "6px" }}>
-            Bolsillo libre
+        <div style={{ fontSize: "12px", fontWeight: 800, letterSpacing: "2px", color: "#c4b5fd", marginBottom: "12px", textAlign: "center" }}>ARTE 3×3 · 8 CARTAS</div>
+        {pack.image ? (
+          <div style={{ position: "relative", borderRadius: "12px", overflow: "hidden", lineHeight: 0 }}>
+            <img src={pack.image} alt={`Extended Art ${pack.name}`} style={{ width: "100%", height: "auto", display: "block" }} />
+            <div style={{ position: "absolute", inset: 0, display: "grid", gridTemplateColumns: "repeat(3,1fr)", gridTemplateRows: "repeat(3,1fr)", gap: "0" }}>{centerCell}</div>
           </div>
-        </div>
+        ) : (
+          <div style={{ display: "grid", gridTemplateColumns: "repeat(3,1fr)", gap: "10px" }}>
+            {Array.from({ length: 9 }).map((_, i) =>
+              i === 4 ? (
+                <div key={i} style={{ aspectRatio: "63 / 88", borderRadius: "10px", border: "2px dashed rgba(255,255,255,0.5)", display: "flex", alignItems: "center", justifyContent: "center", textAlign: "center", color: "#e9d5ff", fontSize: "11px", fontWeight: 700, padding: "6px" }}>No incluida</div>
+              ) : (
+                <MiniCard key={pack.id + i} grad={pack.grad} style={{ animation: `pxPop .5s ${i * 0.05}s both` }} />
+              )
+            )}
+          </div>
+        )}
       </div>
 
       <div>
-        <h3 style={{ fontSize: "22px", fontWeight: 800, color: "#1e1b4b", margin: "0 0 6px" }}>Elige tu pack</h3>
-        <p style={{ color: "#6b7280", margin: "0 0 18px", lineHeight: 1.6 }}>Cada pack trae <strong>8 cartas Extended Art</strong> listas para llenar una hoja de binder 3×3.</p>
+        <h3 style={{ fontSize: "22px", fontWeight: 800, color: "#1e1b4b", margin: "0 0 6px" }}>Elige tu Extended Art</h3>
+        <p style={{ color: "#6b7280", margin: "0 0 18px", lineHeight: 1.6 }}>Recibes las <strong>8 cartas</strong> que rodean al centro del arte. <strong>La carta central no está incluida.</strong></p>
         <div style={{ display: "grid", gap: "10px", marginBottom: "20px" }}>
           {extendedPacks.map((p, i) => (
             <button key={p.id} onClick={() => setSel(i)} className={`px-pack ${sel === i ? "is-active" : ""}`}>
-              <span style={{ width: 34, height: 34, borderRadius: 10, background: gradBg(p.grad), flexShrink: 0 }} />
-              <span style={{ flex: 1, textAlign: "left", fontWeight: 700 }}>{p.name.replace("Pack Extended Art · ", "")}</span>
+              <span style={{ width: 34, height: 34, borderRadius: 10, background: p.image ? `url(${p.image}) center/cover` : gradBg(p.grad), flexShrink: 0 }} />
+              <span style={{ flex: 1, textAlign: "left", fontWeight: 700 }}>{p.name}</span>
               <span style={{ color: "#7c3aed", fontWeight: 800 }}>S/{p.price}</span>
             </button>
           ))}
         </div>
-        <button className={`px-btn px-btn-lg ${cart.added === pack.id ? "is-added" : ""}`} onClick={() => cart.add(pack)}>
-          {cart.added === pack.id ? "¡Añadido!" : `Añadir pack · S/${pack.price}.00`}
+        <button className={`px-btn px-btn-lg ${cart.added === pack.id ? "is-added" : ""}`} onClick={() => cart.add({ ...pack, name: `Extended Art ${pack.name} (8 cartas)` })}>
+          {cart.added === pack.id ? "¡Añadido!" : `Añadir · S/${pack.price}.00`}
         </button>
       </div>
     </div>

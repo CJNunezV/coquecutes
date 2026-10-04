@@ -11,11 +11,13 @@ export const singles = [
   { id: "px-s6", name: "Poncho Pikachu Gyarados", set: "Silver T    empest", price: 15, grad: ["#bae6fd", "#6366f1"], image: "/proxys/poncho-gyarados.avif" },
 ];
 
-// Extended Art: pack de 8 cartas para una hoja de binder 3x3
+
+// Extended Art: cada pack = las 8 cartas que rodean a la carta central de un arte de 3x3.
+// La carta del CENTRO no está incluida. Sube la imagen completa del arte 3x3 y ponla en `image`.
 export const extendedPacks = [
-  { id: "px-e1", name: "Pack Extended Art · Fuego", price: 40, cards: ["Charizard", "Arcanine", "Ninetales", "Flareon", "Typhlosion", "Blaziken", "Infernape", "Incineroar"], grad: ["#fb923c", "#dc2626"] },
-  { id: "px-e2", name: "Pack Extended Art · Eeveelutions", price: 40, cards: ["Vaporeon", "Jolteon", "Flareon", "Espeon", "Umbreon", "Leafeon", "Glaceon", "Sylveon"], grad: ["#f9a8d4", "#6366f1"] },
-  { id: "px-e3", name: "Pack Extended Art · Legendarios", price: 45, cards: ["Mewtwo", "Lugia", "Ho-Oh", "Rayquaza", "Dialga", "Palkia", "Zacian", "Koraidon"], grad: ["#38bdf8", "#4c1d95"] },
+  { id: "px-e1", name: "Mega Gengar", price: 40, image: "/proxys/extended-mega-gengar.webp", grad: ["#7c3aed", "#16a34a"] },
+  { id: "px-e2", name: "Pack ejemplo 2", price: 40, grad: ["#f9a8d4", "#6366f1"] },
+  { id: "px-e3", name: "Pack ejemplo 3", price: 45, grad: ["#38bdf8", "#4c1d95"] },
 ];
 
 // Personalizados: tipos de pedido

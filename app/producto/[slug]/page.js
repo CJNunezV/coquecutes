@@ -71,7 +71,7 @@ export default function ProductDetailPage() {
         {/* COLUMNA IZQUIERDA: GALERÍA DE IMÁGENES (fija al hacer scroll) */}
         <div style={{ flex: "1 1 400px", display: "flex", flexDirection: "column", gap: "16px", position: "sticky", top: "24px", alignSelf: "flex-start" }}>
           {/* Foto Principal: la foto original cubre todo el espacio */}
-          <div style={{ width: "100%", aspectRatio: "4 / 5", maxHeight: "560px", borderRadius: "28px", overflow: "hidden", position: "relative", background: "#f3f4f6", border: "1px solid #f3e8ff", boxShadow: "0 12px 30px rgba(76,29,149,0.10)" }}>
+          <div style={{ width: "100%", maxWidth: "min(100%, calc((100vh - 190px) * 0.75))", margin: "0 auto", aspectRatio: "3 / 4", borderRadius: "28px", overflow: "hidden", position: "relative", background: "#f3f4f6", border: "1px solid #f3e8ff", boxShadow: "0 12px 30px rgba(76,29,149,0.10)" }}>
             <img
               key={activeImage}
               className="pg-img"

@@ -13,12 +13,14 @@ const floating = [
   { src: "/dispensador-png.png", w: 150, top: "38%", left: "76%", rot: 9, delay: "1.1s" },
 ];
 
-// Tarjetas decorativas para la slide de Proxys (luego se pueden cambiar por fotos reales)
+// Cartas de la slide de Proxys.
+// Para cambiar las fotos: pon la imagen en /public/proxys/ y escribe su ruta en `image`.
+// Si una carta no tiene `image`, se muestra un degradado de color.
 const proxyCards = [
-  { top: "8%", left: "10%", rot: -10, grad: "linear-gradient(135deg,#f9a8d4,#a78bfa)", delay: "0s" },
-  { top: "4%", left: "50%", rot: 6, grad: "linear-gradient(135deg,#fde68a,#f472b6)", delay: "0.7s" },
-  { top: "40%", left: "28%", rot: -3, grad: "linear-gradient(135deg,#93c5fd,#c084fc)", delay: "1.2s" },
-  { top: "36%", left: "64%", rot: 11, grad: "linear-gradient(135deg,#86efac,#60a5fa)", delay: "0.4s" },
+  { image: "/proxys/Singles/poncho-charizard-x.avif", top: "8%", left: "10%", rot: -10, grad: "linear-gradient(135deg,#f9a8d4,#a78bfa)", delay: "0s" },
+  { image: "/proxys/Singles/poncho-rayquaza.avif", top: "4%", left: "50%", rot: 6, grad: "linear-gradient(135deg,#fde68a,#f472b6)", delay: "0.7s" },
+  { image: "/proxys/Singles/poncho-gyarados.avif", top: "40%", left: "28%", rot: -3, grad: "linear-gradient(135deg,#93c5fd,#c084fc)", delay: "1.2s" },
+  { image: "/proxys/Singles/poncho-magikarp.avif", top: "36%", left: "64%", rot: 11, grad: "linear-gradient(135deg,#86efac,#60a5fa)", delay: "0.4s" },
 ];
 
 const slides = [
@@ -97,7 +99,7 @@ export default function Hero() {
         .zh-slide { grid-area:1/1; display:grid; grid-template-columns:1.05fr 1fr; gap:24px; align-items:center; padding:56px 48px 76px; opacity:0; visibility:hidden; transform:translateX(30px); transition:opacity .6s ease, transform .6s ease, visibility .6s; }
         .zh-slide.is-active { opacity:1; visibility:visible; transform:translateX(0); }
         .zh-float { position:absolute; filter: drop-shadow(0 18px 24px rgba(0,0,0,0.35)); animation: zhFloat 6s ease-in-out infinite; }
-        .zh-pcard { position:absolute; width:150px; aspect-ratio:63/88; border-radius:12px; border:3px solid rgba(255,255,255,0.85); box-shadow:0 18px 24px rgba(0,0,0,0.35); animation: zhFloat 6s ease-in-out infinite; display:flex; align-items:center; justify-content:center; font-weight:900; font-size:13px; letter-spacing:2px; color:rgba(255,255,255,0.9); }
+        .zh-pcard { position:absolute; width:170px; overflow:hidden; aspect-ratio:63/88; border-radius:12px; border:3px solid rgba(255,255,255,0.85); box-shadow:0 18px 24px rgba(0,0,0,0.35); animation: zhFloat 6s ease-in-out infinite; display:flex; align-items:center; justify-content:center; font-weight:900; font-size:13px; letter-spacing:2px; color:rgba(255,255,255,0.9); }
         @keyframes zhFloat { 0%,100% { transform: translateY(0) rotate(var(--r)); } 50% { transform: translateY(-14px) rotate(var(--r)); } }
         .zh-grad { background:linear-gradient(90deg,#f9a8d4,#c4b5fd); -webkit-background-clip:text; background-clip:text; color:transparent; }
         .zh-badge { display:inline-flex; align-items:center; gap:8px; color:#e9d5ff; font-size:13px; font-weight:600; }
@@ -156,8 +158,8 @@ export default function Hero() {
                     <img key={f.src} src={f.src} alt="" className="zh-float" style={{ width: f.w, top: f.top, left: f.left, "--r": `${f.rot}deg`, animationDelay: f.delay }} />
                   ))
                 : proxyCards.map((c, k) => (
-                    <div key={k} className="zh-pcard" style={{ top: c.top, left: c.left, background: c.grad, "--r": `${c.rot}deg`, animationDelay: c.delay }}>
-                      PROXY
+                    <div key={k} className="zh-pcard" style={{ top: c.top, left: c.left, background: c.image ? `url(${c.image}) center/cover no-repeat, ${c.grad}` : c.grad, "--r": `${c.rot}deg`, animationDelay: c.delay }}>
+                      {!c.image && "PROXY"}
                     </div>
                   ))}
             </div>

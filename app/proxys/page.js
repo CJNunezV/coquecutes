@@ -1,7 +1,7 @@
 "use client";
 import { useState, useEffect } from "react";
 import Link from "next/link";
-import { singles, extendedPacks, customTypes, decks } from "../../data/proxys";
+import { singles, extendedPacks, customTypes, decks, proxyTypes } from "../../data/proxys";
 
 const WA = "51962167068";
 const waLink = (msg) => `https://wa.me/${WA}?text=${encodeURIComponent(msg)}`;
@@ -33,6 +33,25 @@ function useCart() {
   return { added, add };
 }
 
+/* ---------- Tipo de proxy (en frío / con crema / al calor) ---------- */
+const typeOf = (id) => proxyTypes.find((t) => t.id === id) || proxyTypes[0];
+// Devuelve el ítem del carrito: id único por tipo, nombre con el tipo y precio + extra
+const withType = (item, typeId, name) => {
+  const t = typeOf(typeId);
+  return { id: `${item.id}-${t.id}`, name: `${name} · ${t.label}`, price: item.price + (t.extra || 0) };
+};
+function TypePicker({ value, onChange }) {
+  return (
+    <div className="px-types" role="radiogroup" aria-label="Tipo de proxy">
+      {proxyTypes.map((t) => (
+        <button key={t.id} type="button" role="radio" aria-checked={value === t.id} className={`px-type ${value === t.id ? "is-active" : ""}`} onClick={() => onChange(t.id)} title={t.desc || t.label}>
+          {t.label}{t.extra > 0 ? ` +S/${t.extra}` : ""}
+        </button>
+      ))}
+    </div>
+  );
+}
+
 /* ---------- Mini carta (63:88) ---------- */
 function MiniCard({ grad, title, sub, image, style }) {
   return (
@@ -47,6 +66,7 @@ function MiniCard({ grad, title, sub, image, style }) {
 /* ---------- Cartas sueltas ---------- */
 function Singles({ cart }) {
   const [q, setQ] = useState("");
+  const [types, setTypes] = useState({});
   const list = singles.filter((s) => (s.name + s.set).toLowerCase().includes(q.trim().toLowerCase()));
   return (
     <div>
@@ -58,13 +78,22 @@ function Singles({ cart }) {
         {list.map((s) => (
           <div key={s.id} className="px-lift">
             <MiniCard grad={s.grad} image={s.image} title={s.name} sub={s.set} />
-            <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", margin: "10px 2px 8px" }}>
-              <strong style={{ color: "#7c3aed", fontSize: "17px" }}>S/{s.price.toFixed(2)}</strong>
-              <span style={{ fontSize: "12px", color: "#9ca3af" }}>por unidad</span>
-            </div>
-            <button className={`px-btn ${cart.added === s.id ? "is-added" : ""}`} onClick={() => cart.add({ ...s, name: `Proxy ${s.name} (${s.set})` })}>
-              {cart.added === s.id ? "¡Añadido!" : "Añadir"}
-            </button>
+            {(() => {
+              const tid = types[s.id] || proxyTypes[0].id;
+              const item = withType(s, tid, `Proxy ${s.name} (${s.set})`);
+              return (
+                <>
+                  <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", margin: "10px 2px 8px" }}>
+                    <strong style={{ color: "#7c3aed", fontSize: "17px" }}>S/{item.price.toFixed(2)}</strong>
+                    <span style={{ fontSize: "12px", color: "#9ca3af" }}>por unidad</span>
+                  </div>
+                  <TypePicker value={tid} onChange={(v) => setTypes((p) => ({ ...p, [s.id]: v }))} />
+                  <button className={`px-btn ${cart.added === item.id ? "is-added" : ""}`} onClick={() => cart.add(item)}>
+                    {cart.added === item.id ? "¡Añadido!" : "Añadir"}
+                  </button>
+                </>
+              );
+            })()}
           </div>
         ))}
       </div>
@@ -80,7 +109,9 @@ function Singles({ cart }) {
 /* ---------- Extended Art: arte 3x3, 8 cartas (sin la central) ---------- */
 function Extended({ cart }) {
   const [sel, setSel] = useState(0);
+  const [type, setType] = useState(proxyTypes[0].id);
   const pack = extendedPacks[sel];
+  const packItem = withType(pack, type, `Extended Art ${pack.name} (8 cartas)`);
   return (
     <div className="px-ext">
       <div className="px-binder">
@@ -117,8 +148,10 @@ function Extended({ cart }) {
             </button>
           ))}
         </div>
-        <button className={`px-btn px-btn-lg ${cart.added === pack.id ? "is-added" : ""}`} onClick={() => cart.add({ ...pack, name: `Extended Art ${pack.name} (8 cartas)` })}>
-          {cart.added === pack.id ? "¡Añadido!" : `Añadir · S/${pack.price}.00`}
+        <div style={{ fontSize: "13px", fontWeight: 800, color: "#1e1b4b", margin: "0 0 8px", letterSpacing: ".5px" }}>TIPO DE PROXY</div>
+        <TypePicker value={type} onChange={setType} />
+        <button className={`px-btn px-btn-lg ${cart.added === packItem.id ? "is-added" : ""}`} onClick={() => cart.add(packItem)} style={{ marginTop: "14px" }}>
+          {cart.added === packItem.id ? "¡Añadido!" : `Añadir · S/${packItem.price.toFixed(2)}`}
         </button>
       </div>
     </div>
@@ -166,6 +199,7 @@ function Custom() {
 
 /* ---------- Decks ---------- */
 function Decks({ cart }) {
+  const [types, setTypes] = useState({});
   return (
     <div className="px-grid-decks">
       {decks.map((d) => (
@@ -181,10 +215,19 @@ function Decks({ cart }) {
             <span style={{ fontSize: "12px", background: "#f5f3ff", color: "#7c3aed", fontWeight: 700, padding: "3px 10px", borderRadius: "999px" }}>{d.cards} cartas</span>
           </div>
           <div style={{ color: "#6b7280", fontSize: "14px", margin: "4px 0 14px" }}>{d.style}</div>
-          <div style={{ color: "#7c3aed", fontWeight: 800, fontSize: "22px", marginBottom: "12px" }}>S/{d.price.toFixed(2)}</div>
-          <button className={`px-btn ${cart.added === d.id ? "is-added" : ""}`} onClick={() => cart.add({ ...d, name: `Deck proxy ${d.name}` })}>
-            {cart.added === d.id ? "¡Añadido!" : "Añadir deck"}
-          </button>
+          {(() => {
+            const tid = types[d.id] || proxyTypes[0].id;
+            const item = withType(d, tid, `Deck proxy ${d.name}`);
+            return (
+              <>
+                <div style={{ color: "#7c3aed", fontWeight: 800, fontSize: "22px", marginBottom: "10px" }}>S/{item.price.toFixed(2)}</div>
+                <TypePicker value={tid} onChange={(v) => setTypes((p) => ({ ...p, [d.id]: v }))} />
+                <button className={`px-btn ${cart.added === item.id ? "is-added" : ""}`} onClick={() => cart.add(item)}>
+                  {cart.added === item.id ? "¡Añadido!" : "Añadir deck"}
+                </button>
+              </>
+            );
+          })()}
         </div>
       ))}
       <a href={waLink("Hola Coquecutes, quiero un deck de proxys con mi propia lista")} target="_blank" rel="noopener noreferrer" className="px-lift" style={{ border: "2px dashed #c4b5fd", borderRadius: "22px", padding: "20px", textDecoration: "none", display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "center", textAlign: "center", gap: "8px", color: "#7c3aed", minHeight: "260px" }}>
@@ -223,6 +266,10 @@ export default function ProxysPage() {
         .px-tab { display:inline-flex; align-items:center; gap:8px; border:1.5px solid #e5e7eb; background:#fff; color:#4b5563; font-weight:700; font-size:15px; padding:11px 20px; border-radius:999px; cursor:pointer; font-family:inherit; transition:all .2s; }
         .px-tab:hover { border-color:#c4b5fd; color:#7c3aed; }
         .px-tab.is-active { background:linear-gradient(90deg,#ec4899,#7c3aed); border-color:transparent; color:#fff; box-shadow:0 8px 20px rgba(124,58,237,.3); }
+        .px-types { display:flex; flex-wrap:wrap; gap:6px; margin:0 0 10px; }
+        .px-type { border:1.5px solid #e5e7eb; background:#fff; color:#4b5563; font-size:12px; font-weight:700; padding:6px 10px; border-radius:999px; cursor:pointer; font-family:inherit; transition:all .15s; }
+        .px-type:hover { border-color:#c4b5fd; color:#7c3aed; }
+        .px-type.is-active { background:#f5f3ff; border-color:#7c3aed; color:#6d28d9; box-shadow:0 0 0 2px rgba(124,58,237,.12); }
         .px-btn { width:100%; border:none; cursor:pointer; background:#7c3aed; color:#fff; font-weight:800; font-size:13px; letter-spacing:.5px; text-transform:uppercase; padding:13px; border-radius:10px; font-family:inherit; transition:background .2s, transform .1s; }
         .px-btn:hover { background:#6d28d9; } .px-btn:active { transform:scale(.98); }
         .px-btn-lg { padding:17px; font-size:14px; border-radius:14px; background:linear-gradient(90deg,#ec4899,#7c3aed); }

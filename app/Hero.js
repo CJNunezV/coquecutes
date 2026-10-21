@@ -17,10 +17,10 @@ const floating = [
 // Para cambiar las fotos: pon la imagen en /public/proxys/ y escribe su ruta en `image`.
 // Si una carta no tiene `image`, se muestra un degradado de color.
 const proxyCards = [
-  { image: "/proxys/Singles/poncho-charizard-x.avif", top: "8%", left: "10%", rot: -10, grad: "linear-gradient(135deg,#f9a8d4,#a78bfa)", delay: "0s" },
-  { image: "/proxys/Singles/poncho-rayquaza.avif", top: "4%", left: "50%", rot: 6, grad: "linear-gradient(135deg,#fde68a,#f472b6)", delay: "0.7s" },
-  { image: "/proxys/Singles/poncho-gyarados.avif", top: "40%", left: "28%", rot: -3, grad: "linear-gradient(135deg,#93c5fd,#c084fc)", delay: "1.2s" },
-  { image: "/proxys/Singles/poncho-magikarp.avif", top: "36%", left: "64%", rot: 11, grad: "linear-gradient(135deg,#86efac,#60a5fa)", delay: "0.4s" },
+  { image: "/proxys/Singles/0ae16301-89cf-4a50-a111-edd2766caad7.jpg", top: "8%", left: "10%", rot: -10, grad: "linear-gradient(135deg,#86efac,#166534)", delay: "0s" },
+  { image: "/proxys/Singles/671a8399-83b8-4dd4-b9fe-e4ecfa0589f0.jpg", top: "4%", left: "50%", rot: 6, grad: "linear-gradient(135deg,#ef4444,#7f1d1d)", delay: "0.7s" },
+  { image: "/proxys/Singles/a8356bc4-2897-4b66-95be-3308a86f831c.jpg", top: "40%", left: "28%", rot: -3, grad: "linear-gradient(135deg,#22c55e,#b91c1c)", delay: "1.2s" },
+  { image: "/proxys/Singles/ecac42ad-ea1e-41b7-9d6c-090b3c34ecc0.jpg", top: "36%", left: "64%", rot: 11, grad: "linear-gradient(135deg,#f9a8d4,#a78bfa)", delay: "0.4s" },
 ];
 
 const slides = [

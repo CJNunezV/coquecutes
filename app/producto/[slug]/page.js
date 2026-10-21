@@ -77,7 +77,7 @@ export default function ProductDetailPage() {
               className="pg-img"
               src={activeImage}
               alt={product.name}
-              style={{ width: "100%", height: "100%", objectFit: "cover", display: "block" }}
+              style={{ width: "100%", height: "100%", objectFit: "cover", objectPosition: "50% 55%", display: "block", transform: activeImage.startsWith("/Cases/") ? "scale(1.28)" : "none", transformOrigin: "50% 58%" }}
             />
           </div>
 
@@ -99,7 +99,7 @@ export default function ProductDetailPage() {
                       transition: "all .2s",
                     }}
                   >
-                    <img src={img} alt={`Vista ${index + 1}`} style={{ width: "100%", height: "100%", objectFit: "cover", display: "block" }} />
+                    <img src={img} alt={`Vista ${index + 1}`} style={{ width: "100%", height: "100%", objectFit: "cover", display: "block", transform: img.startsWith("/Cases/") ? "scale(1.4)" : "none", transformOrigin: "50% 58%" }} />
                   </button>
                 );
               })}

@@ -130,8 +130,8 @@ export default function ProductCarousel({ products }) {
                   src={product.thumbnail || (product.images && product.images[0]) || "/placeholder.svg"}
                   alt={product.name}
                   style={
-                    (product.thumbnail || "").startsWith("/cases-web/")
-                      ? { width: "100%", height: "100%", objectFit: "cover", display: "block" }
+                    (product.thumbnail || "").startsWith("/Cases/")
+                      ? { width: "100%", height: "100%", objectFit: "cover", display: "block", transform: "scale(1.3)", transformOrigin: "50% 58%" }
                       : { width: `${product.thumbnailZoom || 85}%`, height: `${product.thumbnailZoom || 85}%`, objectFit: "contain" }
                   }
                 />

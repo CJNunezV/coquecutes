@@ -1,7 +1,7 @@
 "use client";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef, useContext, createContext } from "react";
 import Link from "next/link";
-import { singles, extendedPacks, customTypes, decks, proxyTypes } from "../../data/proxys";
+import { singles, extendedPacks, customTypes, decks, proxyTypes, proxyInfo } from "../../data/proxys";
 
 const WA = "51962167068";
 const waLink = (msg) => `https://wa.me/${WA}?text=${encodeURIComponent(msg)}`;
@@ -40,14 +40,131 @@ const withType = (item, typeId, name) => {
   const t = typeOf(typeId);
   return { id: `${item.id}-${t.id}`, name: `${name} · ${t.label}`, price: item.price + (t.extra || 0) };
 };
-function TypePicker({ value, onChange }) {
+/* ---------- Contexto de la página: acabado por defecto + modal informativo ---------- */
+const Ui = createContext({ defaultType: "frio", openInfo: () => {}, openQuick: () => {} });
+
+function TypePicker({ value, onChange, showInfo = true }) {
+  const ui = useContext(Ui);
+  const t = typeOf(value);
   return (
-    <div className="px-types" role="radiogroup" aria-label="Tipo de proxy">
-      {proxyTypes.map((t) => (
-        <button key={t.id} type="button" role="radio" aria-checked={value === t.id} className={`px-type ${value === t.id ? "is-active" : ""}`} onClick={() => onChange(t.id)} title={t.desc || t.label}>
-          {t.label}{t.extra > 0 ? ` +S/${t.extra}` : ""}
+    <div style={{ marginBottom: "10px" }}>
+      <div className="px-types" role="radiogroup" aria-label="Tipo de proxy" style={{ marginBottom: "6px" }}>
+        {proxyTypes.map((x) => (
+          <button key={x.id} type="button" role="radio" aria-checked={value === x.id} className={`px-type ${value === x.id ? "is-active" : ""}`} onClick={() => onChange(x.id)}>
+            {x.label}{x.extra > 0 ? ` +S/${x.extra}` : ""}
+          </button>
+        ))}
+      </div>
+      {showInfo && (
+        <button type="button" className="px-info" onClick={() => ui.openInfo(value, onChange)}>
+          <span className="px-info-play">▶</span> Ver cómo queda «{t.label}»
         </button>
-      ))}
+      )}
+    </div>
+  );
+}
+
+/* ---------- Video: archivo (.mp4/.webm) o YouTube / Vimeo ---------- */
+function VideoBox({ type }) {
+  const url = type.video || "";
+  const yt = url.match(/(?:youtu\.be\/|youtube\.com\/(?:watch\?v=|embed\/|shorts\/))([\w-]{6,})/);
+  const vimeo = url.match(/vimeo\.com\/(\d+)/);
+  const frame = { position: "relative", width: "100%", aspectRatio: "16 / 9", borderRadius: "16px", overflow: "hidden", background: "#0f0a2a" };
+  if (yt) return <div style={frame}><iframe src={`https://www.youtube.com/embed/${yt[1]}?rel=0`} title={`Video ${type.label}`} allow="accelerometer; encrypted-media; picture-in-picture; fullscreen" allowFullScreen style={{ position: "absolute", inset: 0, width: "100%", height: "100%", border: 0 }} /></div>;
+  if (vimeo) return <div style={frame}><iframe src={`https://player.vimeo.com/video/${vimeo[1]}`} title={`Video ${type.label}`} allow="fullscreen; picture-in-picture" allowFullScreen style={{ position: "absolute", inset: 0, width: "100%", height: "100%", border: 0 }} /></div>;
+  if (url) return <div style={frame}><video src={url} poster={type.poster || undefined} controls playsInline preload="metadata" style={{ width: "100%", height: "100%", objectFit: "contain", background: "#000" }} /></div>;
+  return (
+    <div style={{ ...frame, display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "center", gap: "8px", color: "#e9d5ff", textAlign: "center", background: type.poster ? `url(${type.poster}) center/cover` : "linear-gradient(135deg,#1e1b4b,#4c1d95)" }}>
+      <span style={{ fontSize: "44px" }}>{type.emoji || "🎬"}</span>
+      <strong style={{ fontSize: "16px" }}>Video próximamente</strong>
+      <span style={{ fontSize: "13px", opacity: 0.8, maxWidth: "280px" }}>Estamos grabando cómo queda el acabado «{type.label}».</span>
+    </div>
+  );
+}
+
+/* ---------- Modal base (Esc, clic afuera, bloquea el scroll) ---------- */
+function Modal({ onClose, children, wide }) {
+  const closeRef = useRef(onClose);
+  closeRef.current = onClose;
+  useEffect(() => {
+    const onKey = (e) => e.key === "Escape" && closeRef.current();
+    document.addEventListener("keydown", onKey);
+    const prev = document.body.style.overflow;
+    document.body.style.overflow = "hidden";
+    return () => { document.removeEventListener("keydown", onKey); document.body.style.overflow = prev; };
+  }, []);
+  return (
+    <div className="px-overlay" onMouseDown={(e) => e.target === e.currentTarget && onClose()}>
+      <div className="px-modal" role="dialog" aria-modal="true" style={{ maxWidth: wide ? "980px" : "640px" }}>
+        <button className="px-close" onClick={onClose} aria-label="Cerrar">✕</button>
+        {children}
+      </div>
+    </div>
+  );
+}
+
+/* ---------- Modal: de qué trata cada acabado + video ---------- */
+function TypeModal({ typeId, onClose, onChoose }) {
+  const [cur, setCur] = useState(typeId);
+  const t = typeOf(cur);
+  const rows = [["¿De qué trata?", t.desc], ["Así queda el acabado final", t.finish], ["Ideal para", t.bestFor]].filter(([, v]) => v);
+  return (
+    <Modal onClose={onClose}>
+      <div style={{ padding: "26px 26px 24px" }}>
+        <div className="px-types" style={{ marginBottom: "16px" }}>
+          {proxyTypes.map((x) => (
+            <button key={x.id} className={`px-type ${cur === x.id ? "is-active" : ""}`} onClick={() => setCur(x.id)}>{x.emoji} {x.label}</button>
+          ))}
+        </div>
+        <VideoBox key={cur} type={t} />
+        <h3 style={{ fontSize: "22px", fontWeight: 800, color: "#1e1b4b", margin: "18px 0 6px" }}>{t.emoji} Proxy {t.label}</h3>
+        {rows.length === 0 && <p style={{ color: "#6b7280", margin: "0 0 14px" }}>Pronto agregaremos aquí la descripción de este acabado. Si tienes dudas, escríbenos y te mostramos fotos y videos por WhatsApp.</p>}
+        {rows.map(([k, v]) => (
+          <div key={k} style={{ marginBottom: "12px" }}>
+            <div style={{ fontSize: "12px", fontWeight: 800, color: "#7c3aed", letterSpacing: ".5px", textTransform: "uppercase" }}>{k}</div>
+            <div style={{ color: "#374151", lineHeight: 1.6 }}>{v}</div>
+          </div>
+        ))}
+        <div style={{ display: "flex", gap: "10px", flexWrap: "wrap", marginTop: "18px" }}>
+          <button className="px-btn px-btn-lg" style={{ flex: 1, minWidth: "200px" }} onClick={() => { onChoose(cur); onClose(); }}>
+            Elegir «{t.label}»{t.extra > 0 ? ` (+S/${t.extra})` : ""}
+          </button>
+          <a className="px-ghost" href={waLink(`Hola Coquecutes, tengo una duda sobre el proxy ${t.label}`)} target="_blank" rel="noopener noreferrer">💬 Preguntar</a>
+        </div>
+      </div>
+    </Modal>
+  );
+}
+
+/* ---------- Guía de acabados (arriba de la página) ---------- */
+function FinishGuide({ value, onPick }) {
+  const ui = useContext(Ui);
+  return (
+    <div className="px-guide">
+      <div style={{ display: "flex", alignItems: "baseline", justifyContent: "space-between", gap: "10px", flexWrap: "wrap", marginBottom: "12px" }}>
+        <div>
+          <div style={{ fontSize: "13px", fontWeight: 800, color: "#7c3aed", letterSpacing: "1px" }}>PASO 1 · ELIGE TU ACABADO</div>
+          <div style={{ color: "#6b7280", fontSize: "14px" }}>Mira el video de cada tipo para saber cómo queda. Luego elige tus cartas.</div>
+        </div>
+      </div>
+      <div className="px-guide-grid">
+        {proxyTypes.map((t) => (
+          <div key={t.id} className={`px-guide-card ${value === t.id ? "is-active" : ""}`}>
+            <button className="px-guide-thumb" onClick={() => ui.openInfo(t.id)} aria-label={`Ver video ${t.label}`} style={{ background: t.poster ? `url(${t.poster}) center/cover` : "linear-gradient(135deg,#1e1b4b,#4c1d95)" }}>
+              <span style={{ fontSize: "26px" }}>{t.emoji}</span>
+              <span className="px-play">▶</span>
+            </button>
+            <div style={{ padding: "12px 14px 14px" }}>
+              <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center" }}>
+                <strong style={{ color: "#1e1b4b", fontSize: "16px" }}>{t.label}</strong>
+                <span style={{ fontSize: "12px", fontWeight: 700, color: "#7c3aed" }}>{t.extra > 0 ? `+S/${t.extra}` : "Precio base"}</span>
+              </div>
+              <div style={{ color: "#6b7280", fontSize: "13px", minHeight: "36px", margin: "4px 0 10px", lineHeight: 1.4 }}>{t.summary || "Toca ▶ para ver cómo queda."}</div>
+              <button className={`px-pick ${value === t.id ? "is-active" : ""}`} onClick={() => onPick(t.id)}>{value === t.id ? "✓ Elegido" : "Elegir este"}</button>
+            </div>
+          </div>
+        ))}
+      </div>
     </div>
   );
 }
@@ -63,8 +180,62 @@ function MiniCard({ grad, title, sub, image, style }) {
   );
 }
 
+/* ---------- Vista rápida de una carta (grande, con efecto 3D y todo lo que recibes) ---------- */
+function QuickView({ s, cart, startType, onClose }) {
+  const ui = useContext(Ui);
+  const [tid, setTid] = useState(startType);
+  const [tilt, setTilt] = useState({ x: 0, y: 0, on: false });
+  const t = typeOf(tid);
+  const item = withType(s, tid, `Proxy ${s.name} (${s.set})`);
+  const move = (e) => {
+    const r = e.currentTarget.getBoundingClientRect();
+    const px = (e.clientX - r.left) / r.width - 0.5, py = (e.clientY - r.top) / r.height - 0.5;
+    setTilt({ x: -py * 14, y: px * 14, on: true });
+  };
+  return (
+    <Modal onClose={onClose} wide>
+      <div className="px-quick">
+        <div className="px-quick-img" onMouseMove={move} onMouseLeave={() => setTilt({ x: 0, y: 0, on: false })}>
+          <div style={{ aspectRatio: "63 / 88", height: "min(68vh, 560px)", maxWidth: "100%", borderRadius: "14px", background: s.image ? `url(${s.image}) center/cover` : gradBg(s.grad), boxShadow: "0 24px 50px rgba(30,27,75,0.4)", border: "3px solid #fff", transform: `perspective(900px) rotateX(${tilt.x}deg) rotateY(${tilt.y}deg)`, transition: tilt.on ? "transform .08s" : "transform .4s", position: "relative", overflow: "hidden" }}>
+            <div style={{ position: "absolute", inset: 0, background: `linear-gradient(${115 + tilt.y * 6}deg, transparent 35%, rgba(255,255,255,${tilt.on ? 0.28 : 0}) 50%, transparent 65%)`, transition: "opacity .3s", pointerEvents: "none" }} />
+          </div>
+          <div style={{ marginTop: "10px", fontSize: "12px", color: "#9ca3af" }}>Mueve el mouse sobre la carta ✨</div>
+        </div>
+        <div style={{ padding: "6px 4px" }}>
+          <div style={{ fontSize: "12px", fontWeight: 800, color: "#7c3aed", letterSpacing: "1px" }}>{s.set.toUpperCase()}</div>
+          <h3 style={{ fontSize: "26px", fontWeight: 900, color: "#1e1b4b", margin: "2px 0 8px", lineHeight: 1.15 }}>{s.name}</h3>
+          <div style={{ fontSize: "28px", fontWeight: 900, color: "#7c3aed", marginBottom: "14px" }}>S/{item.price.toFixed(2)}</div>
+
+          <div style={{ fontSize: "12px", fontWeight: 800, color: "#1e1b4b", letterSpacing: ".5px", marginBottom: "6px" }}>ACABADO</div>
+          <TypePicker value={tid} onChange={setTid} />
+          {t.summary && <p style={{ margin: "0 0 12px", color: "#4b5563", fontSize: "14px", lineHeight: 1.5 }}>{t.summary}</p>}
+
+          <div className="px-receive">
+            <div style={{ fontSize: "12px", fontWeight: 800, color: "#1e1b4b", letterSpacing: ".5px", marginBottom: "6px" }}>LO QUE RECIBES</div>
+            <ul>
+              <li>1 proxy de «{s.name}»</li>
+              <li>Acabado: {t.label}</li>
+              {proxyInfo.size && <li>{proxyInfo.size}</li>}
+              {proxyInfo.shipping && <li>{proxyInfo.shipping}</li>}
+            </ul>
+            {proxyInfo.disclaimer && <div style={{ fontSize: "12px", color: "#6b7280", marginTop: "6px", lineHeight: 1.5 }}>ℹ️ {proxyInfo.disclaimer}</div>}
+          </div>
+
+          <button className={`px-btn px-btn-lg ${cart.added === item.id ? "is-added" : ""}`} onClick={() => cart.add(item)} style={{ marginTop: "14px" }}>
+            {cart.added === item.id ? "¡Añadido al carrito!" : `Añadir · S/${item.price.toFixed(2)}`}
+          </button>
+          {cart.added === item.id && (
+            <a href="/checkout" className="px-ghost" style={{ display: "block", textAlign: "center", marginTop: "10px" }}>Ir a pagar →</a>
+          )}
+        </div>
+      </div>
+    </Modal>
+  );
+}
+
 /* ---------- Cartas sueltas ---------- */
 function Singles({ cart }) {
+  const ui = useContext(Ui);
   const [q, setQ] = useState("");
   const [types, setTypes] = useState({});
   const list = singles.filter((s) => (s.name + s.set).toLowerCase().includes(q.trim().toLowerCase()));
@@ -75,27 +246,27 @@ function Singles({ cart }) {
         <input value={q} onChange={(e) => setQ(e.target.value)} placeholder="Busca por carta o set…" aria-label="Buscar cartas" />
       </div>
       <div className="px-grid-cards">
-        {list.map((s) => (
-          <div key={s.id} className="px-lift">
-            <MiniCard grad={s.grad} image={s.image} title={s.name} sub={s.set} />
-            {(() => {
-              const tid = types[s.id] || proxyTypes[0].id;
-              const item = withType(s, tid, `Proxy ${s.name} (${s.set})`);
-              return (
-                <>
-                  <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", margin: "10px 2px 8px" }}>
-                    <strong style={{ color: "#7c3aed", fontSize: "17px" }}>S/{item.price.toFixed(2)}</strong>
-                    <span style={{ fontSize: "12px", color: "#9ca3af" }}>por unidad</span>
-                  </div>
-                  <TypePicker value={tid} onChange={(v) => setTypes((p) => ({ ...p, [s.id]: v }))} />
-                  <button className={`px-btn ${cart.added === item.id ? "is-added" : ""}`} onClick={() => cart.add(item)}>
-                    {cart.added === item.id ? "¡Añadido!" : "Añadir"}
-                  </button>
-                </>
-              );
-            })()}
-          </div>
-        ))}
+        {list.map((s, idx) => {
+          const tid = types[s.id] || ui.defaultType;
+          const item = withType(s, tid, `Proxy ${s.name} (${s.set})`);
+          return (
+            <div key={s.id} className="px-lift">
+              <button className="px-cardbtn" onClick={() => ui.openQuick(s, tid)} aria-label={`Ver ${s.name} en grande`}>
+                <MiniCard grad={s.grad} image={s.image} title={s.name} sub={s.set} />
+                {idx < 4 && !q && <span className="px-new">NUEVO</span>}
+                <span className="px-zoom">🔍 Ver en grande</span>
+              </button>
+              <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", margin: "10px 2px 8px" }}>
+                <strong style={{ color: "#7c3aed", fontSize: "17px" }}>S/{item.price.toFixed(2)}</strong>
+                <span style={{ fontSize: "12px", color: "#9ca3af" }}>por unidad</span>
+              </div>
+              <TypePicker value={tid} onChange={(v) => setTypes((p) => ({ ...p, [s.id]: v }))} />
+              <button className={`px-btn ${cart.added === item.id ? "is-added" : ""}`} onClick={() => cart.add(item)}>
+                {cart.added === item.id ? "¡Añadido!" : "Añadir"}
+              </button>
+            </div>
+          );
+        })}
       </div>
       {list.length === 0 && (
         <p style={{ textAlign: "center", color: "#6b7280", padding: "30px 0" }}>
@@ -109,7 +280,10 @@ function Singles({ cart }) {
 /* ---------- Extended Art: arte 3x3, 8 cartas (sin la central) ---------- */
 function Extended({ cart }) {
   const [sel, setSel] = useState(0);
-  const [type, setType] = useState(proxyTypes[0].id);
+  const ui = useContext(Ui);
+  const [own, setOwn] = useState(null);
+  const type = own || ui.defaultType;
+  const setType = setOwn;
   const pack = extendedPacks[sel];
   const packItem = withType(pack, type, `Extended Art ${pack.name} (8 cartas)`);
   return (
@@ -199,6 +373,7 @@ function Custom() {
 
 /* ---------- Decks ---------- */
 function Decks({ cart }) {
+  const ui = useContext(Ui);
   const [types, setTypes] = useState({});
   return (
     <div className="px-grid-decks">
@@ -216,7 +391,7 @@ function Decks({ cart }) {
           </div>
           <div style={{ color: "#6b7280", fontSize: "14px", margin: "4px 0 14px" }}>{d.style}</div>
           {(() => {
-            const tid = types[d.id] || proxyTypes[0].id;
+            const tid = types[d.id] || ui.defaultType;
             const item = withType(d, tid, `Deck proxy ${d.name}`);
             return (
               <>
@@ -241,7 +416,15 @@ function Decks({ cart }) {
 
 export default function ProxysPage() {
   const [tab, setTab] = useState("sueltas");
+  const [defaultType, setDefaultType] = useState(proxyTypes[0].id);
+  const [info, setInfo] = useState(null);   // { typeId, onChoose }
+  const [quick, setQuick] = useState(null); // { s, tid }
   const cart = useCart();
+  const ui = {
+    defaultType,
+    openInfo: (typeId, onChoose) => setInfo({ typeId, onChoose: onChoose || setDefaultType }),
+    openQuick: (s, tid) => setQuick({ s, tid }),
+  };
 
   useEffect(() => {
     const read = () => {
@@ -270,6 +453,34 @@ export default function ProxysPage() {
         .px-type { border:1.5px solid #e5e7eb; background:#fff; color:#4b5563; font-size:12px; font-weight:700; padding:6px 10px; border-radius:999px; cursor:pointer; font-family:inherit; transition:all .15s; }
         .px-type:hover { border-color:#c4b5fd; color:#7c3aed; }
         .px-type.is-active { background:#f5f3ff; border-color:#7c3aed; color:#6d28d9; box-shadow:0 0 0 2px rgba(124,58,237,.12); }
+        .px-info { background:none; border:none; padding:2px 0; cursor:pointer; color:#7c3aed; font-weight:700; font-size:12px; font-family:inherit; display:inline-flex; align-items:center; gap:6px; }
+        .px-info:hover { text-decoration:underline; }
+        .px-info-play { width:18px; height:18px; border-radius:50%; background:#7c3aed; color:#fff; font-size:8px; display:inline-flex; align-items:center; justify-content:center; padding-left:1px; }
+        .px-guide { background:#fff; border:1px solid #ede9fe; border-radius:24px; padding:20px; margin-bottom:30px; box-shadow:0 8px 30px rgba(124,58,237,.06); }
+        .px-guide-grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(210px,1fr)); gap:14px; }
+        .px-guide-card { border:1.5px solid #ede9fe; border-radius:18px; overflow:hidden; background:#fff; transition:all .2s; }
+        .px-guide-card.is-active { border-color:#7c3aed; box-shadow:0 0 0 3px rgba(124,58,237,.14); }
+        .px-guide-thumb { position:relative; display:flex; align-items:center; justify-content:center; width:100%; height:110px; border:none; cursor:pointer; color:#fff; font-family:inherit; }
+        .px-play { position:absolute; right:10px; bottom:10px; width:34px; height:34px; border-radius:50%; background:rgba(255,255,255,.95); color:#7c3aed; display:flex; align-items:center; justify-content:center; font-size:12px; padding-left:2px; transition:transform .2s; }
+        .px-guide-thumb:hover .px-play { transform:scale(1.12); }
+        .px-pick { width:100%; border:1.5px solid #7c3aed; background:#fff; color:#7c3aed; font-weight:800; font-size:13px; padding:9px; border-radius:10px; cursor:pointer; font-family:inherit; transition:all .15s; }
+        .px-pick:hover { background:#f5f3ff; } .px-pick.is-active { background:#7c3aed; color:#fff; }
+        .px-ghost { display:inline-flex; align-items:center; justify-content:center; gap:6px; border:1.5px solid #e5e7eb; color:#4b5563; text-decoration:none; font-weight:700; font-size:14px; padding:14px 18px; border-radius:14px; background:#fff; }
+        .px-ghost:hover { border-color:#c4b5fd; color:#7c3aed; }
+        .px-cardbtn { position:relative; display:block; width:100%; padding:0; border:none; background:none; cursor:zoom-in; font-family:inherit; text-align:left; }
+        .px-new { position:absolute; top:8px; left:8px; background:linear-gradient(90deg,#ec4899,#7c3aed); color:#fff; font-size:10px; font-weight:900; letter-spacing:1px; padding:4px 9px; border-radius:999px; box-shadow:0 4px 10px rgba(0,0,0,.25); }
+        .px-zoom { position:absolute; left:50%; bottom:10px; transform:translate(-50%,8px); background:rgba(15,10,42,.85); color:#fff; font-size:12px; font-weight:700; padding:6px 12px; border-radius:999px; opacity:0; transition:all .2s; white-space:nowrap; pointer-events:none; }
+        .px-cardbtn:hover .px-zoom, .px-cardbtn:focus-visible .px-zoom { opacity:1; transform:translate(-50%,0); }
+        .px-overlay { position:fixed; inset:0; z-index:300; background:rgba(15,10,42,.72); backdrop-filter:blur(4px); display:flex; align-items:center; justify-content:center; padding:20px; animation:pxFade .2s both; }
+        .px-modal { position:relative; width:100%; max-height:92vh; overflow:auto; background:#fff; border-radius:26px; box-shadow:0 30px 80px rgba(0,0,0,.45); animation:pxPop .3s both; }
+        .px-close { position:absolute; top:12px; right:12px; z-index:2; width:36px; height:36px; border-radius:50%; border:none; background:#f3f4f6; color:#374151; font-size:15px; cursor:pointer; }
+        .px-close:hover { background:#e5e7eb; }
+        .px-quick { display:grid; grid-template-columns:minmax(0,1fr) minmax(0,1fr); gap:30px; padding:30px; }
+        .px-quick-img { display:flex; flex-direction:column; align-items:center; justify-content:center; background:linear-gradient(145deg,#f5f3ff,#fdf2f8); border-radius:20px; padding:20px; }
+        .px-receive { background:#faf5ff; border:1px solid #ede9fe; border-radius:14px; padding:12px 14px; }
+        .px-receive ul { margin:0; padding-left:18px; color:#374151; font-size:14px; line-height:1.7; }
+        @keyframes pxFade { from { opacity:0; } to { opacity:1; } }
+        @media (max-width:860px) { .px-quick { grid-template-columns:1fr; padding:20px 16px; gap:18px; } .px-quick-img > div:first-child { height:min(52vh,420px) !important; } .px-overlay { padding:10px; align-items:flex-end; } .px-modal { border-radius:22px 22px 0 0; } }
         .px-btn { width:100%; border:none; cursor:pointer; background:#7c3aed; color:#fff; font-weight:800; font-size:13px; letter-spacing:.5px; text-transform:uppercase; padding:13px; border-radius:10px; font-family:inherit; transition:background .2s, transform .1s; }
         .px-btn:hover { background:#6d28d9; } .px-btn:active { transform:scale(.98); }
         .px-btn-lg { padding:17px; font-size:14px; border-radius:14px; background:linear-gradient(90deg,#ec4899,#7c3aed); }
@@ -304,10 +515,15 @@ export default function ProxysPage() {
         ))}
       </div>
 
-      {tab === "sueltas" && <Singles cart={cart} />}
-      {tab === "extended-art" && <Extended cart={cart} />}
-      {tab === "personalizados" && <Custom />}
-      {tab === "decks" && <Decks cart={cart} />}
+      <Ui.Provider value={ui}>
+        {tab !== "personalizados" && <FinishGuide value={defaultType} onPick={setDefaultType} />}
+        {tab === "sueltas" && <Singles cart={cart} />}
+        {tab === "extended-art" && <Extended cart={cart} />}
+        {tab === "personalizados" && <Custom />}
+        {tab === "decks" && <Decks cart={cart} />}
+        {info && <TypeModal typeId={info.typeId} onClose={() => setInfo(null)} onChoose={info.onChoose} />}
+        {quick && <QuickView s={quick.s} cart={cart} startType={quick.tid} onClose={() => setQuick(null)} />}
+      </Ui.Provider>
     </div>
   );
 }

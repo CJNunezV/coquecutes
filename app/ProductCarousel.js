@@ -119,7 +119,7 @@ export default function ProductCarousel({ products }) {
                 className="product-card-img-wrap"
                 style={{
                   background: accents[index % accents.length],
-                  height: "180px",
+                  height: "220px",
                   display: "flex",
                   alignItems: "center",
                   justifyContent: "center",
@@ -129,11 +129,11 @@ export default function ProductCarousel({ products }) {
                 <img
                   src={product.thumbnail || (product.images && product.images[0]) || "/placeholder.svg"}
                   alt={product.name}
-                  style={{
-                    width: `${product.thumbnailZoom || 85}%`,
-                    height: `${product.thumbnailZoom || 85}%`,
-                    objectFit: "contain",
-                  }}
+                  style={
+                    (product.thumbnail || "").startsWith("/cases-web/")
+                      ? { width: "100%", height: "100%", objectFit: "cover", display: "block" }
+                      : { width: `${product.thumbnailZoom || 85}%`, height: `${product.thumbnailZoom || 85}%`, objectFit: "contain" }
+                  }
                 />
               </div>
 

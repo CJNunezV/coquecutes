@@ -1,5 +1,4 @@
 // Fotos optimizadas en /public/cases-web  ->  cases([7853, 7856]) = ["/cases-web/IMG_7853.webp", ...]
-const cut = (nums) => nums.map((n) => `/cases-web/cut/IMG_${n}.webp`);
 const cases = (nums) => nums.map((n) => `/cases-web/IMG_${n}.webp`);
 
 export const products = [
@@ -8,8 +7,8 @@ export const products = [
     slug: "case-team-rocket",
     name: "Case Premium - Edición Team Rocket",
     price: 30.00,
-    images: cut([7868,7869,7871]),
-    thumbnail: "/team-rocket-thumb.webp",
+    images: cases([7868,7869,7871]),
+    thumbnail: "/cases-web/IMG_7868.webp",
     thumbnailZoom: 90,
     description: "Protector premium diseñado especialmente para cartas coleccionables de formato estándar. Acabado negro y rojo con el icónico logo \"R\" del Team Rocket, para tus cartas con más actitud.",
     specs: {
@@ -24,8 +23,8 @@ export const products = [
     slug: "case-ultra-ball",
     name: "Case Premium - Edición Ultra Ball",
     price: 30.00,
-    images: cut([7853,7858,7862]),
-    thumbnail: "/ultra-ball-thumb.webp",
+    images: cases([7853,7858,7862]),
+    thumbnail: "/cases-web/IMG_7853.webp",
     thumbnailZoom: 90,
     description: "Inspirado en la Ultra Ball: acabado negro con banda amarilla y botón central blanco. Misma resistencia y precisión de encastre que el resto de la línea premium.",
     specs: {
@@ -40,8 +39,8 @@ export const products = [
     slug: "case-premier-ball",
     name: "Case Premium - Edición Premier Ball",
     price: 30.00,
-    images: cut([7884,7888,7889]),
-    thumbnail: "/premier-ball-thumb.webp",
+    images: cases([7884,7888,7889]),
+    thumbnail: "/cases-web/IMG_7884.webp",
     thumbnailZoom: 90,
     description: "Inspirado en la Premier Ball: acabado blanco con franja roja central y botón blanco. Elegante y minimalista para tus cartas más valiosas.",
     specs: {
@@ -56,8 +55,8 @@ export const products = [
     slug: "case-pokebola-clasica",
     name: "Case Premium - Edición Poké Ball Clásica",
     price: 30.00,
-    images: cut([7872,7873,7877]),
-    thumbnail: "/pokebola-thumb.webp",
+    images: cases([7872,7873,7877]),
+    thumbnail: "/cases-web/IMG_7872.webp",
     thumbnailZoom: 90,
     description: "Inspirado en el diseño icónico de la Poké Ball original: rojo arriba, blanco abajo, con línea negra divisoria. El clásico que nunca falla.",
     specs: {
@@ -72,8 +71,8 @@ export const products = [
     slug: "case-master-ball",
     name: "Case Premium - Edición Master Ball",
     price: 30.00, // TODO: confirmar precio
-    images: cut([7864,7865,7867]),
-    thumbnail: "/master-ball-thumb.webp",
+    images: cases([7864,7865,7867]),
+    thumbnail: "/cases-web/IMG_7864.webp",
     thumbnailZoom: 90,
     description: "Inspirado en la Master Ball: acabado morado con la inicial \"M\" y detalles rosados. La más codiciada de la línea, para tus cartas más especiales.",
     specs: {
@@ -88,8 +87,8 @@ export const products = [
     slug: "case-great-ball",
     name: "Case Premium - Edición Great Ball",
     price: 30.00, // TODO: confirmar precio
-    images: cut([7881,7880,7883]),
-    thumbnail: "/great-ball-thumb.webp",
+    images: cases([7881,7880,7883]),
+    thumbnail: "/cases-web/IMG_7881.webp",
     thumbnailZoom: 90,
     description: "Inspirado en la Great Ball: acabado azul con detalles rojos y botón central blanco. Misma resistencia y precisión de encastre que el resto de la línea premium.",
     specs: {

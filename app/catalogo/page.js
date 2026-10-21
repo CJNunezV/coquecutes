@@ -39,6 +39,8 @@ function InfoRow({ label, value }) {
   );
 }
 
+const isPhoto = (src) => typeof src === "string" && src.startsWith("/cases-web/");
+
 export default function CatalogoPage() {
   const [category, setCategory] = useState("todos");
   const [perPage, setPerPage] = useState(12);
@@ -89,8 +91,8 @@ export default function CatalogoPage() {
   const Img = ({ item, idx }) => {
     const portrait = item.kind === "carta";
     return (
-      <div style={{ background: accents[idx % accents.length], borderRadius: "16px", aspectRatio: portrait ? "4 / 5" : "1 / 1", display: "flex", alignItems: "center", justifyContent: "center", marginBottom: "14px", overflow: "hidden", padding: portrait ? "14px" : 0, boxSizing: "border-box" }}>
-        <img src={item.image} alt={item.name} style={portrait ? { height: "100%", width: "auto", maxWidth: "100%", objectFit: "contain", borderRadius: "8px", boxShadow: "0 10px 22px rgba(30,27,75,0.3)" } : { width: `${item.zoom || (item.kind === "sellado" ? 88 : 85)}%`, height: `${item.zoom || (item.kind === "sellado" ? 88 : 85)}%`, objectFit: "contain" }} />
+      <div style={{ background: accents[idx % accents.length], borderRadius: "16px", aspectRatio: (portrait || isPhoto(item.image)) ? "4 / 5" : "1 / 1", display: "flex", alignItems: "center", justifyContent: "center", marginBottom: "14px", overflow: "hidden", padding: portrait ? "14px" : 0, boxSizing: "border-box" }}>
+        <img src={item.image} alt={item.name} style={isPhoto(item.image) ? { width: "100%", height: "100%", objectFit: "cover", display: "block" } : portrait ? { height: "100%", width: "auto", maxWidth: "100%", objectFit: "contain", borderRadius: "8px", boxShadow: "0 10px 22px rgba(30,27,75,0.3)" } : { width: `${item.zoom || (item.kind === "sellado" ? 88 : 85)}%`, height: `${item.zoom || (item.kind === "sellado" ? 88 : 85)}%`, objectFit: "contain" }} />
       </div>
     );
   };

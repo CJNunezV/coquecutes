@@ -4,6 +4,15 @@ import { useParams, useRouter } from "next/navigation";
 import { products } from "../../../data/products"; // Ajusta la ruta si es necesario según tu carpeta
 import Link from "next/link";
 
+const ACCENTS = {
+  "case-team-rocket": ["#e5e7eb", "#f5f5f7"],
+  "case-ultra-ball": ["#fde68a", "#fffbeb"],
+  "case-premier-ball": ["#e0e7ff", "#f8f9ff"],
+  "case-pokebola-clasica": ["#fecaca", "#fff5f5"],
+  "case-master-ball": ["#ddd6fe", "#f5f3ff"],
+  "case-great-ball": ["#bfdbfe", "#eff6ff"],
+};
+
 export default function ProductDetailPage() {
   const { slug } = useParams();
   const router = useRouter();
@@ -71,37 +80,67 @@ export default function ProductDetailPage() {
         {/* COLUMNA IZQUIERDA: GALERÍA DE IMÁGENES (fija al hacer scroll) */}
         <div style={{ flex: "1 1 400px", display: "flex", flexDirection: "column", gap: "16px", position: "sticky", top: "24px", alignSelf: "flex-start" }}>
           {/* Foto Principal */}
-          <div style={{ width: "100%", height: "450px", backgroundColor: "#fcfbfe", borderRadius: "24px", border: "1px solid #f3e8ff", display: "flex", alignItems: "center", justifyContent: "center", overflow: "hidden" }}>
-            <img 
-              src={activeImage} 
-              alt={product.name} 
-              style={{ width: "100%", height: "100%", objectFit: "contain", padding: "20px" }} 
-            />
-          </div>
-          
-          {/* Carrusel de Miniaturas */}
-          <div style={{ display: "flex", gap: "12px", overflowX: "auto", paddingBottom: "8px" }}>
-            {product.images.map((img, index) => (
-              <button
-                key={index}
-                onClick={() => setActiveImage(img)}
+          {(() => {
+            const isCut = (activeImage || "").includes("/cut/");
+            const acc = ACCENTS[product.slug] || ["#ede9fe", "#faf5ff"];
+            return (
+              <div
+                className="pg-stage"
                 style={{
-                  width: "80px",
-                  height: "80px",
-                  borderRadius: "12px",
-                  border: activeImage === img ? "2px solid #7c3aed" : "1px solid #e5e7eb",
-                  backgroundColor: "#ffffff",
-                  overflow: "hidden",
-                  cursor: "pointer",
-                  padding: "4px",
-                  flexShrink: 0,
-                  transition: "border 0.2s"
+                  width: "100%", height: "460px", borderRadius: "28px", position: "relative",
+                  display: "flex", alignItems: "center", justifyContent: "center", overflow: "hidden",
+                  background: isCut
+                    ? `radial-gradient(circle at 50% 38%, #ffffff 0%, ${acc[1]} 38%, ${acc[0]} 100%)`
+                    : "#fcfbfe",
+                  border: "1px solid #f3e8ff",
                 }}
               >
-                <img src={img} alt={`Vista ${index + 1}`} style={{ width: "100%", height: "100%", objectFit: "contain" }} />
-              </button>
-            ))}
-          </div>
+                {isCut && <div className="pg-shadow" />}
+                <img
+                  key={activeImage}
+                  className={isCut ? "pg-img pg-cut" : "pg-img"}
+                  src={activeImage}
+                  alt={product.name}
+                  style={{ maxWidth: "100%", maxHeight: "100%", objectFit: "contain", padding: isCut ? "28px 28px 44px" : "20px", position: "relative", zIndex: 1 }}
+                />
+              </div>
+            );
+          })()}
+
+          {/* Miniaturas */}
+          {product.images.length > 1 && (
+            <div style={{ display: "flex", gap: "12px", justifyContent: "center" }}>
+              {product.images.map((img, index) => {
+                const acc = ACCENTS[product.slug] || ["#ede9fe", "#faf5ff"];
+                const active = activeImage === img;
+                return (
+                  <button
+                    key={index}
+                    onClick={() => setActiveImage(img)}
+                    aria-label={`Ver foto ${index + 1}`}
+                    style={{
+                      width: "78px", height: "78px", borderRadius: "16px", padding: "4px", flexShrink: 0, cursor: "pointer", overflow: "hidden",
+                      background: img.includes("/cut/") ? `linear-gradient(160deg, #fff, ${acc[0]})` : "#fff",
+                      border: active ? "2px solid #7c3aed" : "2px solid transparent",
+                      boxShadow: active ? "0 6px 16px rgba(124,58,237,0.25)" : "0 2px 8px rgba(0,0,0,0.08)",
+                      transform: active ? "translateY(-2px)" : "none",
+                      transition: "all .2s",
+                    }}
+                  >
+                    <img src={img} alt={`Vista ${index + 1}`} style={{ width: "100%", height: "100%", objectFit: "contain" }} />
+                  </button>
+                );
+              })}
+            </div>
+          )}
+          <style>{`
+            .pg-shadow{position:absolute;bottom:34px;left:50%;width:46%;height:22px;transform:translateX(-50%);background:radial-gradient(ellipse at center,rgba(30,27,75,.28),transparent 70%);filter:blur(4px);z-index:0}
+            .pg-cut{filter:drop-shadow(0 18px 22px rgba(30,27,75,.22));animation:pgIn .45s ease both, pgFloat 5s ease-in-out .45s infinite}
+            .pg-img{animation:pgIn .45s ease both}
+            @keyframes pgIn{from{opacity:0;transform:scale(.96)}to{opacity:1;transform:none}}
+            @keyframes pgFloat{0%,100%{transform:translateY(0)}50%{transform:translateY(-6px)}}
+            @media (prefers-reduced-motion:reduce){.pg-cut,.pg-img{animation:none}}
+          `}</style>
         </div>
 
         {/* COLUMNA DERECHA: INFORMACIÓN, MEDIDAS Y COMPRA */}

@@ -6,10 +6,10 @@ import { products } from "../data/products";
 const WA = "51962167068";
 
 const floating = [
-  { src: "/team-rocket-png.png", w: 210, top: "2%", left: "8%", rot: -8, delay: "0s" },
-  { src: "/ultra-ball-png.png", w: 190, top: "0%", left: "56%", rot: 7, delay: "0.8s" },
-  { src: "/premier-ball-png.png", w: 180, top: "46%", left: "0%", rot: 5, delay: "1.4s" },
-  { src: "/pokebola-png.png", w: 200, top: "50%", left: "40%", rot: -6, delay: "0.4s" },
+  { src: "/team-rocket-thumb.webp", w: 150, top: "2%", left: "8%", rot: -8, delay: "0s" },
+  { src: "/ultra-ball-thumb.webp", w: 135, top: "0%", left: "56%", rot: 7, delay: "0.8s" },
+  { src: "/premier-ball-thumb.webp", w: 130, top: "46%", left: "0%", rot: 5, delay: "1.4s" },
+  { src: "/pokebola-thumb.webp", w: 140, top: "50%", left: "40%", rot: -6, delay: "0.4s" },
   { src: "/dispensador-png.png", w: 150, top: "38%", left: "76%", rot: 9, delay: "1.1s" },
 ];
 

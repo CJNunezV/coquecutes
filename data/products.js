@@ -8,9 +8,8 @@ export const products = [
     name: "Case Premium - Edición Team Rocket",
     price: 30.00,
     images: cases([7868, 7869, 7870, 7871]),
-    thumbnail: "/team-rocket-png.png",
-    thumbnailOffsetY: 40, // px: negativo sube la imagen, positivo la baja
-    thumbnailScale: 1.1,
+    thumbnail: "/team-rocket-thumb.webp",
+    thumbnailZoom: 90,
     description: "Protector premium diseñado especialmente para cartas coleccionables de formato estándar. Acabado negro y rojo con el icónico logo \"R\" del Team Rocket, para tus cartas con más actitud.",
     specs: {
       medidas: "Exteriores: 10.5 cm x 8.2 cm | Interiores (para la carta): 9.2 cm x 6.8 cm",
@@ -25,9 +24,8 @@ export const products = [
     name: "Case Premium - Edición Ultra Ball",
     price: 30.00,
     images: cases([7853, 7856, 7858, 7862]),
-    thumbnail: "/ultra-ball-png.png",
-    thumbnailOffsetY: 50,
-    thumbnailScale: 1.05,
+    thumbnail: "/ultra-ball-thumb.webp",
+    thumbnailZoom: 90,
     description: "Inspirado en la Ultra Ball: acabado negro con banda amarilla y botón central blanco. Misma resistencia y precisión de encastre que el resto de la línea premium.",
     specs: {
       medidas: "Exteriores: 10.5 cm x 8.2 cm | Interiores (para la carta): 9.2 cm x 6.8 cm",
@@ -42,9 +40,8 @@ export const products = [
     name: "Case Premium - Edición Premier Ball",
     price: 30.00,
     images: cases([7884, 7885, 7887, 7889]),
-    thumbnail: "/premier-ball-png.png",
-    thumbnailOffsetY: 20,
-    thumbnailScale: 1,
+    thumbnail: "/premier-ball-thumb.webp",
+    thumbnailZoom: 90,
     description: "Inspirado en la Premier Ball: acabado blanco con franja roja central y botón blanco. Elegante y minimalista para tus cartas más valiosas.",
     specs: {
       medidas: "Exteriores: 10.5 cm x 8.2 cm | Interiores (para la carta): 9.2 cm x 6.8 cm",
@@ -59,9 +56,8 @@ export const products = [
     name: "Case Premium - Edición Poké Ball Clásica",
     price: 30.00,
     images: cases([7872, 7873, 7874, 7877]),
-    thumbnail: "/pokebola-png.png",
-    thumbnailOffsetY: 10,
-    thumbnailScale: 1,
+    thumbnail: "/pokebola-thumb.webp",
+    thumbnailZoom: 90,
     description: "Inspirado en el diseño icónico de la Poké Ball original: rojo arriba, blanco abajo, con línea negra divisoria. El clásico que nunca falla.",
     specs: {
       medidas: "Exteriores: 10.5 cm x 8.2 cm | Interiores (para la carta): 9.2 cm x 6.8 cm",
@@ -76,6 +72,8 @@ export const products = [
     name: "Case Premium - Edición Master Ball",
     price: 30.00, // TODO: confirmar precio
     images: cases([7864, 7865, 7866, 7867]),
+    thumbnail: "/master-ball-thumb.webp",
+    thumbnailZoom: 90,
     description: "Inspirado en la Master Ball: acabado morado con la inicial \"M\" y detalles rosados. La más codiciada de la línea, para tus cartas más especiales.",
     specs: {
       medidas: "Exteriores: 10.5 cm x 8.2 cm | Interiores (para la carta): 9.2 cm x 6.8 cm",
@@ -90,6 +88,8 @@ export const products = [
     name: "Case Premium - Edición Great Ball",
     price: 30.00, // TODO: confirmar precio
     images: cases([7879, 7880, 7881, 7883]),
+    thumbnail: "/great-ball-thumb.webp",
+    thumbnailZoom: 90,
     description: "Inspirado en la Great Ball: acabado azul con detalles rojos y botón central blanco. Misma resistencia y precisión de encastre que el resto de la línea premium.",
     specs: {
       medidas: "Exteriores: 10.5 cm x 8.2 cm | Interiores (para la carta): 9.2 cm x 6.8 cm",
@@ -105,8 +105,7 @@ export const products = [
     price: 30.00, // TODO: Christopher va a actualizar este precio
     images: ["/dispensador-1.jpg", "/dispensador-2.jpg", "/dispensador-3.jpg"],
     thumbnail: "/dispensador-png.png",
-    thumbnailOffsetY: 20,
-    thumbnailScale: 1.0,
+    thumbnailZoom: 90,
     description: "Organiza y protege tu stock de toploaders. Diseñado para guardar varias unidades apiladas, fácil de recargar y con acabado resistente a golpes.",
     specs: {
       medidas: "Consulta medidas exactas según capacidad",

@@ -1,6 +1,7 @@
 import React from "react";
 import Header from "./Header"; // Importamos el componente cliente de forma segura
 import WhatsAppBubble from "./WhatsAppBubble";
+import CartDrawer from "./CartDrawer";
 import "./globals.css";
  
 export const metadata = {
@@ -24,7 +25,7 @@ export default function RootLayout({ children }) {
         {/* Renderiza el Header dinámico aquí */}
         <Header />
  
-        <main style={{ flex: 1, width: "100%", maxWidth: "1200px", margin: "0 auto", padding: "40px 24px", boxSizing: "border-box" }}>
+        <main style={{ flex: 1, width: "100%", maxWidth: "1200px", margin: "0 auto", padding: "32px 16px", boxSizing: "border-box" }}>
           {children}
         </main>
  
@@ -32,6 +33,7 @@ export default function RootLayout({ children }) {
           © {new Date().getFullYear()} Coquecutes
         </footer>
  
+        <CartDrawer />
         <WhatsAppBubble />
  
       </body>

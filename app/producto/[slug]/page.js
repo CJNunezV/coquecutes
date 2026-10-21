@@ -3,6 +3,7 @@ import React, { useState, useEffect } from "react";
 import { useParams, useRouter } from "next/navigation";
 import { products } from "../../../data/products"; // Ajusta la ruta si es necesario según tu carpeta
 import Link from "next/link";
+import { addToCart as addCartItem } from "../../cart";
 
 export default function ProductDetailPage() {
   const { slug } = useParams();
@@ -19,34 +20,17 @@ export default function ProductDetailPage() {
     }
   }, [slug]);
 
-  const addToCart = () => {
+  const addToCart = (open = true) => {
     if (!product) return;
-
-    const savedCart = localStorage.getItem("coquecutes_cart");
-    let cart = savedCart ? JSON.parse(savedCart) : [];
-
-    const existingItem = cart.find(item => item.id === product.id);
-    if (existingItem) {
-      existingItem.quantity += quantity;
-    } else {
-      cart.push({
-        id: product.id,
-        name: product.name,
-        price: product.price,
-        quantity: quantity
-      });
-    }
-
-    localStorage.setItem("coquecutes_cart", JSON.stringify(cart));
-    window.dispatchEvent(new Event("cartUpdate")); // Notifica al Header dinámico
+    addCartItem({ id: product.id, name: product.name, price: product.price, image: (product.thumbnail || (product.images && product.images[0])) }, quantity, { open });
   };
 
   const handleAddToCart = () => {
-    addToCart();
+    addToCart(true);
   };
 
   const handleAddToCartAndPay = () => {
-    addToCart();
+    addToCart(false);
     router.push("/checkout"); // Redirecciona directo al checkout de dos columnas
   };
 
@@ -59,17 +43,17 @@ export default function ProductDetailPage() {
   }
 
   return (
-    <div style={{ maxWidth: "1100px", margin: "0 auto", background: "#ffffff", borderRadius: "32px", padding: "32px", boxShadow: "0 10px 30px rgba(0,0,0,0.01)", border: "1px solid #f1f5f9" }}>
+    <div style={{ maxWidth: "1100px", margin: "0 auto", background: "#ffffff", borderRadius: "32px", padding: "clamp(14px, 4vw, 32px)", boxShadow: "0 10px 30px rgba(0,0,0,0.01)", border: "1px solid #f1f5f9" }}>
       
       {/* Botón Volver */}
-      <Link href="/" style={{ display: "inline-flex", alignItems: "center", gap: "8px", color: "#6b7280", textDecoration: "none", fontSize: "14px", fontWeight: "600", marginBottom: "24px" }}>
+      <Link href="/catalogo" style={{ display: "inline-flex", alignItems: "center", gap: "8px", color: "#6b7280", textDecoration: "none", fontSize: "14px", fontWeight: "600", marginBottom: "24px" }}>
         ← Volver al catálogo
       </Link>
 
-      <div style={{ display: "flex", flexDirection: "row", flexWrap: "wrap", gap: "48px", alignItems: "flex-start" }}>
+      <div style={{ display: "flex", flexDirection: "row", flexWrap: "wrap", gap: "clamp(20px, 4vw, 48px)", alignItems: "flex-start" }}>
         
         {/* COLUMNA IZQUIERDA: GALERÍA DE IMÁGENES (fija al hacer scroll) */}
-        <div style={{ flex: "1 1 400px", display: "flex", flexDirection: "column", gap: "16px", position: "sticky", top: "24px", alignSelf: "flex-start" }}>
+        <div className="pd-gallery" style={{ flex: "1 1 320px", minWidth: 0, display: "flex", flexDirection: "column", gap: "16px", alignSelf: "flex-start" }}>
           {/* Foto Principal: la foto original cubre todo el espacio */}
           <div style={{ width: "100%", maxWidth: "min(100%, calc((100vh - 190px) * 0.75))", margin: "0 auto", aspectRatio: "3 / 4", borderRadius: "28px", overflow: "hidden", position: "relative", background: "#f3f4f6", border: "1px solid #f3e8ff", boxShadow: "0 12px 30px rgba(76,29,149,0.10)" }}>
             <img
@@ -105,11 +89,11 @@ export default function ProductDetailPage() {
               })}
             </div>
           )}
-          <style>{`.pg-img{animation:pgIn .4s ease both}@keyframes pgIn{from{opacity:0}to{opacity:1}}`}</style>
+          <style>{`@media (min-width:861px){.pd-gallery{position:sticky;top:96px}}.pg-img{animation:pgIn .4s ease both}@keyframes pgIn{from{opacity:0}to{opacity:1}}`}</style>
         </div>
 
         {/* COLUMNA DERECHA: INFORMACIÓN, MEDIDAS Y COMPRA */}
-        <div style={{ flex: "1.2 1 450px", display: "flex", flexDirection: "column" }}>
+        <div style={{ flex: "1.2 1 320px", minWidth: 0, display: "flex", flexDirection: "column" }}>
           <h1 style={{ fontSize: "28px", fontWeight: "800", color: "#1e1b4b", margin: "0 0 12px 0", lineHeight: "1.2" }}>{product.name}</h1>
           <p style={{ fontSize: "26px", fontWeight: "900", color: "#7c3aed", margin: "0 0 24px 0" }}>PEN {product.price.toFixed(2)}</p>
           
@@ -235,7 +219,7 @@ export default function ProductDetailPage() {
                 boxShadow: "0 4px 14px rgba(124, 58, 237, 0.25)",
               }}
             >
-              Ir a pagar
+              Comprar ahora
             </button>
           </div>
         </div>

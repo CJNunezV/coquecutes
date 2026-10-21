@@ -1,4 +1,5 @@
 "use client";
+import { addToCart as addCartItem } from "../cart";
 import { useState, useEffect, useRef, useContext, createContext } from "react";
 import Link from "next/link";
 import { singles, extendedPacks, customTypes, decks, proxyTypes, proxyInfo } from "../../data/proxys";
@@ -18,17 +19,9 @@ const gradBg = (g) => `linear-gradient(145deg, ${g[0]}, ${g[1]})`;
 function useCart() {
   const [added, setAdded] = useState(null);
   const add = (item) => {
-    try {
-      const saved = localStorage.getItem("coquecutes_cart");
-      const cart = saved ? JSON.parse(saved) : [];
-      const ex = cart.find((i) => i.id === item.id);
-      if (ex) ex.quantity += 1;
-      else cart.push({ id: item.id, name: item.name, price: item.price, quantity: 1 });
-      localStorage.setItem("coquecutes_cart", JSON.stringify(cart));
-      window.dispatchEvent(new Event("cartUpdate"));
-      setAdded(item.id);
-      setTimeout(() => setAdded((a) => (a === item.id ? null : a)), 1400);
-    } catch {}
+    addCartItem({ id: item.id, name: item.name, price: item.price, image: item.image });
+    setAdded(item.id);
+    setTimeout(() => setAdded((a) => (a === item.id ? null : a)), 1400);
   };
   return { added, add };
 }
@@ -38,7 +31,7 @@ const typeOf = (id) => proxyTypes.find((t) => t.id === id) || proxyTypes[0];
 // Devuelve el ítem del carrito: id único por tipo, nombre con el tipo y precio + extra
 const withType = (item, typeId, name) => {
   const t = typeOf(typeId);
-  return { id: `${item.id}-${t.id}`, name: `${name} · ${t.label}`, price: item.price + (t.extra || 0) };
+  return { id: `${item.id}-${t.id}`, name: `${name} · ${t.label}`, price: item.price + (t.extra || 0), image: item.image };
 };
 /* ---------- Contexto de la página: acabado por defecto + modal informativo ---------- */
 const Ui = createContext({ defaultType: "frio", openInfo: () => {}, openQuick: () => {} });
@@ -443,7 +436,7 @@ export default function ProxysPage() {
 
   return (
     <div>
-      <style>{`
+      <style dangerouslySetInnerHTML={{ __html: `
         @keyframes pxPop { from { opacity:0; transform:scale(.85) translateY(10px); } to { opacity:1; transform:none; } }
         .px-tabs { display:flex; gap:10px; flex-wrap:wrap; margin-bottom:32px; }
         .px-tab { display:inline-flex; align-items:center; gap:8px; border:1.5px solid #e5e7eb; background:#fff; color:#4b5563; font-weight:700; font-size:15px; padding:11px 20px; border-radius:999px; cursor:pointer; font-family:inherit; transition:all .2s; }
@@ -497,7 +490,7 @@ export default function ProxysPage() {
         .px-pack.is-active { border-color:#7c3aed; background:#f5f3ff; box-shadow:0 0 0 3px rgba(124,58,237,.12); }
         .px-custom { display:grid; grid-template-columns:1fr 1fr; gap:44px; }
         @media (max-width:860px) { .px-ext, .px-custom { grid-template-columns:1fr; gap:28px; } }
-      `}</style>
+      ` }} />
 
       <div style={{ fontSize: "16px", color: "#9ca3af", marginBottom: "10px" }}>
         <Link href="/" style={{ color: "#9ca3af", textDecoration: "none" }}>Inicio</Link>

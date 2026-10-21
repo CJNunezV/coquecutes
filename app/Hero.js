@@ -94,7 +94,7 @@ export default function Hero() {
           "radial-gradient(900px 400px at 85% 20%, rgba(236,72,153,0.18), transparent 60%), radial-gradient(800px 500px at 10% 90%, rgba(124,58,237,0.20), transparent 60%), linear-gradient(135deg, #1e1b4b 0%, #2e1065 55%, #4c1d95 100%)",
       }}
     >
-      <style>{`
+      <style dangerouslySetInnerHTML={{ __html: `
         .zh-stage { display:grid; }
         .zh-slide { grid-area:1/1; display:grid; grid-template-columns:1.05fr 1fr; gap:24px; align-items:center; padding:56px 48px 76px; opacity:0; visibility:hidden; transform:translateX(30px); transition:opacity .6s ease, transform .6s ease, visibility .6s; }
         .zh-slide.is-active { opacity:1; visibility:visible; transform:translateX(0); }
@@ -121,7 +121,7 @@ export default function Hero() {
           .zh-pcard { width:100px; }
         }
         @media (prefers-reduced-motion: reduce) { .zh-float, .zh-pcard { animation:none; } .zh-slide { transition:none; } }
-      `}</style>
+      ` }} />
 
       <div className="zh-stage">
         {slides.map((s, i) => (

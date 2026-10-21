@@ -72,7 +72,7 @@ export default function Header() {
 
   return (
     <>
-      <style>{`
+      <style dangerouslySetInnerHTML={{ __html: `
         .hd-link { color:#1f2937; text-decoration:none; font-weight:600; font-size:15px; padding:8px 4px; position:relative; transition:color .2s; white-space:nowrap; }
         .hd-link:hover { color:#7c3aed; }
         .hd-link::after { content:""; position:absolute; left:4px; right:4px; bottom:2px; height:2px; background:#7c3aed; transform:scaleX(0); transition:transform .25s; border-radius:2px; }
@@ -89,9 +89,19 @@ export default function Header() {
         .hd-sell { color:#7c3aed; text-decoration:none; font-weight:700; font-size:14px; padding:9px 16px; border:1.5px solid #7c3aed; border-radius:999px; white-space:nowrap; transition:all .2s; }
         .hd-sell:hover { background:#7c3aed; color:#fff; }
         @media (max-width: 900px) { .hd-hide-md { display:none !important; } }
-        @media (max-width: 600px) { .hd-hide-sm { display:none !important; } .hd-logo { height:52px !important; } .hd-cart-text { display:none; } }
-      `}</style>
+        .hd-cart { color:#fff; border:none; cursor:pointer; padding:10px 16px; border-radius:20px; font-weight:600; font-size:14px; display:flex; align-items:center; gap:8px; font-family:inherit; transition:background .2s; flex-shrink:0; }
+        .hd-badge { background:#fff; color:#7c3aed; border-radius:999px; min-width:20px; height:20px; padding:0 6px; font-size:12px; font-weight:800; display:inline-flex; align-items:center; justify-content:center; }
+        @media (max-width: 600px) {
+          .hd-hide-sm { display:none !important; } .hd-logo { height:44px !important; } .hd-cart-text { display:none; }
+          .hd-header { padding:8px 12px !important; gap:6px !important; }
+          .hd-nav { gap:4px !important; }
+          .hd-link { font-size:14px; padding:6px 4px; }
+          .hd-cart { padding:9px 11px; }
+          .hd-menu { position:fixed; left:12px; right:12px; top:62px; min-width:0; }
+        }
+      ` }} />
       <header
+        className="hd-header"
         style={{
           padding: "10px 24px",
           borderBottom: "1px solid #eee",
@@ -111,7 +121,7 @@ export default function Header() {
         </Link>
 
         {/* Izquierda: categorías */}
-        <nav style={{ display: "flex", alignItems: "center", gap: "22px" }}>
+        <nav className="hd-nav" style={{ display: "flex", alignItems: "center", gap: "22px" }}>
           {menus.map((m) => (
             <div
               key={m.label}
@@ -161,30 +171,20 @@ export default function Header() {
           </svg>
         </button>
 
-        <Link
-          href="/checkout"
-          aria-label="Ir a pagar"
-          style={{
-            backgroundColor: totalItems > 0 ? "#7c3aed" : "#a78bfa",
-            color: "#ffffff",
-            padding: "10px 16px",
-            borderRadius: "20px",
-            fontWeight: "600",
-            textDecoration: "none",
-            fontSize: "14px",
-            display: "flex",
-            alignItems: "center",
-            gap: "8px",
-            pointerEvents: totalItems > 0 ? "auto" : "none",
-            transition: "background .2s",
-          }}
+        <button
+          type="button"
+          onClick={() => window.dispatchEvent(new Event("cartOpen"))}
+          aria-label={`Abrir carrito${totalItems > 0 ? ` (${totalItems} productos)` : ""}`}
+          className="hd-cart"
+          style={{ backgroundColor: totalItems > 0 ? "#7c3aed" : "#a78bfa" }}
         >
           <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
             <circle cx="8" cy="21" r="1" /><circle cx="19" cy="21" r="1" />
             <path d="M2.05 2.05h2l2.66 12.42a2 2 0 0 0 2 1.58h9.78a2 2 0 0 0 1.95-1.57l1.65-7.43H5.12" />
           </svg>
-          <span className="hd-cart-text">Ir a pagar {totalItems > 0 && `(${totalItems})`}</span>
-        </Link>
+          <span className="hd-cart-text">{totalItems > 0 ? "Ir a pagar" : "Carrito"}</span>
+          {totalItems > 0 && <span className="hd-badge">{totalItems}</span>}
+        </button>
       </header>
     </>
   );

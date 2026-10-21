@@ -1,4 +1,5 @@
 "use client";
+import { addToCart as addCartItem } from "../cart";
 import { useState, useMemo, useEffect } from "react";
 import Link from "next/link";
 import { products } from "../../data/products";
@@ -75,17 +76,9 @@ export default function CatalogoPage() {
   const countOf = (c) => allItems.filter((p) => c === "todos" || p.kind === c).length;
 
   const addToCart = (item) => {
-    try {
-      const saved = localStorage.getItem("coquecutes_cart");
-      const cart = saved ? JSON.parse(saved) : [];
-      const existing = cart.find((i) => i.id === item.id);
-      if (existing) existing.quantity += 1;
-      else cart.push({ id: item.id, name: item.name, price: item.price, quantity: 1 });
-      localStorage.setItem("coquecutes_cart", JSON.stringify(cart));
-      window.dispatchEvent(new Event("cartUpdate"));
-      setAdded(item.id);
-      setTimeout(() => setAdded((a) => (a === item.id ? null : a)), 1400);
-    } catch {}
+    addCartItem({ id: item.id, name: item.name, price: item.price, image: item.image });
+    setAdded(item.id);
+    setTimeout(() => setAdded((a) => (a === item.id ? null : a)), 1400);
   };
 
   const Img = ({ item, idx }) => {

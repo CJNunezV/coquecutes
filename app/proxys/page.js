@@ -287,8 +287,8 @@ function Extended({ cart }) {
           <div style={{ position: "relative", borderRadius: "12px", overflow: "hidden", lineHeight: 0 }}>
             <img src={pack.image} alt={`Extended Art ${pack.name}`} style={{ width: "100%", height: "auto", display: "block" }} />
             {/* marca la carta central (solo referencia) */}
-            <div style={{ position: "absolute", left: "35.2%", top: "34.5%", width: "29.8%", height: "30.4%", border: "2.5px dashed rgba(255,255,255,0.95)", borderRadius: "6px", background: "rgba(10,8,30,0.35)", pointerEvents: "none" }} />
-            <div style={{ position: "absolute", left: "50%", top: "66.2%", transform: "translateX(-50%)", background: "#1e1b4b", color: "#fff", fontSize: "12px", fontWeight: 800, lineHeight: 1.2, padding: "7px 12px", borderRadius: "999px", whiteSpace: "nowrap", boxShadow: "0 6px 14px rgba(0,0,0,0.35)", border: "1.5px solid rgba(255,255,255,0.8)" }}>🚫 Carta central no incluida</div>
+            <div style={{ position: "absolute", left: `${(pack.center || { left: 35.2 }).left}%`, top: `${(pack.center || { top: 34.5 }).top}%`, width: `${(pack.center || { w: 29.8 }).w}%`, height: `${(pack.center || { h: 30.4 }).h}%`, border: "2.5px dashed rgba(255,255,255,0.95)", borderRadius: "6px", background: "rgba(10,8,30,0.35)", pointerEvents: "none" }} />
+            <div style={{ position: "absolute", left: "50%", top: `${((pack.center || { top: 34.5 }).top) + ((pack.center || { h: 30.4 }).h) + 1.5}%`, transform: "translateX(-50%)", background: "#1e1b4b", color: "#fff", fontSize: "12px", fontWeight: 800, lineHeight: 1.2, padding: "7px 12px", borderRadius: "999px", whiteSpace: "nowrap", boxShadow: "0 6px 14px rgba(0,0,0,0.35)", border: "1.5px solid rgba(255,255,255,0.8)" }}>🚫 Carta central no incluida</div>
           </div>
         ) : (
           <div style={{ display: "grid", gridTemplateColumns: "repeat(3,1fr)", gap: "10px" }}>

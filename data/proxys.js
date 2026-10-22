@@ -45,9 +45,13 @@ export const singles = [
 
 // Extended Art: cada item = el arte completo de 3x3. Se venden las 8 cartas que rodean al centro;
 // la carta CENTRAL no está incluida (en la foto aparece solo de referencia).
-// Para agregar otro: sube la imagen a /public/proxys/ y copia un bloque.
+// Para agregar otro: sube la imagen a /public/proxys/ExtendedArt/ y copia un bloque.
+// "center" (opcional) = posición de la carta central en la imagen, en % (left, top, w, h).
 export const extendedPacks = [
   { id: "px-e1", name: "Eevee · Bosque", price: 40, image: "/proxys/ExtendedArt/EA-GemPack-Eevee.png", grad: ["#4ade80", "#166534"] },
+  { id: "px-e2", name: "Ampharos · Colinas", price: 40, image: "/proxys/ExtendedArt/Ampharos.png", grad: ["#fbbf24", "#6366f1"], center: { left: 33.6, top: 33.8, w: 33, h: 32.6 } },
+  { id: "px-e3", name: "Lapras · Atardecer", price: 40, image: "/proxys/ExtendedArt/lapras.png", grad: ["#fb923c", "#0ea5e9"], center: { left: 34, top: 33.8, w: 33, h: 32.6 } },
+  { id: "px-e4", name: "Riolu · Ciudad", price: 40, image: "/proxys/ExtendedArt/riolu.png", grad: ["#38bdf8", "#ef4444"], center: { left: 34, top: 33.6, w: 33, h: 32.8 } },
 ];
 
 // Personalizados: tipos de pedido

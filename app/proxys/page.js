@@ -165,8 +165,8 @@ function FinishGuide({ value, onPick }) {
 /* ---------- Mini carta (63:88) ---------- */
 function MiniCard({ grad, title, sub, image, style }) {
   return (
-    <div style={{ aspectRatio: "63 / 88", borderRadius: "10px", border: "2.5px solid rgba(255,255,255,0.9)", background: image ? `url(${image}) center/cover` : gradBg(grad), boxShadow: "0 8px 18px rgba(30,27,75,0.25)", position: "relative", overflow: "hidden", display: "flex", flexDirection: "column", justifyContent: "flex-end", padding: "8px", color: "#fff", ...style }}>
-      <div style={{ position: "absolute", inset: 0, background: "linear-gradient(180deg, transparent 45%, rgba(0,0,0,0.55))" }} />
+    <div style={{ aspectRatio: "63 / 88", borderRadius: "10px", border: "2.5px solid rgba(255,255,255,0.9)", background: image ? `url("${image}") center/cover` : gradBg(grad), boxShadow: "0 8px 18px rgba(30,27,75,0.25)", position: "relative", overflow: "hidden", display: "flex", flexDirection: "column", justifyContent: "flex-end", padding: "8px", color: "#fff", ...style }}>
+      {!image && <div style={{ position: "absolute", inset: 0, background: "linear-gradient(180deg, transparent 45%, rgba(0,0,0,0.55))" }} />}
       {title && <div style={{ position: "relative", fontWeight: 800, fontSize: "12px", lineHeight: 1.2 }}>{title}</div>}
       {sub && <div style={{ position: "relative", fontSize: "10px", opacity: 0.85 }}>{sub}</div>}
     </div>
@@ -420,7 +420,7 @@ function Decks({ cart }) {
           {/* mazo apilado */}
           <div style={{ position: "relative", height: "190px", marginBottom: "18px" }}>
             {[2, 1, 0].map((k) => (
-              <MiniCard key={k} grad={d.grad} title={k === 0 ? d.name : undefined} sub={k === 0 ? d.style : undefined} style={{ position: "absolute", height: "100%", left: `calc(50% - 68px + ${(k - 1) * 22}px)`, transform: `rotate(${(k - 1) * 7}deg)`, opacity: k === 0 ? 1 : 0.9 }} />
+              <MiniCard key={k} grad={d.grad} image={d.images ? encodeURI(d.images[k] || d.images[0]) : undefined} title={!d.images && k === 0 ? d.name : undefined} sub={!d.images && k === 0 ? d.style : undefined} style={{ position: "absolute", height: "100%", left: `calc(50% - 68px + ${(k - 1) * 22}px)`, transform: `rotate(${(k - 1) * 7}deg)`, opacity: k === 0 ? 1 : 0.9 }} />
             ))}
           </div>
           <div style={{ display: "flex", justifyContent: "space-between", alignItems: "baseline" }}>
@@ -431,7 +431,7 @@ function Decks({ cart }) {
           {d.core && <div style={{ color: "#9ca3af", fontSize: "12.5px", margin: "0 0 14px" }}>Incluye: {d.core}</div>}
           {(() => {
             const tid = types[d.id] || ui.defaultType;
-            const item = withType(d, tid, `Deck proxy ${d.name}`);
+            const item = withType({ ...d, image: d.images ? encodeURI(d.images[0]) : undefined }, tid, `Deck proxy ${d.name}`);
             return (
               <div style={{ marginTop: "auto" }}>
                 <div style={{ color: "#7c3aed", fontWeight: 800, fontSize: "22px", marginBottom: "10px" }}>S/{item.price.toFixed(2)}</div>

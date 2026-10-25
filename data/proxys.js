@@ -76,12 +76,12 @@ export const customExamples = [
   { id: "ce8", cat: "familia", title: "Retrato entre flores", image: "/proxys/Personalizados/retrato-1.webp" },
 ];
 
-// Decks (lista completa de proxys de un mazo). Ejemplos del meta: ajusta nombre, precio y "core" (cartas clave).
+// Decks (lista completa de proxys de un mazo). "images" = 3 fotos de cartas del mazo (public/proxys/Decks/<carpeta>/...). Ejemplos del meta: ajusta nombre, precio y "core" (cartas clave).
 export const decks = [
-  { id: "px-d1", name: "Dragapult ex", style: "Meta · Dragón / Fantasma", core: "Dragapult ex · Drakloak · Dreepy", cards: 60, price: 60, grad: ["#a78bfa", "#4338ca"] },
-  { id: "px-d2", name: "Festival Lead", style: "Meta · Planta", core: "Dipplin · Thwackey · Festival Grounds", cards: 60, price: 60, grad: ["#f9a8d4", "#16a34a"] },
-  { id: "px-d3", name: "Ogerpon · Clefairy", style: "Meta · Planta / Hada", core: "Ogerpon · Clefairy · Meowth ex", cards: 60, price: 60, grad: ["#6ee7b7", "#db2777"] },
-  { id: "px-d4", name: "Hydrapple", style: "Meta · Planta", core: "Hydrapple · Dipplin · Ogerpon", cards: 60, price: 60, grad: ["#bef264", "#15803d"] },
-  { id: "px-d5", name: "Slowking", style: "Meta · Psíquico", core: "Slowking · Slowpoke · Cinccino", cards: 60, price: 60, grad: ["#93c5fd", "#7c3aed"] },
-  { id: "px-d6", name: "N's Zoroark", style: "Meta · Oscuridad", core: "N's Zoroark ex · N's Zorua", cards: 60, price: 60, grad: ["#94a3b8", "#1e1b4b"] },
+  { id: "px-d1", name: "Dragapult ex", style: "Meta · Dragón / Fantasma", core: "Dragapult ex · Drakloak · Dreepy", cards: 60, price: 60, images: ["/proxys/Decks/Dragapult ex/610520_in_1000x1000.jpg", "/proxys/Decks/Dragapult ex/676060_in_1000x1000.jpg", "/proxys/Decks/Dragapult ex/676059_in_1000x1000.jpg"], grad: ["#a78bfa", "#4338ca"] },
+  { id: "px-d2", name: "Festival Lead", style: "Meta · Planta", core: "Dipplin · Applin · Grookey", cards: 60, price: 60, images: ["/proxys/Decks/Festival/550214_in_1000x1000.jpg", "/proxys/Decks/Festival/550229_in_1000x1000.jpg", "/proxys/Decks/Festival/699876_in_1000x1000.jpg"], grad: ["#f9a8d4", "#16a34a"] },
+  { id: "px-d3", name: "Ogerpon · Clefairy", style: "Meta · Planta / Hada", core: "Ogerpon ex · Clefairy · Latias ex", cards: 60, price: 60, images: ["/proxys/Decks/Ogerpon/610500_in_1000x1000.jpg", "/proxys/Decks/Ogerpon/676092_in_1000x1000.jpg", "/proxys/Decks/Ogerpon/589985_in_1000x1000.jpg"], grad: ["#6ee7b7", "#db2777"] },
+  { id: "px-d4", name: "Hydrapple", style: "Meta · Planta", core: "Hydrapple · Ogerpon ex · Meganium", cards: 60, price: 60, images: ["/proxys/Decks/hydrapple/567472_in_1000x1000.jpg", "/proxys/Decks/hydrapple/610500_in_1000x1000.jpg", "/proxys/Decks/hydrapple/654349_in_1000x1000.jpg"], grad: ["#bef264", "#15803d"] },
+  { id: "px-d5", name: "Slowking", style: "Meta · Psíquico", core: "Slowking · Mega Kangaskhan ex · Metagross", cards: 60, price: 60, images: ["/proxys/Decks/slowking/567284_in_1000x1000.jpg", "/proxys/Decks/slowking/654521_in_1000x1000.jpg", "/proxys/Decks/slowking/693522_in_1000x1000.jpg"], grad: ["#93c5fd", "#7c3aed"] },
+  { id: "px-d6", name: "N's Zoroark", style: "Meta · Oscuridad", core: "N's Zoroark ex · N's Zorua · Pecharunt ex", cards: 60, price: 60, images: ["/proxys/Decks/ns zoroark/623612_in_1000x1000.jpg", "/proxys/Decks/ns zoroark/625182_in_1000x1000.jpg", "/proxys/Decks/ns zoroark/610518_in_1000x1000.jpg"], grad: ["#94a3b8", "#1e1b4b"] },
 ];

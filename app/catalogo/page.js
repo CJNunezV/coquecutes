@@ -309,7 +309,7 @@ export default function CatalogoPage() {
             {list.map((p, idx) => {
               const isCatalogItem = p.kind === "case" || p.kind === "dispensador";
               const Title = (
-                <h3 style={{ fontSize: "17px", fontWeight: 600, color: "#1f2937", margin: "0 0 10px 0", lineHeight: 1.4, minHeight: isCatalogItem ? "50px" : "48px" }}>{p.name}</h3>
+                <h3 style={{ fontSize: "17px", fontWeight: 600, color: "#1f2937", margin: p.kind === "carta" ? "0 0 4px 0" : "0 0 10px 0", lineHeight: 1.4, minHeight: p.kind === "carta" ? 0 : isCatalogItem ? "50px" : "48px" }}>{p.name}</h3>
               );
               return (
                 <div key={p.id} className="cg-card">
@@ -326,13 +326,9 @@ export default function CatalogoPage() {
                         {p.kind === "carta" && p.setCode ? (
                           <>
                             <div className="cc-line">{p.expansion} · <b>{p.number}</b></div>
-                            <div className="cc-tags">
-                              <span className="cc-tag"><i style={{ background: typeDot[p.type] || "#9ca3af" }} />{p.type}</span>
-                              <span className="cc-tag">{p.stage}</span>
-                              {p.finish !== "Normal" && <span className="cc-tag fin">{p.finish}</span>}
-                            </div>
                             <details className="cc-det">
                               <summary>Ver detalles</summary>
+                              <InfoRow label="Tipo" value={`${p.type} · ${p.stage}`} />
                               <InfoRow label="Rareza" value={p.rarity} />
                               <InfoRow label="Ilustrador" value={p.illustrator} />
                               <InfoRow label="Idioma" value={p.langCode === "EN" ? "Inglés" : p.langCode === "LA" ? "Español (Latam)" : "Español (España)"} />

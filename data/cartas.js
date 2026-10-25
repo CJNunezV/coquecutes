@@ -1,7 +1,7 @@
 // Inventario de cartas sueltas (generado desde el binder escaneado).
 // Cada fila es UNA carta distinta (nombre + expansión + número + idioma + acabado).
 // `stock` = cuántas copias tienes. Precio por defecto: Común S/1, Poco común S/2, Rara holo S/6, Reverse +S/1.
-// Para cambiar un precio o stock, edita su línea. Las fotos vienen de TCGplayer (campo `image`, por tcgId); /public/cartas queda como respaldo (`imageLocal`).
+// Para cambiar un precio o stock, edita su línea. Fotos: cartas en inglés y acabado Normal usan la imagen de TCGplayer (tcgId) con respaldo local (`imageLocal`); las Reverse/Holo y las de español usan tu foto en /public/cartas.
 export const cartas = [
  {
   "id": "cs-pal-004-en-n",
@@ -79,8 +79,7 @@ export const cartas = [
   "illustrator": "GIDORA",
   "price": 1.0,
   "stock": 1,
-  "image": "https://product-images.tcgplayer.com/fit-in/437x610/675819.jpg",
-  "imageLocal": "/cartas/cs-asc-007-la-n.webp",
+  "image": "/cartas/cs-asc-007-la-n.webp",
   "tcgId": 675819
  },
  {
@@ -399,8 +398,7 @@ export const cartas = [
   "illustrator": "Tetsu Kayama",
   "price": 1.0,
   "stock": 5,
-  "image": "https://product-images.tcgplayer.com/fit-in/437x610/560314.jpg",
-  "imageLocal": "/cartas/cs-sfa-004-es-n.webp",
+  "image": "/cartas/cs-sfa-004-es-n.webp",
   "tcgId": 560314
  },
  {
@@ -459,8 +457,7 @@ export const cartas = [
   "illustrator": "Atsushi Furusawa",
   "price": 2.0,
   "stock": 1,
-  "image": "https://product-images.tcgplayer.com/fit-in/437x610/542761.jpg",
-  "imageLocal": "/cartas/cs-tef-013-es-n.webp",
+  "image": "/cartas/cs-tef-013-es-n.webp",
   "tcgId": 542761
  },
  {
@@ -479,8 +476,7 @@ export const cartas = [
   "illustrator": "Jerky",
   "price": 1.0,
   "stock": 1,
-  "image": "https://product-images.tcgplayer.com/fit-in/437x610/675829.jpg",
-  "imageLocal": "/cartas/cs-asc-017-la-n.webp",
+  "image": "/cartas/cs-asc-017-la-n.webp",
   "tcgId": 675829
  },
  {
@@ -499,8 +495,7 @@ export const cartas = [
   "illustrator": "mingo",
   "price": 2.0,
   "stock": 1,
-  "image": "https://product-images.tcgplayer.com/fit-in/437x610/542768.jpg",
-  "imageLocal": "/cartas/cs-tef-024-es-n.webp",
+  "image": "/cartas/cs-tef-024-es-n.webp",
   "tcgId": 542768
  },
  {
@@ -519,8 +514,7 @@ export const cartas = [
   "illustrator": "Saboteri",
   "price": 1.0,
   "stock": 1,
-  "image": "https://product-images.tcgplayer.com/fit-in/437x610/632845.jpg",
-  "imageLocal": "/cartas/cs-dri-019-la-n.webp",
+  "image": "/cartas/cs-dri-019-la-n.webp",
   "tcgId": 632845
  },
  {
@@ -539,8 +533,7 @@ export const cartas = [
   "illustrator": "USGMEN",
   "price": 1.0,
   "stock": 1,
-  "image": "https://product-images.tcgplayer.com/fit-in/437x610/675823.jpg",
-  "imageLocal": "/cartas/cs-asc-011-la-n.webp",
+  "image": "/cartas/cs-asc-011-la-n.webp",
   "tcgId": 675823
  },
  {
@@ -619,8 +612,7 @@ export const cartas = [
   "illustrator": "OKACHEKE",
   "price": 1.0,
   "stock": 1,
-  "image": "https://product-images.tcgplayer.com/fit-in/437x610/542760.jpg",
-  "imageLocal": "/cartas/cs-tef-010-es-n.webp",
+  "image": "/cartas/cs-tef-010-es-n.webp",
   "tcgId": 542760
  },
  {
@@ -659,8 +651,7 @@ export const cartas = [
   "illustrator": "Toshinao Aoki",
   "price": 1.0,
   "stock": 1,
-  "image": "https://product-images.tcgplayer.com/fit-in/437x610/590035.jpg",
-  "imageLocal": "/cartas/cs-ssp-013-es-n.webp",
+  "image": "/cartas/cs-ssp-013-es-n.webp",
   "tcgId": 590035
  },
  {
@@ -799,8 +790,7 @@ export const cartas = [
   "illustrator": "Yoshimi Miyoshi",
   "price": 1.0,
   "stock": 3,
-  "image": "https://product-images.tcgplayer.com/fit-in/437x610/560313.jpg",
-  "imageLocal": "/cartas/cs-sfa-003-es-n.webp",
+  "image": "/cartas/cs-sfa-003-es-n.webp",
   "tcgId": 560313
  },
  {
@@ -1079,8 +1069,7 @@ export const cartas = [
   "illustrator": "OKACHEKE",
   "price": 1.0,
   "stock": 1,
-  "image": "https://product-images.tcgplayer.com/fit-in/437x610/684363.jpg",
-  "imageLocal": "/cartas/cs-por-007-la-n.webp",
+  "image": "/cartas/cs-por-007-la-n.webp",
   "tcgId": 684363
  },
  {
@@ -1179,8 +1168,7 @@ export const cartas = [
   "illustrator": "LINNE",
   "price": 2.0,
   "stock": 1,
-  "image": "https://product-images.tcgplayer.com/fit-in/437x610/675817.jpg",
-  "imageLocal": "/cartas/cs-asc-005-la-n.webp",
+  "image": "/cartas/cs-asc-005-la-n.webp",
   "tcgId": 675817
  },
  {
@@ -1259,8 +1247,7 @@ export const cartas = [
   "illustrator": "Ounishi",
   "price": 1.0,
   "stock": 1,
-  "image": "https://product-images.tcgplayer.com/fit-in/437x610/684364.jpg",
-  "imageLocal": "/cartas/cs-por-008-la-n.webp",
+  "image": "/cartas/cs-por-008-la-n.webp",
   "tcgId": 684364
  },
  {
@@ -1339,8 +1326,7 @@ export const cartas = [
   "illustrator": "saino misaki",
   "price": 2.0,
   "stock": 1,
-  "image": "https://product-images.tcgplayer.com/fit-in/437x610/684399.jpg",
-  "imageLocal": "/cartas/cs-por-003-la-n.webp",
+  "image": "/cartas/cs-por-003-la-n.webp",
   "tcgId": 684399
  },
  {
@@ -1639,8 +1625,7 @@ export const cartas = [
   "illustrator": "Naoyo Kimura",
   "price": 1.0,
   "stock": 1,
-  "image": "https://product-images.tcgplayer.com/fit-in/437x610/560311.jpg",
-  "imageLocal": "/cartas/cs-sfa-001-es-n.webp",
+  "image": "/cartas/cs-sfa-001-es-n.webp",
   "tcgId": 560311
  },
  {
@@ -1719,8 +1704,7 @@ export const cartas = [
   "illustrator": "kamonabe",
   "price": 2.0,
   "stock": 1,
-  "image": "https://product-images.tcgplayer.com/fit-in/437x610/675827.jpg",
-  "imageLocal": "/cartas/cs-asc-015-la-n.webp",
+  "image": "/cartas/cs-asc-015-la-n.webp",
   "tcgId": 675827
  },
  {
@@ -1739,8 +1723,7 @@ export const cartas = [
   "illustrator": "Eri Yamaki",
   "price": 1.0,
   "stock": 1,
-  "image": "https://product-images.tcgplayer.com/fit-in/437x610/675824.jpg",
-  "imageLocal": "/cartas/cs-asc-012-la-n.webp",
+  "image": "/cartas/cs-asc-012-la-n.webp",
   "tcgId": 675824
  },
  {
@@ -1899,8 +1882,7 @@ export const cartas = [
   "illustrator": "mashu",
   "price": 2.0,
   "stock": 1,
-  "image": "https://product-images.tcgplayer.com/fit-in/437x610/560312.jpg",
-  "imageLocal": "/cartas/cs-sfa-002-es-n.webp",
+  "image": "/cartas/cs-sfa-002-es-n.webp",
   "tcgId": 560312
  },
  {
@@ -2039,8 +2021,7 @@ export const cartas = [
   "illustrator": "Wintr Wandr",
   "price": 1.0,
   "stock": 1,
-  "image": "https://product-images.tcgplayer.com/fit-in/437x610/662178.jpg",
-  "imageLocal": "/cartas/cs-pfl-005-la-n.webp",
+  "image": "/cartas/cs-pfl-005-la-n.webp",
   "tcgId": 662178
  },
  {
@@ -2139,8 +2120,7 @@ export const cartas = [
   "illustrator": "Yoriyuki Ikegami",
   "price": 1.0,
   "stock": 2,
-  "image": "https://product-images.tcgplayer.com/fit-in/437x610/675813.jpg",
-  "imageLocal": "/cartas/cs-asc-001-la-n.webp",
+  "image": "/cartas/cs-asc-001-la-n.webp",
   "tcgId": 675813
  },
  {
@@ -2159,8 +2139,7 @@ export const cartas = [
   "illustrator": "MARINA Chikazawa",
   "price": 2.0,
   "stock": 1,
-  "image": "https://product-images.tcgplayer.com/fit-in/437x610/675814.jpg",
-  "imageLocal": "/cartas/cs-asc-002-la-n.webp",
+  "image": "/cartas/cs-asc-002-la-n.webp",
   "tcgId": 675814
  },
  {
@@ -2439,8 +2418,7 @@ export const cartas = [
   "illustrator": "saino misaki",
   "price": 2.0,
   "stock": 1,
-  "image": "https://product-images.tcgplayer.com/fit-in/437x610/684399.jpg",
-  "imageLocal": "/cartas/cs-por-003-es-n.webp",
+  "image": "/cartas/cs-por-003-es-n.webp",
   "tcgId": 684399
  },
  {
@@ -2459,8 +2437,7 @@ export const cartas = [
   "illustrator": "Yoriyuki Ikegami",
   "price": 1.0,
   "stock": 1,
-  "image": "https://product-images.tcgplayer.com/fit-in/437x610/675828.jpg",
-  "imageLocal": "/cartas/cs-asc-016-la-n.webp",
+  "image": "/cartas/cs-asc-016-la-n.webp",
   "tcgId": 675828
  },
  {
@@ -2479,8 +2456,7 @@ export const cartas = [
   "illustrator": "Mousho",
   "price": 2.0,
   "stock": 1,
-  "image": "https://product-images.tcgplayer.com/fit-in/437x610/704762.jpg",
-  "imageLocal": "/cartas/cs-pbl-005-en-r.webp",
+  "image": "/cartas/cs-pbl-005-en-r.webp",
   "tcgId": 704762
  },
  {
@@ -2499,8 +2475,7 @@ export const cartas = [
   "illustrator": "GOSSAN",
   "price": 7.0,
   "stock": 1,
-  "image": "https://product-images.tcgplayer.com/fit-in/437x610/590099.jpg",
-  "imageLocal": "/cartas/cs-ssp-011-es-r.webp",
+  "image": "/cartas/cs-ssp-011-es-r.webp",
   "tcgId": 590099
  },
  {
@@ -2519,8 +2494,7 @@ export const cartas = [
   "illustrator": "sowsow",
   "price": 2.0,
   "stock": 1,
-  "image": "https://product-images.tcgplayer.com/fit-in/437x610/693561.jpg",
-  "imageLocal": "/cartas/cs-cri-001-en-r.webp",
+  "image": "/cartas/cs-cri-001-en-r.webp",
   "tcgId": 693561
  },
  {
@@ -2539,8 +2513,7 @@ export const cartas = [
   "illustrator": "Yuka Morii",
   "price": 2.0,
   "stock": 1,
-  "image": "https://product-images.tcgplayer.com/fit-in/437x610/623436.jpg",
-  "imageLocal": "/cartas/cs-jtg-009-en-r.webp",
+  "image": "/cartas/cs-jtg-009-en-r.webp",
   "tcgId": 623436
  },
  {
@@ -2559,8 +2532,7 @@ export const cartas = [
   "illustrator": "Yuka Morii",
   "price": 2.0,
   "stock": 2,
-  "image": "https://product-images.tcgplayer.com/fit-in/437x610/662203.jpg",
-  "imageLocal": "/cartas/cs-pfl-009-en-r.webp",
+  "image": "/cartas/cs-pfl-009-en-r.webp",
   "tcgId": 662203
  },
  {
@@ -2579,8 +2551,7 @@ export const cartas = [
   "illustrator": "Tetsu Kayama",
   "price": 2.0,
   "stock": 1,
-  "image": "https://product-images.tcgplayer.com/fit-in/437x610/560314.jpg",
-  "imageLocal": "/cartas/cs-sfa-004-es-r.webp",
+  "image": "/cartas/cs-sfa-004-es-r.webp",
   "tcgId": 560314
  },
  {
@@ -2599,8 +2570,7 @@ export const cartas = [
   "illustrator": "Naoyo Kimura",
   "price": 2.0,
   "stock": 1,
-  "image": "https://product-images.tcgplayer.com/fit-in/437x610/560311.jpg",
-  "imageLocal": "/cartas/cs-sfa-001-es-r.webp",
+  "image": "/cartas/cs-sfa-001-es-r.webp",
   "tcgId": 560311
  },
  {
@@ -2619,8 +2589,7 @@ export const cartas = [
   "illustrator": "Kurata So",
   "price": 2.0,
   "stock": 1,
-  "image": "https://product-images.tcgplayer.com/fit-in/437x610/684401.jpg",
-  "imageLocal": "/cartas/cs-por-005-en-r.webp",
+  "image": "/cartas/cs-por-005-en-r.webp",
   "tcgId": 684401
  },
  {
@@ -2639,8 +2608,7 @@ export const cartas = [
   "illustrator": "Mitsuhiro Arita",
   "price": 6.0,
   "stock": 1,
-  "image": "https://product-images.tcgplayer.com/fit-in/437x610/662161.jpg",
-  "imageLocal": "/cartas/cs-pfl-008-en-h.webp",
+  "image": "/cartas/cs-pfl-008-en-h.webp",
   "tcgId": 662161
  },
  {
@@ -2699,8 +2667,7 @@ export const cartas = [
   "illustrator": "Shimaris Yukichi",
   "price": 1.0,
   "stock": 1,
-  "image": "https://product-images.tcgplayer.com/fit-in/437x610/589997.jpg",
-  "imageLocal": "/cartas/cs-ssp-073-es-n.webp",
+  "image": "/cartas/cs-ssp-073-es-n.webp",
   "tcgId": 589997
  },
  {
@@ -2759,8 +2726,7 @@ export const cartas = [
   "illustrator": "Mizue",
   "price": 1.0,
   "stock": 1,
-  "image": "https://product-images.tcgplayer.com/fit-in/437x610/487968.jpg",
-  "imageLocal": "/cartas/cs-svi-097-es-n.webp",
+  "image": "/cartas/cs-svi-097-es-n.webp",
   "tcgId": 487968
  },
  {
@@ -2779,8 +2745,7 @@ export const cartas = [
   "illustrator": "Aya Kusube",
   "price": 1.0,
   "stock": 2,
-  "image": "https://product-images.tcgplayer.com/fit-in/437x610/560329.jpg",
-  "imageLocal": "/cartas/cs-sfa-019-es-n.webp",
+  "image": "/cartas/cs-sfa-019-es-n.webp",
   "tcgId": 560329
  },
  {
@@ -2859,8 +2824,7 @@ export const cartas = [
   "illustrator": "IKEDA Saki",
   "price": 1.0,
   "stock": 3,
-  "image": "https://product-images.tcgplayer.com/fit-in/437x610/560328.jpg",
-  "imageLocal": "/cartas/cs-sfa-018-es-n.webp",
+  "image": "/cartas/cs-sfa-018-es-n.webp",
   "tcgId": 560328
  },
  {
@@ -2879,8 +2843,7 @@ export const cartas = [
   "illustrator": "Masako Tomii",
   "price": 2.0,
   "stock": 3,
-  "image": "https://product-images.tcgplayer.com/fit-in/437x610/560327.jpg",
-  "imageLocal": "/cartas/cs-sfa-017-es-n.webp",
+  "image": "/cartas/cs-sfa-017-es-n.webp",
   "tcgId": 560327
  },
  {
@@ -2979,8 +2942,7 @@ export const cartas = [
   "illustrator": "satoma",
   "price": 1.0,
   "stock": 1,
-  "image": "https://product-images.tcgplayer.com/fit-in/437x610/675900.jpg",
-  "imageLocal": "/cartas/cs-asc-088-la-n.webp",
+  "image": "/cartas/cs-asc-088-la-n.webp",
   "tcgId": 675900
  },
  {
@@ -3219,8 +3181,7 @@ export const cartas = [
   "illustrator": "GOSSAN",
   "price": 2.0,
   "stock": 1,
-  "image": "https://product-images.tcgplayer.com/fit-in/437x610/693476.jpg",
-  "imageLocal": "/cartas/cs-cri-033-la-n.webp",
+  "image": "/cartas/cs-cri-033-la-n.webp",
   "tcgId": 693476
  },
  {
@@ -3379,8 +3340,7 @@ export const cartas = [
   "illustrator": "Eri Kamei",
   "price": 1.0,
   "stock": 1,
-  "image": "https://product-images.tcgplayer.com/fit-in/437x610/642487.jpg",
-  "imageLocal": "/cartas/cs-blk-035-la-n.webp",
+  "image": "/cartas/cs-blk-035-la-n.webp",
   "tcgId": 642487
  },
  {
@@ -3399,8 +3359,7 @@ export const cartas = [
   "illustrator": "Eri Kamei",
   "price": 2.0,
   "stock": 1,
-  "image": "https://product-images.tcgplayer.com/fit-in/437x610/642488.jpg",
-  "imageLocal": "/cartas/cs-blk-036-la-n.webp",
+  "image": "/cartas/cs-blk-036-la-n.webp",
   "tcgId": 642488
  },
  {
@@ -3419,8 +3378,7 @@ export const cartas = [
   "illustrator": "kawayoo",
   "price": 1.0,
   "stock": 1,
-  "image": "https://product-images.tcgplayer.com/fit-in/437x610/487949.jpg",
-  "imageLocal": "/cartas/cs-svi-085-la-n.webp",
+  "image": "/cartas/cs-svi-085-la-n.webp",
   "tcgId": 487949
  },
  {
@@ -3599,8 +3557,7 @@ export const cartas = [
   "illustrator": "Aya Kusube",
   "price": 2.0,
   "stock": 1,
-  "image": "https://product-images.tcgplayer.com/fit-in/437x610/560329.jpg",
-  "imageLocal": "/cartas/cs-sfa-019-es-r.webp",
+  "image": "/cartas/cs-sfa-019-es-r.webp",
   "tcgId": 560329
  },
  {
@@ -3619,8 +3576,7 @@ export const cartas = [
   "illustrator": "OKACHEKE",
   "price": 2.0,
   "stock": 1,
-  "image": "https://product-images.tcgplayer.com/fit-in/437x610/684416.jpg",
-  "imageLocal": "/cartas/cs-por-032-la-r.webp",
+  "image": "/cartas/cs-por-032-la-r.webp",
   "tcgId": 684416
  },
  {
@@ -3639,8 +3595,7 @@ export const cartas = [
   "illustrator": "matazo",
   "price": 6.0,
   "stock": 1,
-  "image": "https://product-images.tcgplayer.com/fit-in/437x610/560331.jpg",
-  "imageLocal": "/cartas/cs-sfa-021-es-h.webp",
+  "image": "/cartas/cs-sfa-021-es-h.webp",
   "tcgId": 560331
  },
  {
@@ -3679,8 +3634,7 @@ export const cartas = [
   "illustrator": "Terada Tera",
   "price": 1.0,
   "stock": 1,
-  "image": "https://product-images.tcgplayer.com/fit-in/437x610/675899.jpg",
-  "imageLocal": "/cartas/cs-asc-087-la-n.webp",
+  "image": "/cartas/cs-asc-087-la-n.webp",
   "tcgId": 675899
  },
  {
@@ -3779,8 +3733,7 @@ export const cartas = [
   "illustrator": "CHORISO",
   "price": 3.0,
   "stock": 1,
-  "image": "https://product-images.tcgplayer.com/fit-in/437x610/704787.jpg",
-  "imageLocal": "/cartas/cs-pbl-030-en-r.webp",
+  "image": "/cartas/cs-pbl-030-en-r.webp",
   "tcgId": 704787
  },
  {
@@ -3839,8 +3792,7 @@ export const cartas = [
   "illustrator": "MINAMINAMI Take",
   "price": 6.0,
   "stock": 1,
-  "image": "https://product-images.tcgplayer.com/fit-in/437x610/610395.jpg",
-  "imageLocal": "/cartas/cs-pre-040-en-h.webp",
+  "image": "/cartas/cs-pre-040-en-h.webp",
   "tcgId": 610395
  },
  {
@@ -3939,8 +3891,7 @@ export const cartas = [
   "illustrator": "IKEDA Saki",
   "price": 2.0,
   "stock": 1,
-  "image": "https://product-images.tcgplayer.com/fit-in/437x610/590097.jpg",
-  "imageLocal": "/cartas/cs-ssp-082-es-r.webp",
+  "image": "/cartas/cs-ssp-082-es-r.webp",
   "tcgId": 590097
  },
  {
@@ -4199,8 +4150,7 @@ export const cartas = [
   "illustrator": "tono",
   "price": 1.0,
   "stock": 1,
-  "image": "https://product-images.tcgplayer.com/fit-in/437x610/675907.jpg",
-  "imageLocal": "/cartas/cs-asc-095-la-n.webp",
+  "image": "/cartas/cs-asc-095-la-n.webp",
   "tcgId": 675907
  },
  {
@@ -4279,8 +4229,7 @@ export const cartas = [
   "illustrator": "Apios",
   "price": 1.0,
   "stock": 1,
-  "image": "https://product-images.tcgplayer.com/fit-in/437x610/642492.jpg",
-  "imageLocal": "/cartas/cs-blk-040-la-n.webp",
+  "image": "/cartas/cs-blk-040-la-n.webp",
   "tcgId": 642492
  },
  {
@@ -4319,8 +4268,7 @@ export const cartas = [
   "illustrator": "Oku",
   "price": 3.0,
   "stock": 1,
-  "image": "https://product-images.tcgplayer.com/fit-in/437x610/704796.jpg",
-  "imageLocal": "/cartas/cs-pbl-039-en-r.webp",
+  "image": "/cartas/cs-pbl-039-en-r.webp",
   "tcgId": 704796
  },
  {
@@ -4339,8 +4287,7 @@ export const cartas = [
   "illustrator": "Bun Toujo",
   "price": 2.0,
   "stock": 1,
-  "image": "https://product-images.tcgplayer.com/fit-in/437x610/704790.jpg",
-  "imageLocal": "/cartas/cs-pbl-033-en-r.webp",
+  "image": "/cartas/cs-pbl-033-en-r.webp",
   "tcgId": 704790
  },
  {
@@ -4379,8 +4326,7 @@ export const cartas = [
   "illustrator": "Kuroimori",
   "price": 2.0,
   "stock": 1,
-  "image": "https://product-images.tcgplayer.com/fit-in/437x610/560332.jpg",
-  "imageLocal": "/cartas/cs-sfa-022-es-n.webp",
+  "image": "/cartas/cs-sfa-022-es-n.webp",
   "tcgId": 560332
  },
  {
@@ -4499,8 +4445,7 @@ export const cartas = [
   "illustrator": "Shinya Komatsu",
   "price": 2.0,
   "stock": 1,
-  "image": "https://product-images.tcgplayer.com/fit-in/437x610/542818.jpg",
-  "imageLocal": "/cartas/cs-tef-074-es-n.webp",
+  "image": "/cartas/cs-tef-074-es-n.webp",
   "tcgId": 542818
  },
  {
@@ -4599,8 +4544,7 @@ export const cartas = [
   "illustrator": "mele",
   "price": 1.0,
   "stock": 1,
-  "image": "https://product-images.tcgplayer.com/fit-in/437x610/542815.jpg",
-  "imageLocal": "/cartas/cs-tef-071-es-n.webp",
+  "image": "/cartas/cs-tef-071-es-n.webp",
   "tcgId": 542815
  },
  {
@@ -4619,8 +4563,7 @@ export const cartas = [
   "illustrator": "Kedamahadaitai Yawarakai",
   "price": 1.0,
   "stock": 2,
-  "image": "https://product-images.tcgplayer.com/fit-in/437x610/542812.jpg",
-  "imageLocal": "/cartas/cs-tef-068-es-n.webp",
+  "image": "/cartas/cs-tef-068-es-n.webp",
   "tcgId": 542812
  },
  {
@@ -4759,8 +4702,7 @@ export const cartas = [
   "illustrator": "Anesaki Dynamic",
   "price": 2.0,
   "stock": 1,
-  "image": "https://product-images.tcgplayer.com/fit-in/437x610/675903.jpg",
-  "imageLocal": "/cartas/cs-asc-091-la-n.webp",
+  "image": "/cartas/cs-asc-091-la-n.webp",
   "tcgId": 675903
  },
  {
@@ -4779,8 +4721,7 @@ export const cartas = [
   "illustrator": "Natsumi Yoshida",
   "price": 1.0,
   "stock": 1,
-  "image": "https://product-images.tcgplayer.com/fit-in/437x610/684414.jpg",
-  "imageLocal": "/cartas/cs-por-030-la-n.webp",
+  "image": "/cartas/cs-por-030-la-n.webp",
   "tcgId": 684414
  },
  {
@@ -4799,8 +4740,7 @@ export const cartas = [
   "illustrator": "Mori Yuu",
   "price": 3.0,
   "stock": 1,
-  "image": "https://product-images.tcgplayer.com/fit-in/437x610/684421.jpg",
-  "imageLocal": "/cartas/cs-por-036-en-r.webp",
+  "image": "/cartas/cs-por-036-en-r.webp",
   "tcgId": 684421
  },
  {
@@ -4919,8 +4859,7 @@ export const cartas = [
   "illustrator": "KIYOTAKA OSHIYAMA",
   "price": 6.0,
   "stock": 1,
-  "image": "https://product-images.tcgplayer.com/fit-in/437x610/534425.jpg",
-  "imageLocal": "/cartas/cs-paf-063-en-h.webp",
+  "image": "/cartas/cs-paf-063-en-h.webp",
   "tcgId": 534425
  },
  {
@@ -4999,8 +4938,7 @@ export const cartas = [
   "illustrator": "Nobuhiro Imagawa",
   "price": 2.0,
   "stock": 1,
-  "image": "https://product-images.tcgplayer.com/fit-in/437x610/693549.jpg",
-  "imageLocal": "/cartas/cs-cri-053-en-r.webp",
+  "image": "/cartas/cs-cri-053-en-r.webp",
   "tcgId": 693549
  },
  {
@@ -5119,8 +5057,7 @@ export const cartas = [
   "illustrator": "Mékayu",
   "price": 1.0,
   "stock": 1,
-  "image": "https://product-images.tcgplayer.com/fit-in/437x610/693565.jpg",
-  "imageLocal": "/cartas/cs-cri-049-la-n.webp",
+  "image": "/cartas/cs-cri-049-la-n.webp",
   "tcgId": 693565
  },
  {
@@ -5139,8 +5076,7 @@ export const cartas = [
   "illustrator": "akagi",
   "price": 2.0,
   "stock": 1,
-  "image": "https://product-images.tcgplayer.com/fit-in/437x610/560344.jpg",
-  "imageLocal": "/cartas/cs-sfa-034-es-n.webp",
+  "image": "/cartas/cs-sfa-034-es-n.webp",
   "tcgId": 560344
  },
  {
@@ -5159,8 +5095,7 @@ export const cartas = [
   "illustrator": "Teeziro",
   "price": 1.0,
   "stock": 2,
-  "image": "https://product-images.tcgplayer.com/fit-in/437x610/560338.jpg",
-  "imageLocal": "/cartas/cs-sfa-028-es-n.webp",
+  "image": "/cartas/cs-sfa-028-es-n.webp",
   "tcgId": 560338
  },
  {
@@ -5179,8 +5114,7 @@ export const cartas = [
   "illustrator": "rika",
   "price": 1.0,
   "stock": 2,
-  "image": "https://product-images.tcgplayer.com/fit-in/437x610/560340.jpg",
-  "imageLocal": "/cartas/cs-sfa-030-es-n.webp",
+  "image": "/cartas/cs-sfa-030-es-n.webp",
   "tcgId": 560340
  },
  {
@@ -5199,8 +5133,7 @@ export const cartas = [
   "illustrator": "Souichirou Gunjima",
   "price": 2.0,
   "stock": 1,
-  "image": "https://product-images.tcgplayer.com/fit-in/437x610/693557.jpg",
-  "imageLocal": "/cartas/cs-cri-056-en-r.webp",
+  "image": "/cartas/cs-cri-056-en-r.webp",
   "tcgId": 693557
  },
  {
@@ -5219,8 +5152,7 @@ export const cartas = [
   "illustrator": "danciao",
   "price": 3.0,
   "stock": 2,
-  "image": "https://product-images.tcgplayer.com/fit-in/437x610/550162.jpg",
-  "imageLocal": "/cartas/cs-twm-118-en-r.webp",
+  "image": "/cartas/cs-twm-118-en-r.webp",
   "tcgId": 550162
  },
  {
@@ -5259,8 +5191,7 @@ export const cartas = [
   "illustrator": "Nisota Niso",
   "price": 3.0,
   "stock": 1,
-  "image": "https://product-images.tcgplayer.com/fit-in/437x610/560339.jpg",
-  "imageLocal": "/cartas/cs-sfa-029-es-r.webp",
+  "image": "/cartas/cs-sfa-029-es-r.webp",
   "tcgId": 560339
  },
  {
@@ -5319,8 +5250,7 @@ export const cartas = [
   "illustrator": "Mori Yuu",
   "price": 2.0,
   "stock": 1,
-  "image": "https://product-images.tcgplayer.com/fit-in/437x610/560343.jpg",
-  "imageLocal": "/cartas/cs-sfa-033-es-r.webp",
+  "image": "/cartas/cs-sfa-033-es-r.webp",
   "tcgId": 560343
  },
  {
@@ -5359,8 +5289,7 @@ export const cartas = [
   "illustrator": "Yuu Nishida",
   "price": 1.0,
   "stock": 4,
-  "image": "https://product-images.tcgplayer.com/fit-in/437x610/560341.jpg",
-  "imageLocal": "/cartas/cs-sfa-031-es-n.webp",
+  "image": "/cartas/cs-sfa-031-es-n.webp",
   "tcgId": 560341
  },
  {
@@ -5519,8 +5448,7 @@ export const cartas = [
   "illustrator": "SIE NANAHARA",
   "price": 2.0,
   "stock": 3,
-  "image": "https://product-images.tcgplayer.com/fit-in/437x610/560345.jpg",
-  "imageLocal": "/cartas/cs-sfa-035-es-n.webp",
+  "image": "/cartas/cs-sfa-035-es-n.webp",
   "tcgId": 560345
  },
  {
@@ -5559,8 +5487,7 @@ export const cartas = [
   "illustrator": "Mékayu",
   "price": 2.0,
   "stock": 1,
-  "image": "https://product-images.tcgplayer.com/fit-in/437x610/693565.jpg",
-  "imageLocal": "/cartas/cs-cri-049-en-r.webp",
+  "image": "/cartas/cs-cri-049-en-r.webp",
   "tcgId": 693565
  },
  {
@@ -5579,8 +5506,7 @@ export const cartas = [
   "illustrator": "nisimono",
   "price": 1.0,
   "stock": 1,
-  "image": "https://product-images.tcgplayer.com/fit-in/437x610/693538.jpg",
-  "imageLocal": "/cartas/cs-cri-052-la-n.webp",
+  "image": "/cartas/cs-cri-052-la-n.webp",
   "tcgId": 693538
  },
  {
@@ -5679,8 +5605,7 @@ export const cartas = [
   "illustrator": "Kedamahadaitai Yawarakai",
   "price": 1.0,
   "stock": 1,
-  "image": "https://product-images.tcgplayer.com/fit-in/437x610/684430.jpg",
-  "imageLocal": "/cartas/cs-por-049-la-n.webp",
+  "image": "/cartas/cs-por-049-la-n.webp",
   "tcgId": 684430
  },
  {
@@ -5699,8 +5624,7 @@ export const cartas = [
   "illustrator": "Krgc",
   "price": 2.0,
   "stock": 2,
-  "image": "https://product-images.tcgplayer.com/fit-in/437x610/704810.jpg",
-  "imageLocal": "/cartas/cs-pbl-053-en-r.webp",
+  "image": "/cartas/cs-pbl-053-en-r.webp",
   "tcgId": 704810
  },
  {
@@ -5719,8 +5643,7 @@ export const cartas = [
   "illustrator": "nisimono",
   "price": 2.0,
   "stock": 1,
-  "image": "https://product-images.tcgplayer.com/fit-in/437x610/693538.jpg",
-  "imageLocal": "/cartas/cs-cri-052-en-r.webp",
+  "image": "/cartas/cs-cri-052-en-r.webp",
   "tcgId": 693538
  },
  {
@@ -5759,8 +5682,7 @@ export const cartas = [
   "illustrator": "Nobuhiro Imagawa",
   "price": 2.0,
   "stock": 1,
-  "image": "https://product-images.tcgplayer.com/fit-in/437x610/693549.jpg",
-  "imageLocal": "/cartas/cs-cri-053-la-r.webp",
+  "image": "/cartas/cs-cri-053-la-r.webp",
   "tcgId": 693549
  },
  {
@@ -5779,8 +5701,7 @@ export const cartas = [
   "illustrator": "nagimiso",
   "price": 6.0,
   "stock": 1,
-  "image": "https://product-images.tcgplayer.com/fit-in/437x610/560343.jpg",
-  "imageLocal": "/cartas/cs-sfa-033-es-h.webp",
+  "image": "/cartas/cs-sfa-033-es-h.webp",
   "tcgId": 560343
  },
  {
@@ -5799,8 +5720,7 @@ export const cartas = [
   "illustrator": "Nisota Niso",
   "price": 2.0,
   "stock": 1,
-  "image": "https://product-images.tcgplayer.com/fit-in/437x610/560339.jpg",
-  "imageLocal": "/cartas/cs-sfa-029-es-n.webp",
+  "image": "/cartas/cs-sfa-029-es-n.webp",
   "tcgId": 560339
  },
  {
@@ -5819,8 +5739,7 @@ export const cartas = [
   "illustrator": "Shimaris Yukichi",
   "price": 1.0,
   "stock": 1,
-  "image": "https://product-images.tcgplayer.com/fit-in/437x610/542844.jpg",
-  "imageLocal": "/cartas/cs-tef-100-es-n.webp",
+  "image": "/cartas/cs-tef-100-es-n.webp",
   "tcgId": 542844
  },
  {
@@ -5859,8 +5778,7 @@ export const cartas = [
   "illustrator": "Miki Tanaka",
   "price": 1.0,
   "stock": 1,
-  "image": "https://product-images.tcgplayer.com/fit-in/437x610/542849.jpg",
-  "imageLocal": "/cartas/cs-tef-105-es-n.webp",
+  "image": "/cartas/cs-tef-105-es-n.webp",
   "tcgId": 542849
  },
  {
@@ -6019,8 +5937,7 @@ export const cartas = [
   "illustrator": "Shiburingaru",
   "price": 2.0,
   "stock": 1,
-  "image": "https://product-images.tcgplayer.com/fit-in/437x610/487056.jpg",
-  "imageLocal": "/cartas/cs-svi-130-es-r.webp",
+  "image": "/cartas/cs-svi-130-es-r.webp",
   "tcgId": 487056
  },
  {
@@ -6059,8 +5976,7 @@ export const cartas = [
   "illustrator": "hncl",
   "price": 3.0,
   "stock": 1,
-  "image": "https://product-images.tcgplayer.com/fit-in/437x610/660413.jpg",
-  "imageLocal": "/cartas/cs-pfl-062-en-r.webp",
+  "image": "/cartas/cs-pfl-062-en-r.webp",
   "tcgId": 660413
  },
  {
@@ -6079,8 +5995,7 @@ export const cartas = [
   "illustrator": "OKACHEKE",
   "price": 2.0,
   "stock": 1,
-  "image": "https://product-images.tcgplayer.com/fit-in/437x610/660411.jpg",
-  "imageLocal": "/cartas/cs-pfl-067-en-r.webp",
+  "image": "/cartas/cs-pfl-067-en-r.webp",
   "tcgId": 660411
  },
  {
@@ -6119,8 +6034,7 @@ export const cartas = [
   "illustrator": "Tomokazu Komiya",
   "price": 2.0,
   "stock": 2,
-  "image": "https://product-images.tcgplayer.com/fit-in/437x610/662202.jpg",
-  "imageLocal": "/cartas/cs-pfl-057-en-r.webp",
+  "image": "/cartas/cs-pfl-057-en-r.webp",
   "tcgId": 662202
  },
  {
@@ -6439,8 +6353,7 @@ export const cartas = [
   "illustrator": "Tomowaka",
   "price": 1.0,
   "stock": 1,
-  "image": "https://product-images.tcgplayer.com/fit-in/437x610/675943.jpg",
-  "imageLocal": "/cartas/cs-asc-131-la-n.webp",
+  "image": "/cartas/cs-asc-131-la-n.webp",
   "tcgId": 675943
  },
  {
@@ -6519,8 +6432,7 @@ export const cartas = [
   "illustrator": "Eri Yamaki",
   "price": 1.0,
   "stock": 1,
-  "image": "https://product-images.tcgplayer.com/fit-in/437x610/523784.jpg",
-  "imageLocal": "/cartas/cs-par-111-es-n.webp",
+  "image": "/cartas/cs-par-111-es-n.webp",
   "tcgId": 523784
  },
  {
@@ -6559,8 +6471,7 @@ export const cartas = [
   "illustrator": "Jiro Sasumo",
   "price": 1.0,
   "stock": 1,
-  "image": "https://product-images.tcgplayer.com/fit-in/437x610/675948.jpg",
-  "imageLocal": "/cartas/cs-asc-136-la-n.webp",
+  "image": "/cartas/cs-asc-136-la-n.webp",
   "tcgId": 675948
  },
  {

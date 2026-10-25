@@ -50,13 +50,13 @@ export default function CatalogoPage() {
   const [cols, setCols] = useState(4);
   const [sort, setSort] = useState("default");
   const [added, setAdded] = useState(null);
-  const [f, setF] = useState({ q: "", lang: "", fin: "", type: "", exp: "", stage: "", ill: "" });
+  const [f, setF] = useState({ q: "", lang: "", fin: "", type: "", exp: "", ill: "" });
   const [showF, setShowF] = useState(false);
   const [qty, setQty] = useState({});
   const setFilter = (k, v) => { setF((o) => ({ ...o, [k]: o[k] === v && k !== "q" ? "" : v })); setLimit(0); };
   const [limit, setLimit] = useState(0);
   const activeF = Object.values(f).filter(Boolean).length;
-  const clearF = () => { setF({ q: "", lang: "", fin: "", type: "", exp: "", stage: "", ill: "" }); setLimit(0); };
+  const clearF = () => { setF({ q: "", lang: "", fin: "", type: "", exp: "", ill: "" }); setLimit(0); };
 
   useEffect(() => {
     const read = () => {
@@ -81,7 +81,6 @@ export default function CatalogoPage() {
     if (skip !== "fin" && f.fin && c.finish !== f.fin) return false;
     if (skip !== "type" && f.type && c.type !== f.type) return false;
     if (skip !== "exp" && f.exp && c.expansion !== f.exp) return false;
-    if (skip !== "stage" && f.stage && c.stage !== f.stage) return false;
     if (skip !== "ill" && f.ill && c.illustrator !== f.ill) return false;
     if (f.q) {
       const hay = norm([c.name, c.expansion, c.expansionEn, c.setCode, c.number, c.illustrator, c.type].join(" "));
@@ -99,7 +98,6 @@ export default function CatalogoPage() {
   const optLang = ["Inglés", "Español"].map((v) => [v, opts("lang", "language").find(([k]) => k === v)?.[1] || 0]);
   const optType = ["Planta", "Psíquico", "Siniestro"].map((v) => [v, opts("type", "type").find(([k]) => k === v)?.[1] || 0]);
   const optExp = opts("exp", "expansion").sort((a, b) => a[0].localeCompare(b[0]));
-  const optStage = ["Básico", "Fase 1", "Fase 2"].map((v) => [v, opts("stage", "stage").find(([k]) => k === v)?.[1] || 0]).filter(([, n]) => n);
   const optIll = opts("ill", "illustrator").sort((a, b) => a[0].localeCompare(b[0]));
 
   const filtered = useMemo(() => {
@@ -189,6 +187,16 @@ export default function CatalogoPage() {
         .cc-badges { position:absolute; top:8px; left:8px; right:8px; display:flex; justify-content:space-between; gap:4px; pointer-events:none; }
         .cc-b { font-size:11px; font-weight:800; padding:3px 8px; border-radius:999px; background:rgba(255,255,255,.92); color:#1e1b4b; box-shadow:0 1px 4px rgba(0,0,0,.18); }
         .cc-b.fin { background:linear-gradient(120deg,#fde68a,#f9a8d4,#a5b4fc,#99f6e4); }
+        .cc-line { font-size:13px; color:#6b7280; font-weight:600; margin-bottom:6px; }
+        .cc-line b { color:#1e1b4b; }
+        .cc-tags { display:flex; flex-wrap:wrap; gap:5px; margin-bottom:6px; }
+        .cc-tag { display:inline-flex; align-items:center; gap:5px; font-size:11.5px; font-weight:700; color:#4b5563; background:#f5f3ff; border-radius:999px; padding:3px 9px; }
+        .cc-tag i { width:8px; height:8px; border-radius:50%; display:inline-block; }
+        .cc-tag.fin { background:linear-gradient(120deg,#fde68a,#f9a8d4,#a5b4fc); color:#1e1b4b; }
+        .cc-det summary { cursor:pointer; font-size:12.5px; font-weight:700; color:#7c3aed; list-style:none; padding:2px 0; }
+        .cc-det summary::-webkit-details-marker { display:none; }
+        .cc-det summary::after { content:" ▾"; }
+        .cc-det[open] summary::after { content:" ▴"; }
         .cc-stock { font-size:12px; font-weight:700; color:#15803d; }
         .cc-qty { display:inline-flex; align-items:center; border:1.5px solid #ddd6fe; border-radius:10px; overflow:hidden; }
         .cc-qty button { border:none; background:#f5f3ff; color:#5b21b6; width:34px; height:36px; font-size:18px; font-weight:800; cursor:pointer; font-family:inherit; }
@@ -277,9 +285,6 @@ export default function CatalogoPage() {
                     </button>
                   ))}
                 </div>
-                <div className="cf-row"><span className="cf-lab">Etapa</span>
-                  {optStage.map(([v, n]) => <Chip key={v} k="stage" v={v} n={n} />)}
-                </div>
                 <div className="cf-row">
                   <span className="cf-lab">Expansión</span>
                   <select className="cf-sel" value={f.exp} onChange={(e) => { setF((o) => ({ ...o, exp: e.target.value })); setLimit(0); }}>
@@ -320,13 +325,19 @@ export default function CatalogoPage() {
                       <div style={{ marginBottom: "10px" }}>
                         {p.kind === "carta" && p.setCode ? (
                           <>
-                            <InfoRow label="Expansión" value={`${p.expansion} · ${p.setCode}`} />
-                            <InfoRow label="Número" value={p.number} />
-                            <InfoRow label="Idioma" value={p.langCode === "EN" ? "Inglés" : p.langCode === "LA" ? "Español (Latam)" : "Español (España)"} />
-                            <InfoRow label="Acabado" value={p.finish} />
-                            <InfoRow label="Tipo" value={`${p.type} · ${p.stage}`} />
-                            <InfoRow label="Rareza" value={p.rarity} />
-                            <InfoRow label="Ilustrador" value={p.illustrator} />
+                            <div className="cc-line">{p.expansion} · <b>{p.number}</b></div>
+                            <div className="cc-tags">
+                              <span className="cc-tag"><i style={{ background: typeDot[p.type] || "#9ca3af" }} />{p.type}</span>
+                              <span className="cc-tag">{p.stage}</span>
+                              {p.finish !== "Normal" && <span className="cc-tag fin">{p.finish}</span>}
+                            </div>
+                            <details className="cc-det">
+                              <summary>Ver detalles</summary>
+                              <InfoRow label="Rareza" value={p.rarity} />
+                              <InfoRow label="Ilustrador" value={p.illustrator} />
+                              <InfoRow label="Idioma" value={p.langCode === "EN" ? "Inglés" : p.langCode === "LA" ? "Español (Latam)" : "Español (España)"} />
+                              <InfoRow label="Código" value={p.setCode} />
+                            </details>
                           </>
                         ) : (
                           <>

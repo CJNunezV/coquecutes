@@ -2,7 +2,7 @@
 import { addToCart as addCartItem } from "../cart";
 import { useState, useEffect, useRef, useContext, createContext } from "react";
 import Link from "next/link";
-import { singles, extendedPacks, customTypes, decks, proxyTypes, proxyInfo } from "../../data/proxys";
+import { singles, extendedPacks, customTypes, customExamples, decks, proxyTypes, proxyInfo } from "../../data/proxys";
 
 const WA = "51962167068";
 const waLink = (msg) => `https://wa.me/${WA}?text=${encodeURIComponent(msg)}`;
@@ -327,39 +327,84 @@ function Extended({ cart }) {
 
 /* ---------- Personalizados ---------- */
 function Custom() {
-  const [type, setType] = useState("carta");
+  const [type, setType] = useState("graduacion");
   const [desc, setDesc] = useState("");
+  const [filter, setFilter] = useState("todos");
+  const [zoom, setZoom] = useState(null);
   const label = customTypes.find((t) => t.id === type)?.label;
+  const shown = customExamples.filter((e) => filter === "todos" || e.cat === filter);
+  const catLabel = (id) => customTypes.find((t) => t.id === id)?.label || "";
   const steps = [
-    ["1", "Cuéntanos tu idea", "Elige el tipo y descríbela."],
+    ["1", "Cuéntanos tu idea", "Elige la ocasión y descríbela. Si quieres tu foto en la carta, la envías por WhatsApp."],
     ["2", "Te cotizamos", "Respondemos por WhatsApp con precio y plazo."],
     ["3", "Imprimimos y enviamos", "Lo recibes en todo el Perú."],
   ];
+  const chooseLike = (ex) => {
+    setType(ex.cat);
+    setDesc((d) => d || `Quiero una carta como el ejemplo "${ex.title}".`);
+    setZoom(null);
+    const el = document.getElementById("px-custom-form");
+    if (el) el.scrollIntoView({ behavior: "smooth", block: "center" });
+  };
   return (
-    <div className="px-custom">
-      <div>
-        <h3 style={{ fontSize: "22px", fontWeight: 800, color: "#1e1b4b", margin: "0 0 16px" }}>¿Qué quieres crear?</h3>
-        <div style={{ display: "grid", gridTemplateColumns: "repeat(2,1fr)", gap: "10px", marginBottom: "18px" }}>
-          {customTypes.map((t) => (
-            <button key={t.id} onClick={() => setType(t.id)} className={`px-pack ${type === t.id ? "is-active" : ""}`} style={{ flexDirection: "column", padding: "18px 10px", gap: "6px" }}>
-              <span style={{ fontSize: "28px" }}>{t.emoji}</span>
-              <span style={{ fontWeight: 700, fontSize: "14px" }}>{t.label}</span>
+    <div>
+      <div className="px-custom">
+        <div id="px-custom-form">
+          <h3 style={{ fontSize: "22px", fontWeight: 800, color: "#1e1b4b", margin: "0 0 16px" }}>¿Para qué ocasión?</h3>
+          <div style={{ display: "grid", gridTemplateColumns: "repeat(2,1fr)", gap: "10px", marginBottom: "18px" }}>
+            {customTypes.map((t, i) => (
+              <button key={t.id} onClick={() => setType(t.id)} className={`px-pack ${type === t.id ? "is-active" : ""}`} style={{ flexDirection: "column", padding: "16px 10px", gap: "6px", gridColumn: i === customTypes.length - 1 && customTypes.length % 2 ? "1 / -1" : "auto" }}>
+                <span style={{ fontSize: "28px" }}>{t.emoji}</span>
+                <span style={{ fontWeight: 700, fontSize: "14px" }}>{t.label}</span>
+              </button>
+            ))}
+          </div>
+          <textarea value={desc} onChange={(e) => setDesc(e.target.value)} rows={4} placeholder="Cuéntanos: para quién es, personajes favoritos, estilo, cantidad…" style={{ width: "100%", boxSizing: "border-box", border: "1.5px solid #e5e7eb", borderRadius: "14px", padding: "14px", fontSize: "16px", fontFamily: "inherit", resize: "vertical", outline: "none", marginBottom: "14px" }} />
+          <a className="px-btn px-btn-lg" style={{ display: "block", textAlign: "center", textDecoration: "none", boxSizing: "border-box" }} href={waLink(`Hola Coquecutes, quiero una carta personalizada.\nOcasión: ${label}\nIdea: ${desc || "(te la cuento por aquí)"}`)} target="_blank" rel="noopener noreferrer">
+            Pedir cotización por WhatsApp
+          </a>
+        </div>
+        <div style={{ display: "grid", gap: "14px", alignContent: "start" }}>
+          {steps.map(([n, t, d]) => (
+            <div key={n} style={{ display: "flex", gap: "14px", background: "#fff", border: "1px solid #ede9fe", borderRadius: "18px", padding: "18px" }}>
+              <span style={{ width: 36, height: 36, borderRadius: "50%", background: "linear-gradient(135deg,#ec4899,#7c3aed)", color: "#fff", fontWeight: 800, display: "flex", alignItems: "center", justifyContent: "center", flexShrink: 0 }}>{n}</span>
+              <div><div style={{ fontWeight: 800, color: "#1e1b4b" }}>{t}</div><div style={{ color: "#6b7280", fontSize: "14px", marginTop: 2 }}>{d}</div></div>
+            </div>
+          ))}
+        </div>
+      </div>
+
+      {/* Galería de ejemplos */}
+      <div style={{ marginTop: "48px" }}>
+        <h3 style={{ fontSize: "22px", fontWeight: 800, color: "#1e1b4b", margin: "0 0 4px" }}>Ejemplos de nuestros trabajos</h3>
+        <p style={{ color: "#6b7280", margin: "0 0 16px", fontSize: "14px" }}>Así quedan las cartas personalizadas. Toca una para verla en grande o pedir una igual.</p>
+        <div style={{ display: "flex", gap: "8px", flexWrap: "wrap", marginBottom: "18px" }}>
+          {[{ id: "todos", label: "Todos", emoji: "✨" }, ...customTypes.filter((t) => customExamples.some((e) => e.cat === t.id))].map((t) => (
+            <button key={t.id} onClick={() => setFilter(t.id)} className={`px-type ${filter === t.id ? "is-active" : ""}`}>{t.emoji} {t.label}</button>
+          ))}
+        </div>
+        <div className="px-ex-grid">
+          {shown.map((ex) => (
+            <button key={ex.id} className="px-ex" onClick={() => setZoom(ex)} aria-label={`Ver ejemplo: ${ex.title}`}>
+              <img src={ex.image} alt={ex.title} loading="lazy" />
+              <span className="px-ex-tag">{catLabel(ex.cat)}</span>
             </button>
           ))}
         </div>
-        <textarea value={desc} onChange={(e) => setDesc(e.target.value)} rows={4} placeholder="Describe tu idea: personaje, estilo, cantidad…" style={{ width: "100%", boxSizing: "border-box", border: "1.5px solid #e5e7eb", borderRadius: "14px", padding: "14px", fontSize: "15px", fontFamily: "inherit", resize: "vertical", outline: "none", marginBottom: "14px" }} />
-        <a className="px-btn px-btn-lg" style={{ display: "block", textAlign: "center", textDecoration: "none", boxSizing: "border-box" }} href={waLink(`Hola Coquecutes, quiero un proxy personalizado.\nTipo: ${label}\nIdea: ${desc || "(te la cuento por aquí)"}`)} target="_blank" rel="noopener noreferrer">
-          Pedir cotización por WhatsApp
-        </a>
       </div>
-      <div style={{ display: "grid", gap: "14px", alignContent: "start" }}>
-        {steps.map(([n, t, d]) => (
-          <div key={n} style={{ display: "flex", gap: "14px", background: "#fff", border: "1px solid #ede9fe", borderRadius: "18px", padding: "18px" }}>
-            <span style={{ width: 36, height: 36, borderRadius: "50%", background: "linear-gradient(135deg,#ec4899,#7c3aed)", color: "#fff", fontWeight: 800, display: "flex", alignItems: "center", justifyContent: "center", flexShrink: 0 }}>{n}</span>
-            <div><div style={{ fontWeight: 800, color: "#1e1b4b" }}>{t}</div><div style={{ color: "#6b7280", fontSize: "14px", marginTop: 2 }}>{d}</div></div>
+
+      {zoom && (
+        <Modal onClose={() => setZoom(null)}>
+          <div style={{ display: "flex", flexDirection: "column", alignItems: "center", gap: "14px", padding: "6px" }}>
+            <img src={zoom.image} alt={zoom.title} style={{ maxHeight: "68vh", maxWidth: "100%", borderRadius: "14px", boxShadow: "0 14px 34px rgba(30,27,75,.3)" }} />
+            <div style={{ textAlign: "center" }}>
+              <div style={{ fontWeight: 800, color: "#1e1b4b", fontSize: "17px" }}>{zoom.title}</div>
+              <div style={{ color: "#7c3aed", fontWeight: 700, fontSize: "13px" }}>{catLabel(zoom.cat)}</div>
+            </div>
+            <button className="px-btn px-btn-lg" onClick={() => chooseLike(zoom)}>Quiero una igual</button>
           </div>
-        ))}
-      </div>
+        </Modal>
+      )}
     </div>
   );
 }
@@ -371,7 +416,7 @@ function Decks({ cart }) {
   return (
     <div className="px-grid-decks">
       {decks.map((d) => (
-        <div key={d.id} className="px-lift" style={{ background: "#fff", border: "1px solid #ede9fe", borderRadius: "22px", padding: "20px" }}>
+        <div key={d.id} className="px-lift" style={{ background: "#fff", border: "1px solid #ede9fe", borderRadius: "22px", padding: "20px", display: "flex", flexDirection: "column" }}>
           {/* mazo apilado */}
           <div style={{ position: "relative", height: "190px", marginBottom: "18px" }}>
             {[2, 1, 0].map((k) => (
@@ -382,18 +427,19 @@ function Decks({ cart }) {
             <h3 style={{ margin: 0, fontSize: "18px", fontWeight: 800, color: "#1e1b4b" }}>Deck {d.name}</h3>
             <span style={{ fontSize: "12px", background: "#f5f3ff", color: "#7c3aed", fontWeight: 700, padding: "3px 10px", borderRadius: "999px" }}>{d.cards} cartas</span>
           </div>
-          <div style={{ color: "#6b7280", fontSize: "14px", margin: "4px 0 14px" }}>{d.style}</div>
+          <div style={{ color: "#6b7280", fontSize: "14px", margin: "4px 0 4px" }}>{d.style}</div>
+          {d.core && <div style={{ color: "#9ca3af", fontSize: "12.5px", margin: "0 0 14px" }}>Incluye: {d.core}</div>}
           {(() => {
             const tid = types[d.id] || ui.defaultType;
             const item = withType(d, tid, `Deck proxy ${d.name}`);
             return (
-              <>
+              <div style={{ marginTop: "auto" }}>
                 <div style={{ color: "#7c3aed", fontWeight: 800, fontSize: "22px", marginBottom: "10px" }}>S/{item.price.toFixed(2)}</div>
                 <TypePicker value={tid} onChange={(v) => setTypes((p) => ({ ...p, [d.id]: v }))} />
                 <button className={`px-btn ${cart.added === item.id ? "is-added" : ""}`} onClick={() => cart.add(item)}>
                   {cart.added === item.id ? "¡Añadido!" : "Añadir deck"}
                 </button>
-              </>
+              </div>
             );
           })()}
         </div>
@@ -489,6 +535,12 @@ export default function ProxysPage() {
         .px-pack:hover { border-color:#c4b5fd; }
         .px-pack.is-active { border-color:#7c3aed; background:#f5f3ff; box-shadow:0 0 0 3px rgba(124,58,237,.12); }
         .px-custom { display:grid; grid-template-columns:1fr 1fr; gap:44px; }
+        .px-ex-grid { display:grid; grid-template-columns:repeat(4,1fr); gap:16px; }
+        .px-ex { position:relative; border:none; padding:0; background:#fff; border-radius:14px; overflow:hidden; cursor:pointer; aspect-ratio:63/88; box-shadow:0 8px 20px rgba(76,29,149,.15); transition:transform .2s, box-shadow .2s; }
+        .px-ex:hover { transform:translateY(-4px) rotate(-.6deg); box-shadow:0 16px 30px rgba(76,29,149,.28); }
+        .px-ex img { width:100%; height:100%; object-fit:cover; display:block; }
+        .px-ex-tag { position:absolute; left:8px; bottom:8px; background:rgba(30,27,75,.85); color:#fff; font-size:11px; font-weight:800; padding:4px 10px; border-radius:999px; }
+        @media (max-width:860px) { .px-ex-grid { grid-template-columns:repeat(2,1fr); gap:12px; } }
         @media (max-width:860px) { .px-ext, .px-custom { grid-template-columns:1fr; gap:28px; } }
       ` }} />
 

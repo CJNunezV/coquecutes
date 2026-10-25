@@ -56,15 +56,32 @@ export const extendedPacks = [
 
 // Personalizados: tipos de pedido
 export const customTypes = [
-  { id: "carta", emoji: "🃏", label: "Carta con tu diseño" },
-  { id: "arte", emoji: "🎨", label: "Arte alternativo" },
-  { id: "foto", emoji: "📸", label: "Con tu foto" },
+  { id: "graduacion", emoji: "🎓", label: "Graduación" },
+  { id: "cumple", emoji: "🎂", label: "Cumpleaños" },
+  { id: "boda", emoji: "💍", label: "Boda / Pareja" },
+  { id: "familia", emoji: "👨‍👩‍👧", label: "Familia o retrato" },
   { id: "otro", emoji: "✨", label: "Otra idea" },
 ];
 
-// Decks (lista completa de proxys de un mazo)
+// Ejemplos de personalizados (fotos en /public/proxys/Personalizados/). cat = id de customTypes.
+// Para agregar otro: sube la imagen y copia un bloque.
+export const customExamples = [
+  { id: "ce1", cat: "graduacion", title: "Graduación junto a Lapras", image: "/proxys/Personalizados/graduacion-1.webp" },
+  { id: "ce2", cat: "graduacion", title: "Graduación al atardecer", image: "/proxys/Personalizados/graduacion-2.webp" },
+  { id: "ce3", cat: "cumple", title: "Cumpleaños con Pikachu y Eevee", image: "/proxys/Personalizados/cumple-1.webp" },
+  { id: "ce4", cat: "cumple", title: "Cumpleaños con globos", image: "/proxys/Personalizados/cumple-2.webp" },
+  { id: "ce5", cat: "boda", title: "Baile de bodas", image: "/proxys/Personalizados/boda-1.webp" },
+  { id: "ce6", cat: "boda", title: "Boda en el jardín", image: "/proxys/Personalizados/boda-2.webp" },
+  { id: "ce7", cat: "familia", title: "Picnic en familia", image: "/proxys/Personalizados/familia-1.webp" },
+  { id: "ce8", cat: "familia", title: "Retrato entre flores", image: "/proxys/Personalizados/retrato-1.webp" },
+];
+
+// Decks (lista completa de proxys de un mazo). Ejemplos del meta: ajusta nombre, precio y "core" (cartas clave).
 export const decks = [
-  { id: "px-d1", name: "Charizard ex", style: "Meta · Fuego", cards: 60, price: 180, grad: ["#fb923c", "#ef4444"] },
-  { id: "px-d2", name: "Gardevoir ex", style: "Meta · Psíquico", cards: 60, price: 180, grad: ["#f9a8d4", "#8b5cf6"] },
-  { id: "px-d3", name: "Lugia VSTAR", style: "Meta · Incoloro", cards: 60, price: 170, grad: ["#bae6fd", "#6366f1"] },
+  { id: "px-d1", name: "Dragapult ex", style: "Meta · Dragón / Fantasma", core: "Dragapult ex · Drakloak · Dreepy", cards: 60, price: 60, grad: ["#a78bfa", "#4338ca"] },
+  { id: "px-d2", name: "Festival Lead", style: "Meta · Planta", core: "Dipplin · Thwackey · Festival Grounds", cards: 60, price: 60, grad: ["#f9a8d4", "#16a34a"] },
+  { id: "px-d3", name: "Ogerpon · Clefairy", style: "Meta · Planta / Hada", core: "Ogerpon · Clefairy · Meowth ex", cards: 60, price: 60, grad: ["#6ee7b7", "#db2777"] },
+  { id: "px-d4", name: "Hydrapple", style: "Meta · Planta", core: "Hydrapple · Dipplin · Ogerpon", cards: 60, price: 60, grad: ["#bef264", "#15803d"] },
+  { id: "px-d5", name: "Slowking", style: "Meta · Psíquico", core: "Slowking · Slowpoke · Cinccino", cards: 60, price: 60, grad: ["#93c5fd", "#7c3aed"] },
+  { id: "px-d6", name: "N's Zoroark", style: "Meta · Oscuridad", core: "N's Zoroark ex · N's Zorua", cards: 60, price: 60, grad: ["#94a3b8", "#1e1b4b"] },
 ];

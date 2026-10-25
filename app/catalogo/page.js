@@ -50,13 +50,13 @@ export default function CatalogoPage() {
   const [cols, setCols] = useState(4);
   const [sort, setSort] = useState("default");
   const [added, setAdded] = useState(null);
-  const [f, setF] = useState({ q: "", lang: "", fin: "", type: "", exp: "", rar: "", stage: "", ill: "" });
+  const [f, setF] = useState({ q: "", lang: "", fin: "", type: "", exp: "", stage: "", ill: "" });
   const [showF, setShowF] = useState(false);
   const [qty, setQty] = useState({});
   const setFilter = (k, v) => { setF((o) => ({ ...o, [k]: o[k] === v && k !== "q" ? "" : v })); setLimit(0); };
   const [limit, setLimit] = useState(0);
   const activeF = Object.values(f).filter(Boolean).length;
-  const clearF = () => { setF({ q: "", lang: "", fin: "", type: "", exp: "", rar: "", stage: "", ill: "" }); setLimit(0); };
+  const clearF = () => { setF({ q: "", lang: "", fin: "", type: "", exp: "", stage: "", ill: "" }); setLimit(0); };
 
   useEffect(() => {
     const read = () => {
@@ -81,7 +81,6 @@ export default function CatalogoPage() {
     if (skip !== "fin" && f.fin && c.finish !== f.fin) return false;
     if (skip !== "type" && f.type && c.type !== f.type) return false;
     if (skip !== "exp" && f.exp && c.expansion !== f.exp) return false;
-    if (skip !== "rar" && f.rar && c.rarity !== f.rar) return false;
     if (skip !== "stage" && f.stage && c.stage !== f.stage) return false;
     if (skip !== "ill" && f.ill && c.illustrator !== f.ill) return false;
     if (f.q) {
@@ -100,7 +99,6 @@ export default function CatalogoPage() {
   const optLang = ["Inglés", "Español"].map((v) => [v, opts("lang", "language").find(([k]) => k === v)?.[1] || 0]);
   const optType = ["Planta", "Psíquico", "Siniestro"].map((v) => [v, opts("type", "type").find(([k]) => k === v)?.[1] || 0]);
   const optExp = opts("exp", "expansion").sort((a, b) => a[0].localeCompare(b[0]));
-  const optRar = ["Común", "Poco común", "Rara"].map((v) => [v, opts("rar", "rarity").find(([k]) => k === v)?.[1] || 0]).filter(([, n]) => n);
   const optStage = ["Básico", "Fase 1", "Fase 2"].map((v) => [v, opts("stage", "stage").find(([k]) => k === v)?.[1] || 0]).filter(([, n]) => n);
   const optIll = opts("ill", "illustrator").sort((a, b) => a[0].localeCompare(b[0]));
 
@@ -278,9 +276,6 @@ export default function CatalogoPage() {
                       <span style={{ width: 10, height: 10, borderRadius: "50%", background: typeDot[v], display: "inline-block" }} />{v}<small>{n}</small>
                     </button>
                   ))}
-                </div>
-                <div className="cf-row"><span className="cf-lab">Rareza</span>
-                  {optRar.map(([v, n]) => <Chip key={v} k="rar" v={v} n={n} />)}
                 </div>
                 <div className="cf-row"><span className="cf-lab">Etapa</span>
                   {optStage.map(([v, n]) => <Chip key={v} k="stage" v={v} n={n} />)}

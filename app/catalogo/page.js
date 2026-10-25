@@ -94,7 +94,7 @@ export default function CatalogoPage() {
     cardBase.filter((c) => matchCard(c, key)).forEach((c) => { if (c[field]) m.set(c[field], (m.get(c[field]) || 0) + (c.stock || 1)); });
     return [...m.entries()];
   };
-  const optFinish = ["Normal", "Holo", "Reverse Holo · Patrón", "Reverse Holo · Liso", "Reverse Holo · Purpurina"].map((v) => [v, opts("fin", "finish").find(([k]) => k === v)?.[1] || 0]);
+  const optFinish = ["Normal", "Holo", "Reverse Holo · Patrón", "Reverse Holo · Liso"].map((v) => [v, opts("fin", "finish").find(([k]) => k === v)?.[1] || 0]);
   const optLang = ["Inglés", "Español"].map((v) => [v, opts("lang", "language").find(([k]) => k === v)?.[1] || 0]);
   const optType = ["Planta", "Psíquico", "Siniestro"].map((v) => [v, opts("type", "type").find(([k]) => k === v)?.[1] || 0]);
   const optExp = opts("exp", "expansion").sort((a, b) => a[0].localeCompare(b[0]));
@@ -187,7 +187,6 @@ export default function CatalogoPage() {
         .cc-badges { position:absolute; top:8px; left:8px; right:8px; display:flex; justify-content:space-between; gap:4px; pointer-events:none; }
         .cc-b { font-size:11px; font-weight:800; padding:3px 8px; border-radius:999px; background:rgba(255,255,255,.92); color:#1e1b4b; box-shadow:0 1px 4px rgba(0,0,0,.18); }
         .cc-b.fin { background:linear-gradient(120deg,#fde68a,#f9a8d4,#a5b4fc,#99f6e4); }
-        .cf-help { font-size:12px; color:#6b7280; margin:-4px 0 8px 0; }
         .cc-line { font-size:13px; color:#6b7280; font-weight:600; margin-bottom:6px; }
         .cc-line b { color:#1e1b4b; }
         .cc-tags { display:flex; flex-wrap:wrap; gap:5px; margin-bottom:6px; }
@@ -279,7 +278,6 @@ export default function CatalogoPage() {
                 <div className="cf-row"><span className="cf-lab">Acabado</span>
                   {optFinish.map(([v, n]) => <Chip key={v} k="fin" v={v} n={n} label={v === "Normal" ? "Normal" : v === "Holo" ? "✨ Holo" : "✨ " + v.replace("Reverse Holo", "Reverse")} />)}
                 </div>
-                <div className="cf-help">Holo: brilla la ilustración · Reverse: brilla todo menos la ilustración (con patrón de íconos, liso o con purpurina).</div>
                 <div className="cf-row"><span className="cf-lab">Tipo</span>
                   {optType.map(([v, n]) => (
                     <button key={v} className={`cf-chip ${f.type === v ? "on" : ""} ${n === 0 && f.type !== v ? "off" : ""}`} onClick={() => setFilter("type", v)}>

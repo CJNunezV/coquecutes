@@ -2,17 +2,8 @@
 // Las fotos van en la carpeta /public (ej: public/cartas/mi-carta.webp -> "/cartas/mi-carta.webp")
 
 // Cartas sueltas: nombre, expansión, idioma, estado, precio
-export const singleCards = [
-  {
-    id: "pk-c1",
-    name: "Mega Lucario ex",
-    expansion: "Mega Evolution Promos (MEP 033)",
-    language: "Inglés",
-    condition: "Near Mint",
-    price: 60,
-    image: "/cartas/mega-lucario-ex.webp",
-  },
-];
+// Las cartas sueltas ahora viven en data/cartas.js (inventario del binder).
+export const singleCards = [];
 
 // Productos sellados: nombre, expansión, idioma, precio
 export const sealedProducts = [

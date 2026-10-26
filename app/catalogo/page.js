@@ -97,7 +97,7 @@ export default function CatalogoPage() {
   };
   const optFinish = ["Normal", "Holo", "Reverse Holo · Patrón", "Reverse Holo · Liso"].map((v) => [v, opts("fin", "finish").find(([k]) => k === v)?.[1] || 0]);
   const optLang = ["Inglés", "Español"].map((v) => [v, opts("lang", "language").find(([k]) => k === v)?.[1] || 0]);
-  const optType = ["Planta", "Psíquico", "Siniestro", "Agua", "Acero"].map((v) => [v, opts("type", "type").find(([k]) => k === v)?.[1] || 0]);
+  const optType = ["Planta", "Psíquico", "Siniestro", "Agua", "Acero", "Incoloro", "Lucha"].map((v) => [v, opts("type", "type").find(([k]) => k === v)?.[1] || 0]);
   const optBorder = opts("border", "border");
   const optExp = opts("exp", "expansion").sort((a, b) => a[0].localeCompare(b[0]));
   const optIll = opts("ill", "illustrator").sort((a, b) => a[0].localeCompare(b[0]));
@@ -145,7 +145,7 @@ export default function CatalogoPage() {
       {label || v}<small>{n}</small>
     </button>
   );
-  const typeDot = { Planta: "#22c55e", "Psíquico": "#ec4899", Siniestro: "#0f766e", Agua: "#3b82f6", Acero: "#64748b" };
+  const typeDot = { Planta: "#22c55e", "Psíquico": "#ec4899", Siniestro: "#0f766e", Agua: "#3b82f6", Acero: "#64748b", Incoloro: "#a8a29e", Lucha: "#c2410c" };
 
   return (
     <div>

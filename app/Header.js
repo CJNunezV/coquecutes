@@ -28,8 +28,8 @@ const menus = [
     items: [
       { label: "Subasta actual", href: "/subastas#actual", emoji: "🔥" },
       { label: "Próximas subastas", href: "/subastas#calendario", emoji: "📅" },
-      { label: "¿Cómo funciona?", href: "/subastas#como-funciona", emoji: "❓" },
-      { label: "Resultados", href: "/subastas#resultados", emoji: "🏆" },
+      { label: "Reglas", href: "/subastas#reglas", emoji: "📋" },
+      { label: "Sorteo mensual", href: "/subastas#sorteo", emoji: "🎟️" },
     ],
   },
 ];

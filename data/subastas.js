@@ -1,22 +1,29 @@
 // ───────────────────────── SUBASTAS COQUECUTES ─────────────────────────
-// Todo lo de la sección /subastas se maneja desde este archivo.
+// Las subastas se hacen en Facebook (Coquecutes TCG Store). La web solo muestra
+// el calendario, la cuenta regresiva, las reglas y manda a Facebook.
 //
 // 1) CALENDARIO: 3 subastas por semana (lunes, miércoles y viernes).
-//    El número de subasta se calcula solo a partir de `referencia`:
-//    hoy lunes 26/10/2026 = Subasta #91, el miércoles 28/10 = #92, el viernes 30/10 = #93, etc.
-//    Si algún día se cuenta mal, solo corrige `referencia`.
+//    El número se calcula solo desde `referencia` (lunes 26/10/2026 = Subasta #91).
+//    Si algún día se descuadra, corrige `referencia`.
 // 2) QUÉ SE SUBASTA cada día: cambia `tipo` en `calendario` ("figuras" | "cartas" | "proxys").
-//    (Supuesto inicial: lunes = cartas, miércoles = figuras, viernes = proxys — ajústalo.)
-// 3) LOTES: agrega objetos a `lotes` con el número de subasta (`subasta`).
-//    Para actualizar una puja, edita `ofertaActual` (déjalo en null si aún no hay ofertas).
-//    Fotos: súbelas a /public/subastas/ y pon image: "/subastas/mi-foto.webp".
-// 4) RESULTADOS: cuando cierre una subasta, agrega una fila en `resultados`.
+// 3) LINKS: pega en `facebook.pagina` el link de tu página y, por cada subasta, el link
+//    del álbum en `albumes` (ej: 91: "https://www.facebook.com/media/set/?set=a.123...").
+//    Si una subasta no tiene álbum, el botón manda a la página.
 
 export const subastaConfig = {
-  referencia: { numero: 91, fecha: "2026-10-26" }, // fecha en que cierra la subasta #91 (lunes)
-  horaCierre: "21:00",                             // hora de Perú (UTC-5)
-  incremento: 1,                                   // puja mínima sobre la oferta actual (S/)
-  extension: "Si entra una oferta en los últimos 5 minutos, el cierre se extiende 5 minutos más.", // pon "" para quitarlo
+  referencia: { numero: 91, fecha: "2026-10-26" }, // fecha de cierre de la subasta #91
+  horaCierre: "22:00",                             // 10 PM, hora de Perú (UTC-5)
+  pujaInicial: 1,                                  // las ofertas empiezan desde S/1.00
+  seguidores: "600+",                              // seguidores en Facebook
+};
+
+export const facebook = {
+  nombre: "Coquecutes TCG Store",
+  pagina: "", // ← pega aquí el link de tu página de Facebook
+};
+
+export const albumes = {
+  // 91: "https://www.facebook.com/...",
 };
 
 export const calendario = [
@@ -32,15 +39,12 @@ export const tiposSubasta = {
   proxys:  { label: "Proxys",  emoji: "✨", grad: ["#f59e0b", "#ef4444"] },
 };
 
-// precioBase y ofertaActual en soles. demo:true = lote de ejemplo (bórralos al cargar los reales).
-export const lotes = [
-  { id: "l91-1", subasta: 91, nombre: "Charizard ex (Obsidian Flames)", detalle: "Inglés · Holo · Near Mint", precioBase: 15, ofertaActual: 22, image: "", demo: true },
-  { id: "l91-2", subasta: 91, nombre: "Lote 10 cartas Holo variadas", detalle: "Español/Inglés · Mix de expansiones", precioBase: 8, ofertaActual: null, image: "", demo: true },
-  { id: "l91-3", subasta: 91, nombre: "Pikachu Illustration (promo)", detalle: "Inglés · Near Mint", precioBase: 12, ofertaActual: 14, image: "", demo: true },
-  { id: "l92-1", subasta: 92, nombre: "Figura Gengar 15 cm", detalle: "Nueva en caja", precioBase: 25, ofertaActual: null, image: "", demo: true },
-  { id: "l92-2", subasta: 92, nombre: "Figura Eevee articulada", detalle: "Sin caja · Excelente estado", precioBase: 18, ofertaActual: null, image: "", demo: true },
-  { id: "l93-1", subasta: 93, nombre: "Proxy Umbreon VMAX Alt Art", detalle: "Acabado con crema", precioBase: 6, ofertaActual: null, image: "", demo: true },
+// Reglas (tomadas del flyer de la Subasta #91)
+export const reglas = [
+  { n: 1, titulo: "Productos", texto: "Cada publicación indica el producto y la hora exacta de cierre." },
+  { n: 2, titulo: "Pujas", texto: "Las ofertas empiezan desde S/1.00. No se aceptan céntimos." },
+  { n: 3, titulo: "Ganador", texto: "Al finalizar el tiempo de cierre, la oferta más alta será la ganadora. No está permitido editar ni eliminar las pujas." },
+  { n: 4, titulo: "Entregas", texto: "Puntos de entrega: Arenales, Full Market o Expocentro. En otro caso, los envíos se hacen por Shalom/Olva." },
 ];
 
-// { subasta: 90, tipo: "cartas", lote: "Mewtwo ex", precio: 18, ganador: "J. P." }
-export const resultados = [];
+export const sorteo = "Subasta ganada = 2 tickets para el sorteo de fin de mes.";

@@ -33,10 +33,15 @@ const withType = (item, typeId, name) => {
   const t = typeOf(typeId);
   return { id: `${item.id}-${t.id}`, name: `${name} · ${t.label}`, price: item.price + (t.extra || 0), image: item.image };
 };
+// Carta suelta: el precio depende del acabado (singlePrice)
+const singleItem = (s, typeId) => {
+  const t = typeOf(typeId);
+  return { id: `${s.id}-${t.id}`, name: `Proxy ${s.name} (${s.set}) · ${t.label}`, price: t.singlePrice, image: s.image };
+};
 /* ---------- Contexto de la página: acabado por defecto + modal informativo ---------- */
 const Ui = createContext({ defaultType: "frio", openInfo: () => {}, openQuick: () => {} });
 
-function TypePicker({ value, onChange, showInfo = true }) {
+function TypePicker({ value, onChange, showInfo = true, priceKey }) {
   const ui = useContext(Ui);
   const t = typeOf(value);
   return (
@@ -44,7 +49,7 @@ function TypePicker({ value, onChange, showInfo = true }) {
       <div className="px-types" role="radiogroup" aria-label="Tipo de proxy" style={{ marginBottom: "6px" }}>
         {proxyTypes.map((x) => (
           <button key={x.id} type="button" role="radio" aria-checked={value === x.id} className={`px-type ${value === x.id ? "is-active" : ""}`} onClick={() => onChange(x.id)}>
-            {x.label}{x.extra > 0 ? ` +S/${x.extra}` : ""}
+            {x.label}{priceKey ? ` · S/${x[priceKey]}` : x.extra > 0 ? ` +S/${x.extra}` : ""}
           </button>
         ))}
       </div>
@@ -130,14 +135,14 @@ function TypeModal({ typeId, onClose, onChoose }) {
 }
 
 /* ---------- Guía de acabados (arriba de la página) ---------- */
-function FinishGuide({ value, onPick }) {
+function FinishGuide({ value, onPick, mode }) {
   const ui = useContext(Ui);
   return (
     <div className="px-guide">
       <div style={{ display: "flex", alignItems: "baseline", justifyContent: "space-between", gap: "10px", flexWrap: "wrap", marginBottom: "12px" }}>
         <div>
-          <div style={{ fontSize: "13px", fontWeight: 800, color: "#7c3aed", letterSpacing: "1px" }}>PASO 1 · ELIGE TU ACABADO</div>
-          <div style={{ color: "#6b7280", fontSize: "14px" }}>Mira el video de cada tipo para saber cómo queda. Luego elige tus cartas.</div>
+          <div style={{ fontSize: "13px", fontWeight: 800, color: "#7c3aed", letterSpacing: "1px" }}>{mode === "info" ? "ACABADOS DISPONIBLES" : "PASO 1 · ELIGE TU ACABADO"}</div>
+          <div style={{ color: "#6b7280", fontSize: "14px" }}>{mode === "info" ? "Mira el video de cada tipo para saber cómo queda. El acabado lo eliges al añadir tu carta." : "Mira el video de cada tipo para saber cómo queda. Luego elige tus cartas."}</div>
         </div>
       </div>
       <div className="px-guide-grid">
@@ -150,10 +155,14 @@ function FinishGuide({ value, onPick }) {
             <div style={{ padding: "12px 14px 14px" }}>
               <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center" }}>
                 <strong style={{ color: "#1e1b4b", fontSize: "16px" }}>{t.label}</strong>
-                <span style={{ fontSize: "12px", fontWeight: 700, color: "#7c3aed" }}>{t.extra > 0 ? `+S/${t.extra}` : "Precio base"}</span>
+                <span style={{ fontSize: "12px", fontWeight: 700, color: "#7c3aed" }}>{mode === "info" ? `S/${t.singlePrice} c/u` : t.extra > 0 ? `+S/${t.extra}` : "Precio base"}</span>
               </div>
               <div style={{ color: "#6b7280", fontSize: "13px", minHeight: "36px", margin: "4px 0 10px", lineHeight: 1.4 }}>{t.summary || "Toca ▶ para ver cómo queda."}</div>
-              <button className={`px-pick ${value === t.id ? "is-active" : ""}`} onClick={() => onPick(t.id)}>{value === t.id ? "✓ Elegido" : "Elegir este"}</button>
+              {mode === "info" ? (
+                <button className="px-pick" onClick={() => ui.openInfo(t.id)}>▶ Ver cómo queda</button>
+              ) : (
+                <button className={`px-pick ${value === t.id ? "is-active" : ""}`} onClick={() => onPick(t.id)}>{value === t.id ? "✓ Elegido" : "Elegir este"}</button>
+              )}
             </div>
           </div>
         ))}
@@ -179,7 +188,7 @@ function QuickView({ s, cart, startType, onClose }) {
   const [tid, setTid] = useState(startType);
   const [tilt, setTilt] = useState({ x: 0, y: 0, on: false });
   const t = typeOf(tid);
-  const item = withType(s, tid, `Proxy ${s.name} (${s.set})`);
+  const item = singleItem(s, tid);
   const move = (e) => {
     const r = e.currentTarget.getBoundingClientRect();
     const px = (e.clientX - r.left) / r.width - 0.5, py = (e.clientY - r.top) / r.height - 0.5;
@@ -200,7 +209,7 @@ function QuickView({ s, cart, startType, onClose }) {
           <div style={{ fontSize: "28px", fontWeight: 900, color: "#7c3aed", marginBottom: "14px" }}>S/{item.price.toFixed(2)}</div>
 
           <div style={{ fontSize: "12px", fontWeight: 800, color: "#1e1b4b", letterSpacing: ".5px", marginBottom: "6px" }}>ACABADO</div>
-          <TypePicker value={tid} onChange={setTid} />
+          <TypePicker value={tid} onChange={setTid} priceKey="singlePrice" />
           {t.summary && <p style={{ margin: "0 0 12px", color: "#4b5563", fontSize: "14px", lineHeight: 1.5 }}>{t.summary}</p>}
 
           <div className="px-receive">
@@ -226,12 +235,53 @@ function QuickView({ s, cart, startType, onClose }) {
   );
 }
 
+/* ---------- Modal: elegir acabado al añadir una carta suelta ---------- */
+function AddModal({ s, cart, onClose }) {
+  const ui = useContext(Ui);
+  return (
+    <Modal onClose={onClose}>
+      <div style={{ padding: "26px 24px 24px" }}>
+        <div style={{ display: "flex", gap: "14px", alignItems: "center", marginBottom: "18px", paddingRight: "30px" }}>
+          <div style={{ width: "64px", flexShrink: 0 }}><MiniCard grad={s.grad} image={s.image} /></div>
+          <div>
+            <div style={{ fontSize: "12px", fontWeight: 800, color: "#7c3aed", letterSpacing: "1px" }}>ELIGE TU ACABADO</div>
+            <h3 style={{ fontSize: "20px", fontWeight: 900, color: "#1e1b4b", margin: "2px 0 0", lineHeight: 1.2 }}>{s.name}</h3>
+            <div style={{ fontSize: "13px", color: "#9ca3af" }}>{s.set}</div>
+          </div>
+        </div>
+        <div style={{ display: "grid", gap: "10px" }}>
+          {proxyTypes.map((t) => {
+            const item = singleItem(s, t.id);
+            const done = cart.added === item.id;
+            return (
+              <div key={t.id} className="px-opt">
+                <span style={{ fontSize: "26px" }}>{t.emoji}</span>
+                <div style={{ flex: 1, minWidth: 0 }}>
+                  <div style={{ fontWeight: 800, color: "#1e1b4b", fontSize: "16px" }}>{t.label}</div>
+                  <button type="button" className="px-info" onClick={() => ui.openInfo(t.id)}><span className="px-info-play">▶</span> Ver cómo queda</button>
+                </div>
+                <strong style={{ color: "#7c3aed", fontSize: "20px", marginRight: "6px" }}>S/{t.singlePrice}</strong>
+                <button className={`px-btn px-opt-btn ${done ? "is-added" : ""}`} onClick={() => cart.add(item)}>{done ? "✓ Añadido" : "Añadir"}</button>
+              </div>
+            );
+          })}
+        </div>
+        <div style={{ display: "flex", gap: "10px", marginTop: "18px", flexWrap: "wrap" }}>
+          <button className="px-ghost" style={{ flex: 1, cursor: "pointer", fontFamily: "inherit" }} onClick={onClose}>Seguir viendo</button>
+          <a href="/checkout" className="px-ghost" style={{ flex: 1, background: "#f5f3ff", color: "#7c3aed", borderColor: "#c4b5fd" }}>Ir a pagar →</a>
+        </div>
+      </div>
+    </Modal>
+  );
+}
+
 /* ---------- Cartas sueltas ---------- */
 function Singles({ cart }) {
   const ui = useContext(Ui);
   const [q, setQ] = useState("");
-  const [types, setTypes] = useState({});
+  const [adding, setAdding] = useState(null);
   const list = singles.filter((s) => (s.name + s.set).toLowerCase().includes(q.trim().toLowerCase()));
+  const minPrice = Math.min(...proxyTypes.map((t) => t.singlePrice));
   return (
     <div>
       <div className="px-search">
@@ -239,33 +289,27 @@ function Singles({ cart }) {
         <input value={q} onChange={(e) => setQ(e.target.value)} placeholder="Busca por carta o set…" aria-label="Buscar cartas" />
       </div>
       <div className="px-grid-cards">
-        {list.map((s, idx) => {
-          const tid = types[s.id] || ui.defaultType;
-          const item = withType(s, tid, `Proxy ${s.name} (${s.set})`);
-          return (
-            <div key={s.id} className="px-lift">
-              <button className="px-cardbtn" onClick={() => ui.openQuick(s, tid)} aria-label={`Ver ${s.name} en grande`}>
-                <MiniCard grad={s.grad} image={s.image} title={s.name} sub={s.set} />
-                {idx < 4 && !q && <span className="px-new">NUEVO</span>}
-                <span className="px-zoom">🔍 Ver en grande</span>
-              </button>
-              <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", margin: "10px 2px 8px" }}>
-                <strong style={{ color: "#7c3aed", fontSize: "17px" }}>S/{item.price.toFixed(2)}</strong>
-                <span style={{ fontSize: "12px", color: "#9ca3af" }}>por unidad</span>
-              </div>
-              <TypePicker value={tid} onChange={(v) => setTypes((p) => ({ ...p, [s.id]: v }))} />
-              <button className={`px-btn ${cart.added === item.id ? "is-added" : ""}`} onClick={() => cart.add(item)}>
-                {cart.added === item.id ? "¡Añadido!" : "Añadir"}
-              </button>
+        {list.map((s, idx) => (
+          <div key={s.id} className="px-lift">
+            <button className="px-cardbtn" onClick={() => ui.openQuick(s, ui.defaultType)} aria-label={`Ver ${s.name} en grande`}>
+              <MiniCard grad={s.grad} image={s.image} title={s.name} sub={s.set} />
+              {idx < 4 && !q && <span className="px-new">NUEVO</span>}
+              <span className="px-zoom">🔍 Ver en grande</span>
+            </button>
+            <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", margin: "10px 2px 10px" }}>
+              <strong style={{ color: "#7c3aed", fontSize: "17px" }}>Desde S/{minPrice.toFixed(2)}</strong>
+              <span style={{ fontSize: "12px", color: "#9ca3af" }}>por unidad</span>
             </div>
-          );
-        })}
+            <button className="px-btn" onClick={() => setAdding(s)}>Añadir</button>
+          </div>
+        ))}
       </div>
       {list.length === 0 && (
         <p style={{ textAlign: "center", color: "#6b7280", padding: "30px 0" }}>
           No encontramos esa carta. <a href={waLink(`Hola Coquecutes, ¿pueden hacer el proxy de: ${q}?`)} target="_blank" rel="noopener noreferrer" style={{ color: "#7c3aed", fontWeight: 700 }}>Pídela por WhatsApp</a>
         </p>
       )}
+      {adding && <AddModal s={adding} cart={cart} onClose={() => setAdding(null)} />}
     </div>
   );
 }
@@ -411,8 +455,6 @@ function Custom() {
 
 /* ---------- Decks ---------- */
 function Decks({ cart }) {
-  const ui = useContext(Ui);
-  const [types, setTypes] = useState({});
   return (
     <div className="px-grid-decks">
       {decks.map((d) => (
@@ -430,12 +472,10 @@ function Decks({ cart }) {
           <div style={{ color: "#6b7280", fontSize: "14px", margin: "4px 0 4px" }}>{d.style}</div>
           {d.core && <div style={{ color: "#9ca3af", fontSize: "12.5px", margin: "0 0 14px" }}>Incluye: {d.core}</div>}
           {(() => {
-            const tid = types[d.id] || ui.defaultType;
-            const item = withType({ ...d, image: d.images ? encodeURI(d.images[0]) : undefined }, tid, `Deck proxy ${d.name}`);
+            const item = { id: d.id, name: `Deck proxy ${d.name}`, price: d.price, image: d.images ? encodeURI(d.images[0]) : undefined };
             return (
               <div style={{ marginTop: "auto" }}>
                 <div style={{ color: "#7c3aed", fontWeight: 800, fontSize: "22px", marginBottom: "10px" }}>S/{item.price.toFixed(2)}</div>
-                <TypePicker value={tid} onChange={(v) => setTypes((p) => ({ ...p, [d.id]: v }))} />
                 <button className={`px-btn ${cart.added === item.id ? "is-added" : ""}`} onClick={() => cart.add(item)}>
                   {cart.added === item.id ? "¡Añadido!" : "Añadir deck"}
                 </button>
@@ -518,6 +558,10 @@ export default function ProxysPage() {
         .px-quick-img { display:flex; flex-direction:column; align-items:center; justify-content:center; background:linear-gradient(145deg,#f5f3ff,#fdf2f8); border-radius:20px; padding:20px; }
         .px-receive { background:#faf5ff; border:1px solid #ede9fe; border-radius:14px; padding:12px 14px; }
         .px-receive ul { margin:0; padding-left:18px; color:#374151; font-size:14px; line-height:1.7; }
+        .px-opt { display:flex; align-items:center; gap:12px; border:1.5px solid #ede9fe; border-radius:16px; padding:12px 14px; background:#fff; transition:border-color .2s, box-shadow .2s; }
+        .px-opt:hover { border-color:#c4b5fd; box-shadow:0 6px 16px rgba(124,58,237,.1); }
+        .px-opt-btn { width:auto; min-width:104px; padding:11px 14px; }
+        @media (max-width:520px) { .px-opt { flex-wrap:wrap; } .px-opt-btn { width:100%; } }
         @keyframes pxFade { from { opacity:0; } to { opacity:1; } }
         @media (max-width:860px) { .px-quick { grid-template-columns:1fr; padding:20px 16px; gap:18px; } .px-quick-img > div:first-child { height:min(52vh,420px) !important; } .px-overlay { padding:10px; align-items:flex-end; } .px-modal { border-radius:22px 22px 0 0; } }
         .px-btn { width:100%; border:none; cursor:pointer; background:#7c3aed; color:#fff; font-weight:800; font-size:13px; letter-spacing:.5px; text-transform:uppercase; padding:13px; border-radius:10px; font-family:inherit; transition:background .2s, transform .1s; }
@@ -561,7 +605,7 @@ export default function ProxysPage() {
       </div>
 
       <Ui.Provider value={ui}>
-        {tab !== "personalizados" && <FinishGuide value={defaultType} onPick={setDefaultType} />}
+        {(tab === "sueltas" || tab === "extended-art") && <FinishGuide value={defaultType} onPick={setDefaultType} mode={tab === "sueltas" ? "info" : undefined} />}
         {tab === "sueltas" && <Singles cart={cart} />}
         {tab === "extended-art" && <Extended cart={cart} />}
         {tab === "personalizados" && <Custom />}

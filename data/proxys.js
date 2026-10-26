@@ -17,9 +17,9 @@
 // ⚠️ Completa con la información real de cada tipo.
 // ─────────────────────────────────────────────────────────────
 export const proxyTypes = [
-  { id: "frio", label: "En frío", extra: 0, emoji: "❄️", summary: "", desc: "", finish: "", bestFor: "", video: "", poster: "" },
-  { id: "crema", label: "Con crema", extra: 0, emoji: "🍦", summary: "", desc: "", finish: "", bestFor: "", video: "", poster: "" },
-  { id: "calor", label: "Al calor", extra: 0, emoji: "🔥", summary: "", desc: "", finish: "", bestFor: "", video: "", poster: "" },
+  { id: "frio", singlePrice: 12, label: "En frío", extra: 0, emoji: "❄️", summary: "", desc: "", finish: "", bestFor: "", video: "", poster: "" },
+  { id: "crema", singlePrice: 14, label: "Con crema", extra: 0, emoji: "🍦", summary: "", desc: "", finish: "", bestFor: "", video: "", poster: "" },
+  { id: "calor", singlePrice: 16, label: "Al calor", extra: 0, emoji: "🔥", summary: "", desc: "", finish: "", bestFor: "", video: "", poster: "" },
 ];
 
 // Información general que se muestra en "Lo que recibes" (editable)
@@ -29,7 +29,8 @@ export const proxyInfo = {
   disclaimer: "Los proxys son reproducciones para coleccionismo y juego casual. No son cartas oficiales ni se venden como originales.",
 };
 
-// Cartas sueltas (1 proxy por ítem)
+// Cartas sueltas (1 proxy por ítem). El precio depende del acabado: ver `singlePrice` en proxyTypes (12 / 14 / 16).
+// El campo `price` de cada carta ya no se usa para las sueltas.
 export const singles = [
   { id: "px-s7", name: "Totoro Poncho Pikachu", set: "Fan Art · Promo", price: 15, grad: ["#86efac", "#166534"], image: "/proxys/Singles/0ae16301-89cf-4a50-a111-edd2766caad7.jpg" },
   { id: "px-s8", name: "Dear Santa Pikachu ex", set: "Fan Art · Navidad", price: 15, grad: ["#ef4444", "#7f1d1d"], image: "/proxys/Singles/671a8399-83b8-4dd4-b9fe-e4ecfa0589f0.jpg" },

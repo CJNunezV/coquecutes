@@ -23,6 +23,15 @@ const menus = [
       { label: "Decks", href: "/proxys#decks", emoji: "📚" },
     ],
   },
+  {
+    label: "Subastas",
+    items: [
+      { label: "Subasta actual", href: "/subastas#actual", emoji: "🔥" },
+      { label: "Próximas subastas", href: "/subastas#calendario", emoji: "📅" },
+      { label: "¿Cómo funciona?", href: "/subastas#como-funciona", emoji: "❓" },
+      { label: "Resultados", href: "/subastas#resultados", emoji: "🏆" },
+    ],
+  },
 ];
 
 export default function Header() {

@@ -47,4 +47,4 @@ export const reglas = [
   { n: 4, titulo: "Entregas", texto: "Puntos de entrega: Arenales, Full Market o Expocentro. En otro caso, los envíos se hacen por Shalom/Olva." },
 ];
 
-export const sorteo = "Subasta ganada = 2 tickets para el sorteo de fin de mes.";
+export const sorteo = "Los domingos cada subasta ganada vale 2 tickets.";

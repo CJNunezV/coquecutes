@@ -1,5 +1,6 @@
 "use client";
 import { useState, useEffect, useMemo } from "react";
+import Link from "next/link";
 import { subastaConfig, facebook, albumes, calendario, tiposSubasta, reglas, sorteo } from "../../data/subastas";
 
 const WA = "51962167068";
@@ -175,12 +176,15 @@ export default function SubastasPage() {
       </section>
 
       {/* ---------- Sorteo ---------- */}
-      <section id="sorteo" style={{ margin: "28px 0 0", padding: "22px 26px", borderRadius: "22px", background: "linear-gradient(135deg,#fdf2f8,#f5f3ff)", border: "1px solid #fbcfe8", display: "flex", gap: "16px", alignItems: "center" }}>
-        <span style={{ fontSize: "40px" }}>🎟️</span>
-        <div>
-          <strong style={{ fontSize: "18px", color: "#1e1b4b" }}>Gana una subasta, juegas el sorteo</strong>
-          <p style={{ margin: "4px 0 0", color: "#6b7280", fontSize: "14px" }}>{sorteo}</p>
+      <section id="sorteo" style={{ margin: "28px 0 0", padding: "22px 26px", borderRadius: "22px", background: "linear-gradient(135deg,#fdf2f8,#f5f3ff)", border: "1px solid #fbcfe8", display: "flex", gap: "16px", alignItems: "center", justifyContent: "space-between", flexWrap: "wrap" }}>
+        <div style={{ display: "flex", gap: "16px", alignItems: "center" }}>
+          <span style={{ fontSize: "40px" }}>🎟️</span>
+          <div>
+            <strong style={{ fontSize: "18px", color: "#1e1b4b" }}>Cada subasta ganada = 1 ticket para el sorteo del mes</strong>
+            <p style={{ margin: "4px 0 0", color: "#6b7280", fontSize: "14px" }}>{sorteo} Mira los premios y a los ganadores anteriores.</p>
+          </div>
         </div>
+        <Link className="sb-cta" href="/sorteo">Ver el sorteo</Link>
       </section>
 
       {/* ---------- Vende en subasta ---------- */}

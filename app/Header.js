@@ -29,7 +29,7 @@ const menus = [
       { label: "Subasta actual", href: "/subastas#actual", emoji: "🔥" },
       { label: "Próximas subastas", href: "/subastas#calendario", emoji: "📅" },
       { label: "Reglas", href: "/subastas#reglas", emoji: "📋" },
-      { label: "Sorteo mensual", href: "/subastas#sorteo", emoji: "🎟️" },
+      { label: "Sorteo del mes", href: "/sorteo", emoji: "🎟️" },
     ],
   },
 ];
@@ -161,6 +161,7 @@ export default function Header() {
               </div>
             </div>
           ))}
+          <Link href="/sorteo" className="hd-link hd-hide-sm">Sorteo 🎟️</Link>
         </nav>
 
         <div style={{ flex: 1 }} />

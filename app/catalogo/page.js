@@ -16,7 +16,7 @@ const allItems = [
     image: p.thumbnail || (p.images && p.images[0]) || "/placeholder.svg", zoom: p.thumbnailZoom || 85,
   })),
   ...singleCards.map((c) => ({ kind: "carta", ...c })),
-  ...cartas.map((c) => ({ kind: "carta", ...c })),
+  ...cartas.map((c) => ({ kind: "carta", ...c, border: c.yellowBorder ? "Contorno amarillo" : "" })),
   ...sealedProducts.map((s) => ({ kind: "sellado", ...s })),
 ];
 
@@ -50,13 +50,13 @@ export default function CatalogoPage() {
   const [cols, setCols] = useState(4);
   const [sort, setSort] = useState("default");
   const [added, setAdded] = useState(null);
-  const [f, setF] = useState({ q: "", lang: "", fin: "", type: "", exp: "", ill: "" });
+  const [f, setF] = useState({ q: "", lang: "", fin: "", type: "", exp: "", ill: "", border: "" });
   const [showF, setShowF] = useState(false);
   const [qty, setQty] = useState({});
   const setFilter = (k, v) => { setF((o) => ({ ...o, [k]: o[k] === v && k !== "q" ? "" : v })); setLimit(0); };
   const [limit, setLimit] = useState(0);
   const activeF = Object.values(f).filter(Boolean).length;
-  const clearF = () => { setF({ q: "", lang: "", fin: "", type: "", exp: "", ill: "" }); setLimit(0); };
+  const clearF = () => { setF({ q: "", lang: "", fin: "", type: "", exp: "", ill: "", border: "" }); setLimit(0); };
 
   useEffect(() => {
     const read = () => {
@@ -82,6 +82,7 @@ export default function CatalogoPage() {
     if (skip !== "type" && f.type && c.type !== f.type) return false;
     if (skip !== "exp" && f.exp && c.expansion !== f.exp) return false;
     if (skip !== "ill" && f.ill && c.illustrator !== f.ill) return false;
+    if (skip !== "border" && f.border && c.border !== f.border) return false;
     if (f.q) {
       const hay = norm([c.name, c.expansion, c.expansionEn, c.setCode, c.number, c.illustrator, c.type].join(" "));
       if (!f.q.split(/\s+/).every((w) => hay.includes(norm(w)))) return false;
@@ -96,7 +97,8 @@ export default function CatalogoPage() {
   };
   const optFinish = ["Normal", "Holo", "Reverse Holo · Patrón", "Reverse Holo · Liso"].map((v) => [v, opts("fin", "finish").find(([k]) => k === v)?.[1] || 0]);
   const optLang = ["Inglés", "Español"].map((v) => [v, opts("lang", "language").find(([k]) => k === v)?.[1] || 0]);
-  const optType = ["Planta", "Psíquico", "Siniestro"].map((v) => [v, opts("type", "type").find(([k]) => k === v)?.[1] || 0]);
+  const optType = ["Planta", "Psíquico", "Siniestro", "Agua"].map((v) => [v, opts("type", "type").find(([k]) => k === v)?.[1] || 0]);
+  const optBorder = opts("border", "border");
   const optExp = opts("exp", "expansion").sort((a, b) => a[0].localeCompare(b[0]));
   const optIll = opts("ill", "illustrator").sort((a, b) => a[0].localeCompare(b[0]));
 
@@ -143,7 +145,7 @@ export default function CatalogoPage() {
       {label || v}<small>{n}</small>
     </button>
   );
-  const typeDot = { Planta: "#22c55e", "Psíquico": "#ec4899", Siniestro: "#0f766e" };
+  const typeDot = { Planta: "#22c55e", "Psíquico": "#ec4899", Siniestro: "#0f766e", Agua: "#3b82f6" };
 
   return (
     <div>
@@ -278,6 +280,15 @@ export default function CatalogoPage() {
                 <div className="cf-row"><span className="cf-lab">Acabado</span>
                   {optFinish.map(([v, n]) => <Chip key={v} k="fin" v={v} n={n} label={v === "Normal" ? "Normal" : v === "Holo" ? "✨ Holo" : "✨ " + v.replace("Reverse Holo", "Reverse")} />)}
                 </div>
+                {optBorder.length > 0 && (
+                  <div className="cf-row"><span className="cf-lab">Contorno</span>
+                    {optBorder.map(([v, n]) => (
+                      <button key={v} className={`cf-chip ${f.border === v ? "on" : ""}`} onClick={() => setFilter("border", v)}>
+                        <span style={{ width: 12, height: 12, borderRadius: "3px", background: "#facc15", border: "1px solid #ca8a04", display: "inline-block" }} />{v}<small>{n}</small>
+                      </button>
+                    ))}
+                  </div>
+                )}
                 <div className="cf-row"><span className="cf-lab">Tipo</span>
                   {optType.map(([v, n]) => (
                     <button key={v} className={`cf-chip ${f.type === v ? "on" : ""} ${n === 0 && f.type !== v ? "off" : ""}`} onClick={() => setFilter("type", v)}>

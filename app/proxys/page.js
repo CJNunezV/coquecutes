@@ -256,11 +256,11 @@ function AddModal({ s, cart, onClose }) {
             return (
               <div key={t.id} className="px-opt">
                 <span style={{ fontSize: "26px" }}>{t.emoji}</span>
-                <div style={{ flex: 1, minWidth: 0 }}>
-                  <div style={{ fontWeight: 800, color: "#1e1b4b", fontSize: "16px" }}>{t.label}</div>
-                  <button type="button" className="px-info" onClick={() => ui.openInfo(t.id)}><span className="px-info-play">▶</span> Ver cómo queda</button>
+                <div className="px-opt-info">
+                  <div style={{ fontWeight: 800, color: "#1e1b4b", fontSize: "16px", whiteSpace: "nowrap" }}>{t.label}</div>
+                  <button type="button" className="px-info" style={{ whiteSpace: "nowrap" }} onClick={() => ui.openInfo(t.id)}><span className="px-info-play">▶</span> Ver cómo queda</button>
                 </div>
-                <strong style={{ color: "#7c3aed", fontSize: "20px", marginRight: "6px" }}>S/{t.singlePrice}</strong>
+                <strong className="px-opt-price">S/{t.singlePrice}</strong>
                 <button className={`px-btn px-opt-btn ${done ? "is-added" : ""}`} onClick={() => cart.add(item)}>{done ? "✓ Añadido" : "Añadir"}</button>
               </div>
             );
@@ -560,8 +560,10 @@ export default function ProxysPage() {
         .px-receive ul { margin:0; padding-left:18px; color:#374151; font-size:14px; line-height:1.7; }
         .px-opt { display:flex; align-items:center; gap:12px; border:1.5px solid #ede9fe; border-radius:16px; padding:12px 14px; background:#fff; transition:border-color .2s, box-shadow .2s; }
         .px-opt:hover { border-color:#c4b5fd; box-shadow:0 6px 16px rgba(124,58,237,.1); }
-        .px-opt-btn { width:auto; min-width:104px; padding:11px 14px; }
-        @media (max-width:520px) { .px-opt { flex-wrap:wrap; } .px-opt-btn { width:100%; } }
+        .px-opt .px-opt-btn { width:auto; flex:0 0 auto; min-width:112px; padding:11px 14px; }
+        .px-opt-info { flex:1 1 auto; min-width:0; }
+        .px-opt-price { flex:0 0 auto; color:#7c3aed; font-size:20px; font-weight:800; white-space:nowrap; }
+        @media (max-width:520px) { .px-opt { flex-wrap:wrap; } .px-opt .px-opt-btn { width:100%; flex:1 1 100%; } .px-opt-info { flex:1 1 0; } }
         @keyframes pxFade { from { opacity:0; } to { opacity:1; } }
         @media (max-width:860px) { .px-quick { grid-template-columns:1fr; padding:20px 16px; gap:18px; } .px-quick-img > div:first-child { height:min(52vh,420px) !important; } .px-overlay { padding:10px; align-items:flex-end; } .px-modal { border-radius:22px 22px 0 0; } }
         .px-btn { width:100%; border:none; cursor:pointer; background:#7c3aed; color:#fff; font-weight:800; font-size:13px; letter-spacing:.5px; text-transform:uppercase; padding:13px; border-radius:10px; font-family:inherit; transition:background .2s, transform .1s; }

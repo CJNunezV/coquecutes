@@ -317,21 +317,22 @@ function Singles({ cart }) {
 
 /* ---------- Extended Art: arte 3x3, 8 cartas (sin la central) ---------- */
 const tcgImg = (id) => `https://product-images.tcgplayer.com/fit-in/200x279/${id}.jpg`;
-const CenterCard = ({ id, c, hide }) => (
+const localCard = (slug) => `/proxys/ExtendedArt/cartas/${slug}.jpg`;
+const CenterCard = ({ id, c, hide, slug }) => (
   <div style={{ position: "absolute", left: `${c.left}%`, top: `${c.top}%`, width: `${c.w}%`, height: `${c.h}%`, border: "2.5px dashed rgba(255,255,255,0.95)", borderRadius: "6px", background: "rgba(10,8,30,0.35)", overflow: "hidden", pointerEvents: "none" }}>
-    {id && !hide && <img key={id} src={tcgImg(id)} alt="" decoding="async" style={{ animation: "pxFade .3s both", width: "100%", height: "100%", objectFit: "cover", display: "block" }} />}
+    {(id || slug) && !hide && <img key={id || slug} src={id ? tcgImg(id) : localCard(slug)} alt="" decoding="async" onError={(e) => { e.currentTarget.style.display = "none"; }} style={{ animation: "pxFade .3s both", width: "100%", height: "100%", objectFit: "cover", display: "block" }} />}
   </div>
 );
 
 const TW = 44, TH = 62;
 function Thumb({ p }) {
   const box = { width: TW, height: TH, borderRadius: 8, flexShrink: 0, position: "relative", overflow: "hidden", background: p.t != null ? `url(${SPRITE.src}) -${(p.t % SPRITE.cols) * TW}px -${Math.floor(p.t / SPRITE.cols) * TH}px / ${SPRITE.cols * TW}px auto` : p.image ? `url(${p.image}) center/cover` : gradBg(p.grad) };
-  const rects = p.centers ? p.centers.map((c, i) => ({ c, id: p.cards[i] })) : p.t != null ? [{ c: p.center, id: p.card }] : [];
+  const rects = p.centers ? p.centers.map((c, i) => ({ c, id: p.cards[i] })) : p.t != null ? [{ c: p.center, id: p.card, slug: p.id.slice(3) }] : [];
   return (
     <span style={box}>
-      {rects.map(({ c, id }, i) => c && id ? (
+      {rects.map(({ c, id, slug }, i) => c && (id || slug) ? (
         <span key={i} style={{ position: "absolute", left: `${c.left}%`, top: `${c.top}%`, width: `${c.w}%`, height: `${c.h}%`, overflow: "hidden", borderRadius: 1 }}>
-          <img src={tcgImg(id)} alt="" decoding="async" onError={(e) => { e.currentTarget.style.display = "none"; }} style={{ width: "100%", height: "100%", objectFit: "cover", display: "block" }} />
+          <img src={id ? tcgImg(id) : localCard(slug)} alt="" decoding="async" onError={(e) => { e.currentTarget.style.display = "none"; }} style={{ width: "100%", height: "100%", objectFit: "cover", display: "block" }} />
         </span>
       ) : null)}
     </span>
@@ -371,7 +372,7 @@ function Extended({ cart }) {
             <img key={pack.image} src={pack.image} alt={`Extended Art ${pack.name}`} decoding="async" style={{ animation: "pxFade .25s both", width: "100%", height: "auto", display: "block" }} />
             {evo
               ? pack.centers.map((c, i) => <CenterCard key={i} id={pack.cards[i]} c={c} />)
-              : <CenterCard id={pack.card} c={pack.center || { left: 35.2, top: 34.5, w: 29.8, h: 30.4 }} />}
+              : <CenterCard id={pack.card} slug={pack.id.slice(3)} c={pack.center || { left: 35.2, top: 34.5, w: 29.8, h: 30.4 }} />}
             {!evo && <div style={{ position: "absolute", left: "50%", top: `${((pack.center || { top: 34.5 }).top) + ((pack.center || { h: 30.4 }).h) + 1.5}%`, transform: "translateX(-50%)", background: "#1e1b4b", color: "#fff", fontSize: "12px", fontWeight: 800, lineHeight: 1.2, padding: "7px 12px", borderRadius: "999px", whiteSpace: "nowrap", boxShadow: "0 6px 14px rgba(0,0,0,0.35)", border: "1.5px solid rgba(255,255,255,0.8)" }}>🚫 Carta central no incluida</div>}
             {evo && <div style={{ position: "absolute", left: 0, right: 0, bottom: 0 }} />}
           </div>

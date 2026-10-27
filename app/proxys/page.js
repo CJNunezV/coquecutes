@@ -3,6 +3,7 @@ import { addToCart as addCartItem } from "../cart";
 import { useState, useEffect, useRef, useContext, createContext } from "react";
 import Link from "next/link";
 import { singles, extendedPacks, customTypes, customExamples, decks, proxyTypes, proxyInfo } from "../../data/proxys";
+import { extendedSingles, extendedEvolutions, EXT_PRICE, EVO_PRICE } from "../../data/extendedArt";
 
 const WA = "51962167068";
 const waLink = (msg) => `https://wa.me/${WA}?text=${encodeURIComponent(msg)}`;
@@ -315,24 +316,46 @@ function Singles({ cart }) {
 }
 
 /* ---------- Extended Art: arte 3x3, 8 cartas (sin la central) ---------- */
+const tcgImg = (id) => `https://product-images.tcgplayer.com/fit-in/437x610/${id}.jpg`;
+const CenterCard = ({ id, c, hide }) => (
+  <div style={{ position: "absolute", left: `${c.left}%`, top: `${c.top}%`, width: `${c.w}%`, height: `${c.h}%`, border: "2.5px dashed rgba(255,255,255,0.95)", borderRadius: "6px", background: "rgba(10,8,30,0.35)", overflow: "hidden", pointerEvents: "none" }}>
+    {id && !hide && <img src={tcgImg(id)} alt="" loading="lazy" style={{ width: "100%", height: "100%", objectFit: "cover", display: "block" }} />}
+  </div>
+);
+
 function Extended({ cart }) {
-  const [sel, setSel] = useState(0);
+  const [mode, setMode] = useState("single");
+  const [selId, setSelId] = useState(null);
+  const [q, setQ] = useState("");
+  const [setF, setSetF] = useState("todos");
   const ui = useContext(Ui);
   const [own, setOwn] = useState(null);
   const type = own || ui.defaultType;
   const setType = setOwn;
-  const pack = extendedPacks[sel];
-  const packItem = withType(pack, type, `Extended Art ${pack.name} (8 cartas)`);
+  const singlesAll = [
+    ...extendedPacks.map((p) => ({ ...p, set: "Destacados", card: null })),
+    ...extendedSingles.map((p) => ({ ...p, price: EXT_PRICE })),
+  ];
+  const evoAll = extendedEvolutions.map((p) => ({ ...p, price: EVO_PRICE }));
+  const all = mode === "single" ? singlesAll : evoAll;
+  const sets = Array.from(new Set(all.map((p) => p.set)));
+  const ql = q.trim().toLowerCase();
+  const list = all.filter((p) => (setF === "todos" || p.set === setF) && (!ql || `${p.name} ${p.set}`.toLowerCase().includes(ql)));
+  const pack = all.find((p) => p.id === selId) || list[0] || all[0];
+  const evo = mode === "evo";
+  const packItem = withType(pack, type, evo ? `Extended Art ${pack.name} (6 cartas)` : `Extended Art ${pack.name} (8 cartas)`);
+  const switchMode = (m) => { setMode(m); setSelId(null); setSetF("todos"); setQ(""); };
   return (
     <div className="px-ext">
       <div className="px-binder">
-        <div style={{ fontSize: "12px", fontWeight: 800, letterSpacing: "2px", color: "#c4b5fd", marginBottom: "12px", textAlign: "center" }}>ARTE 3×3 · 8 CARTAS</div>
+        <div style={{ fontSize: "12px", fontWeight: 800, letterSpacing: "2px", color: "#c4b5fd", marginBottom: "12px", textAlign: "center" }}>{evo ? "LÍNEA EVOLUTIVA · 6 CARTAS" : "ARTE 3×3 · 8 CARTAS"}</div>
         {pack.image ? (
           <div style={{ position: "relative", borderRadius: "12px", overflow: "hidden", lineHeight: 0 }}>
             <img src={pack.image} alt={`Extended Art ${pack.name}`} style={{ width: "100%", height: "auto", display: "block" }} />
-            {/* marca la carta central (solo referencia) */}
-            <div style={{ position: "absolute", left: `${(pack.center || { left: 35.2 }).left}%`, top: `${(pack.center || { top: 34.5 }).top}%`, width: `${(pack.center || { w: 29.8 }).w}%`, height: `${(pack.center || { h: 30.4 }).h}%`, border: "2.5px dashed rgba(255,255,255,0.95)", borderRadius: "6px", background: "rgba(10,8,30,0.35)", pointerEvents: "none" }} />
-            <div style={{ position: "absolute", left: "50%", top: `${((pack.center || { top: 34.5 }).top) + ((pack.center || { h: 30.4 }).h) + 1.5}%`, transform: "translateX(-50%)", background: "#1e1b4b", color: "#fff", fontSize: "12px", fontWeight: 800, lineHeight: 1.2, padding: "7px 12px", borderRadius: "999px", whiteSpace: "nowrap", boxShadow: "0 6px 14px rgba(0,0,0,0.35)", border: "1.5px solid rgba(255,255,255,0.8)" }}>🚫 Carta central no incluida</div>
+            {evo
+              ? pack.centers.map((c, i) => <CenterCard key={i} id={pack.cards[i]} c={c} />)
+              : <CenterCard id={pack.card} c={pack.center || { left: 35.2, top: 34.5, w: 29.8, h: 30.4 }} />}
+            <div style={{ position: "absolute", left: "50%", top: evo ? "1.5%" : `${((pack.center || { top: 34.5 }).top) + ((pack.center || { h: 30.4 }).h) + 1.5}%`, transform: "translateX(-50%)", background: "#1e1b4b", color: "#fff", fontSize: "12px", fontWeight: 800, lineHeight: 1.2, padding: "7px 12px", borderRadius: "999px", whiteSpace: "nowrap", boxShadow: "0 6px 14px rgba(0,0,0,0.35)", border: "1.5px solid rgba(255,255,255,0.8)" }}>{evo ? "🚫 Cartas centrales no incluidas" : "🚫 Carta central no incluida"}</div>
           </div>
         ) : (
           <div style={{ display: "grid", gridTemplateColumns: "repeat(3,1fr)", gap: "10px" }}>
@@ -349,15 +372,33 @@ function Extended({ cart }) {
 
       <div>
         <h3 style={{ fontSize: "22px", fontWeight: 800, color: "#1e1b4b", margin: "0 0 6px" }}>Elige tu Extended Art</h3>
-        <p style={{ color: "#6b7280", margin: "0 0 18px", lineHeight: 1.6 }}>Recibes las <strong>8 cartas</strong> que rodean al centro del arte. <strong>La carta central no está incluida.</strong></p>
-        <div style={{ display: "grid", gap: "10px", marginBottom: "20px" }}>
-          {extendedPacks.map((p, i) => (
-            <button key={p.id} onClick={() => setSel(i)} className={`px-pack ${sel === i ? "is-active" : ""}`}>
+        <div style={{ display: "flex", gap: "8px", margin: "0 0 12px" }}>
+          <button onClick={() => switchMode("single")} className={`px-pack ${!evo ? "is-active" : ""}`} style={{ justifyContent: "center", fontWeight: 700 }}>1 carta (centro)</button>
+          <button onClick={() => switchMode("evo")} className={`px-pack ${evo ? "is-active" : ""}`} style={{ justifyContent: "center", fontWeight: 700 }}>Línea evolutiva</button>
+        </div>
+        <p style={{ color: "#6b7280", margin: "0 0 14px", lineHeight: 1.6 }}>
+          {evo ? <>Recibes las <strong>6 cartas</strong> de los costados. <strong>Las 3 cartas centrales no están incluidas.</strong></> : <>Recibes las <strong>8 cartas</strong> que rodean al centro del arte. <strong>La carta central no está incluida.</strong></>}
+        </p>
+        {all.length > 6 && (
+          <div style={{ display: "flex", gap: "8px", marginBottom: "10px", flexWrap: "wrap" }}>
+            <div className="px-search" style={{ margin: 0, flex: "1 1 160px", padding: "0 12px" }}>
+              <input placeholder="Buscar carta…" value={q} onChange={(e) => setQ(e.target.value)} style={{ padding: "9px 0", minWidth: 0 }} />
+            </div>
+            <select value={setF} onChange={(e) => setSetF(e.target.value)} style={{ flex: "1 1 140px", border: "1.5px solid #ede9fe", borderRadius: "14px", padding: "9px 10px", fontFamily: "inherit", fontSize: "14px", background: "#fff" }}>
+              <option value="todos">Todas las colecciones</option>
+              {sets.map((s) => <option key={s} value={s}>{s}</option>)}
+            </select>
+          </div>
+        )}
+        <div style={{ display: "grid", gap: "8px", marginBottom: "20px", maxHeight: "340px", overflowY: "auto", paddingRight: "4px" }}>
+          {list.map((p) => (
+            <button key={p.id} onClick={() => setSelId(p.id)} className={`px-pack ${pack.id === p.id ? "is-active" : ""}`}>
               <span style={{ width: 34, height: 34, borderRadius: 10, background: p.image ? `url(${p.image}) center/cover` : gradBg(p.grad), flexShrink: 0 }} />
-              <span style={{ flex: 1, textAlign: "left", fontWeight: 700 }}>{p.name}</span>
+              <span style={{ flex: 1, textAlign: "left", fontWeight: 700 }}>{p.name}<span style={{ display: "block", fontSize: "11px", fontWeight: 500, color: "#9ca3af" }}>{p.set}</span></span>
               <span style={{ color: "#7c3aed", fontWeight: 800 }}>S/{p.price}</span>
             </button>
           ))}
+          {list.length === 0 && <p style={{ color: "#6b7280", textAlign: "center", margin: "10px 0" }}>No encontramos ese arte. <a href={waLink(`Hola Coquecutes, ¿pueden hacer el Extended Art de: ${q}?`)} target="_blank" rel="noopener noreferrer" style={{ color: "#7c3aed", fontWeight: 700 }}>Pídelo por WhatsApp</a></p>}
         </div>
         <div style={{ fontSize: "13px", fontWeight: 800, color: "#1e1b4b", margin: "0 0 8px", letterSpacing: ".5px" }}>TIPO DE PROXY</div>
         <TypePicker value={type} onChange={setType} />

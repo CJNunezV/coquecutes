@@ -344,9 +344,8 @@ function Extended({ cart }) {
   const binderRef = useRef(null);
   const pick = (id) => { setSelId(id); if (typeof window !== "undefined" && window.innerWidth <= 860) binderRef.current?.scrollIntoView({ behavior: "smooth", block: "center" }); };
   const ui = useContext(Ui);
-  const [own, setOwn] = useState(null);
-  const type = own || ui.defaultType;
-  const setType = setOwn;
+  const type = "holo"; // Extended Art solo se hace en papel holográfico
+  const [otra, setOtra] = useState("");
   const singlesAll = [
     ...extendedPacks.map((p) => ({ ...p, set: "Destacados", card: null })),
     ...extendedSingles.map((p) => ({ ...p, price: EXT_PRICE })),
@@ -427,8 +426,18 @@ function Extended({ cart }) {
           {list.length > limit && <button className="px-pack" onClick={() => setLimit(limit + 24)} style={{ justifyContent: "center", fontWeight: 700, color: "#7c3aed" }}>Ver más ({list.length - limit})</button>}
           {list.length === 0 && <p style={{ color: "#6b7280", textAlign: "center", margin: "10px 0" }}>No encontramos ese arte. <a href={waLink(`Hola Coquecutes, ¿pueden hacer el Extended Art de: ${q}?`)} target="_blank" rel="noopener noreferrer" style={{ color: "#7c3aed", fontWeight: 700 }}>Pídelo por WhatsApp</a></p>}
         </div>
-        <div style={{ fontSize: "13px", fontWeight: 800, color: "#1e1b4b", margin: "0 0 8px", letterSpacing: ".5px" }}>TIPO DE PROXY</div>
-        <TypePicker value={type} onChange={setType} />
+        <div style={{ margin: "0 0 16px", padding: "14px", border: "1.5px dashed #c4b5fd", borderRadius: "14px", background: "#faf8ff" }}>
+          <div style={{ fontWeight: 800, color: "#1e1b4b", fontSize: "14px" }}>¿Tienes otra carta en mente?</div>
+          <div style={{ color: "#6b7280", fontSize: "13px", margin: "2px 0 10px", lineHeight: 1.5 }}>Escríbenos cuál es y te cotizamos su Extended Art.</div>
+          <div style={{ display: "flex", gap: "8px", flexWrap: "wrap" }}>
+            <input value={otra} onChange={(e) => setOtra(e.target.value)} placeholder="Ej: Gengar ex (Obsidian Flames)" style={{ flex: "1 1 180px", minWidth: 0, border: "1.5px solid #ede9fe", borderRadius: "12px", padding: "10px 12px", fontFamily: "inherit", fontSize: "14px", background: "#fff" }} />
+            <a href={waLink(`Hola Coquecutes, quiero cotizar un Extended Art de otra carta: ${otra.trim() || "(te cuento por aquí)"}`)} target="_blank" rel="noopener noreferrer" className="px-btn" style={{ textDecoration: "none", textAlign: "center", whiteSpace: "nowrap" }}>Cotizar por WhatsApp</a>
+          </div>
+        </div>
+        <div style={{ display: "flex", alignItems: "center", gap: "10px", fontSize: "14px", color: "#374151", margin: "0 0 4px" }}>
+          <span style={{ fontWeight: 800, color: "#1e1b4b", letterSpacing: ".5px", fontSize: "13px" }}>ACABADO</span>
+          <span style={{ background: "#f5f3ff", border: "1px solid #ddd6fe", borderRadius: "999px", padding: "5px 12px", fontWeight: 700, color: "#6d28d9" }}>🌈 Papel holográfico</span>
+        </div>
         <button className={`px-btn px-btn-lg ${cart.added === packItem.id ? "is-added" : ""}`} onClick={() => cart.add(packItem)} style={{ marginTop: "14px" }}>
           {cart.added === packItem.id ? "¡Añadido!" : `Añadir · S/${packItem.price.toFixed(2)}`}
         </button>
@@ -684,7 +693,7 @@ export default function ProxysPage() {
       </div>
 
       <Ui.Provider value={ui}>
-        {(tab === "sueltas" || tab === "extended-art") && <FinishGuide value={defaultType} onPick={setDefaultType} mode={tab === "sueltas" ? "info" : undefined} />}
+        {tab === "sueltas" && <FinishGuide value={defaultType} onPick={setDefaultType} mode="info" />}
         {tab === "sueltas" && <Singles cart={cart} />}
         {tab === "extended-art" && <Extended cart={cart} />}
         {tab === "personalizados" && <Custom />}

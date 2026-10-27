@@ -287,7 +287,7 @@ function Singles({ cart }) {
     <div>
       <div className="px-search">
         <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#7c3aed" strokeWidth="2.4" strokeLinecap="round"><circle cx="11" cy="11" r="7" /><line x1="21" y1="21" x2="16.65" y2="16.65" /></svg>
-        <input value={q} onChange={(e) => setQ(e.target.value)} placeholder="Busca por carta o set…" aria-label="Buscar cartas" />
+        <input value={q} onChange={(e) => { setQ(e.target.value); setLimit(24); }} placeholder="Busca por carta o set…" aria-label="Buscar cartas" />
       </div>
       <div className="px-grid-cards">
         {list.map((s, idx) => (
@@ -331,7 +331,7 @@ function Thumb({ p }) {
     <span style={box}>
       {rects.map(({ c, id }, i) => c && id ? (
         <span key={i} style={{ position: "absolute", left: `${c.left}%`, top: `${c.top}%`, width: `${c.w}%`, height: `${c.h}%`, overflow: "hidden", borderRadius: 1 }}>
-          <img src={tcgImg(id)} alt="" loading="lazy" decoding="async" style={{ width: "100%", height: "100%", objectFit: "cover", display: "block" }} />
+          <img src={tcgImg(id)} alt="" decoding="async" onError={(e) => { e.currentTarget.style.display = "none"; }} style={{ width: "100%", height: "100%", objectFit: "cover", display: "block" }} />
         </span>
       ) : null)}
     </span>
@@ -343,6 +343,7 @@ function Extended({ cart }) {
   const [selId, setSelId] = useState(null);
   const [q, setQ] = useState("");
   const [setF, setSetF] = useState("todos");
+  const [limit, setLimit] = useState(24);
   const ui = useContext(Ui);
   const [own, setOwn] = useState(null);
   const type = own || ui.defaultType;
@@ -359,7 +360,7 @@ function Extended({ cart }) {
   const pack = all.find((p) => p.id === selId) || list[0] || all[0];
   const evo = mode === "evo";
   const packItem = withType(pack, type, evo ? `Extended Art ${pack.name} (6 cartas)` : `Extended Art ${pack.name} (8 cartas)`);
-  const switchMode = (m) => { setMode(m); setSelId(null); setSetF("todos"); setQ(""); };
+  const switchMode = (m) => { setLimit(24); setMode(m); setSelId(null); setSetF("todos"); setQ(""); };
   return (
     <div className="px-ext">
       <div className="px-binder">
@@ -401,20 +402,21 @@ function Extended({ cart }) {
             <div className="px-search" style={{ margin: 0, flex: "1 1 160px", padding: "0 12px" }}>
               <input placeholder="Buscar carta…" value={q} onChange={(e) => setQ(e.target.value)} style={{ padding: "9px 0", minWidth: 0 }} />
             </div>
-            <select value={setF} onChange={(e) => setSetF(e.target.value)} style={{ flex: "1 1 140px", border: "1.5px solid #ede9fe", borderRadius: "14px", padding: "9px 10px", fontFamily: "inherit", fontSize: "14px", background: "#fff" }}>
+            <select value={setF} onChange={(e) => { setSetF(e.target.value); setLimit(24); }} style={{ flex: "1 1 140px", border: "1.5px solid #ede9fe", borderRadius: "14px", padding: "9px 10px", fontFamily: "inherit", fontSize: "14px", background: "#fff" }}>
               <option value="todos">Todas las colecciones</option>
               {sets.map((s) => <option key={s} value={s}>{s}</option>)}
             </select>
           </div>
         )}
         <div style={{ display: "grid", gap: "8px", marginBottom: "20px", maxHeight: "340px", overflowY: "auto", paddingRight: "4px" }}>
-          {list.map((p) => (
+          {list.slice(0, limit).map((p) => (
             <button key={p.id} onClick={() => setSelId(p.id)} className={`px-pack ${pack.id === p.id ? "is-active" : ""}`}>
               <Thumb p={p} />
               <span style={{ flex: 1, textAlign: "left", fontWeight: 700 }}>{p.name}<span style={{ display: "block", fontSize: "11px", fontWeight: 500, color: "#9ca3af" }}>{p.set}</span></span>
               <span style={{ color: "#7c3aed", fontWeight: 800 }}>S/{p.price}</span>
             </button>
           ))}
+          {list.length > limit && <button className="px-pack" onClick={() => setLimit(limit + 24)} style={{ justifyContent: "center", fontWeight: 700, color: "#7c3aed" }}>Ver más ({list.length - limit})</button>}
           {list.length === 0 && <p style={{ color: "#6b7280", textAlign: "center", margin: "10px 0" }}>No encontramos ese arte. <a href={waLink(`Hola Coquecutes, ¿pueden hacer el Extended Art de: ${q}?`)} target="_blank" rel="noopener noreferrer" style={{ color: "#7c3aed", fontWeight: 700 }}>Pídelo por WhatsApp</a></p>}
         </div>
         <div style={{ fontSize: "13px", fontWeight: 800, color: "#1e1b4b", margin: "0 0 8px", letterSpacing: ".5px" }}>TIPO DE PROXY</div>

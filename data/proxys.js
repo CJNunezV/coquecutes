@@ -17,9 +17,8 @@
 // ⚠️ Completa con la información real de cada tipo.
 // ─────────────────────────────────────────────────────────────
 export const proxyTypes = [
-  { id: "frio", singlePrice: 12, label: "En frío", extra: 0, emoji: "❄️", summary: "", desc: "", finish: "", bestFor: "", video: "", poster: "" },
-  { id: "crema", singlePrice: 14, label: "Con crema", extra: 0, emoji: "🍦", summary: "", desc: "", finish: "", bestFor: "", video: "", poster: "" },
-  { id: "calor", singlePrice: 16, label: "Al calor", extra: 0, emoji: "🔥", summary: "", desc: "", finish: "", bestFor: "", video: "", poster: "" },
+  { id: "holo", singlePrice: 12, label: "Papel holográfico", extra: 0, emoji: "🌈", summary: "Impreso en papel holográfico con brillo.", desc: "", finish: "", bestFor: "", video: "", poster: "" },
+  { id: "relieve", singlePrice: 14, label: "Relieve manual", extra: 0, emoji: "🖌️", summary: "Detalles en relieve pintados a mano.", desc: "", finish: "", bestFor: "", video: "", poster: "" },
 ];
 
 // Información general que se muestra en "Lo que recibes" (editable)

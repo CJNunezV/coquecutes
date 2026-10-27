@@ -27,7 +27,7 @@ function useCart() {
   return { added, add };
 }
 
-/* ---------- Tipo de proxy (en frío / con crema / al calor) ---------- */
+/* ---------- Tipo de proxy (papel holográfico / relieve manual) ---------- */
 const typeOf = (id) => proxyTypes.find((t) => t.id === id) || proxyTypes[0];
 // Devuelve el ítem del carrito: id único por tipo, nombre con el tipo y precio + extra
 const withType = (item, typeId, name) => {
@@ -40,7 +40,7 @@ const singleItem = (s, typeId) => {
   return { id: `${s.id}-${t.id}`, name: `Proxy ${s.name} (${s.set}) · ${t.label}`, price: t.singlePrice, image: s.image };
 };
 /* ---------- Contexto de la página: acabado por defecto + modal informativo ---------- */
-const Ui = createContext({ defaultType: "frio", openInfo: () => {}, openQuick: () => {} });
+const Ui = createContext({ defaultType: "holo", openInfo: () => {}, openQuick: () => {} });
 
 function TypePicker({ value, onChange, showInfo = true, priceKey }) {
   const ui = useContext(Ui);
@@ -341,6 +341,8 @@ function Extended({ cart }) {
   const [setF, setSetF] = useState("todos");
   const [limit, setLimit] = useState(24);
   const [bad, setBad] = useState({});
+  const binderRef = useRef(null);
+  const pick = (id) => { setSelId(id); if (typeof window !== "undefined" && window.innerWidth <= 860) binderRef.current?.scrollIntoView({ behavior: "smooth", block: "center" }); };
   const ui = useContext(Ui);
   const [own, setOwn] = useState(null);
   const type = own || ui.defaultType;
@@ -358,11 +360,15 @@ function Extended({ cart }) {
   const evo = mode === "evo";
   const useFinal = pack.t != null && !bad[pack.id];
   const mainImg = useFinal ? `/proxys/ExtendedArt/final/${pack.id.slice(3)}.webp` : pack.image;
-  const packItem = { ...withType(pack, type, evo ? `Extended Art ${pack.name} (6 cartas)` : `Extended Art ${pack.name} (8 cartas)`), image: mainImg };
+  const nombre = `Extended Art · ${pack.name}${pack.set && pack.set !== "Destacados" ? ` (${pack.set})` : ""} · ${evo ? "6 cartas, sin las 3 centrales" : "8 cartas, sin la central"}`;
+  const packItem = { ...withType(pack, type, nombre), image: mainImg };
+  const nCards = evo ? 6 : 8;
+  const suelto = nCards * (typeOf(type).singlePrice || 12);
+  const ahorro = suelto - packItem.price;
   const switchMode = (m) => { setLimit(24); setMode(m); setSelId(null); setSetF("todos"); setQ(""); };
   return (
     <div className="px-ext">
-      <div className="px-binder">
+      <div className="px-binder" ref={binderRef}>
         <div style={{ fontSize: "12px", fontWeight: 800, letterSpacing: "2px", color: "#c4b5fd", marginBottom: "12px", textAlign: "center" }}>{evo ? "LÍNEA EVOLUTIVA · 6 CARTAS" : "ARTE 3×3 · 8 CARTAS"}</div>
         {evo && <div style={{ textAlign: "center", marginBottom: "10px" }}><span style={{ display: "inline-block", background: "#1e1b4b", color: "#fff", fontSize: "12px", fontWeight: 800, padding: "7px 12px", borderRadius: "999px", border: "1.5px solid rgba(255,255,255,0.8)" }}>🚫 Cartas centrales no incluidas</span></div>}
         {pack.image ? (
@@ -385,6 +391,9 @@ function Extended({ cart }) {
             )}
           </div>
         )}
+        <p style={{ margin: "12px 4px 0", textAlign: "center", color: "#c4b5fd", fontSize: "12px", lineHeight: 1.5 }}>
+          {evo ? "Vista armada: las cartas borrosas con ✕ son las tuyas y no se incluyen." : "Vista armada: la carta borrosa con ✕ es la tuya y no se incluye."}
+        </p>
       </div>
 
       <div>
@@ -409,7 +418,7 @@ function Extended({ cart }) {
         )}
         <div style={{ display: "grid", gap: "8px", marginBottom: "20px", maxHeight: "340px", overflowY: "auto", paddingRight: "4px" }}>
           {list.slice(0, limit).map((p) => (
-            <button key={p.id} onClick={() => setSelId(p.id)} className={`px-pack ${pack.id === p.id ? "is-active" : ""}`}>
+            <button key={p.id} onClick={() => pick(p.id)} className={`px-pack ${pack.id === p.id ? "is-active" : ""}`}>
               <Thumb p={p} />
               <span style={{ flex: 1, textAlign: "left", fontWeight: 700 }}>{p.name}<span style={{ display: "block", fontSize: "11px", fontWeight: 500, color: "#9ca3af" }}>{p.set}</span></span>
               <span style={{ color: "#7c3aed", fontWeight: 800 }}>S/{p.price}</span>
@@ -423,6 +432,13 @@ function Extended({ cart }) {
         <button className={`px-btn px-btn-lg ${cart.added === packItem.id ? "is-added" : ""}`} onClick={() => cart.add(packItem)} style={{ marginTop: "14px" }}>
           {cart.added === packItem.id ? "¡Añadido!" : `Añadir · S/${packItem.price.toFixed(2)}`}
         </button>
+        <div style={{ margin: "14px 0 0", padding: "12px 14px", background: "#f5f3ff", border: "1px solid #ede9fe", borderRadius: "14px", fontSize: "13px", lineHeight: 1.6, color: "#4b5563" }}>
+          <div style={{ fontWeight: 800, color: "#1e1b4b" }}>S/{packItem.price} por {nCards} cartas = S/{(packItem.price / nCards).toFixed(2).replace(/\.00$/, "")} cada una</div>
+          {ahorro > 0 && <div>Pedidas sueltas ({typeOf(type).label.toLowerCase()}) serían S/{suelto}: <strong style={{ color: "#16a34a" }}>ahorras S/{ahorro}</strong>.</div>}
+          <div>⏱ Lo preparamos en <strong>2 a 3 días</strong>.</div>
+          <div>📦 Recojo en FullMarket (FM): te lo entregamos el <strong>sábado de la misma semana</strong> en que pides.</div>
+          <div>🛵 Motorizado: el costo depende de tu ubicación y lo coordinamos por WhatsApp.</div>
+        </div>
       </div>
     </div>
   );
@@ -647,7 +663,8 @@ export default function ProxysPage() {
         .px-ex img { width:100%; height:100%; object-fit:cover; display:block; }
         .px-ex-tag { position:absolute; left:8px; bottom:8px; background:rgba(30,27,75,.85); color:#fff; font-size:11px; font-weight:800; padding:4px 10px; border-radius:999px; }
         @media (max-width:860px) { .px-ex-grid { grid-template-columns:repeat(2,1fr); gap:12px; } }
-        @media (max-width:860px) { .px-ext, .px-custom { grid-template-columns:1fr; gap:28px; } }
+        @media (max-width:860px) { .px-ext, .px-custom { grid-template-columns:1fr; gap:28px; } .px-binder { max-width:330px; width:100%; margin:0 auto; padding:16px; border-radius:22px; } }
+        @media (max-width:640px) { .px-guide { padding:14px; margin-bottom:20px; } .px-guide-grid { display:flex; overflow-x:auto; gap:10px; scroll-snap-type:x mandatory; padding-bottom:6px; } .px-guide-card { flex:1 0 46%; scroll-snap-align:start; } .px-guide-thumb { height:72px; } }
       ` }} />
 
       <div style={{ fontSize: "16px", color: "#9ca3af", marginBottom: "10px" }}>

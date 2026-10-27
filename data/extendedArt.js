@@ -1633,7 +1633,7 @@ export const extendedSingles = [
 "name": "Glaceon ex #150-131",
 "set": "Prismatic Evolutions (PRE)",
 "image": "/proxys/ExtendedArt/pv/pre-glaceon-ex-150-131.webp", "t": 126,
-"card": null,
+"card": 610505,
 "center": {
 "left": 34.19,
 "top": 33.9,

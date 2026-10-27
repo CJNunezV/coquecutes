@@ -6,9 +6,9 @@ from concurrent.futures import ThreadPoolExecutor
 def pip(*pk):
     subprocess.check_call([sys.executable, "-m", "pip", "install", "-q", *pk])
 try:
-    from PIL import Image, ImageDraw
+    from PIL import Image, ImageDraw, ImageFilter
 except ImportError:
-    pip("pillow"); from PIL import Image, ImageDraw
+    pip("pillow"); from PIL import Image, ImageDraw, ImageFilter
 
 ROOT = os.path.dirname(os.path.abspath(__file__))
 EA = os.path.join(ROOT, "public", "proxys", "ExtendedArt")
@@ -49,6 +49,21 @@ def cover(im, w, h):
     x, y = (im.width - w) // 2, (im.height - h) // 2
     return im.crop((x, y, x + w, y + h))
 
+def marcar_no_incluida(card):
+    """Carta central un poco borrosa + una X roja suave: deja claro que NO viene incluida."""
+    w, h = card.size
+    card = card.filter(ImageFilter.GaussianBlur(w * 0.011))
+    ov = Image.new("RGBA", (w, h), (0, 0, 0, 0))
+    d = ImageDraw.Draw(ov)
+    mx, my, ancho = w * 0.20, h * 0.26, max(4, int(w * 0.075))
+    rojo = (225, 29, 72, 165)
+    d.line([(mx, my), (w - mx, h - my)], fill=rojo, width=ancho)
+    d.line([(w - mx, my), (mx, h - my)], fill=rojo, width=ancho)
+    for x, y in ((mx, my), (w - mx, h - my), (w - mx, my), (mx, h - my)):
+        d.ellipse([x - ancho / 2, y - ancho / 2, x + ancho / 2, y + ancho / 2], fill=rojo)
+    ov = ov.filter(ImageFilter.GaussianBlur(w * 0.006))
+    return Image.alpha_composite(card.convert("RGBA"), ov).convert("RGB")
+
 def one(job):
     slug, cells = job
     base_f = os.path.join(PV, slug + ".webp")
@@ -63,6 +78,7 @@ def one(job):
         ImageDraw.Draw(base).rectangle([x, y, x + w, y + h], fill=(20, 8, 10))
         if not f: falta.append(cid or slug); continue
         card = cover(Image.open(f).convert("RGB"), w, h)
+        card = marcar_no_incluida(card)
         mask = Image.new("L", (w, h), 0)
         ImageDraw.Draw(mask).rounded_rectangle([0, 0, w - 1, h - 1], radius=round(w * 0.045), fill=255)
         base.paste(card, (x, y), mask)

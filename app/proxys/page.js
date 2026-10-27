@@ -327,14 +327,9 @@ const CenterCard = ({ id, c, hide, slug }) => (
 const TW = 44, TH = 62;
 function Thumb({ p }) {
   const box = { width: TW, height: TH, borderRadius: 8, flexShrink: 0, position: "relative", overflow: "hidden", background: p.t != null ? `url(${SPRITE.src}) -${(p.t % SPRITE.cols) * TW}px -${Math.floor(p.t / SPRITE.cols) * TH}px / ${SPRITE.cols * TW}px auto` : p.image ? `url(${p.image}) center/cover` : gradBg(p.grad) };
-  const rects = p.centers ? p.centers.map((c, i) => ({ c, id: p.cards[i] })) : p.t != null ? [{ c: p.center, id: p.card, slug: p.id.slice(3) }] : [];
   return (
     <span style={box}>
-      {rects.map(({ c, id, slug }, i) => c && (id || slug) ? (
-        <span key={i} style={{ position: "absolute", left: `${c.left}%`, top: `${c.top}%`, width: `${c.w}%`, height: `${c.h}%`, overflow: "hidden", borderRadius: 1 }}>
-          <img src={id ? tcgImg(id) : localCard(slug)} alt="" decoding="async" onError={(e) => { e.currentTarget.style.display = "none"; }} style={{ width: "100%", height: "100%", objectFit: "cover", display: "block" }} />
-        </span>
-      ) : null)}
+      {p.t != null && <img src={`/proxys/ExtendedArt/final/t/${p.id.slice(3)}.webp`} alt="" decoding="async" onError={(e) => { e.currentTarget.style.display = "none"; }} style={{ position: "absolute", inset: 0, width: "100%", height: "100%", objectFit: "cover", display: "block" }} />}
     </span>
   );
 }
@@ -345,6 +340,7 @@ function Extended({ cart }) {
   const [q, setQ] = useState("");
   const [setF, setSetF] = useState("todos");
   const [limit, setLimit] = useState(24);
+  const [bad, setBad] = useState({});
   const ui = useContext(Ui);
   const [own, setOwn] = useState(null);
   const type = own || ui.defaultType;
@@ -360,7 +356,9 @@ function Extended({ cart }) {
   const list = all.filter((p) => (setF === "todos" || p.set === setF) && (!ql || `${p.name} ${p.set}`.toLowerCase().includes(ql)));
   const pack = all.find((p) => p.id === selId) || list[0] || all[0];
   const evo = mode === "evo";
-  const packItem = withType(pack, type, evo ? `Extended Art ${pack.name} (6 cartas)` : `Extended Art ${pack.name} (8 cartas)`);
+  const useFinal = pack.t != null && !bad[pack.id];
+  const mainImg = useFinal ? `/proxys/ExtendedArt/final/${pack.id.slice(3)}.webp` : pack.image;
+  const packItem = { ...withType(pack, type, evo ? `Extended Art ${pack.name} (6 cartas)` : `Extended Art ${pack.name} (8 cartas)`), image: mainImg };
   const switchMode = (m) => { setLimit(24); setMode(m); setSelId(null); setSetF("todos"); setQ(""); };
   return (
     <div className="px-ext">
@@ -369,10 +367,10 @@ function Extended({ cart }) {
         {evo && <div style={{ textAlign: "center", marginBottom: "10px" }}><span style={{ display: "inline-block", background: "#1e1b4b", color: "#fff", fontSize: "12px", fontWeight: 800, padding: "7px 12px", borderRadius: "999px", border: "1.5px solid rgba(255,255,255,0.8)" }}>🚫 Cartas centrales no incluidas</span></div>}
         {pack.image ? (
           <div style={{ position: "relative", borderRadius: "12px", overflow: "hidden", lineHeight: 0 }}>
-            <img key={pack.image} src={pack.image} alt={`Extended Art ${pack.name}`} decoding="async" style={{ animation: "pxFade .25s both", width: "100%", height: "auto", display: "block" }} />
-            {evo
+            <img key={mainImg} src={mainImg} alt={`Extended Art ${pack.name}`} decoding="async" onError={() => { if (pack.t != null) setBad((b) => ({ ...b, [pack.id]: 1 })); }} style={{ animation: "pxFade .25s both", width: "100%", height: "auto", display: "block" }} />
+            {!useFinal && (evo
               ? pack.centers.map((c, i) => <CenterCard key={i} id={pack.cards[i]} c={c} />)
-              : <CenterCard id={pack.card} slug={pack.id.slice(3)} c={pack.center || { left: 35.2, top: 34.5, w: 29.8, h: 30.4 }} />}
+              : <CenterCard id={pack.card} slug={pack.id.slice(3)} c={pack.center || { left: 35.2, top: 34.5, w: 29.8, h: 30.4 }} />)}
             {!evo && <div style={{ position: "absolute", left: "50%", top: `${((pack.center || { top: 34.5 }).top) + ((pack.center || { h: 30.4 }).h) + 1.5}%`, transform: "translateX(-50%)", background: "#1e1b4b", color: "#fff", fontSize: "12px", fontWeight: 800, lineHeight: 1.2, padding: "7px 12px", borderRadius: "999px", whiteSpace: "nowrap", boxShadow: "0 6px 14px rgba(0,0,0,0.35)", border: "1.5px solid rgba(255,255,255,0.8)" }}>🚫 Carta central no incluida</div>}
             {evo && <div style={{ position: "absolute", left: 0, right: 0, bottom: 0 }} />}
           </div>

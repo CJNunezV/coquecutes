@@ -296,6 +296,11 @@ export default function CheckoutPage() {
 
               <div id="ck-delivery">
                 <span className="ck-lbl">¿Cómo quieres recibirlo?</span>
+                <div style={{ margin: "0 0 12px", padding: "10px 12px", background: "#f5f3ff", border: "1px solid #ede9fe", borderRadius: 12, fontSize: 13, lineHeight: 1.6, color: "#4b5563" }}>
+                  <div>⏱ Preparamos tu pedido en <strong>2 a 3 días</strong>.</div>
+                  <div>📦 Recojo en FullMarket (FM): lo entregamos el <strong>sábado de la misma semana</strong> en que pides.</div>
+                  <div>🛵 Motorizado: el costo depende de tu ubicación y lo coordinamos por WhatsApp.</div>
+                </div>
                 <div style={{ display: "flex", flexDirection: "column", gap: 10 }}>
                   <label className={`ck-opt ${deliveryMethod === "fullmarket" ? "on" : ""}`}>
                     <input type="radio" name="dm" checked={deliveryMethod === "fullmarket"} onChange={() => setDeliveryMethod("fullmarket")} style={{ marginTop: 3, accentColor: "#7c3aed" }} />

@@ -323,6 +323,21 @@ const CenterCard = ({ id, c, hide }) => (
   </div>
 );
 
+const TW = 44, TH = 62;
+function Thumb({ p }) {
+  const box = { width: TW, height: TH, borderRadius: 8, flexShrink: 0, position: "relative", overflow: "hidden", background: p.t != null ? `url(${SPRITE.src}) -${(p.t % SPRITE.cols) * TW}px -${Math.floor(p.t / SPRITE.cols) * TH}px / ${SPRITE.cols * TW}px auto` : p.image ? `url(${p.image}) center/cover` : gradBg(p.grad) };
+  const rects = p.centers ? p.centers.map((c, i) => ({ c, id: p.cards[i] })) : p.t != null ? [{ c: p.center, id: p.card }] : [];
+  return (
+    <span style={box}>
+      {rects.map(({ c, id }, i) => c && id ? (
+        <span key={i} style={{ position: "absolute", left: `${c.left}%`, top: `${c.top}%`, width: `${c.w}%`, height: `${c.h}%`, overflow: "hidden", borderRadius: 1 }}>
+          <img src={tcgImg(id)} alt="" loading="lazy" decoding="async" style={{ width: "100%", height: "100%", objectFit: "cover", display: "block" }} />
+        </span>
+      ) : null)}
+    </span>
+  );
+}
+
 function Extended({ cart }) {
   const [mode, setMode] = useState("single");
   const [selId, setSelId] = useState(null);
@@ -395,7 +410,7 @@ function Extended({ cart }) {
         <div style={{ display: "grid", gap: "8px", marginBottom: "20px", maxHeight: "340px", overflowY: "auto", paddingRight: "4px" }}>
           {list.map((p) => (
             <button key={p.id} onClick={() => setSelId(p.id)} className={`px-pack ${pack.id === p.id ? "is-active" : ""}`}>
-              <span style={{ width: 34, height: 34, borderRadius: 10, flexShrink: 0, background: p.t != null ? `url(${SPRITE.src}) -${(p.t % SPRITE.cols) * 34}px -${Math.floor(p.t / SPRITE.cols) * (34 * SPRITE.h / SPRITE.w) + 4}px / ${SPRITE.cols * 34}px auto` : p.image ? `url(${p.image}) center/cover` : gradBg(p.grad) }} />
+              <Thumb p={p} />
               <span style={{ flex: 1, textAlign: "left", fontWeight: 700 }}>{p.name}<span style={{ display: "block", fontSize: "11px", fontWeight: 500, color: "#9ca3af" }}>{p.set}</span></span>
               <span style={{ color: "#7c3aed", fontWeight: 800 }}>S/{p.price}</span>
             </button>

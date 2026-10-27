@@ -349,13 +349,15 @@ function Extended({ cart }) {
     <div className="px-ext">
       <div className="px-binder">
         <div style={{ fontSize: "12px", fontWeight: 800, letterSpacing: "2px", color: "#c4b5fd", marginBottom: "12px", textAlign: "center" }}>{evo ? "LÍNEA EVOLUTIVA · 6 CARTAS" : "ARTE 3×3 · 8 CARTAS"}</div>
+        {evo && <div style={{ textAlign: "center", marginBottom: "10px" }}><span style={{ display: "inline-block", background: "#1e1b4b", color: "#fff", fontSize: "12px", fontWeight: 800, padding: "7px 12px", borderRadius: "999px", border: "1.5px solid rgba(255,255,255,0.8)" }}>🚫 Cartas centrales no incluidas</span></div>}
         {pack.image ? (
           <div style={{ position: "relative", borderRadius: "12px", overflow: "hidden", lineHeight: 0 }}>
             <img key={pack.image} src={pack.image} alt={`Extended Art ${pack.name}`} decoding="async" style={{ animation: "pxFade .25s both", width: "100%", height: "auto", display: "block" }} />
             {evo
               ? pack.centers.map((c, i) => <CenterCard key={i} id={pack.cards[i]} c={c} />)
               : <CenterCard id={pack.card} c={pack.center || { left: 35.2, top: 34.5, w: 29.8, h: 30.4 }} />}
-            <div style={{ position: "absolute", left: "50%", top: evo ? "1.5%" : `${((pack.center || { top: 34.5 }).top) + ((pack.center || { h: 30.4 }).h) + 1.5}%`, transform: "translateX(-50%)", background: "#1e1b4b", color: "#fff", fontSize: "12px", fontWeight: 800, lineHeight: 1.2, padding: "7px 12px", borderRadius: "999px", whiteSpace: "nowrap", boxShadow: "0 6px 14px rgba(0,0,0,0.35)", border: "1.5px solid rgba(255,255,255,0.8)" }}>{evo ? "🚫 Cartas centrales no incluidas" : "🚫 Carta central no incluida"}</div>
+            {!evo && <div style={{ position: "absolute", left: "50%", top: `${((pack.center || { top: 34.5 }).top) + ((pack.center || { h: 30.4 }).h) + 1.5}%`, transform: "translateX(-50%)", background: "#1e1b4b", color: "#fff", fontSize: "12px", fontWeight: 800, lineHeight: 1.2, padding: "7px 12px", borderRadius: "999px", whiteSpace: "nowrap", boxShadow: "0 6px 14px rgba(0,0,0,0.35)", border: "1.5px solid rgba(255,255,255,0.8)" }}>🚫 Carta central no incluida</div>}
+            {evo && <div style={{ position: "absolute", left: 0, right: 0, bottom: 0 }} />}
           </div>
         ) : (
           <div style={{ display: "grid", gridTemplateColumns: "repeat(3,1fr)", gap: "10px" }}>

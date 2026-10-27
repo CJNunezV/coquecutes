@@ -7,7 +7,7 @@ export const extendedSingles = [
 "id": "xs-asc-banette-234",
 "name": "Banette #234",
 "set": "Ascended Heroes (ASC)",
-"image": "/proxys/ExtendedArt/pv/asc-banette-234.webp",
+"image": "/proxys/ExtendedArt/pv/asc-banette-234.webp", "t": 0,
 "card": 676046,
 "center": {
 "left": 33.74,
@@ -20,7 +20,7 @@ export const extendedSingles = [
 "id": "xs-asc-beautifly-219",
 "name": "Beautifly #219",
 "set": "Ascended Heroes (ASC)",
-"image": "/proxys/ExtendedArt/pv/asc-beautifly-219.webp",
+"image": "/proxys/ExtendedArt/pv/asc-beautifly-219.webp", "t": 1,
 "card": 676031,
 "center": {
 "left": 34.15,
@@ -33,7 +33,7 @@ export const extendedSingles = [
 "id": "xs-asc-black-belt-s-training-255",
 "name": "Black Belt's Training #255",
 "set": "Ascended Heroes (ASC)",
-"image": "/proxys/ExtendedArt/pv/asc-black-belt-s-training-255.webp",
+"image": "/proxys/ExtendedArt/pv/asc-black-belt-s-training-255.webp", "t": 2,
 "card": 676067,
 "center": {
 "left": 33.79,
@@ -46,7 +46,7 @@ export const extendedSingles = [
 "id": "xs-asc-carbink-242",
 "name": "Carbink #242",
 "set": "Ascended Heroes (ASC)",
-"image": "/proxys/ExtendedArt/pv/asc-carbink-242.webp",
+"image": "/proxys/ExtendedArt/pv/asc-carbink-242.webp", "t": 3,
 "card": 676054,
 "center": {
 "left": 33.69,
@@ -59,7 +59,7 @@ export const extendedSingles = [
 "id": "xs-asc-dreepy-247",
 "name": "Dreepy #247",
 "set": "Ascended Heroes (ASC)",
-"image": "/proxys/ExtendedArt/pv/asc-dreepy-247.webp",
+"image": "/proxys/ExtendedArt/pv/asc-dreepy-247.webp", "t": 4,
 "card": 676059,
 "center": {
 "left": 33.69,
@@ -72,7 +72,7 @@ export const extendedSingles = [
 "id": "xs-asc-dustox-220",
 "name": "Dustox #220",
 "set": "Ascended Heroes (ASC)",
-"image": "/proxys/ExtendedArt/pv/asc-dustox-220.webp",
+"image": "/proxys/ExtendedArt/pv/asc-dustox-220.webp", "t": 5,
 "card": 676032,
 "center": {
 "left": 34.03,
@@ -85,7 +85,7 @@ export const extendedSingles = [
 "id": "xs-asc-ethan-s-magcargo-222",
 "name": "Ethan's Magcargo #222",
 "set": "Ascended Heroes (ASC)",
-"image": "/proxys/ExtendedArt/pv/asc-ethan-s-magcargo-222.webp",
+"image": "/proxys/ExtendedArt/pv/asc-ethan-s-magcargo-222.webp", "t": 6,
 "card": 676034,
 "center": {
 "left": 34.03,
@@ -98,7 +98,7 @@ export const extendedSingles = [
 "id": "xs-asc-lillie-s-clefairy-ex-280",
 "name": "Lillie's Clefairy ex #280",
 "set": "Ascended Heroes (ASC)",
-"image": "/proxys/ExtendedArt/pv/asc-lillie-s-clefairy-ex-280.webp",
+"image": "/proxys/ExtendedArt/pv/asc-lillie-s-clefairy-ex-280.webp", "t": 7,
 "card": 676092,
 "center": {
 "left": 34.11,
@@ -111,7 +111,7 @@ export const extendedSingles = [
 "id": "xs-asc-mega-dragonite-290",
 "name": "Mega Dragonite #290",
 "set": "Ascended Heroes (ASC)",
-"image": "/proxys/ExtendedArt/pv/asc-mega-dragonite-290.webp",
+"image": "/proxys/ExtendedArt/pv/asc-mega-dragonite-290.webp", "t": 8,
 "card": 676102,
 "center": {
 "left": 33.8,
@@ -124,7 +124,7 @@ export const extendedSingles = [
 "id": "xs-asc-mega-gengar-ex-284",
 "name": "Mega Gengar ex #284",
 "set": "Ascended Heroes (ASC)",
-"image": "/proxys/ExtendedArt/pv/asc-mega-gengar-ex-284.webp",
+"image": "/proxys/ExtendedArt/pv/asc-mega-gengar-ex-284.webp", "t": 9,
 "card": 676096,
 "center": {
 "left": 33.99,
@@ -137,7 +137,7 @@ export const extendedSingles = [
 "id": "xs-asc-pikachu-ex-276",
 "name": "Pikachu ex #276",
 "set": "Ascended Heroes (ASC)",
-"image": "/proxys/ExtendedArt/pv/asc-pikachu-ex-276.webp",
+"image": "/proxys/ExtendedArt/pv/asc-pikachu-ex-276.webp", "t": 10,
 "card": 676088,
 "center": {
 "left": 34.09,
@@ -150,7 +150,7 @@ export const extendedSingles = [
 "id": "xs-asc-psyduck-226",
 "name": "Psyduck #226",
 "set": "Ascended Heroes (ASC)",
-"image": "/proxys/ExtendedArt/pv/asc-psyduck-226.webp",
+"image": "/proxys/ExtendedArt/pv/asc-psyduck-226.webp", "t": 11,
 "card": 676038,
 "center": {
 "left": 34.09,
@@ -163,7 +163,7 @@ export const extendedSingles = [
 "id": "xs-asc-snorunt-227",
 "name": "Snorunt #227",
 "set": "Ascended Heroes (ASC)",
-"image": "/proxys/ExtendedArt/pv/asc-snorunt-227.webp",
+"image": "/proxys/ExtendedArt/pv/asc-snorunt-227.webp", "t": 12,
 "card": 676039,
 "center": {
 "left": 33.6,
@@ -176,7 +176,7 @@ export const extendedSingles = [
 "id": "xs-asc-team-rocket-s-mewtwo-ex-281",
 "name": "Team Rocket's Mewtwo ex #281",
 "set": "Ascended Heroes (ASC)",
-"image": "/proxys/ExtendedArt/pv/asc-team-rocket-s-mewtwo-ex-281.webp",
+"image": "/proxys/ExtendedArt/pv/asc-team-rocket-s-mewtwo-ex-281.webp", "t": 13,
 "card": 676093,
 "center": {
 "left": 33.84,
@@ -189,7 +189,7 @@ export const extendedSingles = [
 "id": "xs-asc-team-rocket-s-mimikyu-238",
 "name": "Team Rocket's Mimikyu #238",
 "set": "Ascended Heroes (ASC)",
-"image": "/proxys/ExtendedArt/pv/asc-team-rocket-s-mimikyu-238.webp",
+"image": "/proxys/ExtendedArt/pv/asc-team-rocket-s-mimikyu-238.webp", "t": 14,
 "card": 676050,
 "center": {
 "left": 34.21,
@@ -202,7 +202,7 @@ export const extendedSingles = [
 "id": "xs-asc-togekiss-235",
 "name": "Togekiss #235",
 "set": "Ascended Heroes (ASC)",
-"image": "/proxys/ExtendedArt/pv/asc-togekiss-235.webp",
+"image": "/proxys/ExtendedArt/pv/asc-togekiss-235.webp", "t": 15,
 "card": 676047,
 "center": {
 "left": 34.15,
@@ -215,7 +215,7 @@ export const extendedSingles = [
 "id": "xs-bbl-cinccino-153",
 "name": "Cinccino #153",
 "set": "Black Bolt (BBL)",
-"image": "/proxys/ExtendedArt/pv/bbl-cinccino-153.webp",
+"image": "/proxys/ExtendedArt/pv/bbl-cinccino-153.webp", "t": 16,
 "card": 642607,
 "center": {
 "left": 33.69,
@@ -228,7 +228,7 @@ export const extendedSingles = [
 "id": "xs-cri-a-z-tranquility-120",
 "name": "A'z Tranquility #120",
 "set": "Chaos Rising (CRI)",
-"image": "/proxys/ExtendedArt/pv/cri-a-z-tranquility-120.webp",
+"image": "/proxys/ExtendedArt/pv/cri-a-z-tranquility-120.webp", "t": 17,
 "card": 693451,
 "center": {
 "left": 34.11,
@@ -241,7 +241,7 @@ export const extendedSingles = [
 "id": "xs-cri-ampharos-90",
 "name": "Ampharos #90",
 "set": "Chaos Rising (CRI)",
-"image": "/proxys/ExtendedArt/pv/cri-ampharos-90.webp",
+"image": "/proxys/ExtendedArt/pv/cri-ampharos-90.webp", "t": 18,
 "card": 693446,
 "center": {
 "left": 34.16,
@@ -254,7 +254,7 @@ export const extendedSingles = [
 "id": "xs-cri-chespin-87",
 "name": "Chespin #87",
 "set": "Chaos Rising (CRI)",
-"image": "/proxys/ExtendedArt/pv/cri-chespin-87.webp",
+"image": "/proxys/ExtendedArt/pv/cri-chespin-87.webp", "t": 19,
 "card": 693462,
 "center": {
 "left": 34.22,
@@ -267,7 +267,7 @@ export const extendedSingles = [
 "id": "xs-cri-cinccino-ex-119",
 "name": "Cinccino ex #119",
 "set": "Chaos Rising (CRI)",
-"image": "/proxys/ExtendedArt/pv/cri-cinccino-ex-119.webp",
+"image": "/proxys/ExtendedArt/pv/cri-cinccino-ex-119.webp", "t": 20,
 "card": 693465,
 "center": {
 "left": 34.07,
@@ -280,7 +280,7 @@ export const extendedSingles = [
 "id": "xs-cri-claydol-92",
 "name": "Claydol #92",
 "set": "Chaos Rising (CRI)",
-"image": "/proxys/ExtendedArt/pv/cri-claydol-92.webp",
+"image": "/proxys/ExtendedArt/pv/cri-claydol-92.webp", "t": 21,
 "card": 693467,
 "center": {
 "left": 33.72,
@@ -293,7 +293,7 @@ export const extendedSingles = [
 "id": "xs-cri-crobat-93",
 "name": "Crobat #93",
 "set": "Chaos Rising (CRI)",
-"image": "/proxys/ExtendedArt/pv/cri-crobat-93.webp",
+"image": "/proxys/ExtendedArt/pv/cri-crobat-93.webp", "t": 22,
 "card": 693471,
 "center": {
 "left": 33.98,
@@ -306,7 +306,7 @@ export const extendedSingles = [
 "id": "xs-cri-froakie-88",
 "name": "Froakie #88",
 "set": "Chaos Rising (CRI)",
-"image": "/proxys/ExtendedArt/pv/cri-froakie-88.webp",
+"image": "/proxys/ExtendedArt/pv/cri-froakie-88.webp", "t": 23,
 "card": 693489,
 "center": {
 "left": 34.53,
@@ -319,7 +319,7 @@ export const extendedSingles = [
 "id": "xs-cri-frogadier-89",
 "name": "Frogadier #89",
 "set": "Chaos Rising (CRI)",
-"image": "/proxys/ExtendedArt/pv/cri-frogadier-89.webp",
+"image": "/proxys/ExtendedArt/pv/cri-frogadier-89.webp", "t": 24,
 "card": 693491,
 "center": {
 "left": 34.14,
@@ -332,7 +332,7 @@ export const extendedSingles = [
 "id": "xs-cri-mega-dragalge-ex-118",
 "name": "Mega Dragalge ex #118",
 "set": "Chaos Rising (CRI)",
-"image": "/proxys/ExtendedArt/pv/cri-mega-dragalge-ex-118.webp",
+"image": "/proxys/ExtendedArt/pv/cri-mega-dragalge-ex-118.webp", "t": 25,
 "card": 693510,
 "center": {
 "left": 34.39,
@@ -345,7 +345,7 @@ export const extendedSingles = [
 "id": "xs-cri-mega-floette-117",
 "name": "Mega Floette #117",
 "set": "Chaos Rising (CRI)",
-"image": "/proxys/ExtendedArt/pv/cri-mega-floette-117.webp",
+"image": "/proxys/ExtendedArt/pv/cri-mega-floette-117.webp", "t": 27,
 "card": 693513,
 "center": {
 "left": 33.92,
@@ -358,7 +358,7 @@ export const extendedSingles = [
 "id": "xs-cri-mega-greninja-116",
 "name": "Mega Greninja #116",
 "set": "Chaos Rising (CRI)",
-"image": "/proxys/ExtendedArt/pv/cri-mega-greninja-116.webp",
+"image": "/proxys/ExtendedArt/pv/cri-mega-greninja-116.webp", "t": 28,
 "card": 693517,
 "center": {
 "left": 33.8,
@@ -371,7 +371,7 @@ export const extendedSingles = [
 "id": "xs-cri-mega-greninja-ex-122",
 "name": "Mega Greninja ex #122",
 "set": "Chaos Rising (CRI)",
-"image": "/proxys/ExtendedArt/pv/cri-mega-greninja-ex-122.webp",
+"image": "/proxys/ExtendedArt/pv/cri-mega-greninja-ex-122.webp", "t": 29,
 "card": 693518,
 "center": {
 "left": 34.1,
@@ -384,7 +384,7 @@ export const extendedSingles = [
 "id": "xs-cri-metang-94",
 "name": "Metang #94",
 "set": "Chaos Rising (CRI)",
-"image": "/proxys/ExtendedArt/pv/cri-metang-94.webp",
+"image": "/proxys/ExtendedArt/pv/cri-metang-94.webp", "t": 30,
 "card": 693524,
 "center": {
 "left": 34.03,
@@ -397,7 +397,7 @@ export const extendedSingles = [
 "id": "xs-cri-roxie-s-performance-121",
 "name": "Roxie's Performance #121",
 "set": "Chaos Rising (CRI)",
-"image": "/proxys/ExtendedArt/pv/cri-roxie-s-performance-121.webp",
+"image": "/proxys/ExtendedArt/pv/cri-roxie-s-performance-121.webp", "t": 31,
 "card": 693542,
 "center": {
 "left": 34.11,
@@ -410,7 +410,7 @@ export const extendedSingles = [
 "id": "xs-cri-sliggoo-95",
 "name": "Sliggoo #95",
 "set": "Chaos Rising (CRI)",
-"image": "/proxys/ExtendedArt/pv/cri-sliggoo-95.webp",
+"image": "/proxys/ExtendedArt/pv/cri-sliggoo-95.webp", "t": 32,
 "card": 693546,
 "center": {
 "left": 34.06,
@@ -423,7 +423,7 @@ export const extendedSingles = [
 "id": "xs-cri-tauros-96",
 "name": "Tauros #96",
 "set": "Chaos Rising (CRI)",
-"image": "/proxys/ExtendedArt/pv/cri-tauros-96.webp",
+"image": "/proxys/ExtendedArt/pv/cri-tauros-96.webp", "t": 33,
 "card": 693553,
 "center": {
 "left": 33.87,
@@ -436,7 +436,7 @@ export const extendedSingles = [
 "id": "xs-cri-watchog-97",
 "name": "Watchog #97",
 "set": "Chaos Rising (CRI)",
-"image": "/proxys/ExtendedArt/pv/cri-watchog-97.webp",
+"image": "/proxys/ExtendedArt/pv/cri-watchog-97.webp", "t": 34,
 "card": 693560,
 "center": {
 "left": 34.04,
@@ -449,7 +449,7 @@ export const extendedSingles = [
 "id": "xs-cri-xerneas-91",
 "name": "Xerneas #91",
 "set": "Chaos Rising (CRI)",
-"image": "/proxys/ExtendedArt/pv/cri-xerneas-91.webp",
+"image": "/proxys/ExtendedArt/pv/cri-xerneas-91.webp", "t": 35,
 "card": 693564,
 "center": {
 "left": 34.1,
@@ -462,7 +462,7 @@ export const extendedSingles = [
 "id": "xs-dre-altaria-87",
 "name": "Altaria #87",
 "set": "Delta Reign (DRE)",
-"image": "/proxys/ExtendedArt/pv/dre-altaria-87.webp",
+"image": "/proxys/ExtendedArt/pv/dre-altaria-87.webp", "t": 36,
 "card": null,
 "center": {
 "left": 34.07,
@@ -475,7 +475,7 @@ export const extendedSingles = [
 "id": "xs-dre-electivire-81",
 "name": "Electivire #81",
 "set": "Delta Reign (DRE)",
-"image": "/proxys/ExtendedArt/pv/dre-electivire-81.webp",
+"image": "/proxys/ExtendedArt/pv/dre-electivire-81.webp", "t": 37,
 "card": null,
 "center": {
 "left": 33.83,
@@ -488,7 +488,7 @@ export const extendedSingles = [
 "id": "xs-dre-enamorus-83",
 "name": "Enamorus #83",
 "set": "Delta Reign (DRE)",
-"image": "/proxys/ExtendedArt/pv/dre-enamorus-83.webp",
+"image": "/proxys/ExtendedArt/pv/dre-enamorus-83.webp", "t": 38,
 "card": null,
 "center": {
 "left": 33.95,
@@ -501,7 +501,7 @@ export const extendedSingles = [
 "id": "xs-dre-groudon-84",
 "name": "Groudon #84",
 "set": "Delta Reign (DRE)",
-"image": "/proxys/ExtendedArt/pv/dre-groudon-84.webp",
+"image": "/proxys/ExtendedArt/pv/dre-groudon-84.webp", "t": 39,
 "card": null,
 "center": {
 "left": 33.88,
@@ -514,7 +514,7 @@ export const extendedSingles = [
 "id": "xs-dre-kecleon-88",
 "name": "Kecleon #88",
 "set": "Delta Reign (DRE)",
-"image": "/proxys/ExtendedArt/pv/dre-kecleon-88.webp",
+"image": "/proxys/ExtendedArt/pv/dre-kecleon-88.webp", "t": 40,
 "card": null,
 "center": {
 "left": 34.05,
@@ -527,7 +527,7 @@ export const extendedSingles = [
 "id": "xs-dre-kyogre-80",
 "name": "Kyogre #80",
 "set": "Delta Reign (DRE)",
-"image": "/proxys/ExtendedArt/pv/dre-kyogre-80.webp",
+"image": "/proxys/ExtendedArt/pv/dre-kyogre-80.webp", "t": 41,
 "card": null,
 "center": {
 "left": 34.14,
@@ -540,7 +540,7 @@ export const extendedSingles = [
 "id": "xs-dre-magmortar-79",
 "name": "Magmortar #79",
 "set": "Delta Reign (DRE)",
-"image": "/proxys/ExtendedArt/pv/dre-magmortar-79.webp",
+"image": "/proxys/ExtendedArt/pv/dre-magmortar-79.webp", "t": 42,
 "card": null,
 "center": {
 "left": 33.88,
@@ -553,7 +553,7 @@ export const extendedSingles = [
 "id": "xs-dre-mega-golurk-ex-109",
 "name": "Mega Golurk ex #109",
 "set": "Delta Reign (DRE)",
-"image": "/proxys/ExtendedArt/pv/dre-mega-golurk-ex-109.webp",
+"image": "/proxys/ExtendedArt/pv/dre-mega-golurk-ex-109.webp", "t": 43,
 "card": null,
 "center": {
 "left": 34.02,
@@ -566,7 +566,7 @@ export const extendedSingles = [
 "id": "xs-dri-kangaskhan-204",
 "name": "Kangaskhan #204",
 "set": "Destined Rivals (DRI)",
-"image": "/proxys/ExtendedArt/pv/dri-kangaskhan-204.webp",
+"image": "/proxys/ExtendedArt/pv/dri-kangaskhan-204.webp", "t": 44,
 "card": 633004,
 "center": {
 "left": 33.91,
@@ -579,7 +579,7 @@ export const extendedSingles = [
 "id": "xs-dri-misty-s-psyduck-193",
 "name": "Misty's Psyduck #193",
 "set": "Destined Rivals (DRI)",
-"image": "/proxys/ExtendedArt/pv/dri-misty-s-psyduck-193.webp",
+"image": "/proxys/ExtendedArt/pv/dri-misty-s-psyduck-193.webp", "t": 45,
 "card": 632993,
 "center": {
 "left": 34.07,
@@ -592,7 +592,7 @@ export const extendedSingles = [
 "id": "xs-gem-pack-eevee-1-15",
 "name": "Eevee #1-15",
 "set": "Gem Pack",
-"image": "/proxys/ExtendedArt/pv/gem-pack-eevee-1-15.webp",
+"image": "/proxys/ExtendedArt/pv/gem-pack-eevee-1-15.webp", "t": 46,
 "card": null,
 "center": {
 "left": 34.09,
@@ -605,7 +605,7 @@ export const extendedSingles = [
 "id": "xs-gem-pack-leafeon-7-15",
 "name": "Leafeon #7-15",
 "set": "Gem Pack",
-"image": "/proxys/ExtendedArt/pv/gem-pack-leafeon-7-15.webp",
+"image": "/proxys/ExtendedArt/pv/gem-pack-leafeon-7-15.webp", "t": 47,
 "card": null,
 "center": {
 "left": 34.03,
@@ -618,7 +618,7 @@ export const extendedSingles = [
 "id": "xs-gem-pack-sylveon-9-15",
 "name": "Sylveon #9-15",
 "set": "Gem Pack",
-"image": "/proxys/ExtendedArt/pv/gem-pack-sylveon-9-15.webp",
+"image": "/proxys/ExtendedArt/pv/gem-pack-sylveon-9-15.webp", "t": 48,
 "card": null,
 "center": {
 "left": 34.1,
@@ -631,7 +631,7 @@ export const extendedSingles = [
 "id": "xs-gem-pack-umbreon-6-15",
 "name": "Umbreon #6-15",
 "set": "Gem Pack",
-"image": "/proxys/ExtendedArt/pv/gem-pack-umbreon-6-15.webp",
+"image": "/proxys/ExtendedArt/pv/gem-pack-umbreon-6-15.webp", "t": 49,
 "card": null,
 "center": {
 "left": 33.94,
@@ -644,7 +644,7 @@ export const extendedSingles = [
 "id": "xs-jto-wailord-162",
 "name": "Wailord #162",
 "set": "Journey Together (JTO)",
-"image": "/proxys/ExtendedArt/pv/jto-wailord-162.webp",
+"image": "/proxys/ExtendedArt/pv/jto-wailord-162.webp", "t": 50,
 "card": 623589,
 "center": {
 "left": 34.18,
@@ -657,7 +657,7 @@ export const extendedSingles = [
 "id": "xs-meg-acerola-s-mischief-183",
 "name": "Acerola's Mischief #183",
 "set": "Mega Evolution (MEG)",
-"image": "/proxys/ExtendedArt/pv/meg-acerola-s-mischief-183.webp",
+"image": "/proxys/ExtendedArt/pv/meg-acerola-s-mischief-183.webp", "t": 51,
 "card": 654522,
 "center": {
 "left": 33.74,
@@ -670,7 +670,7 @@ export const extendedSingles = [
 "id": "xs-meg-bulbasaur-133",
 "name": "Bulbasaur #133",
 "set": "Mega Evolution (MEG)",
-"image": "/proxys/ExtendedArt/pv/meg-bulbasaur-133.webp",
+"image": "/proxys/ExtendedArt/pv/meg-bulbasaur-133.webp", "t": 52,
 "card": 654472,
 "center": {
 "left": 33.69,
@@ -683,7 +683,7 @@ export const extendedSingles = [
 "id": "xs-meg-delibird-152",
 "name": "Delibird #152",
 "set": "Mega Evolution (MEG)",
-"image": "/proxys/ExtendedArt/pv/meg-delibird-152.webp",
+"image": "/proxys/ExtendedArt/pv/meg-delibird-152.webp", "t": 53,
 "card": 654491,
 "center": {
 "left": 33.74,
@@ -696,7 +696,7 @@ export const extendedSingles = [
 "id": "xs-meg-mega-venusaur-ex-177",
 "name": "Mega Venusaur ex #177",
 "set": "Mega Evolution (MEG)",
-"image": "/proxys/ExtendedArt/pv/meg-mega-venusaur-ex-177.webp",
+"image": "/proxys/ExtendedArt/pv/meg-mega-venusaur-ex-177.webp", "t": 54,
 "card": 654516,
 "center": {
 "left": 34.02,
@@ -709,7 +709,7 @@ export const extendedSingles = [
 "id": "xs-mew-blastoise-ex-200",
 "name": "Blastoise ex #200",
 "set": "151 (MEW)",
-"image": "/proxys/ExtendedArt/pv/mew-blastoise-ex-200.webp",
+"image": "/proxys/ExtendedArt/pv/mew-blastoise-ex-200.webp", "t": 55,
 "card": 517046,
 "center": {
 "left": 33.88,
@@ -722,7 +722,7 @@ export const extendedSingles = [
 "id": "xs-mew-bulbasaur-166",
 "name": "Bulbasaur #166",
 "set": "151 (MEW)",
-"image": "/proxys/ExtendedArt/pv/mew-bulbasaur-166.webp",
+"image": "/proxys/ExtendedArt/pv/mew-bulbasaur-166.webp", "t": 56,
 "card": 516997,
 "center": {
 "left": 34.1,
@@ -735,7 +735,7 @@ export const extendedSingles = [
 "id": "xs-mew-caterpie-172",
 "name": "Caterpie #172",
 "set": "151 (MEW)",
-"image": "/proxys/ExtendedArt/pv/mew-caterpie-172.webp",
+"image": "/proxys/ExtendedArt/pv/mew-caterpie-172.webp", "t": 57,
 "card": 517016,
 "center": {
 "left": 33.8,
@@ -748,7 +748,7 @@ export const extendedSingles = [
 "id": "xs-mew-charizard-199",
 "name": "Charizard #199",
 "set": "151 (MEW)",
-"image": "/proxys/ExtendedArt/pv/mew-charizard-199.webp",
+"image": "/proxys/ExtendedArt/pv/mew-charizard-199.webp", "t": 58,
 "card": 517045,
 "center": {
 "left": 33.8,
@@ -761,7 +761,7 @@ export const extendedSingles = [
 "id": "xs-mew-charmeleon-169",
 "name": "Charmeleon #169",
 "set": "151 (MEW)",
-"image": "/proxys/ExtendedArt/pv/mew-charmeleon-169.webp",
+"image": "/proxys/ExtendedArt/pv/mew-charmeleon-169.webp", "t": 59,
 "card": 517018,
 "center": {
 "left": 34.06,
@@ -774,7 +774,7 @@ export const extendedSingles = [
 "id": "xs-mew-psyduck-175",
 "name": "Psyduck #175",
 "set": "151 (MEW)",
-"image": "/proxys/ExtendedArt/pv/mew-psyduck-175.webp",
+"image": "/proxys/ExtendedArt/pv/mew-psyduck-175.webp", "t": 60,
 "card": 517035,
 "center": {
 "left": 34.06,
@@ -787,7 +787,7 @@ export const extendedSingles = [
 "id": "xs-mew-squirtle-170",
 "name": "Squirtle #170",
 "set": "151 (MEW)",
-"image": "/proxys/ExtendedArt/pv/mew-squirtle-170.webp",
+"image": "/proxys/ExtendedArt/pv/mew-squirtle-170.webp", "t": 61,
 "card": 502549,
 "center": {
 "left": 33.87,
@@ -800,7 +800,7 @@ export const extendedSingles = [
 "id": "xs-mew-venusaur-ex-198",
 "name": "Venusaur ex #198",
 "set": "151 (MEW)",
-"image": "/proxys/ExtendedArt/pv/mew-venusaur-ex-198.webp",
+"image": "/proxys/ExtendedArt/pv/mew-venusaur-ex-198.webp", "t": 62,
 "card": 517044,
 "center": {
 "left": 34.11,
@@ -813,7 +813,7 @@ export const extendedSingles = [
 "id": "xs-mew-wartortle-171",
 "name": "Wartortle #171",
 "set": "151 (MEW)",
-"image": "/proxys/ExtendedArt/pv/mew-wartortle-171.webp",
+"image": "/proxys/ExtendedArt/pv/mew-wartortle-171.webp", "t": 63,
 "card": 517038,
 "center": {
 "left": 33.85,
@@ -826,7 +826,7 @@ export const extendedSingles = [
 "id": "xs-mew-zapdos-202",
 "name": "Zapdos #202",
 "set": "151 (MEW)",
-"image": "/proxys/ExtendedArt/pv/mew-zapdos-202.webp",
+"image": "/proxys/ExtendedArt/pv/mew-zapdos-202.webp", "t": 64,
 "card": 517048,
 "center": {
 "left": 34.11,
@@ -839,7 +839,7 @@ export const extendedSingles = [
 "id": "xs-obf-charizard-ex-215",
 "name": "Charizard ex #215",
 "set": "Obsidian Flames (OBF)",
-"image": "/proxys/ExtendedArt/pv/obf-charizard-ex-215.webp",
+"image": "/proxys/ExtendedArt/pv/obf-charizard-ex-215.webp", "t": 65,
 "card": 509963,
 "center": {
 "left": 34.23,
@@ -852,7 +852,7 @@ export const extendedSingles = [
 "id": "xs-obf-charizard-ex-223",
 "name": "Charizard ex #223",
 "set": "Obsidian Flames (OBF)",
-"image": "/proxys/ExtendedArt/pv/obf-charizard-ex-223.webp",
+"image": "/proxys/ExtendedArt/pv/obf-charizard-ex-223.webp", "t": 66,
 "card": 509980,
 "center": {
 "left": 34.14,
@@ -865,7 +865,7 @@ export const extendedSingles = [
 "id": "xs-obf-cleffa-202",
 "name": "Cleffa #202",
 "set": "Obsidian Flames (OBF)",
-"image": "/proxys/ExtendedArt/pv/obf-cleffa-202.webp",
+"image": "/proxys/ExtendedArt/pv/obf-cleffa-202.webp", "t": 67,
 "card": 509949,
 "center": {
 "left": 33.69,
@@ -878,7 +878,7 @@ export const extendedSingles = [
 "id": "xs-bbl-kyurem-ex-165",
 "name": "Kyurem ex #165",
 "set": "Black Bolt (BBL)",
-"image": "/proxys/ExtendedArt/pv/bbl-kyurem-ex-165.webp",
+"image": "/proxys/ExtendedArt/pv/bbl-kyurem-ex-165.webp", "t": 68,
 "card": 642617,
 "center": {
 "left": 34.03,
@@ -891,7 +891,7 @@ export const extendedSingles = [
 "id": "xs-otros-sets-umbreon-v-tg22-brilliant-stars",
 "name": "Umbreon V #TG22 (Brilliant Stars)",
 "set": "Otros sets",
-"image": "/proxys/ExtendedArt/pv/otros-sets-umbreon-v-tg22-brilliant-stars.webp",
+"image": "/proxys/ExtendedArt/pv/otros-sets-umbreon-v-tg22-brilliant-stars.webp", "t": 69,
 "card": 264207,
 "center": {
 "left": 33.88,
@@ -904,7 +904,7 @@ export const extendedSingles = [
 "id": "xs-otros-sets-espeon-v-180-evolving-skies",
 "name": "Espeon V #180 (Evolving Skies)",
 "set": "Otros sets",
-"image": "/proxys/ExtendedArt/pv/otros-sets-espeon-v-180-evolving-skies.webp",
+"image": "/proxys/ExtendedArt/pv/otros-sets-espeon-v-180-evolving-skies.webp", "t": 70,
 "card": 246689,
 "center": {
 "left": 33.72,
@@ -917,7 +917,7 @@ export const extendedSingles = [
 "id": "xs-otros-sets-eevee-78-japonesa",
 "name": "Eevee #78 (Japonesa)",
 "set": "Otros sets",
-"image": "/proxys/ExtendedArt/pv/otros-sets-eevee-78-japonesa.webp",
+"image": "/proxys/ExtendedArt/pv/otros-sets-eevee-78-japonesa.webp", "t": 71,
 "card": null,
 "center": {
 "left": 34.14,
@@ -930,7 +930,7 @@ export const extendedSingles = [
 "id": "xs-paf-charizard-ex-234",
 "name": "Charizard ex #234",
 "set": "Paldean Fates (PAF)",
-"image": "/proxys/ExtendedArt/pv/paf-charizard-ex-234.webp",
+"image": "/proxys/ExtendedArt/pv/paf-charizard-ex-234.webp", "t": 72,
 "card": 535090,
 "center": {
 "left": 33.94,
@@ -943,7 +943,7 @@ export const extendedSingles = [
 "id": "xs-par-snorunt-188",
 "name": "Snorunt #188",
 "set": "Paradox Rift (PAR)",
-"image": "/proxys/ExtendedArt/pv/par-snorunt-188.webp",
+"image": "/proxys/ExtendedArt/pv/par-snorunt-188.webp", "t": 73,
 "card": 523869,
 "center": {
 "left": 33.8,
@@ -956,7 +956,7 @@ export const extendedSingles = [
 "id": "xs-pbl-wailord-ex-97",
 "name": "Wailord ex #97",
 "set": "Pitch Black (PBL)",
-"image": "/proxys/ExtendedArt/pv/pbl-wailord-ex-97.webp",
+"image": "/proxys/ExtendedArt/pv/pbl-wailord-ex-97.webp", "t": 74,
 "card": 704854,
 "center": {
 "left": 34.09,
@@ -969,7 +969,7 @@ export const extendedSingles = [
 "id": "xs-scr-bulbasaur-143",
 "name": "Bulbasaur #143",
 "set": "Stellar Crown (SCR)",
-"image": "/proxys/ExtendedArt/pv/scr-bulbasaur-143.webp",
+"image": "/proxys/ExtendedArt/pv/scr-bulbasaur-143.webp", "t": 75,
 "card": 567418,
 "center": {
 "left": 34.06,
@@ -982,7 +982,7 @@ export const extendedSingles = [
 "id": "xs-scr-squirtle-148",
 "name": "Squirtle #148",
 "set": "Stellar Crown (SCR)",
-"image": "/proxys/ExtendedArt/pv/scr-squirtle-148.webp",
+"image": "/proxys/ExtendedArt/pv/scr-squirtle-148.webp", "t": 76,
 "card": 567429,
 "center": {
 "left": 34.08,
@@ -995,7 +995,7 @@ export const extendedSingles = [
 "id": "xs-scr-squirtle-2",
 "name": "Squirtle #2",
 "set": "Stellar Crown (SCR)",
-"image": "/proxys/ExtendedArt/pv/scr-squirtle-2.webp",
+"image": "/proxys/ExtendedArt/pv/scr-squirtle-2.webp", "t": 77,
 "card": null,
 "center": {
 "left": 33.69,
@@ -1008,7 +1008,7 @@ export const extendedSingles = [
 "id": "xs-sfa-duskull-68",
 "name": "Duskull #68",
 "set": "Shrouded Fable (SFA)",
-"image": "/proxys/ExtendedArt/pv/sfa-duskull-68.webp",
+"image": "/proxys/ExtendedArt/pv/sfa-duskull-68.webp", "t": 78,
 "card": 560379,
 "center": {
 "left": 33.69,
@@ -1021,7 +1021,7 @@ export const extendedSingles = [
 "id": "xs-pbl-armarouge-86",
 "name": "Armarouge #86",
 "set": "Pitch Black (PBL)",
-"image": "/proxys/ExtendedArt/pv/pbl-armarouge-86.webp",
+"image": "/proxys/ExtendedArt/pv/pbl-armarouge-86.webp", "t": 79,
 "card": 704843,
 "center": {
 "left": 33.98,
@@ -1034,7 +1034,7 @@ export const extendedSingles = [
 "id": "xs-pbl-bastiodon-93",
 "name": "Bastiodon #93",
 "set": "Pitch Black (PBL)",
-"image": "/proxys/ExtendedArt/pv/pbl-bastiodon-93.webp",
+"image": "/proxys/ExtendedArt/pv/pbl-bastiodon-93.webp", "t": 80,
 "card": 704850,
 "center": {
 "left": 34.14,
@@ -1047,7 +1047,7 @@ export const extendedSingles = [
 "id": "xs-pbl-brave-bangle-104",
 "name": "Brave Bangle #104",
 "set": "Pitch Black (PBL)",
-"image": "/proxys/ExtendedArt/pv/pbl-brave-bangle-104.webp",
+"image": "/proxys/ExtendedArt/pv/pbl-brave-bangle-104.webp", "t": 81,
 "card": 704861,
 "center": {
 "left": 33.72,
@@ -1060,7 +1060,7 @@ export const extendedSingles = [
 "id": "xs-pbl-crushing-hammer-105",
 "name": "Crushing Hammer #105",
 "set": "Pitch Black (PBL)",
-"image": "/proxys/ExtendedArt/pv/pbl-crushing-hammer-105.webp",
+"image": "/proxys/ExtendedArt/pv/pbl-crushing-hammer-105.webp", "t": 82,
 "card": 704862,
 "center": {
 "left": 34.04,
@@ -1073,7 +1073,7 @@ export const extendedSingles = [
 "id": "xs-pbl-dark-bell-106",
 "name": "Dark Bell #106",
 "set": "Pitch Black (PBL)",
-"image": "/proxys/ExtendedArt/pv/pbl-dark-bell-106.webp",
+"image": "/proxys/ExtendedArt/pv/pbl-dark-bell-106.webp", "t": 83,
 "card": 704863,
 "center": {
 "left": 33.99,
@@ -1086,7 +1086,7 @@ export const extendedSingles = [
 "id": "xs-pbl-dhelmise-91",
 "name": "Dhelmise #91",
 "set": "Pitch Black (PBL)",
-"image": "/proxys/ExtendedArt/pv/pbl-dhelmise-91.webp",
+"image": "/proxys/ExtendedArt/pv/pbl-dhelmise-91.webp", "t": 84,
 "card": 704848,
 "center": {
 "left": 34.24,
@@ -1099,7 +1099,7 @@ export const extendedSingles = [
 "id": "xs-pbl-energy-switch-107",
 "name": "Energy Switch #107",
 "set": "Pitch Black (PBL)",
-"image": "/proxys/ExtendedArt/pv/pbl-energy-switch-107.webp",
+"image": "/proxys/ExtendedArt/pv/pbl-energy-switch-107.webp", "t": 85,
 "card": 704864,
 "center": {
 "left": 34.14,
@@ -1112,7 +1112,7 @@ export const extendedSingles = [
 "id": "xs-pbl-fomantis-85",
 "name": "Fomantis #85",
 "set": "Pitch Black (PBL)",
-"image": "/proxys/ExtendedArt/pv/pbl-fomantis-85.webp",
+"image": "/proxys/ExtendedArt/pv/pbl-fomantis-85.webp", "t": 86,
 "card": 704842,
 "center": {
 "left": 34.07,
@@ -1125,7 +1125,7 @@ export const extendedSingles = [
 "id": "xs-pbl-gladion-s-final-battle-108",
 "name": "Gladion's Final Battle #108",
 "set": "Pitch Black (PBL)",
-"image": "/proxys/ExtendedArt/pv/pbl-gladion-s-final-battle-108.webp",
+"image": "/proxys/ExtendedArt/pv/pbl-gladion-s-final-battle-108.webp", "t": 87,
 "card": 704865,
 "center": {
 "left": 34.03,
@@ -1138,7 +1138,7 @@ export const extendedSingles = [
 "id": "xs-pbl-gladion-s-final-battle-118",
 "name": "Gladion's Final Battle #118",
 "set": "Pitch Black (PBL)",
-"image": "/proxys/ExtendedArt/pv/pbl-gladion-s-final-battle-118.webp",
+"image": "/proxys/ExtendedArt/pv/pbl-gladion-s-final-battle-118.webp", "t": 88,
 "card": 704875,
 "center": {
 "left": 34.22,
@@ -1151,7 +1151,7 @@ export const extendedSingles = [
 "id": "xs-pbl-goldeen-87",
 "name": "Goldeen #87",
 "set": "Pitch Black (PBL)",
-"image": "/proxys/ExtendedArt/pv/pbl-goldeen-87.webp",
+"image": "/proxys/ExtendedArt/pv/pbl-goldeen-87.webp", "t": 89,
 "card": 704844,
 "center": {
 "left": 34.18,
@@ -1164,7 +1164,7 @@ export const extendedSingles = [
 "id": "xs-pbl-gwynn-109",
 "name": "Gwynn #109",
 "set": "Pitch Black (PBL)",
-"image": "/proxys/ExtendedArt/pv/pbl-gwynn-109.webp",
+"image": "/proxys/ExtendedArt/pv/pbl-gwynn-109.webp", "t": 90,
 "card": 704866,
 "center": {
 "left": 33.83,
@@ -1177,7 +1177,7 @@ export const extendedSingles = [
 "id": "xs-pbl-gwynn-119",
 "name": "Gwynn #119",
 "set": "Pitch Black (PBL)",
-"image": "/proxys/ExtendedArt/pv/pbl-gwynn-119.webp",
+"image": "/proxys/ExtendedArt/pv/pbl-gwynn-119.webp", "t": 91,
 "card": 704876,
 "center": {
 "left": 34.14,
@@ -1190,7 +1190,7 @@ export const extendedSingles = [
 "id": "xs-pbl-iron-defender-110",
 "name": "Iron Defender #110",
 "set": "Pitch Black (PBL)",
-"image": "/proxys/ExtendedArt/pv/pbl-iron-defender-110.webp",
+"image": "/proxys/ExtendedArt/pv/pbl-iron-defender-110.webp", "t": 92,
 "card": 704867,
 "center": {
 "left": 33.99,
@@ -1203,7 +1203,7 @@ export const extendedSingles = [
 "id": "xs-pbl-manectric-89",
 "name": "Manectric #89",
 "set": "Pitch Black (PBL)",
-"image": "/proxys/ExtendedArt/pv/pbl-manectric-89.webp",
+"image": "/proxys/ExtendedArt/pv/pbl-manectric-89.webp", "t": 93,
 "card": 704846,
 "center": {
 "left": 34.1,
@@ -1216,7 +1216,7 @@ export const extendedSingles = [
 "id": "xs-pbl-mega-chandelure-115",
 "name": "Mega Chandelure #115",
 "set": "Pitch Black (PBL)",
-"image": "/proxys/ExtendedArt/pv/pbl-mega-chandelure-115.webp",
+"image": "/proxys/ExtendedArt/pv/pbl-mega-chandelure-115.webp", "t": 94,
 "card": 704872,
 "center": {
 "left": 34.26,
@@ -1229,7 +1229,7 @@ export const extendedSingles = [
 "id": "xs-pbl-mega-chandelure-ex-38",
 "name": "Mega Chandelure ex #38",
 "set": "Pitch Black (PBL)",
-"image": "/proxys/ExtendedArt/pv/pbl-mega-chandelure-ex-38.webp",
+"image": "/proxys/ExtendedArt/pv/pbl-mega-chandelure-ex-38.webp", "t": 95,
 "card": 704795,
 "center": {
 "left": 33.91,
@@ -1242,7 +1242,7 @@ export const extendedSingles = [
 "id": "xs-pbl-mega-darkrai-101",
 "name": "Mega Darkrai #101",
 "set": "Pitch Black (PBL)",
-"image": "/proxys/ExtendedArt/pv/pbl-mega-darkrai-101.webp",
+"image": "/proxys/ExtendedArt/pv/pbl-mega-darkrai-101.webp", "t": 96,
 "card": 704858,
 "center": {
 "left": 34.02,
@@ -1255,7 +1255,7 @@ export const extendedSingles = [
 "id": "xs-pbl-mega-darkrai-116",
 "name": "Mega Darkrai #116",
 "set": "Pitch Black (PBL)",
-"image": "/proxys/ExtendedArt/pv/pbl-mega-darkrai-116.webp",
+"image": "/proxys/ExtendedArt/pv/pbl-mega-darkrai-116.webp", "t": 97,
 "card": 704873,
 "center": {
 "left": 34.1,
@@ -1268,7 +1268,7 @@ export const extendedSingles = [
 "id": "xs-pbl-mega-zeraora-114",
 "name": "Mega Zeraora #114",
 "set": "Pitch Black (PBL)",
-"image": "/proxys/ExtendedArt/pv/pbl-mega-zeraora-114.webp",
+"image": "/proxys/ExtendedArt/pv/pbl-mega-zeraora-114.webp", "t": 98,
 "card": 704871,
 "center": {
 "left": 34.09,
@@ -1281,7 +1281,7 @@ export const extendedSingles = [
 "id": "xs-pbl-mega-zeraora-ex-27",
 "name": "Mega Zeraora ex #27",
 "set": "Pitch Black (PBL)",
-"image": "/proxys/ExtendedArt/pv/pbl-mega-zeraora-ex-27.webp",
+"image": "/proxys/ExtendedArt/pv/pbl-mega-zeraora-ex-27.webp", "t": 99,
 "card": 704784,
 "center": {
 "left": 33.91,
@@ -1294,7 +1294,7 @@ export const extendedSingles = [
 "id": "xs-pbl-misty-s-vitality-111",
 "name": "Misty's Vitality #111",
 "set": "Pitch Black (PBL)",
-"image": "/proxys/ExtendedArt/pv/pbl-misty-s-vitality-111.webp",
+"image": "/proxys/ExtendedArt/pv/pbl-misty-s-vitality-111.webp", "t": 100,
 "card": 704868,
 "center": {
 "left": 33.98,
@@ -1307,7 +1307,7 @@ export const extendedSingles = [
 "id": "xs-pbl-morpeko-102",
 "name": "Morpeko #102",
 "set": "Pitch Black (PBL)",
-"image": "/proxys/ExtendedArt/pv/pbl-morpeko-102.webp",
+"image": "/proxys/ExtendedArt/pv/pbl-morpeko-102.webp", "t": 101,
 "card": 704859,
 "center": {
 "left": 33.95,
@@ -1320,7 +1320,7 @@ export const extendedSingles = [
 "id": "xs-pbl-morpeko-117",
 "name": "Morpeko #117",
 "set": "Pitch Black (PBL)",
-"image": "/proxys/ExtendedArt/pv/pbl-morpeko-117.webp",
+"image": "/proxys/ExtendedArt/pv/pbl-morpeko-117.webp", "t": 102,
 "card": 704874,
 "center": {
 "left": 34.4,
@@ -1333,7 +1333,7 @@ export const extendedSingles = [
 "id": "xs-pbl-primarina-88",
 "name": "Primarina #88",
 "set": "Pitch Black (PBL)",
-"image": "/proxys/ExtendedArt/pv/pbl-primarina-88.webp",
+"image": "/proxys/ExtendedArt/pv/pbl-primarina-88.webp", "t": 103,
 "card": 704845,
 "center": {
 "left": 34.07,
@@ -1346,7 +1346,7 @@ export const extendedSingles = [
 "id": "xs-pbl-rampardos-ex-100",
 "name": "Rampardos ex #100",
 "set": "Pitch Black (PBL)",
-"image": "/proxys/ExtendedArt/pv/pbl-rampardos-ex-100.webp",
+"image": "/proxys/ExtendedArt/pv/pbl-rampardos-ex-100.webp", "t": 104,
 "card": 704857,
 "center": {
 "left": 33.87,
@@ -1359,7 +1359,7 @@ export const extendedSingles = [
 "id": "xs-pbl-rust-syndicate-grunt-112",
 "name": "Rust Syndicate Grunt #112",
 "set": "Pitch Black (PBL)",
-"image": "/proxys/ExtendedArt/pv/pbl-rust-syndicate-grunt-112.webp",
+"image": "/proxys/ExtendedArt/pv/pbl-rust-syndicate-grunt-112.webp", "t": 105,
 "card": 704869,
 "center": {
 "left": 33.76,
@@ -1372,7 +1372,7 @@ export const extendedSingles = [
 "id": "xs-pbl-silvally-95",
 "name": "Silvally #95",
 "set": "Pitch Black (PBL)",
-"image": "/proxys/ExtendedArt/pv/pbl-silvally-95.webp",
+"image": "/proxys/ExtendedArt/pv/pbl-silvally-95.webp", "t": 106,
 "card": 704852,
 "center": {
 "left": 33.79,
@@ -1385,7 +1385,7 @@ export const extendedSingles = [
 "id": "xs-pbl-slowbro-90",
 "name": "Slowbro #90",
 "set": "Pitch Black (PBL)",
-"image": "/proxys/ExtendedArt/pv/pbl-slowbro-90.webp",
+"image": "/proxys/ExtendedArt/pv/pbl-slowbro-90.webp", "t": 107,
 "card": 704847,
 "center": {
 "left": 33.92,
@@ -1398,7 +1398,7 @@ export const extendedSingles = [
 "id": "xs-pbl-thievul-92",
 "name": "Thievul #92",
 "set": "Pitch Black (PBL)",
-"image": "/proxys/ExtendedArt/pv/pbl-thievul-92.webp",
+"image": "/proxys/ExtendedArt/pv/pbl-thievul-92.webp", "t": 108,
 "card": 704849,
 "center": {
 "left": 33.8,
@@ -1411,7 +1411,7 @@ export const extendedSingles = [
 "id": "xs-pbl-toucannon-94",
 "name": "Toucannon #94",
 "set": "Pitch Black (PBL)",
-"image": "/proxys/ExtendedArt/pv/pbl-toucannon-94.webp",
+"image": "/proxys/ExtendedArt/pv/pbl-toucannon-94.webp", "t": 109,
 "card": 704851,
 "center": {
 "left": 33.91,
@@ -1424,7 +1424,7 @@ export const extendedSingles = [
 "id": "xs-pbl-tremendous-bomb-113",
 "name": "Tremendous Bomb #113",
 "set": "Pitch Black (PBL)",
-"image": "/proxys/ExtendedArt/pv/pbl-tremendous-bomb-113.webp",
+"image": "/proxys/ExtendedArt/pv/pbl-tremendous-bomb-113.webp", "t": 110,
 "card": 704870,
 "center": {
 "left": 34.03,
@@ -1437,7 +1437,7 @@ export const extendedSingles = [
 "id": "xs-pfl-charizard-125",
 "name": "Charizard #125",
 "set": "Phantasmal Flames (PFL)",
-"image": "/proxys/ExtendedArt/pv/pfl-charizard-125.webp",
+"image": "/proxys/ExtendedArt/pv/pfl-charizard-125.webp", "t": 111,
 "card": 662184,
 "center": {
 "left": 34.06,
@@ -1450,7 +1450,7 @@ export const extendedSingles = [
 "id": "xs-pfl-dawn-129",
 "name": "Dawn #129",
 "set": "Phantasmal Flames (PFL)",
-"image": "/proxys/ExtendedArt/pv/pfl-dawn-129.webp",
+"image": "/proxys/ExtendedArt/pv/pfl-dawn-129.webp", "t": 112,
 "card": 662150,
 "center": {
 "left": 34.18,
@@ -1463,7 +1463,7 @@ export const extendedSingles = [
 "id": "xs-pfl-dewgong-97",
 "name": "Dewgong #97",
 "set": "Phantasmal Flames (PFL)",
-"image": "/proxys/ExtendedArt/pv/pfl-dewgong-97.webp",
+"image": "/proxys/ExtendedArt/pv/pfl-dewgong-97.webp", "t": 113,
 "card": 662152,
 "center": {
 "left": 33.8,
@@ -1476,7 +1476,7 @@ export const extendedSingles = [
 "id": "xs-pfl-mega-charizard-130",
 "name": "Mega Charizard #130",
 "set": "Phantasmal Flames (PFL)",
-"image": "/proxys/ExtendedArt/pv/pfl-mega-charizard-130.webp",
+"image": "/proxys/ExtendedArt/pv/pfl-mega-charizard-130.webp", "t": 114,
 "card": 662185,
 "center": {
 "left": 34.02,
@@ -1489,7 +1489,7 @@ export const extendedSingles = [
 "id": "xs-pfl-mega-charizard-x-ex-109",
 "name": "Mega Charizard X ex #109",
 "set": "Phantasmal Flames (PFL)",
-"image": "/proxys/ExtendedArt/pv/pfl-mega-charizard-x-ex-109.webp",
+"image": "/proxys/ExtendedArt/pv/pfl-mega-charizard-x-ex-109.webp", "t": 115,
 "card": 662183,
 "center": {
 "left": 33.94,
@@ -1502,7 +1502,7 @@ export const extendedSingles = [
 "id": "xs-pfl-yamper-99",
 "name": "Yamper #99",
 "set": "Phantasmal Flames (PFL)",
-"image": "/proxys/ExtendedArt/pv/pfl-yamper-99.webp",
+"image": "/proxys/ExtendedArt/pv/pfl-yamper-99.webp", "t": 116,
 "card": 662243,
 "center": {
 "left": 34.37,
@@ -1515,7 +1515,7 @@ export const extendedSingles = [
 "id": "xs-pfl-zacian-100",
 "name": "Zacian #100",
 "set": "Phantasmal Flames (PFL)",
-"image": "/proxys/ExtendedArt/pv/pfl-zacian-100.webp",
+"image": "/proxys/ExtendedArt/pv/pfl-zacian-100.webp", "t": 117,
 "card": 662245,
 "center": {
 "left": 33.69,
@@ -1528,7 +1528,7 @@ export const extendedSingles = [
 "id": "xs-por-clefairy-94",
 "name": "Clefairy #94",
 "set": "Perfect Order (POR)",
-"image": "/proxys/ExtendedArt/pv/por-clefairy-94.webp",
+"image": "/proxys/ExtendedArt/pv/por-clefairy-94.webp", "t": 118,
 "card": 684415,
 "center": {
 "left": 34.1,
@@ -1541,7 +1541,7 @@ export const extendedSingles = [
 "id": "xs-por-dedenne-93",
 "name": "Dedenne #93",
 "set": "Perfect Order (POR)",
-"image": "/proxys/ExtendedArt/pv/por-dedenne-93.webp",
+"image": "/proxys/ExtendedArt/pv/por-dedenne-93.webp", "t": 119,
 "card": 684413,
 "center": {
 "left": 33.69,
@@ -1554,7 +1554,7 @@ export const extendedSingles = [
 "id": "xs-por-doublade-98",
 "name": "Doublade #98",
 "set": "Perfect Order (POR)",
-"image": "/proxys/ExtendedArt/pv/por-doublade-98.webp",
+"image": "/proxys/ExtendedArt/pv/por-doublade-98.webp", "t": 120,
 "card": 684380,
 "center": {
 "left": 33.65,
@@ -1567,7 +1567,7 @@ export const extendedSingles = [
 "id": "xs-por-raticate-99",
 "name": "Raticate #99",
 "set": "Perfect Order (POR)",
-"image": "/proxys/ExtendedArt/pv/por-raticate-99.webp",
+"image": "/proxys/ExtendedArt/pv/por-raticate-99.webp", "t": 121,
 "card": 684439,
 "center": {
 "left": 34.04,
@@ -1580,7 +1580,7 @@ export const extendedSingles = [
 "id": "xs-por-talonflame-91",
 "name": "Talonflame #91",
 "set": "Perfect Order (POR)",
-"image": "/proxys/ExtendedArt/pv/por-talonflame-91.webp",
+"image": "/proxys/ExtendedArt/pv/por-talonflame-91.webp", "t": 122,
 "card": 684406,
 "center": {
 "left": 34.07,
@@ -1593,7 +1593,7 @@ export const extendedSingles = [
 "id": "xs-pre-eevee-167",
 "name": "Eevee #167",
 "set": "Prismatic Evolutions (PRE)",
-"image": "/proxys/ExtendedArt/pv/pre-eevee-167.webp",
+"image": "/proxys/ExtendedArt/pv/pre-eevee-167.webp", "t": 123,
 "card": 610522,
 "center": {
 "left": 34.05,
@@ -1606,7 +1606,7 @@ export const extendedSingles = [
 "id": "xs-pre-espeon-ex-155",
 "name": "Espeon ex #155",
 "set": "Prismatic Evolutions (PRE)",
-"image": "/proxys/ExtendedArt/pv/pre-espeon-ex-155.webp",
+"image": "/proxys/ExtendedArt/pv/pre-espeon-ex-155.webp", "t": 124,
 "card": 610510,
 "center": {
 "left": 33.85,
@@ -1619,7 +1619,7 @@ export const extendedSingles = [
 "id": "xs-pre-flareon-146",
 "name": "Flareon #146",
 "set": "Prismatic Evolutions (PRE)",
-"image": "/proxys/ExtendedArt/pv/pre-flareon-146.webp",
+"image": "/proxys/ExtendedArt/pv/pre-flareon-146.webp", "t": 125,
 "card": 610501,
 "center": {
 "left": 33.95,
@@ -1632,7 +1632,7 @@ export const extendedSingles = [
 "id": "xs-pre-glaceon-ex-150-131",
 "name": "Glaceon ex #150-131",
 "set": "Prismatic Evolutions (PRE)",
-"image": "/proxys/ExtendedArt/pv/pre-glaceon-ex-150-131.webp",
+"image": "/proxys/ExtendedArt/pv/pre-glaceon-ex-150-131.webp", "t": 126,
 "card": null,
 "center": {
 "left": 34.19,
@@ -1645,7 +1645,7 @@ export const extendedSingles = [
 "id": "xs-pre-jolteon-ex-153",
 "name": "Jolteon ex #153",
 "set": "Prismatic Evolutions (PRE)",
-"image": "/proxys/ExtendedArt/pv/pre-jolteon-ex-153.webp",
+"image": "/proxys/ExtendedArt/pv/pre-jolteon-ex-153.webp", "t": 127,
 "card": 610508,
 "center": {
 "left": 34.06,
@@ -1658,7 +1658,7 @@ export const extendedSingles = [
 "id": "xs-pre-leafeon-ex-144",
 "name": "Leafeon ex #144",
 "set": "Prismatic Evolutions (PRE)",
-"image": "/proxys/ExtendedArt/pv/pre-leafeon-ex-144.webp",
+"image": "/proxys/ExtendedArt/pv/pre-leafeon-ex-144.webp", "t": 128,
 "card": 610499,
 "center": {
 "left": 33.95,
@@ -1671,7 +1671,7 @@ export const extendedSingles = [
 "id": "xs-pre-sylveon-ex-156",
 "name": "Sylveon ex #156",
 "set": "Prismatic Evolutions (PRE)",
-"image": "/proxys/ExtendedArt/pv/pre-sylveon-ex-156.webp",
+"image": "/proxys/ExtendedArt/pv/pre-sylveon-ex-156.webp", "t": 129,
 "card": 610511,
 "center": {
 "left": 34.03,
@@ -1684,7 +1684,7 @@ export const extendedSingles = [
 "id": "xs-pre-umbreon-ex-161",
 "name": "Umbreon ex #161",
 "set": "Prismatic Evolutions (PRE)",
-"image": "/proxys/ExtendedArt/pv/pre-umbreon-ex-161.webp",
+"image": "/proxys/ExtendedArt/pv/pre-umbreon-ex-161.webp", "t": 130,
 "card": 610516,
 "center": {
 "left": 34.02,
@@ -1697,7 +1697,7 @@ export const extendedSingles = [
 "id": "xs-pre-vaporeon-149",
 "name": "Vaporeon #149",
 "set": "Prismatic Evolutions (PRE)",
-"image": "/proxys/ExtendedArt/pv/pre-vaporeon-149.webp",
+"image": "/proxys/ExtendedArt/pv/pre-vaporeon-149.webp", "t": 131,
 "card": 610504,
 "center": {
 "left": 34.14,
@@ -1710,7 +1710,7 @@ export const extendedSingles = [
 "id": "xs-promos-bulbasaur-37",
 "name": "Bulbasaur #37",
 "set": "Promos",
-"image": "/proxys/ExtendedArt/pv/promos-bulbasaur-37.webp",
+"image": "/proxys/ExtendedArt/pv/promos-bulbasaur-37.webp", "t": 132,
 "card": 684461,
 "center": {
 "left": 34.11,
@@ -1723,7 +1723,7 @@ export const extendedSingles = [
 "id": "xs-promos-charizard-v-260",
 "name": "Charizard V #260",
 "set": "Promos",
-"image": "/proxys/ExtendedArt/pv/promos-charizard-v-260.webp",
+"image": "/proxys/ExtendedArt/pv/promos-charizard-v-260.webp", "t": 133,
 "card": null,
 "center": {
 "left": 34.07,
@@ -1736,7 +1736,7 @@ export const extendedSingles = [
 "id": "xs-promos-charmander-44",
 "name": "Charmander #44",
 "set": "Promos",
-"image": "/proxys/ExtendedArt/pv/promos-charmander-44.webp",
+"image": "/proxys/ExtendedArt/pv/promos-charmander-44.webp", "t": 134,
 "card": 512035,
 "center": {
 "left": 34.02,
@@ -1749,7 +1749,7 @@ export const extendedSingles = [
 "id": "xs-promos-eevee-173",
 "name": "Eevee #173",
 "set": "Promos",
-"image": "/proxys/ExtendedArt/pv/promos-eevee-173.webp",
+"image": "/proxys/ExtendedArt/pv/promos-eevee-173.webp", "t": 135,
 "card": 610758,
 "center": {
 "left": 34.1,
@@ -1762,7 +1762,7 @@ export const extendedSingles = [
 "id": "xs-promos-fennekin-80",
 "name": "Fennekin #80",
 "set": "Promos",
-"image": "/proxys/ExtendedArt/pv/promos-fennekin-80.webp",
+"image": "/proxys/ExtendedArt/pv/promos-fennekin-80.webp", "t": 136,
 "card": 694694,
 "center": {
 "left": 34.02,
@@ -1775,7 +1775,7 @@ export const extendedSingles = [
 "id": "xs-promos-greninja-ex-132",
 "name": "Greninja ex #132",
 "set": "Promos",
-"image": "/proxys/ExtendedArt/pv/promos-greninja-ex-132.webp",
+"image": "/proxys/ExtendedArt/pv/promos-greninja-ex-132.webp", "t": 137,
 "card": 562018,
 "center": {
 "left": 34.05,
@@ -1788,7 +1788,7 @@ export const extendedSingles = [
 "id": "xs-promos-kingdra-131",
 "name": "Kingdra #131",
 "set": "Promos",
-"image": "/proxys/ExtendedArt/pv/promos-kingdra-131.webp",
+"image": "/proxys/ExtendedArt/pv/promos-kingdra-131.webp", "t": 138,
 "card": 562019,
 "center": {
 "left": 34.09,
@@ -1801,7 +1801,7 @@ export const extendedSingles = [
 "id": "xs-promos-mega-charizard-x-ex-23",
 "name": "Mega Charizard X ex #23",
 "set": "Promos",
-"image": "/proxys/ExtendedArt/pv/promos-mega-charizard-x-ex-23.webp",
+"image": "/proxys/ExtendedArt/pv/promos-mega-charizard-x-ex-23.webp", "t": 139,
 "card": 659612,
 "center": {
 "left": 33.91,
@@ -1814,7 +1814,7 @@ export const extendedSingles = [
 "id": "xs-promos-mew-ex-53",
 "name": "Mew ex #53",
 "set": "Promos",
-"image": "/proxys/ExtendedArt/pv/promos-mew-ex-53.webp",
+"image": "/proxys/ExtendedArt/pv/promos-mew-ex-53.webp", "t": 140,
 "card": 518871,
 "center": {
 "left": 33.83,
@@ -1827,7 +1827,7 @@ export const extendedSingles = [
 "id": "xs-promos-mewtwo-52",
 "name": "Mewtwo #52",
 "set": "Promos",
-"image": "/proxys/ExtendedArt/pv/promos-mewtwo-52.webp",
+"image": "/proxys/ExtendedArt/pv/promos-mewtwo-52.webp", "t": 141,
 "card": 518872,
 "center": {
 "left": 33.88,
@@ -1840,7 +1840,7 @@ export const extendedSingles = [
 "id": "xs-promos-piplup-34",
 "name": "Piplup #34",
 "set": "Promos",
-"image": "/proxys/ExtendedArt/pv/promos-piplup-34.webp",
+"image": "/proxys/ExtendedArt/pv/promos-piplup-34.webp", "t": 142,
 "card": null,
 "center": {
 "left": 33.76,
@@ -1853,7 +1853,7 @@ export const extendedSingles = [
 "id": "xs-promos-snorlax-51",
 "name": "Snorlax #51",
 "set": "Promos",
-"image": "/proxys/ExtendedArt/pv/promos-snorlax-51.webp",
+"image": "/proxys/ExtendedArt/pv/promos-snorlax-51.webp", "t": 143,
 "card": 517175,
 "center": {
 "left": 34.19,
@@ -1866,7 +1866,7 @@ export const extendedSingles = [
 "id": "xs-promos-squirtle-39",
 "name": "Squirtle #39",
 "set": "Promos",
-"image": "/proxys/ExtendedArt/pv/promos-squirtle-39.webp",
+"image": "/proxys/ExtendedArt/pv/promos-squirtle-39.webp", "t": 144,
 "card": 684463,
 "center": {
 "left": 33.81,
@@ -1879,7 +1879,7 @@ export const extendedSingles = [
 "id": "xs-promos-tyrunt-70",
 "name": "Tyrunt #70",
 "set": "Promos",
-"image": "/proxys/ExtendedArt/pv/promos-tyrunt-70.webp",
+"image": "/proxys/ExtendedArt/pv/promos-tyrunt-70.webp", "t": 145,
 "card": 685562,
 "center": {
 "left": 34.1,
@@ -1892,7 +1892,7 @@ export const extendedSingles = [
 "id": "xs-ssp-alolan-dugtrio-208",
 "name": "Alolan Dugtrio #208",
 "set": "Surging Sparks (SSP)",
-"image": "/proxys/ExtendedArt/pv/ssp-alolan-dugtrio-208.webp",
+"image": "/proxys/ExtendedArt/pv/ssp-alolan-dugtrio-208.webp", "t": 146,
 "card": 589857,
 "center": {
 "left": 33.69,
@@ -1905,7 +1905,7 @@ export const extendedSingles = [
 "id": "xs-twm-chansey-187",
 "name": "Chansey #187",
 "set": "Twilight Masquerade (TWM)",
-"image": "/proxys/ExtendedArt/pv/twm-chansey-187.webp",
+"image": "/proxys/ExtendedArt/pv/twm-chansey-187.webp", "t": 147,
 "card": 550231,
 "center": {
 "left": 33.74,
@@ -1918,7 +1918,7 @@ export const extendedSingles = [
 "id": "xs-twm-eevee-188",
 "name": "Eevee #188",
 "set": "Twilight Masquerade (TWM)",
-"image": "/proxys/ExtendedArt/pv/twm-eevee-188.webp",
+"image": "/proxys/ExtendedArt/pv/twm-eevee-188.webp", "t": 148,
 "card": 550232,
 "center": {
 "left": 34.02,
@@ -1931,7 +1931,7 @@ export const extendedSingles = [
 "id": "xs-wht-deerling-91",
 "name": "Deerling #91",
 "set": "White Flare (WHT)",
-"image": "/proxys/ExtendedArt/pv/wht-deerling-91.webp",
+"image": "/proxys/ExtendedArt/pv/wht-deerling-91.webp", "t": 149,
 "card": 642206,
 "center": {
 "left": 33.93,
@@ -1944,7 +1944,7 @@ export const extendedSingles = [
 "id": "xs-wht-sawsbuck-92",
 "name": "Sawsbuck #92",
 "set": "White Flare (WHT)",
-"image": "/proxys/ExtendedArt/pv/wht-sawsbuck-92.webp",
+"image": "/proxys/ExtendedArt/pv/wht-sawsbuck-92.webp", "t": 150,
 "card": 642207,
 "center": {
 "left": 34.03,
@@ -1959,7 +1959,7 @@ export const extendedEvolutions = [
 "id": "xe-mew-charizard-evolution",
 "name": "Charizard Evolution",
 "set": "151 (MEW)",
-"image": "/proxys/ExtendedArt/pv/mew-charizard-evolution.webp",
+"image": "/proxys/ExtendedArt/pv/mew-charizard-evolution.webp", "t": 26,
 "cards": [
 502556,
 517018,
@@ -1990,7 +1990,7 @@ export const extendedEvolutions = [
 "id": "xe-cri-greninja-evolution",
 "name": "Greninja Evolution",
 "set": "Chaos Rising (CRI)",
-"image": "/proxys/ExtendedArt/pv/cri-greninja-evolution.webp",
+"image": "/proxys/ExtendedArt/pv/cri-greninja-evolution.webp", "t": 151,
 "cards": [
 693489,
 693491,
@@ -2021,7 +2021,7 @@ export const extendedEvolutions = [
 "id": "xe-mew-blastoise-evolution",
 "name": "Blastoise Evolution",
 "set": "151 (MEW)",
-"image": "/proxys/ExtendedArt/pv/mew-blastoise-evolution.webp",
+"image": "/proxys/ExtendedArt/pv/mew-blastoise-evolution.webp", "t": 152,
 "cards": [
 502549,
 517038,
@@ -2049,3 +2049,4 @@ export const extendedEvolutions = [
 ]
 }
 ];
+export const SPRITE = { src: "/proxys/ExtendedArt/pv-sprite.webp", cols: 16, w: 68, h: 96 };

@@ -3,7 +3,7 @@ import { addToCart as addCartItem } from "../cart";
 import { useState, useEffect, useRef, useContext, createContext } from "react";
 import Link from "next/link";
 import { singles, extendedPacks, customTypes, customExamples, decks, proxyTypes, proxyInfo } from "../../data/proxys";
-import { extendedSingles, extendedEvolutions, EXT_PRICE, EVO_PRICE } from "../../data/extendedArt";
+import { extendedSingles, extendedEvolutions, EXT_PRICE, EVO_PRICE, SPRITE } from "../../data/extendedArt";
 
 const WA = "51962167068";
 const waLink = (msg) => `https://wa.me/${WA}?text=${encodeURIComponent(msg)}`;
@@ -316,10 +316,10 @@ function Singles({ cart }) {
 }
 
 /* ---------- Extended Art: arte 3x3, 8 cartas (sin la central) ---------- */
-const tcgImg = (id) => `https://product-images.tcgplayer.com/fit-in/437x610/${id}.jpg`;
+const tcgImg = (id) => `https://product-images.tcgplayer.com/fit-in/200x279/${id}.jpg`;
 const CenterCard = ({ id, c, hide }) => (
   <div style={{ position: "absolute", left: `${c.left}%`, top: `${c.top}%`, width: `${c.w}%`, height: `${c.h}%`, border: "2.5px dashed rgba(255,255,255,0.95)", borderRadius: "6px", background: "rgba(10,8,30,0.35)", overflow: "hidden", pointerEvents: "none" }}>
-    {id && !hide && <img src={tcgImg(id)} alt="" loading="lazy" style={{ width: "100%", height: "100%", objectFit: "cover", display: "block" }} />}
+    {id && !hide && <img key={id} src={tcgImg(id)} alt="" decoding="async" style={{ animation: "pxFade .3s both", width: "100%", height: "100%", objectFit: "cover", display: "block" }} />}
   </div>
 );
 
@@ -351,7 +351,7 @@ function Extended({ cart }) {
         <div style={{ fontSize: "12px", fontWeight: 800, letterSpacing: "2px", color: "#c4b5fd", marginBottom: "12px", textAlign: "center" }}>{evo ? "LÍNEA EVOLUTIVA · 6 CARTAS" : "ARTE 3×3 · 8 CARTAS"}</div>
         {pack.image ? (
           <div style={{ position: "relative", borderRadius: "12px", overflow: "hidden", lineHeight: 0 }}>
-            <img src={pack.image} alt={`Extended Art ${pack.name}`} style={{ width: "100%", height: "auto", display: "block" }} />
+            <img key={pack.image} src={pack.image} alt={`Extended Art ${pack.name}`} decoding="async" style={{ animation: "pxFade .25s both", width: "100%", height: "auto", display: "block" }} />
             {evo
               ? pack.centers.map((c, i) => <CenterCard key={i} id={pack.cards[i]} c={c} />)
               : <CenterCard id={pack.card} c={pack.center || { left: 35.2, top: 34.5, w: 29.8, h: 30.4 }} />}
@@ -393,7 +393,7 @@ function Extended({ cart }) {
         <div style={{ display: "grid", gap: "8px", marginBottom: "20px", maxHeight: "340px", overflowY: "auto", paddingRight: "4px" }}>
           {list.map((p) => (
             <button key={p.id} onClick={() => setSelId(p.id)} className={`px-pack ${pack.id === p.id ? "is-active" : ""}`}>
-              <span style={{ width: 34, height: 34, borderRadius: 10, background: p.image ? `url(${p.image}) center/cover` : gradBg(p.grad), flexShrink: 0 }} />
+              <span style={{ width: 34, height: 34, borderRadius: 10, flexShrink: 0, background: p.t != null ? `url(${SPRITE.src}) -${(p.t % SPRITE.cols) * 34}px -${Math.floor(p.t / SPRITE.cols) * (34 * SPRITE.h / SPRITE.w) + 4}px / ${SPRITE.cols * 34}px auto` : p.image ? `url(${p.image}) center/cover` : gradBg(p.grad) }} />
               <span style={{ flex: 1, textAlign: "left", fontWeight: 700 }}>{p.name}<span style={{ display: "block", fontSize: "11px", fontWeight: 500, color: "#9ca3af" }}>{p.set}</span></span>
               <span style={{ color: "#7c3aed", fontWeight: 800 }}>S/{p.price}</span>
             </button>
@@ -616,6 +616,7 @@ export default function ProxysPage() {
         .px-search input { flex:1; border:none; outline:none; font-size:15px; padding:12px 0; font-family:inherit; background:transparent; }
         .px-grid-cards { display:grid; grid-template-columns:repeat(auto-fill,minmax(160px,1fr)); gap:26px 20px; }
         .px-grid-decks { display:grid; grid-template-columns:repeat(auto-fill,minmax(260px,1fr)); gap:24px; }
+        @keyframes pxFade { from { opacity:0 } to { opacity:1 } }
         .px-ext { display:grid; grid-template-columns:minmax(300px,420px) 1fr; gap:48px; align-items:center; }
         .px-binder { background:linear-gradient(145deg,#1e1b4b,#4c1d95); border-radius:28px; padding:22px; box-shadow:0 24px 50px rgba(76,29,149,.35); }
         .px-pack { display:flex; align-items:center; gap:12px; width:100%; background:#fff; border:1.5px solid #e5e7eb; border-radius:14px; padding:12px 14px; cursor:pointer; font-family:inherit; font-size:15px; color:#1f2937; transition:all .2s; }

@@ -6,13 +6,7 @@
 export const singleCards = [];
 
 // Productos sellados: nombre, expansión, idioma, precio
-export const sealedProducts = [
-  {
-    id: "pk-s1",
-    name: "Elite Trainer Box · Destined Rivals",
-    expansion: "Scarlet & Violet — Destined Rivals",
-    language: "Inglés",
-    price: 349.9,
-    image: "/sellados/destined-rivals-etb.webp",
-  },
-];
+// Por ahora sin productos sellados (se quitó el Elite Trainer Box · Destined Rivals).
+// Para volver a mostrarlo, agrégalo de nuevo aquí, por ejemplo:
+// { id: "pk-s1", name: "Elite Trainer Box · Destined Rivals", expansion: "Scarlet & Violet — Destined Rivals", language: "Inglés", price: 349.9, image: "/sellados/destined-rivals-etb.webp" }
+export const sealedProducts = [];

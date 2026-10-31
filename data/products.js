@@ -102,7 +102,7 @@ export const products = [
     id: 5,
     slug: "dispensador-toploaders",
     name: "Dispensador de Toploaders",
-    price: 30.00, // TODO: Christopher va a actualizar este precio
+    price: 75.00,
     images: ["/dispensador-1.jpg", "/dispensador-2.jpg", "/dispensador-3.jpg"],
     thumbnail: "/dispensador-png.png",
     thumbnailZoom: 90,

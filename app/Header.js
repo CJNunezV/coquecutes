@@ -170,9 +170,9 @@ export default function Header() {
         <a className="hd-link hd-hide-md" href={waLink("Hola Coquecutes, quiero hacer una consulta")} target="_blank" rel="noopener noreferrer">
           Contáctanos
         </a>
-        <a className="hd-sell hd-hide-md" href={waLink("Hola Coquecutes, quiero vender mis productos con ustedes")} target="_blank" rel="noopener noreferrer">
+        <Link className="hd-sell hd-hide-md" href="/vender">
           Vender tus Productos
-        </a>
+        </Link>
 
         <button className="hd-icon" onClick={goSearch} aria-label="Buscar">
           <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round">

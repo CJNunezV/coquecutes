@@ -4,7 +4,7 @@ import Link from "next/link";
 import { getCart, setQuantity, removeItem, clearCart, cartTotal, money } from "../cart";
 
 // WhatsApp de la tienda (código de país + número, sin signos)
-const STORE_WHATSAPP_NUMBER = "51962167068";
+const STORE_WHATSAPP_NUMBER = "51962376893";
 const PAY = {
   yape: "962167068",
   yapeName: "Christopher Nuñez",
@@ -162,7 +162,7 @@ export default function CheckoutPage() {
   };
 
   const waMessage = (o) =>
-    `Hola! Acabo de hacer mi pedido${o.id ? ` N.º ${o.id}` : ""} en Coquecutes 🙌\n\n` +
+    `Hola! Acabo de hacer mi pedido en Coquecutes 🙌\n\n` +
     o.items.map((i) => `• ${i.name} x${i.quantity} — ${money(i.price * i.quantity)}`).join("\n") +
     `\n\nTotal pagado: ${money(o.total)}\nNombre: ${o.name}\nEntrega: ${o.delivery}\n\nYa subí mi comprobante de pago en la web. ¿Me confirman por favor?`;
 
@@ -176,7 +176,6 @@ export default function CheckoutPage() {
         </div>
         <h2 style={{ fontSize: 26, fontWeight: 800, color: "#461438", margin: "0 0 8px" }}>¡Pedido recibido! 🎉</h2>
         <p style={{ color: "#6b7280", margin: "0 0 6px", lineHeight: 1.6 }}>Gracias{o.name ? `, ${o.name.split(" ")[0]}` : ""}. Guardamos tu pedido y tu comprobante.</p>
-        {o.id && <p style={{ display: "inline-block", fontWeight: 700, fontSize: 13, color: "#d1406f", background: "#fff3f7", padding: "6px 14px", borderRadius: 20, margin: "8px 0" }}>Pedido N.º {o.id}</p>}
 
         <div style={{ textAlign: "left", background: "#fff8fb", border: "1px solid #fbeef3", borderRadius: 18, padding: 16, margin: "18px 0" }}>
           {o.items.map((i) => (

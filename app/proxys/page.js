@@ -5,7 +5,7 @@ import Link from "next/link";
 import { singles, extendedPacks, customTypes, customExamples, decks, proxyTypes, proxyInfo } from "../../data/proxys";
 import { extendedSingles, extendedEvolutions, EXT_PRICE, EVO_PRICE, SPRITE } from "../../data/extendedArt";
 
-const WA = "51962167068";
+const WA = "51962376893";
 const waLink = (msg) => `https://wa.me/${WA}?text=${encodeURIComponent(msg)}`;
 
 const tabs = [

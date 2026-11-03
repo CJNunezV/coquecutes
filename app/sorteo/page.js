@@ -3,7 +3,7 @@ import { useState, useEffect, useRef } from "react";
 import Link from "next/link";
 import { sorteo, premios, tickets, ganadores } from "../../data/sorteo";
 
-const WA = "51962167068";
+const WA = "51962376893";
 const waLink = (msg) => `https://wa.me/${WA}?text=${encodeURIComponent(msg)}`;
 const gradBg = (g) => `linear-gradient(145deg, ${g[0]}, ${g[1]})`;
 

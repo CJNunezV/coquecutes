@@ -3,7 +3,7 @@ import { useState, useEffect, useRef } from "react";
 import { useRouter } from "next/navigation";
 import { products } from "../data/products";
 
-const WA = "51962167068";
+const WA = "51962376893";
 
 const floating = [
   { src: "/team-rocket-thumb.webp", w: 150, top: "2%", left: "8%", rot: -8, delay: "0s" },

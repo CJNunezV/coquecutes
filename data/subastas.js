@@ -26,6 +26,26 @@ export const albumes = {
   // 91: "https://www.facebook.com/...",
 };
 
+// CALENDARIO DEL MES (el que publicas en el flyer). Una entrada por mes.
+//   t: "subasta" (n = número de subasta) | "envio" (Shalom/Olva) | "entrega" (FM/Arenales) | "sorteo" (gran sorteo mensual)
+//   tipo (opcional, solo subastas): "cartas" | "figuras" | "proxys". Si lo dejas vacío se muestra solo "Subasta".
+// Para el mes siguiente: copia un bloque, cambia year/month y los días. La subasta "actual" y la cuenta regresiva
+// salen solas de aquí (hora de cierre = subastaConfig.horaCierre).
+export const calendarioMeses = [
+  { year: 2026, month: 11, eventos: [
+    { d: 2, t: "subasta", n: 94 }, { d: 4, t: "subasta", n: 95 }, { d: 6, t: "subasta", n: 96 },
+    { d: 7, t: "entrega" }, { d: 8, t: "subasta", n: 97 },
+    { d: 10, t: "envio" }, { d: 11, t: "subasta", n: 98 }, { d: 13, t: "subasta", n: 99 },
+    { d: 14, t: "entrega" }, { d: 15, t: "subasta", n: 100 },
+    { d: 18, t: "subasta", n: 101 }, { d: 20, t: "subasta", n: 102 },
+    { d: 21, t: "entrega" }, { d: 22, t: "subasta", n: 103 },
+    { d: 24, t: "envio" }, { d: 25, t: "subasta", n: 104 }, { d: 27, t: "subasta", n: 105 },
+    { d: 28, t: "entrega" }, { d: 29, t: "subasta", n: 106 },
+    { d: 30, t: "sorteo" },
+  ] },
+];
+
+// (Antiguo) patrón semanal: solo se usa si `calendarioMeses` está vacío.
 export const calendario = [
   // dia: 0=Domingo ... 1=Lunes ... 3=Miércoles ... 5=Viernes
   { dia: 1, tipo: "cartas" },
@@ -34,9 +54,10 @@ export const calendario = [
 ];
 
 export const tiposSubasta = {
-  cartas:  { label: "Cartas",  emoji: "🃏", grad: ["#7c3aed", "#c026d3"] },
-  figuras: { label: "Figuras", emoji: "🗿", grad: ["#0ea5e9", "#6366f1"] },
-  proxys:  { label: "Proxys",  emoji: "✨", grad: ["#f59e0b", "#ef4444"] },
+  subasta: { label: "Subasta", emoji: "🔨", grad: ["#8f2858", "#d2406f"] },
+  cartas:  { label: "Cartas",  emoji: "🃏", grad: ["#d2406f", "#f0789a"] },
+  figuras: { label: "Figuras", emoji: "🗿", grad: ["#1f9e8e", "#4fbfae"] },
+  proxys:  { label: "Proxys",  emoji: "✨", grad: ["#e0a02e", "#ea6f98"] },
 };
 
 // Reglas (tomadas del flyer de la Subasta #91)
@@ -47,4 +68,4 @@ export const reglas = [
   { n: 4, titulo: "Entregas", texto: "Puntos de entrega: Arenales, Full Market o Expocentro. En otro caso, los envíos se hacen por Shalom/Olva." },
 ];
 
-export const sorteo = "Los domingos cada subasta ganada vale 2 tickets.";
+export const sorteo = "Los domingos cada subasta ganada vale 2 tickets. El gran sorteo es el último día del mes.";

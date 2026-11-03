@@ -1,11 +1,12 @@
 "use client";
 import { useState, useEffect, useMemo } from "react";
 import Link from "next/link";
-import { subastaConfig, facebook, albumes, calendario, tiposSubasta, reglas, sorteo } from "../../data/subastas";
+import { subastaConfig, facebook, albumes, calendario, calendarioMeses, tiposSubasta, reglas, sorteo } from "../../data/subastas";
 
 const WA = "51962167068";
 const waLink = (msg) => `https://wa.me/${WA}?text=${encodeURIComponent(msg)}`;
 const DIAS = ["Domingo", "Lunes", "Martes", "Miércoles", "Jueves", "Viernes", "Sábado"];
+const MESES_FULL = ["Enero", "Febrero", "Marzo", "Abril", "Mayo", "Junio", "Julio", "Agosto", "Septiembre", "Octubre", "Noviembre", "Diciembre"];
 const MESES = ["ene", "feb", "mar", "abr", "may", "jun", "jul", "ago", "sep", "oct", "nov", "dic"];
 const gradBg = (g) => `linear-gradient(145deg, ${g[0]}, ${g[1]})`;
 const fbUrl = (a) => albumes[a?.numero] || facebook.pagina || `https://www.facebook.com/search/top?q=${encodeURIComponent(facebook.nombre)}`;
@@ -16,6 +17,24 @@ const horaLabel = () => {
 
 /* ---------- Calendario calculado (hora de Perú, UTC-5) ---------- */
 function buildAuctions() {
+  if (calendarioMeses && calendarioMeses.length) {
+    const [hh, mm] = subastaConfig.horaCierre.split(":").map(Number);
+    const out = [];
+    calendarioMeses.forEach(({ year, month, eventos }) => {
+      eventos.filter((e) => e.t === "subasta").forEach((e) => {
+        const t = new Date(Date.UTC(year, month - 1, e.d));
+        out.push({
+          numero: e.n,
+          tipo: e.tipo && tiposSubasta[e.tipo] ? e.tipo : "subasta",
+          dia: t.getUTCDay(),
+          dm: `${e.d}/${String(month).padStart(2, "0")}`,
+          fecha: `${e.d} ${MESES[month - 1]}`,
+          cierre: Date.UTC(year, month - 1, e.d, hh + 5, mm),
+        });
+      });
+    });
+    return out.sort((a, b) => a.cierre - b.cierre);
+  }
   const [y, m, d] = subastaConfig.referencia.fecha.split("-").map(Number);
   const [hh, mm] = subastaConfig.horaCierre.split(":").map(Number);
   const base = Date.UTC(y, m - 1, d);
@@ -62,6 +81,57 @@ function Countdown({ ms }) {
   );
 }
 
+/* ---------- Calendario del mes (como el flyer) ---------- */
+const EV = {
+  subasta: { bg: "#f6c453", fg: "#3b1030", ring: "#3b1030" },
+  envio: { bg: "#e53935", fg: "#fff", ring: "#3b1030" },
+  entrega: { bg: "#22c55e", fg: "#06240f", ring: "#3b1030" },
+  sorteo: { bg: "#fde3ec", fg: "#d2406f", ring: "#d2406f" },
+};
+const TruckIcon = () => (
+  <svg width="62%" height="62%" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M3 5h10v9H3zM13 8h4l3 3v3h-7zM6.5 15.5a1.8 1.8 0 1 0 .01 0zm10 0a1.8 1.8 0 1 0 .01 0z" /><circle cx="6.5" cy="16" r="1.9" /><circle cx="16.5" cy="16" r="1.9" /></svg>
+);
+function MonthGrid({ year, month, eventos, todayKey }) {
+  const first = new Date(Date.UTC(year, month - 1, 1));
+  const offset = (first.getUTCDay() + 6) % 7; // semana empieza en lunes
+  const days = new Date(Date.UTC(year, month, 0)).getUTCDate();
+  const byDay = {};
+  eventos.forEach((e) => { byDay[e.d] = e; });
+  const cells = [];
+  for (let i = 0; i < offset; i++) cells.push(null);
+  for (let d = 1; d <= days; d++) cells.push(d);
+  while (cells.length % 7) cells.push(null);
+  return (
+    <div className="sb-cal">
+      <div className="sb-cal-title">{MESES_FULL[month - 1]} {year}</div>
+      <div className="sb-cal-grid">
+        {["Lun", "Mar", "Mié", "Jue", "Vie", "Sáb", "Dom"].map((n) => <div key={n} className="sb-cal-h">{n}</div>)}
+        {cells.map((d, i) => {
+          const e = d && byDay[d];
+          const st = e && EV[e.t];
+          const isToday = d && todayKey === `${year}-${month}-${d}`;
+          return (
+            <div key={i} className={`sb-cal-c ${d ? "" : "is-empty"} ${isToday ? "is-today" : ""}`}>
+              {d && <span className="sb-cal-d">{d}</span>}
+              {e && (
+                <span className="sb-cal-dot" style={{ background: st.bg, color: st.fg, borderColor: st.ring }} title={e.t}>
+                  {e.t === "subasta" ? `S${e.n}` : e.t === "entrega" ? "E" : e.t === "envio" ? <TruckIcon /> : "♥"}
+                </span>
+              )}
+            </div>
+          );
+        })}
+      </div>
+      <div className="sb-cal-legend">
+        <span><i style={{ background: EV.subasta.bg }} />Subasta Coquecutes</span>
+        <span><i style={{ background: EV.envio.bg }} />Envío por Shalom/Olva</span>
+        <span><i style={{ background: EV.entrega.bg }} />Entrega FM/Arenales</span>
+        <span><i style={{ background: EV.sorteo.bg, borderColor: EV.sorteo.ring }} />Gran sorteo mensual</span>
+      </div>
+    </div>
+  );
+}
+
 const FbIcon = () => (
   <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M13.5 22v-8h2.7l.5-3.2h-3.2V8.7c0-.9.4-1.7 1.8-1.7h1.5V4.2S15.5 4 14.3 4c-2.6 0-4.3 1.6-4.3 4.4v2.4H7.2V14H10v8h3.5z" /></svg>
 );
@@ -72,6 +142,7 @@ export default function SubastasPage() {
   const idx = now == null ? -1 : auctions.findIndex((a) => a.cierre > now);
   const upcoming = idx >= 0 ? auctions.slice(idx, idx + 3) : [];
   const current = upcoming[0];
+  const todayKey = now == null ? "" : (() => { const p = new Date(now - 5 * 3600000); return `${p.getUTCFullYear()}-${p.getUTCMonth() + 1}-${p.getUTCDate()}`; })();
 
   const whenLabel = (a) => {
     const t = new Date(a.cierre - 5 * 3600000);
@@ -98,6 +169,19 @@ export default function SubastasPage() {
         .sb-day { border-radius:22px; padding:20px; background:#fff; border:2px solid #ffebf2; text-decoration:none; display:block; transition:transform .25s, box-shadow .25s, border-color .25s; }
         .sb-day:hover { transform:translateY(-4px); box-shadow:0 14px 28px rgba(209,64,111,.14); border-color:#f394b4; }
         .sb-chip { display:inline-flex; align-items:center; gap:6px; padding:5px 12px; border-radius:999px; font-size:13px; font-weight:800; color:#fff; }
+        .sb-cal { background:#fff; border:2px solid #ffebf2; border-radius:22px; padding:18px; margin-bottom:22px; box-shadow:0 8px 22px rgba(209,64,111,.08); }
+        .sb-cal-title { font-size:22px; font-weight:900; color:#d2406f; margin:0 0 12px; letter-spacing:.3px; text-transform:uppercase; }
+        .sb-cal-grid { display:grid; grid-template-columns:repeat(7,1fr); border-top:1px solid #f1dfe7; border-left:1px solid #f1dfe7; }
+        .sb-cal-h { background:#fbe3ee; color:#52173f; font-size:12px; font-weight:800; letter-spacing:1px; text-align:center; padding:8px 2px; border-right:1px solid #f1dfe7; border-bottom:1px solid #f1dfe7; }
+        .sb-cal-c { position:relative; min-height:84px; border-right:1px solid #f1dfe7; border-bottom:1px solid #f1dfe7; display:flex; align-items:center; justify-content:center; padding:18px 2px 4px; }
+        .sb-cal-c.is-empty { background:#fff8fb; }
+        .sb-cal-c.is-today { background:#fff3f7; box-shadow:inset 0 0 0 2px #d2406f; }
+        .sb-cal-d { position:absolute; top:5px; left:7px; font-size:12px; font-weight:800; color:#52173f; }
+        .sb-cal-dot { width:54px; height:54px; border-radius:50%; border:2.5px solid; display:flex; align-items:center; justify-content:center; font-weight:900; font-size:15px; }
+        .sb-cal-legend { display:flex; flex-wrap:wrap; gap:8px 22px; margin-top:14px; font-size:13px; font-weight:700; color:#52173f; }
+        .sb-cal-legend span { display:inline-flex; align-items:center; gap:8px; }
+        .sb-cal-legend i { width:16px; height:16px; border-radius:50%; border:2px solid #3b1030; display:inline-block; }
+        @media (max-width:640px) { .sb-cal { padding:12px; } .sb-cal-c { min-height:56px; padding-top:16px; } .sb-cal-dot { width:34px; height:34px; font-size:10.5px; border-width:2px; } .sb-cal-d { font-size:10px; left:4px; top:3px; } .sb-cal-h { font-size:10px; letter-spacing:0; } }
         .sb-steps { display:grid; grid-template-columns:repeat(4,1fr); gap:16px; }
         .sb-step { background:#fff; border-radius:20px; padding:20px; border:1px solid #f1f1f4; }
         .sb-num { width:36px; height:36px; border-radius:12px; background:#fff3f7; color:#d1406f; font-weight:800; display:flex; align-items:center; justify-content:center; margin-bottom:12px; }
@@ -139,7 +223,8 @@ export default function SubastasPage() {
       {/* ---------- Calendario ---------- */}
       <section id="calendario">
         <h2 className="sb-h2">Próximas subastas</h2>
-        <p className="sb-sub">Tres por semana: lunes, miércoles y viernes. Cada día se subasta algo distinto.</p>
+        <p className="sb-sub">Este es el cronograma del mes: las subastas cierran a las {horaLabel()} (hora Perú). Toca una subasta de abajo para ir al álbum.</p>
+        {calendarioMeses && calendarioMeses.map((m) => <MonthGrid key={`${m.year}-${m.month}`} {...m} todayKey={todayKey} />)}
         <div className="sb-week">
           {upcoming.map((a, i) => {
             const t = tiposSubasta[a.tipo];

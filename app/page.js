@@ -39,7 +39,7 @@ export default function HomePage() {
             className="reveal-item benefit-card"
             style={{
               backgroundColor: "#ffffff",
-              border: "1px solid #f1f5f9",
+              border: "1px solid #fdf0f5",
               borderRadius: "20px",
               padding: "22px",
             }}
@@ -67,7 +67,7 @@ export default function HomePage() {
           style={{
             fontSize: "22px",
             fontWeight: "800",
-            color: "#1e1b4b",
+            color: "#461438",
             margin: "0 0 20px 0",
           }}
         >
@@ -81,8 +81,8 @@ export default function HomePage() {
         as="section"
         className="testimonial-box"
         style={{
-          backgroundColor: "#f5f3ff",
-          border: "1px dashed #c084fc",
+          backgroundColor: "#fff3f7",
+          border: "1px dashed #f290b1",
           borderRadius: "24px",
           padding: "28px",
           marginBottom: "48px",
@@ -92,7 +92,7 @@ export default function HomePage() {
           style={{
             fontSize: "15px",
             fontStyle: "italic",
-            color: "#4c1d95",
+            color: "#762353",
             margin: "0 0 8px 0",
             lineHeight: "1.6",
           }}
@@ -100,7 +100,7 @@ export default function HomePage() {
           "El acabado es impecable y la carta queda perfecta adentro, ni un
           milímetro de juego."
         </p>
-        <p style={{ fontSize: "13px", color: "#7c3aed", margin: 0, fontWeight: "600" }}>
+        <p style={{ fontSize: "13px", color: "#d1406f", margin: 0, fontWeight: "600" }}>
           — Cliente verificado
         </p>
       </Reveal>
@@ -122,14 +122,14 @@ export default function HomePage() {
           className="btn-primary"
           style={{
             display: "inline-block",
-            backgroundColor: "#7c3aed",
+            backgroundColor: "#d1406f",
             color: "#ffffff",
             padding: "14px 28px",
             borderRadius: "16px",
             fontWeight: "700",
             fontSize: "15px",
             textDecoration: "none",
-            boxShadow: "0 4px 14px rgba(124, 58, 237, 0.25)",
+            boxShadow: "0 4px 14px rgba(209,64,111, 0.25)",
           }}
         >
           Elige tu case

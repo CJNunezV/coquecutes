@@ -20,7 +20,7 @@ const proxyCards = [
   { image: "/proxys/Singles/0ae16301-89cf-4a50-a111-edd2766caad7.jpg", top: "8%", left: "10%", rot: -10, grad: "linear-gradient(135deg,#86efac,#166534)", delay: "0s" },
   { image: "/proxys/Singles/671a8399-83b8-4dd4-b9fe-e4ecfa0589f0.jpg", top: "4%", left: "50%", rot: 6, grad: "linear-gradient(135deg,#ef4444,#7f1d1d)", delay: "0.7s" },
   { image: "/proxys/Singles/a8356bc4-2897-4b66-95be-3308a86f831c.jpg", top: "40%", left: "28%", rot: -3, grad: "linear-gradient(135deg,#22c55e,#b91c1c)", delay: "1.2s" },
-  { image: "/proxys/Singles/ecac42ad-ea1e-41b7-9d6c-090b3c34ecc0.jpg", top: "36%", left: "64%", rot: 11, grad: "linear-gradient(135deg,#f9a8d4,#a78bfa)", delay: "0.4s" },
+  { image: "/proxys/Singles/ecac42ad-ea1e-41b7-9d6c-090b3c34ecc0.jpg", top: "36%", left: "64%", rot: 11, grad: "linear-gradient(135deg,#f9b4c6,#f394b4)", delay: "0.4s" },
 ];
 
 const slides = [
@@ -88,10 +88,10 @@ export default function Hero() {
         position: "relative",
         overflow: "hidden",
         borderRadius: "32px",
-        border: "1px solid #ede9fe",
+        border: "1px solid #ffebf2",
         marginBottom: "48px",
         background:
-          "radial-gradient(900px 400px at 85% 20%, rgba(236,72,153,0.18), transparent 60%), radial-gradient(800px 500px at 10% 90%, rgba(124,58,237,0.20), transparent 60%), linear-gradient(135deg, #1e1b4b 0%, #2e1065 55%, #4c1d95 100%)",
+          "radial-gradient(900px 400px at 85% 20%, rgba(236,72,153,0.18), transparent 60%), radial-gradient(800px 500px at 10% 90%, rgba(209,64,111,0.20), transparent 60%), linear-gradient(135deg, #461438 0%, #4f163d 55%, #762353 100%)",
       }}
     >
       <style dangerouslySetInnerHTML={{ __html: `
@@ -101,14 +101,14 @@ export default function Hero() {
         .zh-float { position:absolute; filter: drop-shadow(0 18px 24px rgba(0,0,0,0.35)); animation: zhFloat 6s ease-in-out infinite; }
         .zh-pcard { position:absolute; width:170px; overflow:hidden; aspect-ratio:63/88; border-radius:12px; border:3px solid rgba(255,255,255,0.85); box-shadow:0 18px 24px rgba(0,0,0,0.35); animation: zhFloat 6s ease-in-out infinite; display:flex; align-items:center; justify-content:center; font-weight:900; font-size:13px; letter-spacing:2px; color:rgba(255,255,255,0.9); }
         @keyframes zhFloat { 0%,100% { transform: translateY(0) rotate(var(--r)); } 50% { transform: translateY(-14px) rotate(var(--r)); } }
-        .zh-grad { background:linear-gradient(90deg,#f9a8d4,#c4b5fd); -webkit-background-clip:text; background-clip:text; color:transparent; }
-        .zh-badge { display:inline-flex; align-items:center; gap:8px; color:#e9d5ff; font-size:13px; font-weight:600; }
-        .zh-badge::before { content:"✓"; display:inline-flex; align-items:center; justify-content:center; width:20px; height:20px; border-radius:50%; background:#ec4899; color:#fff; font-size:12px; }
-        .zh-cta { display:inline-block; background:linear-gradient(90deg,#ec4899,#7c3aed); color:#fff; padding:16px 36px; border-radius:16px; font-weight:800; font-size:16px; text-decoration:none; box-shadow:0 10px 28px rgba(236,72,153,0.4); transition:transform .2s, box-shadow .2s; }
+        .zh-grad { background:linear-gradient(90deg,#f9b4c6,#fabdd2); -webkit-background-clip:text; background-clip:text; color:transparent; }
+        .zh-badge { display:inline-flex; align-items:center; gap:8px; color:#fedce8; font-size:13px; font-weight:600; }
+        .zh-badge::before { content:"✓"; display:inline-flex; align-items:center; justify-content:center; width:20px; height:20px; border-radius:50%; background:#f0789a; color:#fff; font-size:12px; }
+        .zh-cta { display:inline-block; background:linear-gradient(90deg,#f0789a,#d1406f); color:#fff; padding:16px 36px; border-radius:16px; font-weight:800; font-size:16px; text-decoration:none; box-shadow:0 10px 28px rgba(236,72,153,0.4); transition:transform .2s, box-shadow .2s; }
         .zh-cta:hover { transform: translateY(-2px); box-shadow:0 14px 34px rgba(236,72,153,0.5); }
         .zh-search { display:flex; align-items:center; background:#fff; border-radius:14px; padding:6px 6px 6px 16px; max-width:460px; box-shadow:0 8px 24px rgba(0,0,0,0.25); }
         .zh-search input { flex:1; border:none; outline:none; font-size:15px; padding:10px 8px; background:transparent; color:#1f2937; min-width:0; }
-        .zh-search button { border:none; background:#7c3aed; color:#fff; width:42px; height:42px; border-radius:10px; cursor:pointer; display:flex; align-items:center; justify-content:center; }
+        .zh-search button { border:none; background:#d1406f; color:#fff; width:42px; height:42px; border-radius:10px; cursor:pointer; display:flex; align-items:center; justify-content:center; }
         .zh-visual { position:relative; height:420px; }
         .zh-dots { position:absolute; left:0; right:0; bottom:22px; display:flex; justify-content:center; gap:10px; z-index:3; }
         .zh-dot { width:11px; height:11px; border-radius:999px; border:none; padding:0; cursor:pointer; background:rgba(255,255,255,0.4); transition:all .3s; }
@@ -127,13 +127,13 @@ export default function Hero() {
         {slides.map((s, i) => (
           <div key={s.id} className={`zh-slide ${i === active ? "is-active" : ""}`} aria-hidden={i !== active}>
             <div>
-              <span style={{ display: "inline-block", background: "rgba(255,255,255,0.12)", color: "#f5d0fe", fontSize: "13px", fontWeight: 700, padding: "6px 14px", borderRadius: "20px", marginBottom: "18px", border: "1px solid rgba(255,255,255,0.2)" }}>
+              <span style={{ display: "inline-block", background: "rgba(255,255,255,0.12)", color: "#fdd7e4", fontSize: "13px", fontWeight: 700, padding: "6px 14px", borderRadius: "20px", marginBottom: "18px", border: "1px solid rgba(255,255,255,0.2)" }}>
                 {s.tag}
               </span>
               <h1 style={{ fontSize: "clamp(30px, 4.6vw, 52px)", fontWeight: 900, color: "#ffffff", margin: "0 0 16px 0", lineHeight: 1.1 }}>
                 {s.title}
               </h1>
-              <p style={{ fontSize: "17px", color: "#e9d5ff", margin: "0 0 22px 0", lineHeight: 1.6, maxWidth: "480px" }}>
+              <p style={{ fontSize: "17px", color: "#fedce8", margin: "0 0 22px 0", lineHeight: 1.6, maxWidth: "480px" }}>
                 {s.desc}
               </p>
               <div style={{ display: "flex", flexWrap: "wrap", gap: "10px 22px", marginBottom: "26px" }}>

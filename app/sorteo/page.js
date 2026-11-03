@@ -69,7 +69,7 @@ function Winners() {
       </div>
       <div style={{ display: "flex", justifyContent: "center", gap: "8px", marginTop: "14px" }}>
         {ganadores.map((_, i) => (
-          <span key={i} style={{ width: active === i ? "24px" : "8px", height: "8px", borderRadius: "99px", background: active === i ? "#ec4899" : "#e9d5ff", transition: "all .3s" }} />
+          <span key={i} style={{ width: active === i ? "24px" : "8px", height: "8px", borderRadius: "99px", background: active === i ? "#f0789a" : "#fedce8", transition: "all .3s" }} />
         ))}
       </div>
     </div>
@@ -82,11 +82,11 @@ export default function SorteoPage() {
   return (
     <div style={{ maxWidth: "1100px", margin: "0 auto" }}>
       <style dangerouslySetInnerHTML={{ __html: `
-        .sr-hero { border-radius:28px; padding:34px 36px; background:linear-gradient(135deg,#fdf2f8 0%,#fce7f3 45%,#ede9fe 100%); border:1px solid #fbcfe8; display:grid; grid-template-columns:1.1fr .9fr; gap:28px; align-items:center; }
-        .sr-badge { display:inline-block; padding:6px 14px; border-radius:999px; background:#fff; color:#be185d; font-weight:800; font-size:13px; border:1.5px solid #f9a8d4; }
-        .sr-btn { display:inline-block; padding:13px 22px; border-radius:16px; background:linear-gradient(135deg,#ec4899,#8b5cf6); color:#fff; font-weight:800; text-decoration:none; font-size:15px; box-shadow:0 10px 24px rgba(236,72,153,.35); transition:transform .2s; }
+        .sr-hero { border-radius:28px; padding:34px 36px; background:linear-gradient(135deg,#fdf2f8 0%,#fce7f3 45%,#ffebf2 100%); border:1px solid #fbcfe8; display:grid; grid-template-columns:1.1fr .9fr; gap:28px; align-items:center; }
+        .sr-badge { display:inline-block; padding:6px 14px; border-radius:999px; background:#fff; color:#be185d; font-weight:800; font-size:13px; border:1.5px solid #f9b4c6; }
+        .sr-btn { display:inline-block; padding:13px 22px; border-radius:16px; background:linear-gradient(135deg,#f0789a,#e66791); color:#fff; font-weight:800; text-decoration:none; font-size:15px; box-shadow:0 10px 24px rgba(236,72,153,.35); transition:transform .2s; }
         .sr-btn:hover { transform:translateY(-2px); }
-        .sr-h2 { font-size:24px; font-weight:800; color:#1e1b4b; margin:46px 0 6px; }
+        .sr-h2 { font-size:24px; font-weight:800; color:#461438; margin:46px 0 6px; }
         .sr-sub { color:#6b7280; margin:0 0 20px; font-size:15px; }
         .sr-prizes { display:grid; grid-template-columns:1.4fr 1fr 1fr; gap:16px; }
         .sr-prize { border-radius:24px; padding:24px; color:#fff; position:relative; overflow:hidden; min-height:200px; display:flex; flex-direction:column; justify-content:flex-end; transition:transform .3s; }
@@ -97,11 +97,11 @@ export default function SorteoPage() {
         .sr-step { background:#fff; border-radius:22px; padding:22px; border:1px solid #f1f1f4; }
         .sr-track { display:flex; gap:16px; overflow-x:auto; scroll-snap-type:x mandatory; scrollbar-width:none; padding:4px 2px 8px; }
         .sr-track::-webkit-scrollbar { display:none; }
-        .sr-win { margin:0; flex:0 0 calc((100% - 32px) / 3); scroll-snap-align:start; border-radius:22px; overflow:hidden; background:#fff; border:1px solid #f1f1f4; box-shadow:0 10px 24px rgba(17,12,46,.06); position:relative; }
+        .sr-win { margin:0; flex:0 0 calc((100% - 32px) / 3); scroll-snap-align:start; border-radius:22px; overflow:hidden; background:#fff; border:1px solid #f1f1f4; box-shadow:0 10px 24px rgba(47,13,39,.06); position:relative; }
         .sr-win img { width:100%; aspect-ratio:3/4; object-fit:cover; display:block; }
-        .sr-win figcaption { position:absolute; left:0; right:0; bottom:0; padding:30px 16px 14px; color:#fff; background:linear-gradient(transparent,rgba(30,10,60,.78)); display:flex; flex-direction:column; }
-        .sr-arrow { position:absolute; top:42%; z-index:2; width:44px; height:44px; border-radius:50%; border:none; background:#fff; color:#7c3aed; font-size:26px; line-height:1; cursor:pointer; box-shadow:0 8px 18px rgba(17,12,46,.18); transition:background .2s,color .2s,transform .2s; }
-        .sr-arrow:hover { background:#7c3aed; color:#fff; transform:scale(1.1); }
+        .sr-win figcaption { position:absolute; left:0; right:0; bottom:0; padding:30px 16px 14px; color:#fff; background:linear-gradient(transparent,rgba(53,14,43,.78)); display:flex; flex-direction:column; }
+        .sr-arrow { position:absolute; top:42%; z-index:2; width:44px; height:44px; border-radius:50%; border:none; background:#fff; color:#d1406f; font-size:26px; line-height:1; cursor:pointer; box-shadow:0 8px 18px rgba(47,13,39,.18); transition:background .2s,color .2s,transform .2s; }
+        .sr-arrow:hover { background:#d1406f; color:#fff; transform:scale(1.1); }
         .sr-prev { left:-14px; } .sr-next { right:-14px; }
         @media (max-width:860px) { .sr-hero { grid-template-columns:1fr; padding:24px 20px; } .sr-prizes, .sr-steps { grid-template-columns:1fr; } .sr-win { flex-basis:calc((100% - 16px) / 2); } }
         @media (max-width:520px) { .sr-win { flex-basis:82%; } .sr-prev { left:2px; } .sr-next { right:2px; } }
@@ -111,13 +111,13 @@ export default function SorteoPage() {
       <section className="sr-hero">
         <div>
           <span className="sr-badge">¡En Coquecutes ganas más! · {sorteo.mes}</span>
-          <h1 style={{ fontSize: "clamp(34px,5.5vw,52px)", lineHeight: 1.05, fontWeight: 800, margin: "16px 0 12px", color: "#1e1b4b" }}>
-            Sorteo <span style={{ color: "#ec4899" }}>del mes</span>
+          <h1 style={{ fontSize: "clamp(34px,5.5vw,52px)", lineHeight: 1.05, fontWeight: 800, margin: "16px 0 12px", color: "#461438" }}>
+            Sorteo <span style={{ color: "#f0789a" }}>del mes</span>
           </h1>
           <p style={{ margin: "0 0 8px", color: "#4b5563", lineHeight: 1.6, fontSize: "16px" }}>
             Cada subasta que ganas es un ticket para el sorteo mensual. Mientras más ganas, más oportunidades tienes.
           </p>
-          {sorteo.transmision && <p style={{ margin: "0 0 18px", color: "#7c3aed", fontWeight: 700, fontSize: "14px" }}>📺 {sorteo.transmision}</p>}
+          {sorteo.transmision && <p style={{ margin: "0 0 18px", color: "#d1406f", fontWeight: 700, fontSize: "14px" }}>📺 {sorteo.transmision}</p>}
           {cd && !cd.done && (
             <div style={{ display: "flex", gap: "8px", margin: "0 0 20px" }}>
               {[["d", "días"], ["h", "horas"], ["m", "min"], ["s", "seg"]].map(([k, l]) => (
@@ -158,7 +158,7 @@ export default function SorteoPage() {
           {tickets.map((t) => (
             <div key={t.titulo} className="sr-step">
               <div style={{ fontSize: "34px", marginBottom: "8px" }}>{t.emoji}</div>
-              <strong style={{ color: "#1e1b4b", fontSize: "17px" }}>{t.titulo}</strong>
+              <strong style={{ color: "#461438", fontSize: "17px" }}>{t.titulo}</strong>
               <p style={{ margin: "6px 0 0", fontSize: "14px", color: "#6b7280", lineHeight: 1.55 }}>{t.texto}</p>
             </div>
           ))}
@@ -175,7 +175,7 @@ export default function SorteoPage() {
       )}
 
       {/* ---------- CTA ---------- */}
-      <section style={{ margin: "46px 0 10px", padding: "28px", borderRadius: "24px", background: "linear-gradient(135deg,#2e1065,#7e22ce)", color: "#fff", display: "flex", gap: "16px", alignItems: "center", justifyContent: "space-between", flexWrap: "wrap" }}>
+      <section style={{ margin: "46px 0 10px", padding: "28px", borderRadius: "24px", background: "linear-gradient(135deg,#4f163d,#a62d5c)", color: "#fff", display: "flex", gap: "16px", alignItems: "center", justifyContent: "space-between", flexWrap: "wrap" }}>
         <div>
           <strong style={{ fontSize: "20px" }}>¿Dudas sobre el sorteo o tus tickets?</strong>
           <p style={{ margin: "4px 0 0", opacity: 0.85, fontSize: "14px" }}>Escríbenos y te decimos cuántos tickets llevas.</p>

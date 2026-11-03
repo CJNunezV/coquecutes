@@ -1,4 +1,5 @@
 import React from "react";
+import TrustBar from "./TrustBar";
 import Header from "./Header"; // Importamos el componente cliente de forma segura
 import WhatsAppBubble from "./WhatsAppBubble";
 import CartDrawer from "./CartDrawer";
@@ -15,13 +16,15 @@ export default function RootLayout({ children }) {
       <body style={{
         margin: 0,
         fontFamily: "system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif",
-        background: "#fafafa",
-        color: "#1a1a1a",
+        background: "#fff8fb",
+        color: "#2a1224",
         minHeight: "100vh",
         display: "flex",
         flexDirection: "column"
       }}>
         
+        <TrustBar />
+
         {/* Renderiza el Header dinámico aquí */}
         <Header />
  
@@ -29,7 +32,7 @@ export default function RootLayout({ children }) {
           {children}
         </main>
  
-        <footer style={{ padding: "24px", textAlign: "center", fontSize: "14px", color: "#888888", backgroundColor: "#ffffff", borderTop: "1px solid #eee" }}>
+        <footer style={{ padding: "24px", textAlign: "center", fontSize: "14px", color: "#f7c9d9", background: "linear-gradient(90deg,#3b1030,#52173f)", borderTop: "3px solid #f0d070" }}>
           © {new Date().getFullYear()} Coquecutes
         </footer>
  

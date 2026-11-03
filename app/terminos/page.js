@@ -5,7 +5,7 @@ export const metadata = {
 };
 
 const sectionStyle = { marginBottom: "28px" };
-const h2Style = { fontSize: "18px", fontWeight: "800", color: "#1e1b4b", margin: "0 0 10px 0" };
+const h2Style = { fontSize: "18px", fontWeight: "800", color: "#461438", margin: "0 0 10px 0" };
 const pStyle = { fontSize: "14px", color: "#4b5563", lineHeight: "1.7", margin: "0 0 8px 0" };
 const liStyle = { fontSize: "14px", color: "#4b5563", lineHeight: "1.7", marginBottom: "6px" };
 
@@ -14,12 +14,12 @@ export default function TerminosPage() {
     <div style={{ maxWidth: "720px", margin: "0 auto" }}>
       <Link
         href="/checkout"
-        style={{ fontSize: "13px", color: "#7c3aed", fontWeight: "700", textDecoration: "none" }}
+        style={{ fontSize: "13px", color: "#d1406f", fontWeight: "700", textDecoration: "none" }}
       >
         ← Volver al checkout
       </Link>
 
-      <h1 style={{ fontSize: "28px", fontWeight: "800", color: "#1e1b4b", margin: "16px 0 8px 0" }}>
+      <h1 style={{ fontSize: "28px", fontWeight: "800", color: "#461438", margin: "16px 0 8px 0" }}>
         Términos y Condiciones
       </h1>
       <p style={{ fontSize: "13px", color: "#9ca3af", margin: "0 0 32px 0" }}>

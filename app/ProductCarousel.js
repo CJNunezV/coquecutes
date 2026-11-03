@@ -2,7 +2,7 @@
 import { useRef } from "react";
 import Link from "next/link";
 
-const accents = ["#f3e8ff", "#e0e7ff", "#ffe4e6", "#fef3c7"];
+const accents = ["#ffebf2", "#ffe5ee", "#ffe4e6", "#fef3c7"];
 
 export default function ProductCarousel({ products }) {
   const trackRef = useRef(null);
@@ -31,9 +31,9 @@ export default function ProductCarousel({ products }) {
           width: "36px",
           height: "36px",
           borderRadius: "50%",
-          border: "1px solid #e5e7eb",
+          border: "1px solid #f1dfe7",
           backgroundColor: "#ffffff",
-          color: "#7c3aed",
+          color: "#d1406f",
           fontSize: "16px",
           fontWeight: "700",
           cursor: "pointer",
@@ -60,9 +60,9 @@ export default function ProductCarousel({ products }) {
           width: "36px",
           height: "36px",
           borderRadius: "50%",
-          border: "1px solid #e5e7eb",
+          border: "1px solid #f1dfe7",
           backgroundColor: "#ffffff",
-          color: "#7c3aed",
+          color: "#d1406f",
           fontSize: "16px",
           fontWeight: "700",
           cursor: "pointer",
@@ -110,7 +110,7 @@ export default function ProductCarousel({ products }) {
                 cursor: "pointer",
                 backgroundColor: "#ffffff",
                 borderRadius: "24px",
-                border: "1px solid #f1f5f9",
+                border: "1px solid #fdf0f5",
                 overflow: "hidden",
               }}
             >
@@ -167,16 +167,16 @@ export default function ProductCarousel({ products }) {
                     justifyContent: "space-between",
                     marginTop: "auto",
                     paddingTop: "10px",
-                    borderTop: "1px solid #f3f4f6",
+                    borderTop: "1px solid #fbeef3",
                   }}
                 >
-                  <span style={{ fontSize: "15px", fontWeight: "800", color: "#7c3aed" }}>
+                  <span style={{ fontSize: "15px", fontWeight: "800", color: "#d1406f" }}>
                     PEN {product.price.toFixed(2)}
                   </span>
                   <span
                     style={{
-                      backgroundColor: "#f5f3ff",
-                      color: "#7c3aed",
+                      backgroundColor: "#fff3f7",
+                      color: "#d1406f",
                       padding: "6px 12px",
                       borderRadius: "10px",
                       fontWeight: "700",

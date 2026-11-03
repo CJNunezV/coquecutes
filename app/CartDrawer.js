@@ -1,7 +1,7 @@
 "use client";
 import React, { useState, useEffect, useRef } from "react";
 import Link from "next/link";
-import { getCart, setQuantity, removeItem, cartCount, cartTotal, money } from "./cart";
+import { getCart, setQuantity, removeItem, cartCount, cartTotal, bulkStatus, money } from "./cart";
 
 export default function CartDrawer() {
   const [open, setOpen] = useState(false);
@@ -49,31 +49,32 @@ export default function CartDrawer() {
 
   const count = cartCount(cart);
   const total = cartTotal(cart);
+  const bulk = bulkStatus(cart);
 
   return (
     <>
       <style>{`
-        .cd-back{position:fixed;inset:0;background:rgba(30,27,75,.45);backdrop-filter:blur(2px);z-index:2000;opacity:0;pointer-events:none;transition:opacity .25s}
+        .cd-back{position:fixed;inset:0;background:rgba(70,20,56,.45);backdrop-filter:blur(2px);z-index:2000;opacity:0;pointer-events:none;transition:opacity .25s}
         .cd-back.on{opacity:1;pointer-events:auto}
-        .cd-panel{position:fixed;top:0;right:0;height:100%;width:min(420px,100%);background:#fff;z-index:2001;display:flex;flex-direction:column;transform:translateX(105%);transition:transform .3s cubic-bezier(.16,1,.3,1);box-shadow:-20px 0 50px rgba(76,29,149,.18)}
+        .cd-panel{position:fixed;top:0;right:0;height:100%;width:min(420px,100%);background:#fff;z-index:2001;display:flex;flex-direction:column;transform:translateX(105%);transition:transform .3s cubic-bezier(.16,1,.3,1);box-shadow:-20px 0 50px rgba(118,35,83,.18)}
         .cd-panel.on{transform:none}
-        .cd-item{display:flex;gap:12px;padding:14px 0;border-bottom:1px solid #f3f4f6}
-        .cd-thumb{width:68px;height:68px;border-radius:12px;background:#f5f3ff;overflow:hidden;flex-shrink:0;display:flex;align-items:center;justify-content:center;font-size:26px}
+        .cd-item{display:flex;gap:12px;padding:14px 0;border-bottom:1px solid #fbeef3}
+        .cd-thumb{width:68px;height:68px;border-radius:12px;background:#fff3f7;overflow:hidden;flex-shrink:0;display:flex;align-items:center;justify-content:center;font-size:26px}
         .cd-thumb img{width:100%;height:100%;object-fit:cover}
-        .cd-q{display:inline-flex;align-items:center;border:1px solid #e5e7eb;border-radius:10px;overflow:hidden}
-        .cd-q button{width:34px;height:34px;border:none;background:#fff;font-size:17px;font-weight:700;color:#4c1d95;cursor:pointer}
-        .cd-q button:hover{background:#f5f3ff}
+        .cd-q{display:inline-flex;align-items:center;border:1px solid #f1dfe7;border-radius:10px;overflow:hidden}
+        .cd-q button{width:34px;height:34px;border:none;background:#fff;font-size:17px;font-weight:700;color:#762353;cursor:pointer}
+        .cd-q button:hover{background:#fff3f7}
         .cd-q span{min-width:28px;text-align:center;font-weight:700;font-size:14px}
         .cd-btn{display:block;width:100%;text-align:center;border:none;border-radius:14px;padding:15px;font-weight:800;font-size:15px;text-decoration:none;cursor:pointer;font-family:inherit}
-        .cd-btn.main{background:#7c3aed;color:#fff;box-shadow:0 6px 16px rgba(124,58,237,.3)}
-        .cd-btn.main:hover{background:#6d28d9}
-        .cd-btn.ghost{background:#fff;color:#6d28d9;border:1.5px solid #ddd6fe;margin-top:10px}
+        .cd-btn.main{background:#d1406f;color:#fff;box-shadow:0 6px 16px rgba(209,64,111,.3)}
+        .cd-btn.main:hover{background:#b53160}
+        .cd-btn.ghost{background:#fff;color:#b53160;border:1.5px solid #fedce8;margin-top:10px}
       `}</style>
       <div className={`cd-back ${open ? "on" : ""}`} onClick={() => setOpen(false)} />
       <aside className={`cd-panel ${open ? "on" : ""}`} role="dialog" aria-modal="true" aria-label="Tu carrito" aria-hidden={!open}>
-        <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", padding: "18px 20px", borderBottom: "1px solid #f3f4f6" }}>
-          <h2 style={{ margin: 0, fontSize: "19px", fontWeight: 800, color: "#1e1b4b" }}>Tu carrito {count > 0 && <span style={{ color: "#7c3aed" }}>({count})</span>}</h2>
-          <button ref={closeBtn} onClick={() => setOpen(false)} aria-label="Cerrar carrito" style={{ border: "none", background: "#f5f3ff", width: 38, height: 38, borderRadius: "50%", cursor: "pointer", fontSize: 18, color: "#4c1d95" }}>✕</button>
+        <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", padding: "18px 20px", borderBottom: "1px solid #fbeef3" }}>
+          <h2 style={{ margin: 0, fontSize: "19px", fontWeight: 800, color: "#461438" }}>Tu carrito {count > 0 && <span style={{ color: "#d1406f" }}>({count})</span>}</h2>
+          <button ref={closeBtn} onClick={() => setOpen(false)} aria-label="Cerrar carrito" style={{ border: "none", background: "#fff3f7", width: 38, height: 38, borderRadius: "50%", cursor: "pointer", fontSize: 18, color: "#762353" }}>✕</button>
         </div>
 
         {justAdded && cart.length > 0 && (
@@ -85,13 +86,18 @@ export default function CartDrawer() {
         {cart.length === 0 ? (
           <div style={{ flex: 1, display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "center", textAlign: "center", padding: 32, gap: 8 }}>
             <div style={{ fontSize: 46 }}>🛒</div>
-            <p style={{ margin: 0, fontWeight: 800, color: "#1e1b4b", fontSize: 18 }}>Tu carrito está vacío</p>
+            <p style={{ margin: 0, fontWeight: 800, color: "#461438", fontSize: 18 }}>Tu carrito está vacío</p>
             <p style={{ margin: "0 0 14px", color: "#6b7280", fontSize: 14 }}>Mira nuestros cases, cartas y proxys.</p>
             <Link href="/catalogo" onClick={() => setOpen(false)} className="cd-btn main" style={{ width: "auto", padding: "13px 26px" }}>Ver catálogo</Link>
           </div>
         ) : (
           <>
             <div style={{ flex: 1, overflowY: "auto", padding: "0 20px" }}>
+              {bulk.map((b) => (
+                <div key={b.group} style={{ margin: "14px 0 0", background: b.on ? "#e6f7f4" : "#fff8e1", border: `1px solid ${b.on ? "#9be0d4" : "#f0d070"}`, color: b.on ? "#0f6b5e" : "#7a5a00", borderRadius: 12, padding: "10px 12px", fontSize: 13, fontWeight: 600, lineHeight: 1.4 }}>
+                  {b.on ? `🎉 Precio al por mayor activado en proxys ${b.label}: ${money(b.price)} c/u` : `🎁 Añade ${b.missing} proxy${b.missing > 1 ? "s" : ""} más (${b.label}) y paga ${money(b.price)} c/u en vez de ${money(b.base)}`}
+                </div>
+              ))}
               {cart.map((it) => (
                 <div className="cd-item" key={it.id}>
                   <div className="cd-thumb">{it.image ? <img src={it.image} alt="" /> : "🃏"}</div>
@@ -104,17 +110,17 @@ export default function CartDrawer() {
                         <span>{it.quantity}</span>
                         <button onClick={() => setQuantity(it.id, it.quantity + 1)} aria-label={`Añadir una unidad de ${it.name}`}>+</button>
                       </div>
-                      <strong style={{ color: "#7c3aed", fontSize: 15 }}>{money(it.price * it.quantity)}</strong>
+                      <strong style={{ color: "#d1406f", fontSize: 15 }}>{money(it.price * it.quantity)}</strong>
                     </div>
                   </div>
                   <button onClick={() => removeItem(it.id)} aria-label={`Quitar ${it.name} del carrito`} title="Quitar" style={{ alignSelf: "flex-start", border: "none", background: "none", color: "#9ca3af", cursor: "pointer", fontSize: 16, padding: 4 }}>🗑</button>
                 </div>
               ))}
             </div>
-            <div style={{ padding: "16px 20px 20px", borderTop: "1px solid #f3f4f6", background: "#fafafa" }}>
+            <div style={{ padding: "16px 20px 20px", borderTop: "1px solid #fbeef3", background: "#fff8fb" }}>
               <div style={{ display: "flex", justifyContent: "space-between", alignItems: "baseline", marginBottom: 4 }}>
                 <span style={{ fontWeight: 700, color: "#4b5563" }}>Total</span>
-                <span style={{ fontSize: 24, fontWeight: 900, color: "#7c3aed" }}>{money(total)}</span>
+                <span style={{ fontSize: 24, fontWeight: 900, color: "#d1406f" }}>{money(total)}</span>
               </div>
               <p style={{ margin: "0 0 14px", fontSize: 12, color: "#6b7280" }}>El lugar de entrega lo eliges en el siguiente paso.</p>
               <Link href="/checkout" onClick={() => setOpen(false)} className="cd-btn main">Finalizar compra →</Link>

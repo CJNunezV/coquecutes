@@ -5,6 +5,8 @@
 // TIPOS DE PROXY (acabados) que el cliente puede elegir.
 // Cada uno puede tener un video que explica de qué trata y cómo queda el acabado final.
 //
+//  singlePrice → precio de 1 carta suelta (al detal)
+//  bulkPrice   → precio por carta AL POR MAYOR (desde `proxyInfo.bulkMin` cartas sueltas del mismo acabado)
 //  extra   → soles que se SUMAN al precio base (0 = mismo precio)
 //  video   → "/proxys/videos/frio.mp4"  (archivo en /public/proxys/videos/)
 //            o un link de YouTube / Vimeo: "https://youtu.be/XXXX"
@@ -17,20 +19,30 @@
 // ⚠️ Completa con la información real de cada tipo.
 // ─────────────────────────────────────────────────────────────
 export const proxyTypes = [
-  { id: "holo", singlePrice: 12, label: "Papel holográfico", extra: 0, emoji: "🌈", summary: "Impreso en papel holográfico con brillo.", desc: "", finish: "", bestFor: "", video: "", poster: "" },
-  { id: "relieve", singlePrice: 14, label: "Relieve manual", extra: 0, emoji: "🖌️", summary: "Detalles en relieve pintados a mano.", desc: "", finish: "", bestFor: "", video: "", poster: "" },
+  { id: "holo", singlePrice: 13, bulkPrice: 10, label: "Papel holográfico", extra: 0, emoji: "🌈", summary: "Impreso en papel holográfico con brillo.", desc: "", finish: "", bestFor: "", video: "", poster: "" },
+  { id: "relieve", singlePrice: 15, bulkPrice: 13, label: "Relieve manual", extra: 0, emoji: "🖌️", summary: "Detalles en relieve pintados a mano.", desc: "", finish: "", bestFor: "", video: "", poster: "" },
 ];
 
 // Información general que se muestra en "Lo que recibes" (editable)
 export const proxyInfo = {
   size: "Tamaño carta estándar (63 × 88 mm)",
   shipping: "Envío a todo el país",
-  disclaimer: "Los proxys son reproducciones para coleccionismo y juego casual. No son cartas oficiales ni se venden como originales.",
+  disclaimer: "Son PROXYS (fan made): reproducciones para coleccionar, jugar y disfrutar. No son cartas originales ni oficiales de Pokémon.",
+  // A partir de cuántas cartas sueltas del MISMO acabado se aplica el precio al por mayor
+  bulkMin: 5,
+  // Mensaje bonito que se muestra arriba en la página de Proxys
+  fanMadeTitle: "Son PROXYS, no cartas originales",
+  fanMadeText: "Cada carta es una reproducción fan made, hecha con mucho cariño para que juegues, colecciones y disfrutes sin gastar de más. No son cartas oficiales de Pokémon ni se venden como originales: tus cartas originales merecen seguir cuidadas en su toploader. 💗",
 };
 
-// Cartas sueltas (1 proxy por ítem). El precio depende del acabado: ver `singlePrice` en proxyTypes (12 / 14 / 16).
+// Cartas sueltas (1 proxy por ítem). El precio depende del acabado: ver `singlePrice` en proxyTypes (ver proxyTypes: 13 / 15 · al por mayor 10 / 13).
 // El campo `price` de cada carta ya no se usa para las sueltas.
 export const singles = [
+  { id: "px-s11", name: "Andean Pikachu ex", set: "Fan Art · Perú", price: 15, grad: ["#86efac", "#f59e0b"], image: "/proxys/Singles/079c62d7-10dc-454b-9fc3-12a7bf28f798.jpg" },
+  { id: "px-s12", name: "Doraemon Poncho Pikachu ex", set: "Fan Art · Poncho", price: 15, grad: ["#38bdf8", "#1d4ed8"], image: "/proxys/Singles/286027a4-7567-4da8-a7cc-070256b0c3f2.jpg" },
+  { id: "px-s13", name: "Chef Pikachu ex", set: "Fan Art · Navidad", price: 15, grad: ["#fde68a", "#f59e0b"], image: "/proxys/Singles/688ccdc2-3d69-4214-9b16-12524f93037f.jpg" },
+  { id: "px-s14", name: "Gengar ex · Árbol de Navidad", set: "Fan Art · Navidad", price: 15, grad: ["#7c2d6b", "#1a0615"], image: "/proxys/Singles/61ea2df6-93da-419c-97d9-0016b4b2dacb.jpg" },
+  { id: "px-s15", name: "Pikachu ex · Girasoles", set: "Fan Art · Atardecer", price: 15, grad: ["#fbbf24", "#ea580c"], image: "/proxys/Singles/4756be79-1e26-4589-96c1-5af0df823aa3.jpg" },
   { id: "px-s7", name: "Totoro Poncho Pikachu", set: "Fan Art · Promo", price: 15, grad: ["#86efac", "#166534"], image: "/proxys/Singles/0ae16301-89cf-4a50-a111-edd2766caad7.jpg" },
   { id: "px-s8", name: "Dear Santa Pikachu ex", set: "Fan Art · Navidad", price: 15, grad: ["#ef4444", "#7f1d1d"], image: "/proxys/Singles/671a8399-83b8-4dd4-b9fe-e4ecfa0589f0.jpg" },
   { id: "px-s9", name: "Ugly Sweater Pikachu ex", set: "Fan Art · Navidad", price: 15, grad: ["#22c55e", "#b91c1c"], image: "/proxys/Singles/a8356bc4-2897-4b66-95be-3308a86f831c.jpg" },

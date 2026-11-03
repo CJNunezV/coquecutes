@@ -43,7 +43,7 @@ export default function ProductDetailPage() {
   }
 
   return (
-    <div style={{ maxWidth: "1100px", margin: "0 auto", background: "#ffffff", borderRadius: "32px", padding: "clamp(14px, 4vw, 32px)", boxShadow: "0 10px 30px rgba(0,0,0,0.01)", border: "1px solid #f1f5f9" }}>
+    <div style={{ maxWidth: "1100px", margin: "0 auto", background: "#ffffff", borderRadius: "32px", padding: "clamp(14px, 4vw, 32px)", boxShadow: "0 10px 30px rgba(0,0,0,0.01)", border: "1px solid #fdf0f5" }}>
       
       {/* Botón Volver */}
       <Link href="/catalogo" style={{ display: "inline-flex", alignItems: "center", gap: "8px", color: "#6b7280", textDecoration: "none", fontSize: "14px", fontWeight: "600", marginBottom: "24px" }}>
@@ -55,7 +55,7 @@ export default function ProductDetailPage() {
         {/* COLUMNA IZQUIERDA: GALERÍA DE IMÁGENES (fija al hacer scroll) */}
         <div className="pd-gallery" style={{ flex: "1 1 320px", minWidth: 0, display: "flex", flexDirection: "column", gap: "16px", alignSelf: "flex-start" }}>
           {/* Foto Principal: la foto original cubre todo el espacio */}
-          <div style={{ width: "100%", maxWidth: "min(100%, calc((100vh - 190px) * 0.75))", margin: "0 auto", aspectRatio: "3 / 4", borderRadius: "28px", overflow: "hidden", position: "relative", background: "#f3f4f6", border: "1px solid #f3e8ff", boxShadow: "0 12px 30px rgba(76,29,149,0.10)" }}>
+          <div style={{ width: "100%", maxWidth: "min(100%, calc((100vh - 190px) * 0.75))", margin: "0 auto", aspectRatio: "3 / 4", borderRadius: "28px", overflow: "hidden", position: "relative", background: "#fbeef3", border: "1px solid #ffebf2", boxShadow: "0 12px 30px rgba(118,35,83,0.10)" }}>
             <img
               key={activeImage}
               className="pg-img"
@@ -77,8 +77,8 @@ export default function ProductDetailPage() {
                     aria-label={`Ver foto ${index + 1}`}
                     style={{
                       width: "78px", height: "78px", borderRadius: "16px", padding: 0, flexShrink: 0, cursor: "pointer", overflow: "hidden", background: "#fff",
-                      border: active ? "2px solid #7c3aed" : "2px solid transparent",
-                      boxShadow: active ? "0 6px 16px rgba(124,58,237,0.25)" : "0 2px 8px rgba(0,0,0,0.08)",
+                      border: active ? "2px solid #d1406f" : "2px solid transparent",
+                      boxShadow: active ? "0 6px 16px rgba(209,64,111,0.25)" : "0 2px 8px rgba(0,0,0,0.08)",
                       opacity: active ? 1 : 0.8,
                       transition: "all .2s",
                     }}
@@ -94,16 +94,16 @@ export default function ProductDetailPage() {
 
         {/* COLUMNA DERECHA: INFORMACIÓN, MEDIDAS Y COMPRA */}
         <div style={{ flex: "1.2 1 320px", minWidth: 0, display: "flex", flexDirection: "column" }}>
-          <h1 style={{ fontSize: "28px", fontWeight: "800", color: "#1e1b4b", margin: "0 0 12px 0", lineHeight: "1.2" }}>{product.name}</h1>
-          <p style={{ fontSize: "26px", fontWeight: "900", color: "#7c3aed", margin: "0 0 24px 0" }}>PEN {product.price.toFixed(2)}</p>
+          <h1 style={{ fontSize: "28px", fontWeight: "800", color: "#461438", margin: "0 0 12px 0", lineHeight: "1.2" }}>{product.name}</h1>
+          <p style={{ fontSize: "26px", fontWeight: "900", color: "#d1406f", margin: "0 0 24px 0" }}>PEN {product.price.toFixed(2)}</p>
           
-          <div style={{ height: "1px", backgroundColor: "#f1f5f9", marginBottom: "24px" }} />
+          <div style={{ height: "1px", backgroundColor: "#fdf0f5", marginBottom: "24px" }} />
           
           <h3 style={{ fontSize: "16px", fontWeight: "700", color: "#374151", margin: "0 0 8px 0" }}>Descripción</h3>
           <p style={{ fontSize: "15px", color: "#6b7280", margin: "0 0 28px 0", lineHeight: "1.6" }}>{product.description}</p>
           
           {/* FICHA TÉCNICA (Medidas y Materiales) */}
-          <div style={{ backgroundColor: "#fafafa", borderRadius: "20px", padding: "20px", border: "1px solid #f3f4f6", marginBottom: "32px" }}>
+          <div style={{ backgroundColor: "#fff8fb", borderRadius: "20px", padding: "20px", border: "1px solid #fbeef3", marginBottom: "32px" }}>
             <h4 style={{ margin: "0 0 14px 0", color: "#1f2937", fontSize: "14px", fontWeight: "700", textTransform: "uppercase", letterSpacing: "0.5px" }}>Especificaciones Técnicas</h4>
             <div style={{ display: "flex", flexDirection: "column", gap: "12px" }}>
               <div style={{ display: "flex", justifyContent: "space-between", fontSize: "13.5px" }}>
@@ -134,7 +134,7 @@ export default function ProductDetailPage() {
                   display: "flex",
                   alignItems: "center",
                   justifyContent: "space-between",
-                  border: "1px solid #e5e7eb",
+                  border: "1px solid #f1dfe7",
                   borderRadius: "16px",
                   padding: "0 6px",
                   minWidth: "110px",
@@ -208,7 +208,7 @@ export default function ProductDetailPage() {
             <button
               onClick={handleAddToCartAndPay}
               style={{
-                backgroundColor: "#7c3aed",
+                backgroundColor: "#d1406f",
                 color: "#ffffff",
                 border: "none",
                 padding: "18px",
@@ -216,7 +216,7 @@ export default function ProductDetailPage() {
                 fontWeight: "700",
                 fontSize: "16px",
                 cursor: "pointer",
-                boxShadow: "0 4px 14px rgba(124, 58, 237, 0.25)",
+                boxShadow: "0 4px 14px rgba(209,64,111, 0.25)",
               }}
             >
               Comprar ahora

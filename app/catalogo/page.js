@@ -6,7 +6,7 @@ import { products } from "../../data/products";
 import { singleCards, sealedProducts } from "../../data/pokemon";
 import { cartas } from "../../data/cartas";
 
-const accents = ["#f3e8ff", "#e0e7ff", "#ffe4e6", "#fef3c7", "#dcfce7"];
+const accents = ["#ffebf2", "#ffe5ee", "#ffe4e6", "#fef3c7", "#dcfce7"];
 
 // Unifica todo en una sola lista con "kind"
 const allItems = [
@@ -35,7 +35,7 @@ const conditionColors = { "Near Mint": ["#dcfce7", "#15803d"], "Lightly Played":
 
 function InfoRow({ label, value }) {
   return (
-    <div style={{ display: "flex", justifyContent: "space-between", gap: "10px", fontSize: "13px", padding: "5px 0", borderBottom: "1px dashed #ede9fe" }}>
+    <div style={{ display: "flex", justifyContent: "space-between", gap: "10px", fontSize: "13px", padding: "5px 0", borderBottom: "1px dashed #ffebf2" }}>
       <span style={{ color: "#9ca3af", fontWeight: 600 }}>{label}</span>
       <span style={{ color: "#1f2937", fontWeight: 600, textAlign: "right" }}>{value}</span>
     </div>
@@ -129,7 +129,7 @@ export default function CatalogoPage() {
     const portrait = item.kind === "carta";
     return (
       <div style={{ position: "relative", background: accents[idx % accents.length], borderRadius: "16px", aspectRatio: (portrait || isPhoto(item.image)) ? "4 / 5" : "1 / 1", display: "flex", alignItems: "center", justifyContent: "center", marginBottom: "14px", overflow: "hidden", padding: portrait ? "12px" : 0, boxSizing: "border-box" }}>
-        <img src={item.image} alt={item.name} loading="lazy" referrerPolicy="no-referrer" onError={(e) => { if (item.imageLocal && !e.currentTarget.dataset.fb) { e.currentTarget.dataset.fb = "1"; e.currentTarget.src = item.imageLocal; } }} style={isPhoto(item.image) ? { width: "100%", height: "100%", objectFit: "cover", display: "block", transform: "scale(1.3)", transformOrigin: "50% 58%" } : portrait ? { height: "100%", width: "auto", maxWidth: "100%", objectFit: "contain", borderRadius: "8px", boxShadow: "0 10px 22px rgba(30,27,75,0.3)" } : { width: `${item.zoom || (item.kind === "sellado" ? 88 : 85)}%`, height: `${item.zoom || (item.kind === "sellado" ? 88 : 85)}%`, objectFit: "contain" }} />
+        <img src={item.image} alt={item.name} loading="lazy" referrerPolicy="no-referrer" onError={(e) => { if (item.imageLocal && !e.currentTarget.dataset.fb) { e.currentTarget.dataset.fb = "1"; e.currentTarget.src = item.imageLocal; } }} style={isPhoto(item.image) ? { width: "100%", height: "100%", objectFit: "cover", display: "block", transform: "scale(1.3)", transformOrigin: "50% 58%" } : portrait ? { height: "100%", width: "auto", maxWidth: "100%", objectFit: "contain", borderRadius: "8px", boxShadow: "0 10px 22px rgba(70,20,56,0.3)" } : { width: `${item.zoom || (item.kind === "sellado" ? 88 : 85)}%`, height: `${item.zoom || (item.kind === "sellado" ? 88 : 85)}%`, objectFit: "contain" }} />
         {item.setCode && (
           <div className="cc-badges">
             <span className="cc-b">{item.langCode === "EN" ? "EN · Inglés" : "ES · Español"}</span>
@@ -145,67 +145,67 @@ export default function CatalogoPage() {
       {label || v}<small>{n}</small>
     </button>
   );
-  const typeDot = { Planta: "#22c55e", "Psíquico": "#ec4899", Siniestro: "#0f766e", Agua: "#3b82f6", Acero: "#64748b", Incoloro: "#a8a29e", Lucha: "#c2410c", "Dragón": "#ca8a04" };
+  const typeDot = { Planta: "#22c55e", "Psíquico": "#f0789a", Siniestro: "#0f766e", Agua: "#3b82f6", Acero: "#64748b", Incoloro: "#a8a29e", Lucha: "#c2410c", "Dragón": "#ca8a04" };
 
   return (
     <div>
       <style dangerouslySetInnerHTML={{ __html: `
         .cg-layout { display:grid; grid-template-columns:230px 1fr; gap:36px; align-items:start; }
-        .cg-cat { display:flex; align-items:center; justify-content:space-between; width:100%; text-align:left; background:none; border:none; cursor:pointer; padding:12px 4px; font-size:16px; color:#4b5563; font-family:inherit; border-bottom:1px solid #f1f5f9; transition:color .2s, padding-left .2s; }
-        .cg-cat:hover { color:#7c3aed; padding-left:10px; }
-        .cg-cat.is-active { color:#1e1b4b; font-weight:800; }
-        .cg-count { font-size:12px; background:#f5f3ff; color:#7c3aed; border-radius:999px; padding:2px 8px; font-weight:700; }
+        .cg-cat { display:flex; align-items:center; justify-content:space-between; width:100%; text-align:left; background:none; border:none; cursor:pointer; padding:12px 4px; font-size:16px; color:#4b5563; font-family:inherit; border-bottom:1px solid #fdf0f5; transition:color .2s, padding-left .2s; }
+        .cg-cat:hover { color:#d1406f; padding-left:10px; }
+        .cg-cat.is-active { color:#461438; font-weight:800; }
+        .cg-count { font-size:12px; background:#fff3f7; color:#d1406f; border-radius:999px; padding:2px 8px; font-weight:700; }
         .cg-opt { background:none; border:none; cursor:pointer; font-size:15px; color:#9ca3af; font-family:inherit; padding:2px 4px; font-weight:600; }
-        .cg-opt.is-active { color:#1e1b4b; font-weight:800; }
-        .cg-colbtn { background:none; border:none; cursor:pointer; padding:4px; color:#c4b5fd; display:flex; }
-        .cg-colbtn.is-active { color:#1e1b4b; }
+        .cg-opt.is-active { color:#461438; font-weight:800; }
+        .cg-colbtn { background:none; border:none; cursor:pointer; padding:4px; color:#fabdd2; display:flex; }
+        .cg-colbtn.is-active { color:#461438; }
         .cg-card { display:flex; flex-direction:column; transition:transform .25s; }
         .cg-card:hover { transform:translateY(-4px); }
-        .cg-add { width:100%; border:none; cursor:pointer; background:#7c3aed; color:#fff; font-weight:800; font-size:14px; letter-spacing:.5px; text-transform:uppercase; padding:16px; border-radius:6px; box-shadow:0 3px 0 #5b21b6; font-family:inherit; transition:background .2s, transform .1s; }
-        .cg-add:hover { background:#6d28d9; }
-        .cg-add:active { transform:translateY(2px); box-shadow:0 1px 0 #5b21b6; }
+        .cg-add { width:100%; border:none; cursor:pointer; background:#d1406f; color:#fff; font-weight:800; font-size:14px; letter-spacing:.5px; text-transform:uppercase; padding:16px; border-radius:6px; box-shadow:0 3px 0 #902858; font-family:inherit; transition:background .2s, transform .1s; }
+        .cg-add:hover { background:#b53160; }
+        .cg-add:active { transform:translateY(2px); box-shadow:0 1px 0 #902858; }
         .cg-add.is-added { background:#16a34a; box-shadow:0 3px 0 #15803d; }
         @media (max-width: 860px) {
           .cg-layout { grid-template-columns:1fr; gap:18px; }
           .cg-side { display:flex; gap:8px; overflow-x:auto; }
           .cg-side h3 { display:none; }
-          .cg-cat { width:auto; white-space:nowrap; border:1px solid #e5e7eb; border-radius:999px; padding:8px 14px; gap:8px; }
+          .cg-cat { width:auto; white-space:nowrap; border:1px solid #f1dfe7; border-radius:999px; padding:8px 14px; gap:8px; }
           .cg-hide-sm { display:none !important; }
           .cg-grid { grid-template-columns:repeat(2,1fr) !important; }
         }
-        .cf { background:#faf5ff; border:1px solid #ede9fe; border-radius:16px; padding:16px 18px; margin-bottom:26px; }
-        .cf-search { width:100%; box-sizing:border-box; border:2px solid #e5e7eb; border-radius:12px; padding:12px 14px; font-size:16px; font-family:inherit; outline:none; background:#fff; }
-        .cf-search:focus { border-color:#7c3aed; }
+        .cf { background:#fff4f8; border:1px solid #ffebf2; border-radius:16px; padding:16px 18px; margin-bottom:26px; }
+        .cf-search { width:100%; box-sizing:border-box; border:2px solid #f1dfe7; border-radius:12px; padding:12px 14px; font-size:16px; font-family:inherit; outline:none; background:#fff; }
+        .cf-search:focus { border-color:#d1406f; }
         .cf-row { display:flex; flex-wrap:wrap; align-items:center; gap:8px; margin-top:12px; }
         .cf-lab { font-size:12px; font-weight:800; color:#6b7280; letter-spacing:.6px; text-transform:uppercase; min-width:76px; }
-        .cf-chip { border:1.5px solid #ddd6fe; background:#fff; color:#4b5563; border-radius:999px; padding:7px 13px; font-size:14px; font-weight:700; cursor:pointer; font-family:inherit; display:inline-flex; align-items:center; gap:6px; }
-        .cf-chip:hover { border-color:#7c3aed; }
-        .cf-chip.on { background:#7c3aed; border-color:#7c3aed; color:#fff; }
+        .cf-chip { border:1.5px solid #fedce8; background:#fff; color:#4b5563; border-radius:999px; padding:7px 13px; font-size:14px; font-weight:700; cursor:pointer; font-family:inherit; display:inline-flex; align-items:center; gap:6px; }
+        .cf-chip:hover { border-color:#d1406f; }
+        .cf-chip.on { background:#d1406f; border-color:#d1406f; color:#fff; }
         .cf-chip.off { opacity:.4; }
         .cf-chip small { font-size:11px; opacity:.75; font-weight:700; }
-        .cf-sel { border:1.5px solid #ddd6fe; background:#fff; border-radius:10px; padding:8px 10px; font-size:14px; font-weight:600; font-family:inherit; color:#1f2937; max-width:100%; }
+        .cf-sel { border:1.5px solid #fedce8; background:#fff; border-radius:10px; padding:8px 10px; font-size:14px; font-weight:600; font-family:inherit; color:#1f2937; max-width:100%; }
         .cf-toggle { display:none; }
         .cf-body { display:block; }
         .cc-badges { position:absolute; top:8px; left:8px; right:8px; display:flex; justify-content:space-between; gap:4px; pointer-events:none; }
-        .cc-b { font-size:11px; font-weight:800; padding:3px 8px; border-radius:999px; background:rgba(255,255,255,.92); color:#1e1b4b; box-shadow:0 1px 4px rgba(0,0,0,.18); }
-        .cc-b.fin { background:linear-gradient(120deg,#fde68a,#f9a8d4,#a5b4fc,#99f6e4); }
+        .cc-b { font-size:11px; font-weight:800; padding:3px 8px; border-radius:999px; background:rgba(255,255,255,.92); color:#461438; box-shadow:0 1px 4px rgba(0,0,0,.18); }
+        .cc-b.fin { background:linear-gradient(120deg,#fde68a,#f9b4c6,#f8aec7,#99f6e4); }
         .cc-line { font-size:13px; color:#6b7280; font-weight:600; margin-bottom:6px; }
-        .cc-line b { color:#1e1b4b; }
+        .cc-line b { color:#461438; }
         .cc-tags { display:flex; flex-wrap:wrap; gap:5px; margin-bottom:6px; }
-        .cc-tag { display:inline-flex; align-items:center; gap:5px; font-size:11.5px; font-weight:700; color:#4b5563; background:#f5f3ff; border-radius:999px; padding:3px 9px; }
+        .cc-tag { display:inline-flex; align-items:center; gap:5px; font-size:11.5px; font-weight:700; color:#4b5563; background:#fff3f7; border-radius:999px; padding:3px 9px; }
         .cc-tag i { width:8px; height:8px; border-radius:50%; display:inline-block; }
-        .cc-tag.fin { background:linear-gradient(120deg,#fde68a,#f9a8d4,#a5b4fc); color:#1e1b4b; }
-        .cc-det summary { cursor:pointer; font-size:12.5px; font-weight:700; color:#7c3aed; list-style:none; padding:2px 0; }
+        .cc-tag.fin { background:linear-gradient(120deg,#fde68a,#f9b4c6,#f8aec7); color:#461438; }
+        .cc-det summary { cursor:pointer; font-size:12.5px; font-weight:700; color:#d1406f; list-style:none; padding:2px 0; }
         .cc-det summary::-webkit-details-marker { display:none; }
         .cc-det summary::after { content:" ▾"; }
         .cc-det[open] summary::after { content:" ▴"; }
         .cc-stock { font-size:12px; font-weight:700; color:#15803d; }
-        .cc-qty { display:inline-flex; align-items:center; border:1.5px solid #ddd6fe; border-radius:10px; overflow:hidden; }
-        .cc-qty button { border:none; background:#f5f3ff; color:#5b21b6; width:34px; height:36px; font-size:18px; font-weight:800; cursor:pointer; font-family:inherit; }
+        .cc-qty { display:inline-flex; align-items:center; border:1.5px solid #fedce8; border-radius:10px; overflow:hidden; }
+        .cc-qty button { border:none; background:#fff3f7; color:#902858; width:34px; height:36px; font-size:18px; font-weight:800; cursor:pointer; font-family:inherit; }
         .cc-qty button:disabled { opacity:.35; cursor:default; }
-        .cc-qty span { min-width:30px; text-align:center; font-weight:800; color:#1e1b4b; }
+        .cc-qty span { min-width:30px; text-align:center; font-weight:800; color:#461438; }
         @media (max-width: 860px) {
-          .cf-toggle { display:flex; align-items:center; justify-content:space-between; width:100%; background:none; border:none; font-size:16px; font-weight:800; color:#1e1b4b; font-family:inherit; padding:0; cursor:pointer; }
+          .cf-toggle { display:flex; align-items:center; justify-content:space-between; width:100%; background:none; border:none; font-size:16px; font-weight:800; color:#461438; font-family:inherit; padding:0; cursor:pointer; }
           .cf-body { display:none; }
           .cf-body.open { display:block; }
           .cf-lab { min-width:100%; }
@@ -215,7 +215,7 @@ export default function CatalogoPage() {
 
       <div className="cg-layout">
         <aside className="cg-side">
-          <h3 style={{ fontSize: "18px", fontWeight: 800, color: "#1e1b4b", margin: "0 0 12px 0", letterSpacing: ".5px" }}>CATEGORÍAS</h3>
+          <h3 style={{ fontSize: "18px", fontWeight: 800, color: "#461438", margin: "0 0 12px 0", letterSpacing: ".5px" }}>CATEGORÍAS</h3>
           {categories.map((c) => (
             <button key={c.id} className={`cg-cat ${category === c.id ? "is-active" : ""}`} onClick={() => pick(c.id)}>
               {c.label}
@@ -229,11 +229,11 @@ export default function CatalogoPage() {
             <div style={{ fontSize: "18px", color: "#9ca3af" }}>
               <Link href="/" style={{ color: "#9ca3af", textDecoration: "none" }}>Inicio</Link>
               <span style={{ margin: "0 10px" }}>/</span>
-              <strong style={{ color: "#1e1b4b" }}>{categories.find((c) => c.id === category)?.label === "Todos" ? "Catálogo" : categories.find((c) => c.id === category)?.label}</strong>
+              <strong style={{ color: "#461438" }}>{categories.find((c) => c.id === category)?.label === "Todos" ? "Catálogo" : categories.find((c) => c.id === category)?.label}</strong>
             </div>
 
             <div style={{ display: "flex", alignItems: "center", gap: "22px", flexWrap: "wrap" }}>
-              <div className="cg-hide-sm" style={{ display: "flex", alignItems: "center", gap: "4px", fontWeight: 700, color: "#1e1b4b" }}>
+              <div className="cg-hide-sm" style={{ display: "flex", alignItems: "center", gap: "4px", fontWeight: 700, color: "#461438" }}>
                 Mostrar :
                 {[9, 12, 18, 24].map((n, i) => (
                   <span key={n}>
@@ -257,7 +257,7 @@ export default function CatalogoPage() {
                 ))}
               </div>
 
-              <select value={sort} onChange={(e) => setSort(e.target.value)} style={{ border: "none", borderBottom: "2px solid #e5e7eb", background: "transparent", fontSize: "16px", fontWeight: 700, color: "#1e1b4b", padding: "8px 4px", fontFamily: "inherit", cursor: "pointer", outline: "none" }}>
+              <select value={sort} onChange={(e) => setSort(e.target.value)} style={{ border: "none", borderBottom: "2px solid #f1dfe7", background: "transparent", fontSize: "16px", fontWeight: 700, color: "#461438", padding: "8px 4px", fontFamily: "inherit", cursor: "pointer", outline: "none" }}>
                 <option value="default">Orden por defecto</option>
                 <option value="asc">Precio: bajo a alto</option>
                 <option value="desc">Precio: alto a bajo</option>
@@ -351,9 +351,9 @@ export default function CatalogoPage() {
                             <InfoRow label="Expansión" value={p.expansion} />
                             <InfoRow label="Idioma" value={p.language} />
                             {p.kind === "carta" && (
-                              <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", fontSize: "13px", padding: "5px 0", borderBottom: "1px dashed #ede9fe" }}>
+                              <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", fontSize: "13px", padding: "5px 0", borderBottom: "1px dashed #ffebf2" }}>
                                 <span style={{ color: "#9ca3af", fontWeight: 600 }}>Estado</span>
-                                <span style={{ background: (conditionColors[p.condition] || ["#f3f4f6", "#374151"])[0], color: (conditionColors[p.condition] || ["#f3f4f6", "#374151"])[1], fontWeight: 700, padding: "2px 10px", borderRadius: "999px" }}>{p.condition}</span>
+                                <span style={{ background: (conditionColors[p.condition] || ["#fbeef3", "#374151"])[0], color: (conditionColors[p.condition] || ["#fbeef3", "#374151"])[1], fontWeight: 700, padding: "2px 10px", borderRadius: "999px" }}>{p.condition}</span>
                               </div>
                             )}
                           </>
@@ -362,12 +362,12 @@ export default function CatalogoPage() {
                     </>
                   )}
                   {isCatalogItem && (
-                    <div style={{ display: "flex", alignItems: "center", gap: "8px", color: "#7c3aed", fontWeight: 600, fontSize: "16px", marginBottom: "6px" }}>
+                    <div style={{ display: "flex", alignItems: "center", gap: "8px", color: "#d1406f", fontWeight: 600, fontSize: "16px", marginBottom: "6px" }}>
                       <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.6" strokeLinecap="round" strokeLinejoin="round"><polyline points="20 6 9 17 4 12" /></svg>
                       Disponible
                     </div>
                   )}
-                  <div style={{ color: "#7c3aed", fontWeight: 700, fontSize: "20px", marginBottom: "14px", marginTop: isCatalogItem ? 0 : "4px" }}>S/{p.price.toFixed(2)}</div>
+                  <div style={{ color: "#d1406f", fontWeight: 700, fontSize: "20px", marginBottom: "14px", marginTop: isCatalogItem ? 0 : "4px" }}>S/{p.price.toFixed(2)}</div>
                   {p.kind === "carta" && p.stock > 0 && (
                     <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", gap: "8px", marginBottom: "12px" }}>
                       <span className="cc-stock">{p.stock === 1 ? "1 disponible" : `${p.stock} disponibles`}</span>

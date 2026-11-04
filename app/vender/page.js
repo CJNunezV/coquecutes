@@ -27,8 +27,10 @@ export default function VenderPage() {
         .vd-ex { display:grid; grid-template-columns:repeat(3,1fr); gap:8px; margin-top:16px; }
         .vd-ex img { width:100%; aspect-ratio:63/88; object-fit:cover; border-radius:8px; box-shadow:0 4px 10px rgba(59,16,48,.18); background:#fff3f7; }
         .vd-cta { display:inline-block; padding:14px 26px; border-radius:16px; background:linear-gradient(135deg,#f0789a,#d2406f); color:#fff; font-weight:800; text-decoration:none; font-size:15px; box-shadow:0 10px 24px rgba(209,64,111,.35); transition:transform .2s; }
+        .vd-hero .vd-cta { padding:20px 40px; font-size:19px; border-radius:20px; }
         .vd-cta:hover { transform:translateY(-2px); }
         .vd-note { background:#fff8e1; border:1px solid #f0d070; color:#7a5a00; border-radius:16px; padding:14px 18px; font-size:14px; line-height:1.6; }
+        @media (max-width:520px) { .vd-hero .vd-cta { display:block; text-align:center; } }
         @media (max-width:860px) { .vd-grid { grid-template-columns:1fr; } .vd-steps { grid-template-columns:1fr 1fr; } .vd-hero { padding:26px 22px; } }
         @media (max-width:520px) { .vd-steps { grid-template-columns:1fr; } }
       ` }} />

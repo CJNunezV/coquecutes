@@ -28,7 +28,7 @@ export default function TrustBar() {
     <div className="tb-bar" role="region" aria-label="Por qué confiar en Coquecutes">
       <style dangerouslySetInnerHTML={{ __html: `
         .tb-bar { position:relative; z-index:101; overflow:hidden; color:#fff6d6; font-size:13px; font-weight:700; letter-spacing:.2px;
-          background:linear-gradient(90deg,#3b1030 0%,#6f2252 50%,#3b1030 100%); border-bottom:2px solid #f0d070; }
+          background:linear-gradient(90deg,#6a3059 0%,#8c4a78 50%,#6a3059 100%); border-bottom:2px solid #f0d070; }
         .tb-track { display:flex; width:max-content; margin:0 auto; }
         .tb-row { display:flex; align-items:center; gap:34px; padding:9px 24px; white-space:nowrap; }
         .tb-row[aria-hidden="true"] { display:none; }

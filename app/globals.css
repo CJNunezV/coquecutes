@@ -7,6 +7,8 @@ html {
   overflow-x: hidden;
 }
 body { overflow-x: hidden; }
+button, input, select, textarea { font-family: inherit; }
+h1, h2, h3, h4 { font-family: var(--font-display), var(--font-body), system-ui, sans-serif; letter-spacing: .1px; }
 img { max-width: 100%; }
 
 /* ---------- Scroll reveal ---------- */
@@ -60,11 +62,11 @@ img { max-width: 100%; }
 }
 .btn-primary:hover {
   transform: translateY(-3px) scale(1.03);
-  box-shadow: 0 12px 26px rgba(209,64,111, 0.35);
+  box-shadow: 0 12px 26px rgba(224,105,143, 0.35);
 }
 .btn-primary:active {
   transform: translateY(0) scale(0.96);
-  box-shadow: 0 4px 10px rgba(209,64,111, 0.25);
+  box-shadow: 0 4px 10px rgba(224,105,143, 0.25);
 }
 
 /* ---------- Benefit cards ---------- */
@@ -74,7 +76,7 @@ img { max-width: 100%; }
 }
 .benefit-card:hover {
   transform: translateY(-6px);
-  box-shadow: 0 16px 32px rgba(209,64,111, 0.12);
+  box-shadow: 0 16px 32px rgba(224,105,143, 0.12);
   border-color: #fedce8;
 }
 
@@ -115,9 +117,9 @@ img { max-width: 100%; }
 }
 .carousel-arrow:hover {
   transform: translateY(-50%) scale(1.14);
-  background-color: #d1406f;
+  background-color: #e0698f;
   color: #ffffff;
-  box-shadow: 0 8px 18px rgba(209,64,111, 0.35);
+  box-shadow: 0 8px 18px rgba(224,105,143, 0.35);
 }
 .carousel-arrow:active {
   transform: translateY(-50%) scale(0.9);

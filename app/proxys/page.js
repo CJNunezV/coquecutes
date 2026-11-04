@@ -73,7 +73,7 @@ function VideoBox({ type }) {
   if (vimeo) return <div style={frame}><iframe src={`https://player.vimeo.com/video/${vimeo[1]}`} title={`Video ${type.label}`} allow="fullscreen; picture-in-picture" allowFullScreen style={{ position: "absolute", inset: 0, width: "100%", height: "100%", border: 0 }} /></div>;
   if (url) return <div style={frame}><video src={url} poster={type.poster || undefined} controls playsInline preload="metadata" style={{ width: "100%", height: "100%", objectFit: "contain", background: "#000" }} /></div>;
   return (
-    <div style={{ ...frame, display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "center", gap: "8px", color: "#fedce8", textAlign: "center", background: type.poster ? `url(${type.poster}) center/cover` : "linear-gradient(135deg,#461438,#762353)" }}>
+    <div style={{ ...frame, display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "center", gap: "8px", color: "#fedce8", textAlign: "center", background: type.poster ? `url(${type.poster}) center/cover` : "linear-gradient(135deg,#5f2d52,#96507c)" }}>
       <span style={{ fontSize: "44px" }}>{type.emoji || "🎬"}</span>
       <strong style={{ fontSize: "16px" }}>Video próximamente</strong>
       <span style={{ fontSize: "13px", opacity: 0.8, maxWidth: "280px" }}>Estamos grabando cómo queda el acabado «{type.label}».</span>
@@ -116,11 +116,11 @@ function TypeModal({ typeId, onClose, onChoose }) {
           ))}
         </div>
         <VideoBox key={cur} type={t} />
-        <h3 style={{ fontSize: "22px", fontWeight: 800, color: "#461438", margin: "18px 0 6px" }}>{t.emoji} Proxy {t.label}</h3>
+        <h3 style={{ fontSize: "22px", fontWeight: 800, color: "#5f2d52", margin: "18px 0 6px" }}>{t.emoji} Proxy {t.label}</h3>
         {rows.length === 0 && <p style={{ color: "#6b7280", margin: "0 0 14px" }}>Pronto agregaremos aquí la descripción de este acabado. Si tienes dudas, escríbenos y te mostramos fotos y videos por WhatsApp.</p>}
         {rows.map(([k, v]) => (
           <div key={k} style={{ marginBottom: "12px" }}>
-            <div style={{ fontSize: "12px", fontWeight: 800, color: "#d1406f", letterSpacing: ".5px", textTransform: "uppercase" }}>{k}</div>
+            <div style={{ fontSize: "12px", fontWeight: 800, color: "#e0698f", letterSpacing: ".5px", textTransform: "uppercase" }}>{k}</div>
             <div style={{ color: "#374151", lineHeight: 1.6 }}>{v}</div>
           </div>
         ))}
@@ -142,21 +142,21 @@ function FinishGuide({ value, onPick, mode }) {
     <div className="px-guide">
       <div style={{ display: "flex", alignItems: "baseline", justifyContent: "space-between", gap: "10px", flexWrap: "wrap", marginBottom: "12px" }}>
         <div>
-          <div style={{ fontSize: "13px", fontWeight: 800, color: "#d1406f", letterSpacing: "1px" }}>{mode === "info" ? "ACABADOS DISPONIBLES" : "PASO 1 · ELIGE TU ACABADO"}</div>
+          <div style={{ fontSize: "13px", fontWeight: 800, color: "#e0698f", letterSpacing: "1px" }}>{mode === "info" ? "ACABADOS DISPONIBLES" : "PASO 1 · ELIGE TU ACABADO"}</div>
           <div style={{ color: "#6b7280", fontSize: "14px" }}>{mode === "info" ? "Mira el video de cada tipo para saber cómo queda. El acabado lo eliges al añadir tu carta." : "Mira el video de cada tipo para saber cómo queda. Luego elige tus cartas."}</div>
         </div>
       </div>
       <div className="px-guide-grid">
         {proxyTypes.map((t) => (
           <div key={t.id} className={`px-guide-card ${value === t.id ? "is-active" : ""}`}>
-            <button className="px-guide-thumb" onClick={() => ui.openInfo(t.id)} aria-label={`Ver video ${t.label}`} style={{ background: t.poster ? `url(${t.poster}) center/cover` : "linear-gradient(135deg,#461438,#762353)" }}>
+            <button className="px-guide-thumb" onClick={() => ui.openInfo(t.id)} aria-label={`Ver video ${t.label}`} style={{ background: t.poster ? `url(${t.poster}) center/cover` : "linear-gradient(135deg,#5f2d52,#96507c)" }}>
               <span style={{ fontSize: "26px" }}>{t.emoji}</span>
               <span className="px-play">▶</span>
             </button>
             <div style={{ padding: "12px 14px 14px" }}>
               <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center" }}>
-                <strong style={{ color: "#461438", fontSize: "16px" }}>{t.label}</strong>
-                <span style={{ fontSize: "12px", fontWeight: 700, color: "#d1406f" }}>{mode === "info" ? `S/${t.singlePrice} c/u` : t.extra > 0 ? `+S/${t.extra}` : "Precio base"}</span>
+                <strong style={{ color: "#5f2d52", fontSize: "16px" }}>{t.label}</strong>
+                <span style={{ fontSize: "12px", fontWeight: 700, color: "#e0698f" }}>{mode === "info" ? `S/${t.singlePrice} c/u` : t.extra > 0 ? `+S/${t.extra}` : "Precio base"}</span>
               </div>
               <div style={{ color: "#6b7280", fontSize: "13px", minHeight: "36px", margin: "4px 0 10px", lineHeight: 1.4 }}>{t.summary || "Toca ▶ para ver cómo queda."}</div>
               {mode === "info" ? (
@@ -175,7 +175,7 @@ function FinishGuide({ value, onPick, mode }) {
 /* ---------- Mini carta (63:88) ---------- */
 function MiniCard({ grad, title, sub, image, style }) {
   return (
-    <div style={{ aspectRatio: "63 / 88", borderRadius: "10px", border: "2.5px solid rgba(255,255,255,0.9)", background: image ? `url("${image}") center/cover` : gradBg(grad), boxShadow: "0 8px 18px rgba(70,20,56,0.25)", position: "relative", overflow: "hidden", display: "flex", flexDirection: "column", justifyContent: "flex-end", padding: "8px", color: "#fff", ...style }}>
+    <div style={{ aspectRatio: "63 / 88", borderRadius: "10px", border: "2.5px solid rgba(255,255,255,0.9)", background: image ? `url("${image}") center/cover` : gradBg(grad), boxShadow: "0 8px 18px rgba(95,45,82,0.25)", position: "relative", overflow: "hidden", display: "flex", flexDirection: "column", justifyContent: "flex-end", padding: "8px", color: "#fff", ...style }}>
       {!image && <div style={{ position: "absolute", inset: 0, background: "linear-gradient(180deg, transparent 45%, rgba(0,0,0,0.55))" }} />}
       {title && <div style={{ position: "relative", fontWeight: 800, fontSize: "12px", lineHeight: 1.2 }}>{title}</div>}
       {sub && <div style={{ position: "relative", fontSize: "10px", opacity: 0.85 }}>{sub}</div>}
@@ -199,23 +199,23 @@ function QuickView({ s, cart, startType, onClose }) {
     <Modal onClose={onClose} wide>
       <div className="px-quick">
         <div className="px-quick-img" onMouseMove={move} onMouseLeave={() => setTilt({ x: 0, y: 0, on: false })}>
-          <div style={{ aspectRatio: "63 / 88", height: "min(68vh, 560px)", maxWidth: "100%", borderRadius: "14px", background: s.image ? `url(${s.image}) center/cover` : gradBg(s.grad), boxShadow: "0 24px 50px rgba(70,20,56,0.4)", border: "3px solid #fff", transform: `perspective(900px) rotateX(${tilt.x}deg) rotateY(${tilt.y}deg)`, transition: tilt.on ? "transform .08s" : "transform .4s", position: "relative", overflow: "hidden" }}>
+          <div style={{ aspectRatio: "63 / 88", height: "min(68vh, 560px)", maxWidth: "100%", borderRadius: "14px", background: s.image ? `url(${s.image}) center/cover` : gradBg(s.grad), boxShadow: "0 24px 50px rgba(95,45,82,0.4)", border: "3px solid #fff", transform: `perspective(900px) rotateX(${tilt.x}deg) rotateY(${tilt.y}deg)`, transition: tilt.on ? "transform .08s" : "transform .4s", position: "relative", overflow: "hidden" }}>
             <div style={{ position: "absolute", inset: 0, background: `linear-gradient(${115 + tilt.y * 6}deg, transparent 35%, rgba(255,255,255,${tilt.on ? 0.28 : 0}) 50%, transparent 65%)`, transition: "opacity .3s", pointerEvents: "none" }} />
           </div>
           <div style={{ marginTop: "10px", fontSize: "12px", color: "#9ca3af" }}>Mueve el mouse sobre la carta ✨</div>
         </div>
         <div style={{ padding: "6px 4px" }}>
-          <div style={{ fontSize: "12px", fontWeight: 800, color: "#d1406f", letterSpacing: "1px" }}>{s.set.toUpperCase()}</div>
-          <h3 style={{ fontSize: "26px", fontWeight: 900, color: "#461438", margin: "2px 0 8px", lineHeight: 1.15 }}>{s.name}</h3>
-          <div style={{ fontSize: "28px", fontWeight: 900, color: "#d1406f", marginBottom: item.bulk ? "6px" : "14px" }}>S/{item.price.toFixed(2)}</div>
+          <div style={{ fontSize: "12px", fontWeight: 800, color: "#e0698f", letterSpacing: "1px" }}>{s.set.toUpperCase()}</div>
+          <h3 style={{ fontSize: "26px", fontWeight: 900, color: "#5f2d52", margin: "2px 0 8px", lineHeight: 1.15 }}>{s.name}</h3>
+          <div style={{ fontSize: "28px", fontWeight: 900, color: "#e0698f", marginBottom: item.bulk ? "6px" : "14px" }}>S/{item.price.toFixed(2)}</div>
           {item.bulk && <div className="px-bulk" style={{ marginBottom: "14px" }}>🎁 Al por mayor: <b>S/{item.bulk.price.toFixed(2)} c/u</b> desde {item.bulk.min} cartas sueltas del mismo acabado</div>}
 
-          <div style={{ fontSize: "12px", fontWeight: 800, color: "#461438", letterSpacing: ".5px", marginBottom: "6px" }}>ACABADO</div>
+          <div style={{ fontSize: "12px", fontWeight: 800, color: "#5f2d52", letterSpacing: ".5px", marginBottom: "6px" }}>ACABADO</div>
           <TypePicker value={tid} onChange={setTid} priceKey="singlePrice" />
           {t.summary && <p style={{ margin: "0 0 12px", color: "#4b5563", fontSize: "14px", lineHeight: 1.5 }}>{t.summary}</p>}
 
           <div className="px-receive">
-            <div style={{ fontSize: "12px", fontWeight: 800, color: "#461438", letterSpacing: ".5px", marginBottom: "6px" }}>LO QUE RECIBES</div>
+            <div style={{ fontSize: "12px", fontWeight: 800, color: "#5f2d52", letterSpacing: ".5px", marginBottom: "6px" }}>LO QUE RECIBES</div>
             <ul>
               <li>1 proxy de «{s.name}»</li>
               <li>Acabado: {t.label}</li>
@@ -246,8 +246,8 @@ function AddModal({ s, cart, onClose }) {
         <div style={{ display: "flex", gap: "14px", alignItems: "center", marginBottom: "18px", paddingRight: "30px" }}>
           <div style={{ width: "64px", flexShrink: 0 }}><MiniCard grad={s.grad} image={s.image} /></div>
           <div>
-            <div style={{ fontSize: "12px", fontWeight: 800, color: "#d1406f", letterSpacing: "1px" }}>ELIGE TU ACABADO</div>
-            <h3 style={{ fontSize: "20px", fontWeight: 900, color: "#461438", margin: "2px 0 0", lineHeight: 1.2 }}>{s.name}</h3>
+            <div style={{ fontSize: "12px", fontWeight: 800, color: "#e0698f", letterSpacing: "1px" }}>ELIGE TU ACABADO</div>
+            <h3 style={{ fontSize: "20px", fontWeight: 900, color: "#5f2d52", margin: "2px 0 0", lineHeight: 1.2 }}>{s.name}</h3>
             <div style={{ fontSize: "13px", color: "#9ca3af" }}>{s.set}</div>
           </div>
         </div>
@@ -259,7 +259,7 @@ function AddModal({ s, cart, onClose }) {
               <div key={t.id} className="px-opt">
                 <span style={{ fontSize: "26px" }}>{t.emoji}</span>
                 <div className="px-opt-info">
-                  <div style={{ fontWeight: 800, color: "#461438", fontSize: "16px", whiteSpace: "nowrap" }}>{t.label}</div>
+                  <div style={{ fontWeight: 800, color: "#5f2d52", fontSize: "16px", whiteSpace: "nowrap" }}>{t.label}</div>
                   <button type="button" className="px-info" style={{ whiteSpace: "nowrap" }} onClick={() => ui.openInfo(t.id)}><span className="px-info-play">▶</span> Ver cómo queda</button>
                 </div>
                 <strong className="px-opt-price">S/{t.singlePrice}{t.bulkPrice ? <small className="px-opt-bulk">x{proxyInfo.bulkMin || 5}+ · S/{t.bulkPrice}</small> : null}</strong>
@@ -270,7 +270,7 @@ function AddModal({ s, cart, onClose }) {
         </div>
         <div style={{ display: "flex", gap: "10px", marginTop: "18px", flexWrap: "wrap" }}>
           <button className="px-ghost" style={{ flex: 1, cursor: "pointer", fontFamily: "inherit" }} onClick={onClose}>Seguir viendo</button>
-          <a href="/checkout" className="px-ghost" style={{ flex: 1, background: "#fff3f7", color: "#d1406f", borderColor: "#fabdd2" }}>Ir a pagar →</a>
+          <a href="/checkout" className="px-ghost" style={{ flex: 1, background: "#fff3f7", color: "#e0698f", borderColor: "#fabdd2" }}>Ir a pagar →</a>
         </div>
       </div>
     </Modal>
@@ -287,7 +287,7 @@ function Singles({ cart }) {
   return (
     <div>
       <div className="px-search">
-        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#d1406f" strokeWidth="2.4" strokeLinecap="round"><circle cx="11" cy="11" r="7" /><line x1="21" y1="21" x2="16.65" y2="16.65" /></svg>
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#e0698f" strokeWidth="2.4" strokeLinecap="round"><circle cx="11" cy="11" r="7" /><line x1="21" y1="21" x2="16.65" y2="16.65" /></svg>
         <input value={q} onChange={(e) => { setQ(e.target.value); setLimit(24); }} placeholder="Busca por carta o set…" aria-label="Buscar cartas" />
       </div>
       <div className="px-grid-cards">
@@ -299,7 +299,7 @@ function Singles({ cart }) {
               <span className="px-zoom">🔍 Ver en grande</span>
             </button>
             <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", margin: "10px 2px 10px" }}>
-              <strong style={{ color: "#d1406f", fontSize: "17px" }}>Desde S/{minPrice.toFixed(2)}</strong>
+              <strong style={{ color: "#e0698f", fontSize: "17px" }}>Desde S/{minPrice.toFixed(2)}</strong>
               <span style={{ fontSize: "12px", color: "#9ca3af" }}>por unidad</span>
             </div>
             <div className="px-bulk px-bulk-card">
@@ -311,7 +311,7 @@ function Singles({ cart }) {
       </div>
       {list.length === 0 && (
         <p style={{ textAlign: "center", color: "#6b7280", padding: "30px 0" }}>
-          No encontramos esa carta. <a href={waLink(`Hola Coquecutes, ¿pueden hacer el proxy de: ${q}?`)} target="_blank" rel="noopener noreferrer" style={{ color: "#d1406f", fontWeight: 700 }}>Pídela por WhatsApp</a>
+          No encontramos esa carta. <a href={waLink(`Hola Coquecutes, ¿pueden hacer el proxy de: ${q}?`)} target="_blank" rel="noopener noreferrer" style={{ color: "#e0698f", fontWeight: 700 }}>Pídela por WhatsApp</a>
         </p>
       )}
       {adding && <AddModal s={adding} cart={cart} onClose={() => setAdding(null)} />}
@@ -373,14 +373,14 @@ function Extended({ cart }) {
     <div className="px-ext">
       <div className="px-binder" ref={binderRef}>
         <div style={{ fontSize: "12px", fontWeight: 800, letterSpacing: "2px", color: "#fabdd2", marginBottom: "12px", textAlign: "center" }}>{evo ? "LÍNEA EVOLUTIVA · 6 CARTAS" : "ARTE 3×3 · 8 CARTAS"}</div>
-        {evo && <div style={{ textAlign: "center", marginBottom: "10px" }}><span style={{ display: "inline-block", background: "#461438", color: "#fff", fontSize: "12px", fontWeight: 800, padding: "7px 12px", borderRadius: "999px", border: "1.5px solid rgba(255,255,255,0.8)" }}>🚫 Cartas centrales no incluidas</span></div>}
+        {evo && <div style={{ textAlign: "center", marginBottom: "10px" }}><span style={{ display: "inline-block", background: "#5f2d52", color: "#fff", fontSize: "12px", fontWeight: 800, padding: "7px 12px", borderRadius: "999px", border: "1.5px solid rgba(255,255,255,0.8)" }}>🚫 Cartas centrales no incluidas</span></div>}
         {pack.image ? (
           <div style={{ position: "relative", borderRadius: "12px", overflow: "hidden", lineHeight: 0 }}>
             <img key={mainImg} src={mainImg} alt={`Extended Art ${pack.name}`} decoding="async" onError={() => { if (pack.t != null) setBad((b) => ({ ...b, [pack.id]: 1 })); }} style={{ animation: "pxFade .25s both", width: "100%", height: "auto", display: "block" }} />
             {!useFinal && (evo
               ? pack.centers.map((c, i) => <CenterCard key={i} id={pack.cards[i]} c={c} />)
               : <CenterCard id={pack.card} slug={pack.id.slice(3)} c={pack.center || { left: 35.2, top: 34.5, w: 29.8, h: 30.4 }} />)}
-            {!evo && <div style={{ position: "absolute", left: "50%", top: `${((pack.center || { top: 34.5 }).top) + ((pack.center || { h: 30.4 }).h) + 1.5}%`, transform: "translateX(-50%)", background: "#461438", color: "#fff", fontSize: "12px", fontWeight: 800, lineHeight: 1.2, padding: "7px 12px", borderRadius: "999px", whiteSpace: "nowrap", boxShadow: "0 6px 14px rgba(0,0,0,0.35)", border: "1.5px solid rgba(255,255,255,0.8)" }}>🚫 Carta central no incluida</div>}
+            {!evo && <div style={{ position: "absolute", left: "50%", top: `${((pack.center || { top: 34.5 }).top) + ((pack.center || { h: 30.4 }).h) + 1.5}%`, transform: "translateX(-50%)", background: "#5f2d52", color: "#fff", fontSize: "12px", fontWeight: 800, lineHeight: 1.2, padding: "7px 12px", borderRadius: "999px", whiteSpace: "nowrap", boxShadow: "0 6px 14px rgba(0,0,0,0.35)", border: "1.5px solid rgba(255,255,255,0.8)" }}>🚫 Carta central no incluida</div>}
             {evo && <div style={{ position: "absolute", left: 0, right: 0, bottom: 0 }} />}
           </div>
         ) : (
@@ -400,7 +400,7 @@ function Extended({ cart }) {
       </div>
 
       <div>
-        <h3 style={{ fontSize: "22px", fontWeight: 800, color: "#461438", margin: "0 0 6px" }}>Elige tu Extended Art</h3>
+        <h3 style={{ fontSize: "22px", fontWeight: 800, color: "#5f2d52", margin: "0 0 6px" }}>Elige tu Extended Art</h3>
         <div style={{ display: "flex", gap: "8px", margin: "0 0 12px" }}>
           <button onClick={() => switchMode("single")} className={`px-pack ${!evo ? "is-active" : ""}`} style={{ justifyContent: "center", fontWeight: 700 }}>1 carta (centro)</button>
           <button onClick={() => switchMode("evo")} className={`px-pack ${evo ? "is-active" : ""}`} style={{ justifyContent: "center", fontWeight: 700 }}>Línea evolutiva</button>
@@ -424,14 +424,14 @@ function Extended({ cart }) {
             <button key={p.id} onClick={() => pick(p.id)} className={`px-pack ${pack.id === p.id ? "is-active" : ""}`}>
               <Thumb p={p} />
               <span style={{ flex: 1, textAlign: "left", fontWeight: 700 }}>{p.name}<span style={{ display: "block", fontSize: "11px", fontWeight: 500, color: "#9ca3af" }}>{p.set}</span></span>
-              <span style={{ color: "#d1406f", fontWeight: 800 }}>S/{p.price}</span>
+              <span style={{ color: "#e0698f", fontWeight: 800 }}>S/{p.price}</span>
             </button>
           ))}
-          {list.length > limit && <button className="px-pack" onClick={() => setLimit(limit + 24)} style={{ justifyContent: "center", fontWeight: 700, color: "#d1406f" }}>Ver más ({list.length - limit})</button>}
-          {list.length === 0 && <p style={{ color: "#6b7280", textAlign: "center", margin: "10px 0" }}>No encontramos ese arte. <a href={waLink(`Hola Coquecutes, ¿pueden hacer el Extended Art de: ${q}?`)} target="_blank" rel="noopener noreferrer" style={{ color: "#d1406f", fontWeight: 700 }}>Pídelo por WhatsApp</a></p>}
+          {list.length > limit && <button className="px-pack" onClick={() => setLimit(limit + 24)} style={{ justifyContent: "center", fontWeight: 700, color: "#e0698f" }}>Ver más ({list.length - limit})</button>}
+          {list.length === 0 && <p style={{ color: "#6b7280", textAlign: "center", margin: "10px 0" }}>No encontramos ese arte. <a href={waLink(`Hola Coquecutes, ¿pueden hacer el Extended Art de: ${q}?`)} target="_blank" rel="noopener noreferrer" style={{ color: "#e0698f", fontWeight: 700 }}>Pídelo por WhatsApp</a></p>}
         </div>
         <div style={{ margin: "0 0 16px", padding: "14px", border: "1.5px dashed #fabdd2", borderRadius: "14px", background: "#fff6f9" }}>
-          <div style={{ fontWeight: 800, color: "#461438", fontSize: "14px" }}>¿Tienes otra carta en mente?</div>
+          <div style={{ fontWeight: 800, color: "#5f2d52", fontSize: "14px" }}>¿Tienes otra carta en mente?</div>
           <div style={{ color: "#6b7280", fontSize: "13px", margin: "2px 0 10px", lineHeight: 1.5 }}>Escríbenos cuál es y te cotizamos su Extended Art.</div>
           <div style={{ display: "flex", gap: "8px", flexWrap: "wrap" }}>
             <input value={otra} onChange={(e) => setOtra(e.target.value)} placeholder="Ej: Gengar ex (Obsidian Flames)" style={{ flex: "1 1 180px", minWidth: 0, border: "1.5px solid #ffebf2", borderRadius: "12px", padding: "10px 12px", fontFamily: "inherit", fontSize: "14px", background: "#fff" }} />
@@ -439,14 +439,14 @@ function Extended({ cart }) {
           </div>
         </div>
         <div style={{ display: "flex", alignItems: "center", gap: "10px", fontSize: "14px", color: "#374151", margin: "0 0 4px" }}>
-          <span style={{ fontWeight: 800, color: "#461438", letterSpacing: ".5px", fontSize: "13px" }}>ACABADO</span>
-          <span style={{ background: "#fff3f7", border: "1px solid #fedce8", borderRadius: "999px", padding: "5px 12px", fontWeight: 700, color: "#b53160" }}>🌈 Papel holográfico</span>
+          <span style={{ fontWeight: 800, color: "#5f2d52", letterSpacing: ".5px", fontSize: "13px" }}>ACABADO</span>
+          <span style={{ background: "#fff3f7", border: "1px solid #fedce8", borderRadius: "999px", padding: "5px 12px", fontWeight: 700, color: "#cc5580" }}>🌈 Papel holográfico</span>
         </div>
         <button className={`px-btn px-btn-lg ${cart.added === packItem.id ? "is-added" : ""}`} onClick={() => cart.add(packItem)} style={{ marginTop: "14px" }}>
           {cart.added === packItem.id ? "¡Añadido!" : `Añadir · S/${packItem.price.toFixed(2)}`}
         </button>
         <div style={{ margin: "14px 0 0", padding: "12px 14px", background: "#fff3f7", border: "1px solid #ffebf2", borderRadius: "14px", fontSize: "13px", lineHeight: 1.6, color: "#4b5563" }}>
-          <div style={{ fontWeight: 800, color: "#461438" }}>S/{packItem.price} por {nCards} cartas = S/{(packItem.price / nCards).toFixed(2).replace(/\.00$/, "")} cada una</div>
+          <div style={{ fontWeight: 800, color: "#5f2d52" }}>S/{packItem.price} por {nCards} cartas = S/{(packItem.price / nCards).toFixed(2).replace(/\.00$/, "")} cada una</div>
           {ahorro > 0 && <div>Pedidas sueltas ({typeOf(type).label.toLowerCase()}) serían S/{suelto}: <strong style={{ color: "#16a34a" }}>ahorras S/{ahorro}</strong>.</div>}
           <div>⏱ Lo preparamos en <strong>2 a 3 días</strong>.</div>
           <div>📦 Recojo en FullMarket (FM): te lo entregamos el <strong>sábado de la misma semana</strong> en que pides.</div>
@@ -482,7 +482,7 @@ function Custom() {
     <div>
       <div className="px-custom">
         <div id="px-custom-form">
-          <h3 style={{ fontSize: "22px", fontWeight: 800, color: "#461438", margin: "0 0 16px" }}>¿Para qué ocasión?</h3>
+          <h3 style={{ fontSize: "22px", fontWeight: 800, color: "#5f2d52", margin: "0 0 16px" }}>¿Para qué ocasión?</h3>
           <div style={{ display: "grid", gridTemplateColumns: "repeat(2,1fr)", gap: "10px", marginBottom: "18px" }}>
             {customTypes.map((t, i) => (
               <button key={t.id} onClick={() => setType(t.id)} className={`px-pack ${type === t.id ? "is-active" : ""}`} style={{ flexDirection: "column", padding: "16px 10px", gap: "6px", gridColumn: i === customTypes.length - 1 && customTypes.length % 2 ? "1 / -1" : "auto" }}>
@@ -499,8 +499,8 @@ function Custom() {
         <div style={{ display: "grid", gap: "14px", alignContent: "start" }}>
           {steps.map(([n, t, d]) => (
             <div key={n} style={{ display: "flex", gap: "14px", background: "#fff", border: "1px solid #ffebf2", borderRadius: "18px", padding: "18px" }}>
-              <span style={{ width: 36, height: 36, borderRadius: "50%", background: "linear-gradient(135deg,#f0789a,#d1406f)", color: "#fff", fontWeight: 800, display: "flex", alignItems: "center", justifyContent: "center", flexShrink: 0 }}>{n}</span>
-              <div><div style={{ fontWeight: 800, color: "#461438" }}>{t}</div><div style={{ color: "#6b7280", fontSize: "14px", marginTop: 2 }}>{d}</div></div>
+              <span style={{ width: 36, height: 36, borderRadius: "50%", background: "linear-gradient(135deg,#f59ab6,#e0698f)", color: "#fff", fontWeight: 800, display: "flex", alignItems: "center", justifyContent: "center", flexShrink: 0 }}>{n}</span>
+              <div><div style={{ fontWeight: 800, color: "#5f2d52" }}>{t}</div><div style={{ color: "#6b7280", fontSize: "14px", marginTop: 2 }}>{d}</div></div>
             </div>
           ))}
         </div>
@@ -508,7 +508,7 @@ function Custom() {
 
       {/* Galería de ejemplos */}
       <div style={{ marginTop: "48px" }}>
-        <h3 style={{ fontSize: "22px", fontWeight: 800, color: "#461438", margin: "0 0 4px" }}>Ejemplos de nuestros trabajos</h3>
+        <h3 style={{ fontSize: "22px", fontWeight: 800, color: "#5f2d52", margin: "0 0 4px" }}>Ejemplos de nuestros trabajos</h3>
         <p style={{ color: "#6b7280", margin: "0 0 16px", fontSize: "14px" }}>Así quedan las cartas personalizadas. Toca una para verla en grande o pedir una igual.</p>
         <div style={{ display: "flex", gap: "8px", flexWrap: "wrap", marginBottom: "18px" }}>
           {[{ id: "todos", label: "Todos", emoji: "✨" }, ...customTypes.filter((t) => customExamples.some((e) => e.cat === t.id))].map((t) => (
@@ -528,10 +528,10 @@ function Custom() {
       {zoom && (
         <Modal onClose={() => setZoom(null)}>
           <div style={{ display: "flex", flexDirection: "column", alignItems: "center", gap: "14px", padding: "6px" }}>
-            <img src={zoom.image} alt={zoom.title} style={{ maxHeight: "68vh", maxWidth: "100%", borderRadius: "14px", boxShadow: "0 14px 34px rgba(70,20,56,.3)" }} />
+            <img src={zoom.image} alt={zoom.title} style={{ maxHeight: "68vh", maxWidth: "100%", borderRadius: "14px", boxShadow: "0 14px 34px rgba(95,45,82,.3)" }} />
             <div style={{ textAlign: "center" }}>
-              <div style={{ fontWeight: 800, color: "#461438", fontSize: "17px" }}>{zoom.title}</div>
-              <div style={{ color: "#d1406f", fontWeight: 700, fontSize: "13px" }}>{catLabel(zoom.cat)}</div>
+              <div style={{ fontWeight: 800, color: "#5f2d52", fontSize: "17px" }}>{zoom.title}</div>
+              <div style={{ color: "#e0698f", fontWeight: 700, fontSize: "13px" }}>{catLabel(zoom.cat)}</div>
             </div>
             <button className="px-btn px-btn-lg" onClick={() => chooseLike(zoom)}>Quiero una igual</button>
           </div>
@@ -554,8 +554,8 @@ function Decks({ cart }) {
             ))}
           </div>
           <div style={{ display: "flex", justifyContent: "space-between", alignItems: "baseline" }}>
-            <h3 style={{ margin: 0, fontSize: "18px", fontWeight: 800, color: "#461438" }}>Deck {d.name}</h3>
-            <span style={{ fontSize: "12px", background: "#fff3f7", color: "#d1406f", fontWeight: 700, padding: "3px 10px", borderRadius: "999px" }}>{d.cards} cartas</span>
+            <h3 style={{ margin: 0, fontSize: "18px", fontWeight: 800, color: "#5f2d52" }}>Deck {d.name}</h3>
+            <span style={{ fontSize: "12px", background: "#fff3f7", color: "#e0698f", fontWeight: 700, padding: "3px 10px", borderRadius: "999px" }}>{d.cards} cartas</span>
           </div>
           <div style={{ color: "#6b7280", fontSize: "14px", margin: "4px 0 4px" }}>{d.style}</div>
           {d.core && <div style={{ color: "#9ca3af", fontSize: "12.5px", margin: "0 0 14px" }}>Incluye: {d.core}</div>}
@@ -563,7 +563,7 @@ function Decks({ cart }) {
             const item = { id: d.id, name: `Deck proxy ${d.name}`, price: d.price, image: d.images ? encodeURI(d.images[0]) : undefined };
             return (
               <div style={{ marginTop: "auto" }}>
-                <div style={{ color: "#d1406f", fontWeight: 800, fontSize: "22px", marginBottom: "10px" }}>S/{item.price.toFixed(2)}</div>
+                <div style={{ color: "#e0698f", fontWeight: 800, fontSize: "22px", marginBottom: "10px" }}>S/{item.price.toFixed(2)}</div>
                 <button className={`px-btn ${cart.added === item.id ? "is-added" : ""}`} onClick={() => cart.add(item)}>
                   {cart.added === item.id ? "¡Añadido!" : "Añadir deck"}
                 </button>
@@ -572,7 +572,7 @@ function Decks({ cart }) {
           })()}
         </div>
       ))}
-      <a href={waLink("Hola Coquecutes, quiero un deck de proxys con mi propia lista")} target="_blank" rel="noopener noreferrer" className="px-lift" style={{ border: "2px dashed #fabdd2", borderRadius: "22px", padding: "20px", textDecoration: "none", display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "center", textAlign: "center", gap: "8px", color: "#d1406f", minHeight: "260px" }}>
+      <a href={waLink("Hola Coquecutes, quiero un deck de proxys con mi propia lista")} target="_blank" rel="noopener noreferrer" className="px-lift" style={{ border: "2px dashed #fabdd2", borderRadius: "22px", padding: "20px", textDecoration: "none", display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "center", textAlign: "center", gap: "8px", color: "#e0698f", minHeight: "260px" }}>
         <span style={{ fontSize: "36px" }}>📋</span>
         <strong style={{ fontSize: "17px" }}>¿Tienes tu propia lista?</strong>
         <span style={{ fontSize: "14px", color: "#6b7280" }}>Envíanos tu decklist y la cotizamos</span>
@@ -614,28 +614,28 @@ export default function ProxysPage() {
         @keyframes pxPop { from { opacity:0; transform:scale(.85) translateY(10px); } to { opacity:1; transform:none; } }
         .px-tabs { display:flex; gap:10px; flex-wrap:wrap; margin-bottom:32px; }
         .px-tab { display:inline-flex; align-items:center; gap:8px; border:1.5px solid #f1dfe7; background:#fff; color:#4b5563; font-weight:700; font-size:15px; padding:11px 20px; border-radius:999px; cursor:pointer; font-family:inherit; transition:all .2s; }
-        .px-tab:hover { border-color:#fabdd2; color:#d1406f; }
-        .px-tab.is-active { background:linear-gradient(90deg,#f0789a,#d1406f); border-color:transparent; color:#fff; box-shadow:0 8px 20px rgba(209,64,111,.3); }
+        .px-tab:hover { border-color:#fabdd2; color:#e0698f; }
+        .px-tab.is-active { background:linear-gradient(90deg,#f59ab6,#e0698f); border-color:transparent; color:#fff; box-shadow:0 8px 20px rgba(224,105,143,.3); }
         .px-types { display:flex; flex-wrap:wrap; gap:6px; margin:0 0 10px; }
         .px-type { border:1.5px solid #f1dfe7; background:#fff; color:#4b5563; font-size:12px; font-weight:700; padding:6px 10px; border-radius:999px; cursor:pointer; font-family:inherit; transition:all .15s; }
-        .px-type:hover { border-color:#fabdd2; color:#d1406f; }
-        .px-type.is-active { background:#fff3f7; border-color:#d1406f; color:#b53160; box-shadow:0 0 0 2px rgba(209,64,111,.12); }
-        .px-info { background:none; border:none; padding:2px 0; cursor:pointer; color:#d1406f; font-weight:700; font-size:12px; font-family:inherit; display:inline-flex; align-items:center; gap:6px; }
+        .px-type:hover { border-color:#fabdd2; color:#e0698f; }
+        .px-type.is-active { background:#fff3f7; border-color:#e0698f; color:#cc5580; box-shadow:0 0 0 2px rgba(224,105,143,.12); }
+        .px-info { background:none; border:none; padding:2px 0; cursor:pointer; color:#e0698f; font-weight:700; font-size:12px; font-family:inherit; display:inline-flex; align-items:center; gap:6px; }
         .px-info:hover { text-decoration:underline; }
-        .px-info-play { width:18px; height:18px; border-radius:50%; background:#d1406f; color:#fff; font-size:8px; display:inline-flex; align-items:center; justify-content:center; padding-left:1px; }
-        .px-guide { background:#fff; border:1px solid #ffebf2; border-radius:24px; padding:20px; margin-bottom:30px; box-shadow:0 8px 30px rgba(209,64,111,.06); }
+        .px-info-play { width:18px; height:18px; border-radius:50%; background:#e0698f; color:#fff; font-size:8px; display:inline-flex; align-items:center; justify-content:center; padding-left:1px; }
+        .px-guide { background:#fff; border:1px solid #ffebf2; border-radius:24px; padding:20px; margin-bottom:30px; box-shadow:0 8px 30px rgba(224,105,143,.06); }
         .px-guide-grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(210px,1fr)); gap:14px; }
         .px-guide-card { border:1.5px solid #ffebf2; border-radius:18px; overflow:hidden; background:#fff; transition:all .2s; }
-        .px-guide-card.is-active { border-color:#d1406f; box-shadow:0 0 0 3px rgba(209,64,111,.14); }
+        .px-guide-card.is-active { border-color:#e0698f; box-shadow:0 0 0 3px rgba(224,105,143,.14); }
         .px-guide-thumb { position:relative; display:flex; align-items:center; justify-content:center; width:100%; height:110px; border:none; cursor:pointer; color:#fff; font-family:inherit; }
-        .px-play { position:absolute; right:10px; bottom:10px; width:34px; height:34px; border-radius:50%; background:rgba(255,255,255,.95); color:#d1406f; display:flex; align-items:center; justify-content:center; font-size:12px; padding-left:2px; transition:transform .2s; }
+        .px-play { position:absolute; right:10px; bottom:10px; width:34px; height:34px; border-radius:50%; background:rgba(255,255,255,.95); color:#e0698f; display:flex; align-items:center; justify-content:center; font-size:12px; padding-left:2px; transition:transform .2s; }
         .px-guide-thumb:hover .px-play { transform:scale(1.12); }
-        .px-pick { width:100%; border:1.5px solid #d1406f; background:#fff; color:#d1406f; font-weight:800; font-size:13px; padding:9px; border-radius:10px; cursor:pointer; font-family:inherit; transition:all .15s; }
-        .px-pick:hover { background:#fff3f7; } .px-pick.is-active { background:#d1406f; color:#fff; }
+        .px-pick { width:100%; border:1.5px solid #e0698f; background:#fff; color:#e0698f; font-weight:800; font-size:13px; padding:9px; border-radius:10px; cursor:pointer; font-family:inherit; transition:all .15s; }
+        .px-pick:hover { background:#fff3f7; } .px-pick.is-active { background:#e0698f; color:#fff; }
         .px-ghost { display:inline-flex; align-items:center; justify-content:center; gap:6px; border:1.5px solid #f1dfe7; color:#4b5563; text-decoration:none; font-weight:700; font-size:14px; padding:14px 18px; border-radius:14px; background:#fff; }
-        .px-ghost:hover { border-color:#fabdd2; color:#d1406f; }
+        .px-ghost:hover { border-color:#fabdd2; color:#e0698f; }
         .px-cardbtn { position:relative; display:block; width:100%; padding:0; border:none; background:none; cursor:zoom-in; font-family:inherit; text-align:left; }
-        .px-new { position:absolute; top:8px; left:8px; background:linear-gradient(90deg,#f0789a,#d1406f); color:#fff; font-size:10px; font-weight:900; letter-spacing:1px; padding:4px 9px; border-radius:999px; box-shadow:0 4px 10px rgba(0,0,0,.25); }
+        .px-new { position:absolute; top:8px; left:8px; background:linear-gradient(90deg,#f59ab6,#e0698f); color:#fff; font-size:10px; font-weight:900; letter-spacing:1px; padding:4px 9px; border-radius:999px; box-shadow:0 4px 10px rgba(0,0,0,.25); }
         .px-zoom { position:absolute; left:50%; bottom:10px; transform:translate(-50%,8px); background:rgba(44,12,36,.85); color:#fff; font-size:12px; font-weight:700; padding:6px 12px; border-radius:999px; opacity:0; transition:all .2s; white-space:nowrap; pointer-events:none; }
         .px-cardbtn:hover .px-zoom, .px-cardbtn:focus-visible .px-zoom { opacity:1; transform:translate(-50%,0); }
         .px-overlay { position:fixed; inset:0; z-index:300; background:rgba(44,12,36,.72); backdrop-filter:blur(4px); display:flex; align-items:center; justify-content:center; padding:20px; animation:pxFade .2s both; }
@@ -647,16 +647,16 @@ export default function ProxysPage() {
         .px-receive { background:#fff4f8; border:1px solid #ffebf2; border-radius:14px; padding:12px 14px; }
         .px-receive ul { margin:0; padding-left:18px; color:#374151; font-size:14px; line-height:1.7; }
         .px-opt { display:flex; align-items:center; gap:12px; border:1.5px solid #ffebf2; border-radius:16px; padding:12px 14px; background:#fff; transition:border-color .2s, box-shadow .2s; }
-        .px-opt:hover { border-color:#fabdd2; box-shadow:0 6px 16px rgba(209,64,111,.1); }
+        .px-opt:hover { border-color:#fabdd2; box-shadow:0 6px 16px rgba(224,105,143,.1); }
         .px-opt .px-opt-btn { width:auto; flex:0 0 auto; min-width:112px; padding:11px 14px; }
         .px-opt-info { flex:1 1 auto; min-width:0; }
-        .px-opt-price { flex:0 0 auto; color:#d1406f; font-size:20px; font-weight:800; white-space:nowrap; }
+        .px-opt-price { flex:0 0 auto; color:#e0698f; font-size:20px; font-weight:800; white-space:nowrap; }
         @media (max-width:520px) { .px-opt { flex-wrap:wrap; } .px-opt .px-opt-btn { width:100%; flex:1 1 100%; } .px-opt-info { flex:1 1 0; } }
         @keyframes pxFade { from { opacity:0; } to { opacity:1; } }
         @media (max-width:860px) { .px-quick { grid-template-columns:1fr; padding:20px 16px; gap:18px; } .px-quick-img > div:first-child { height:min(52vh,420px) !important; } .px-overlay { padding:10px; align-items:flex-end; } .px-modal { border-radius:22px 22px 0 0; } }
-        .px-btn { width:100%; border:none; cursor:pointer; background:#d1406f; color:#fff; font-weight:800; font-size:13px; letter-spacing:.5px; text-transform:uppercase; padding:13px; border-radius:10px; font-family:inherit; transition:background .2s, transform .1s; }
-        .px-btn:hover { background:#b53160; } .px-btn:active { transform:scale(.98); }
-        .px-btn-lg { padding:17px; font-size:14px; border-radius:14px; background:linear-gradient(90deg,#f0789a,#d1406f); }
+        .px-btn { width:100%; border:none; cursor:pointer; background:#e0698f; color:#fff; font-weight:800; font-size:13px; letter-spacing:.5px; text-transform:uppercase; padding:13px; border-radius:10px; font-family:inherit; transition:background .2s, transform .1s; }
+        .px-btn:hover { background:#cc5580; } .px-btn:active { transform:scale(.98); }
+        .px-btn-lg { padding:17px; font-size:14px; border-radius:14px; background:linear-gradient(90deg,#f59ab6,#e0698f); }
         .px-btn.is-added { background:#16a34a; }
         .px-lift { transition:transform .25s, box-shadow .25s; } .px-lift:hover { transform:translateY(-5px); }
         .px-search { display:flex; align-items:center; gap:10px; background:#fff; border:1.5px solid #ffebf2; border-radius:14px; padding:4px 16px; max-width:440px; margin-bottom:26px; }
@@ -665,25 +665,25 @@ export default function ProxysPage() {
         .px-grid-decks { display:grid; grid-template-columns:repeat(auto-fill,minmax(260px,1fr)); gap:24px; }
         @keyframes pxFade { from { opacity:0 } to { opacity:1 } }
         .px-ext { display:grid; grid-template-columns:minmax(300px,420px) 1fr; gap:48px; align-items:center; }
-        .px-binder { background:linear-gradient(145deg,#461438,#762353); border-radius:28px; padding:22px; box-shadow:0 24px 50px rgba(118,35,83,.35); }
+        .px-binder { background:linear-gradient(145deg,#5f2d52,#96507c); border-radius:28px; padding:22px; box-shadow:0 24px 50px rgba(150,80,124,.35); }
         .px-pack { display:flex; align-items:center; gap:12px; width:100%; background:#fff; border:1.5px solid #f1dfe7; border-radius:14px; padding:12px 14px; cursor:pointer; font-family:inherit; font-size:15px; color:#1f2937; transition:all .2s; }
         .px-pack:hover { border-color:#fabdd2; }
-        .px-pack.is-active { border-color:#d1406f; background:#fff3f7; box-shadow:0 0 0 3px rgba(209,64,111,.12); }
+        .px-pack.is-active { border-color:#e0698f; background:#fff3f7; box-shadow:0 0 0 3px rgba(224,105,143,.12); }
         .px-custom { display:grid; grid-template-columns:1fr 1fr; gap:44px; }
         .px-ex-grid { display:grid; grid-template-columns:repeat(4,1fr); gap:16px; }
-        .px-ex { position:relative; border:none; padding:0; background:#fff; border-radius:14px; overflow:hidden; cursor:pointer; aspect-ratio:63/88; box-shadow:0 8px 20px rgba(118,35,83,.15); transition:transform .2s, box-shadow .2s; }
-        .px-ex:hover { transform:translateY(-4px) rotate(-.6deg); box-shadow:0 16px 30px rgba(118,35,83,.28); }
+        .px-ex { position:relative; border:none; padding:0; background:#fff; border-radius:14px; overflow:hidden; cursor:pointer; aspect-ratio:63/88; box-shadow:0 8px 20px rgba(150,80,124,.15); transition:transform .2s, box-shadow .2s; }
+        .px-ex:hover { transform:translateY(-4px) rotate(-.6deg); box-shadow:0 16px 30px rgba(150,80,124,.28); }
         .px-ex img { width:100%; height:100%; object-fit:cover; display:block; }
-        .px-ex-tag { position:absolute; left:8px; bottom:8px; background:rgba(70,20,56,.85); color:#fff; font-size:11px; font-weight:800; padding:4px 10px; border-radius:999px; }
+        .px-ex-tag { position:absolute; left:8px; bottom:8px; background:rgba(95,45,82,.85); color:#fff; font-size:11px; font-weight:800; padding:4px 10px; border-radius:999px; }
         @media (max-width:860px) { .px-ex-grid { grid-template-columns:repeat(2,1fr); gap:12px; } }
         @media (max-width:860px) { .px-ext, .px-custom { grid-template-columns:1fr; gap:28px; } .px-binder { max-width:330px; width:100%; margin:0 auto; padding:16px; border-radius:22px; } }
         @media (max-width:640px) { .px-guide { padding:14px; margin-bottom:20px; } .px-guide-grid { display:flex; overflow-x:auto; gap:10px; scroll-snap-type:x mandatory; padding-bottom:6px; } .px-guide-card { flex:1 0 46%; scroll-snap-align:start; } .px-guide-thumb { height:72px; } }
-        .px-fan { position:relative; display:flex; gap:14px; align-items:flex-start; background:linear-gradient(135deg,#fff1f6,#fff8e1); border:1.5px solid #f9b4c6; border-left:6px solid #d1406f; border-radius:18px; padding:16px 18px; margin:0 0 22px; box-shadow:0 8px 22px rgba(209,64,111,.10); }
+        .px-fan { position:relative; display:flex; gap:14px; align-items:flex-start; background:linear-gradient(135deg,#fff1f6,#fff8e1); border:1.5px solid #f9b4c6; border-left:6px solid #e0698f; border-radius:18px; padding:16px 18px; margin:0 0 22px; box-shadow:0 8px 22px rgba(224,105,143,.10); }
         .px-fan-ico { font-size:30px; line-height:1; }
-        .px-fan-title { font-weight:900; font-size:17px; color:#6f2252; margin-bottom:3px; }
-        .px-fan p { margin:0; color:#52173f; font-size:14px; line-height:1.55; max-width:760px; }
+        .px-fan-title { font-weight:900; font-size:17px; color:#8c4a78; margin-bottom:3px; }
+        .px-fan p { margin:0; color:#7a3d68; font-size:14px; line-height:1.55; max-width:760px; }
         .px-fan-tag { position:absolute; top:12px; right:14px; background:#1f9e8e; color:#fff; font-size:11px; font-weight:800; letter-spacing:1px; padding:4px 10px; border-radius:999px; }
-        .px-fan-mini { font-size:12px; color:#6f2252; background:#fff1f6; border-radius:10px; padding:8px 10px; margin-top:8px; line-height:1.5; }
+        .px-fan-mini { font-size:12px; color:#8c4a78; background:#fff1f6; border-radius:10px; padding:8px 10px; margin-top:8px; line-height:1.5; }
         .px-bulk { display:inline-block; background:#fff8e1; border:1px solid #f0d070; color:#7a5a00; font-size:13px; padding:6px 10px; border-radius:10px; }
         .px-bulk-card { display:block; font-size:12px; text-align:center; margin:0 0 10px; padding:5px 8px; }
         .px-opt-bulk { display:block; font-size:11px; font-weight:700; color:#1f9e8e; white-space:nowrap; }
@@ -693,9 +693,9 @@ export default function ProxysPage() {
       <div style={{ fontSize: "16px", color: "#9ca3af", marginBottom: "10px" }}>
         <Link href="/" style={{ color: "#9ca3af", textDecoration: "none" }}>Inicio</Link>
         <span style={{ margin: "0 10px" }}>/</span>
-        <strong style={{ color: "#461438" }}>Proxys</strong>
+        <strong style={{ color: "#5f2d52" }}>Proxys</strong>
       </div>
-      <h1 style={{ fontSize: "clamp(28px,4vw,40px)", fontWeight: 900, color: "#461438", margin: "0 0 6px" }}>Proxys Coquecutes</h1>
+      <h1 style={{ fontSize: "clamp(28px,4vw,40px)", fontWeight: 900, color: "#5f2d52", margin: "0 0 6px" }}>Proxys Coquecutes</h1>
       <p style={{ color: "#6b7280", margin: "0 0 26px", maxWidth: "560px", lineHeight: 1.6 }}>Cartas, packs y mazos impresos con calidad. Elige cómo quieres armar tu colección.</p>
 
       <div className="px-fan" role="note">

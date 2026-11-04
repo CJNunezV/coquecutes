@@ -174,7 +174,7 @@ export default function CheckoutPage() {
         <div style={{ width: 72, height: 72, borderRadius: "50%", background: "#ecfdf5", display: "flex", alignItems: "center", justifyContent: "center", margin: "0 auto 18px" }}>
           <svg width="34" height="34" viewBox="0 0 24 24" fill="none" stroke="#16a34a" strokeWidth="2.8" strokeLinecap="round" strokeLinejoin="round"><path d="M20 6L9 17l-5-5" /></svg>
         </div>
-        <h2 style={{ fontSize: 26, fontWeight: 800, color: "#461438", margin: "0 0 8px" }}>¡Pedido recibido! 🎉</h2>
+        <h2 style={{ fontSize: 26, fontWeight: 800, color: "#5f2d52", margin: "0 0 8px" }}>¡Pedido recibido! 🎉</h2>
         <p style={{ color: "#6b7280", margin: "0 0 6px", lineHeight: 1.6 }}>Gracias{o.name ? `, ${o.name.split(" ")[0]}` : ""}. Guardamos tu pedido y tu comprobante.</p>
 
         <div style={{ textAlign: "left", background: "#fff8fb", border: "1px solid #fbeef3", borderRadius: 18, padding: 16, margin: "18px 0" }}>
@@ -184,8 +184,8 @@ export default function CheckoutPage() {
               <span style={{ fontWeight: 700 }}>{money(i.price * i.quantity)}</span>
             </div>
           ))}
-          <div style={{ display: "flex", justifyContent: "space-between", borderTop: "1px solid #f1dfe7", marginTop: 8, paddingTop: 10, fontWeight: 800, color: "#461438" }}>
-            <span>Total pagado</span><span style={{ color: "#d1406f" }}>{money(o.total)}</span>
+          <div style={{ display: "flex", justifyContent: "space-between", borderTop: "1px solid #f1dfe7", marginTop: 8, paddingTop: 10, fontWeight: 800, color: "#5f2d52" }}>
+            <span>Total pagado</span><span style={{ color: "#e0698f" }}>{money(o.total)}</span>
           </div>
           <p style={{ margin: "12px 0 0", fontSize: 13, color: "#6b7280" }}>📦 {o.delivery}</p>
         </div>
@@ -201,7 +201,7 @@ export default function CheckoutPage() {
             Enviar mensaje por WhatsApp
           </a>
         </div>
-        <Link href="/catalogo" style={{ color: "#d1406f", fontWeight: 700, textDecoration: "none" }}>← Seguir viendo la tienda</Link>
+        <Link href="/catalogo" style={{ color: "#e0698f", fontWeight: 700, textDecoration: "none" }}>← Seguir viendo la tienda</Link>
       </div>
     );
   }
@@ -213,9 +213,9 @@ export default function CheckoutPage() {
     return (
       <div style={{ textAlign: "center", padding: "60px 20px" }}>
         <div style={{ fontSize: 48 }}>🛒</div>
-        <h2 style={{ fontSize: 24, color: "#461438", margin: "8px 0 8px" }}>Tu carrito está vacío</h2>
+        <h2 style={{ fontSize: 24, color: "#5f2d52", margin: "8px 0 8px" }}>Tu carrito está vacío</h2>
         <p style={{ color: "#6b7280", marginBottom: 24 }}>Agrega algún producto para continuar con tu compra.</p>
-        <Link href="/catalogo" style={{ background: "#d1406f", color: "#fff", padding: "13px 26px", borderRadius: 16, textDecoration: "none", fontWeight: 700 }}>Ver catálogo</Link>
+        <Link href="/catalogo" style={{ background: "#e0698f", color: "#fff", padding: "13px 26px", borderRadius: 16, textDecoration: "none", fontWeight: 700 }}>Ver catálogo</Link>
       </div>
     );
   }
@@ -226,23 +226,23 @@ export default function CheckoutPage() {
       <style>{`
         .ck-grid{display:grid;grid-template-columns:minmax(0,370px) minmax(0,1fr);gap:28px;align-items:start}
         .ck-sum{position:sticky;top:96px}
-        .ck-card{background:#fff;border:1px solid #fdf0f5;border-radius:24px;padding:22px;box-shadow:0 6px 24px rgba(118,35,83,.04)}
-        .ck-h{display:flex;align-items:center;gap:10px;margin:0 0 16px;font-size:18px;font-weight:800;color:#461438}
-        .ck-n{width:28px;height:28px;border-radius:50%;background:#d1406f;color:#fff;display:inline-flex;align-items:center;justify-content:center;font-size:14px;flex-shrink:0}
+        .ck-card{background:#fff;border:1px solid #fdf0f5;border-radius:24px;padding:22px;box-shadow:0 6px 24px rgba(150,80,124,.04)}
+        .ck-h{display:flex;align-items:center;gap:10px;margin:0 0 16px;font-size:18px;font-weight:800;color:#5f2d52}
+        .ck-n{width:28px;height:28px;border-radius:50%;background:#e0698f;color:#fff;display:inline-flex;align-items:center;justify-content:center;font-size:14px;flex-shrink:0}
         .ck-in{width:100%;padding:14px 16px;border-radius:12px;border:1.5px solid #d1d5db;font-size:16px;background:#fff;outline:none;font-family:inherit;transition:border-color .15s,box-shadow .15s}
-        .ck-in:focus{border-color:#d1406f;box-shadow:0 0 0 3px rgba(209,64,111,.15)}
+        .ck-in:focus{border-color:#e0698f;box-shadow:0 0 0 3px rgba(224,105,143,.15)}
         .ck-in.bad{border-color:#ef4444}
         .ck-lbl{display:block;font-size:14px;font-weight:700;color:#4b5563;margin-bottom:6px}
         .ck-err{color:#dc2626;font-size:13px;font-weight:600;margin:6px 0 0}
         .ck-opt{display:flex;align-items:flex-start;gap:10px;padding:13px 14px;border-radius:12px;border:1.5px solid #d1d5db;cursor:pointer;background:#fff}
-        .ck-opt.on{border-color:#d1406f;background:#fff3f7}
-        .ck-copy{border:1px solid #fedce8;background:#fff;color:#b53160;border-radius:10px;padding:7px 12px;font-weight:700;font-size:12px;cursor:pointer;white-space:nowrap;font-family:inherit}
+        .ck-opt.on{border-color:#e0698f;background:#fff3f7}
+        .ck-copy{border:1px solid #fedce8;background:#fff;color:#cc5580;border-radius:10px;padding:7px 12px;font-weight:700;font-size:12px;cursor:pointer;white-space:nowrap;font-family:inherit}
         .ck-copy.ok{background:#16a34a;color:#fff;border-color:#16a34a}
-        .ck-q{width:30px;height:30px;border-radius:8px;border:none;background:#ffebf2;color:#902858;font-weight:800;cursor:pointer;font-size:16px}
+        .ck-q{width:30px;height:30px;border-radius:8px;border:none;background:#ffebf2;color:#a8456f;font-weight:800;cursor:pointer;font-size:16px}
         @media (max-width:860px){.ck-grid{grid-template-columns:1fr}.ck-sum{position:static}.ck-card{padding:18px}}
       `}</style>
 
-      <h1 style={{ fontSize: 28, fontWeight: 800, color: "#461438", margin: "0 0 6px" }}>Finalizar compra</h1>
+      <h1 style={{ fontSize: 28, fontWeight: 800, color: "#5f2d52", margin: "0 0 6px" }}>Finalizar compra</h1>
       <p style={{ margin: "0 0 22px", color: "#6b7280", fontSize: 14 }}>Son 3 pasos: revisa tu pedido, completa tus datos y paga con Yape, Plin o transferencia.</p>
 
       <form onSubmit={submit} noValidate className="ck-grid">
@@ -263,7 +263,7 @@ export default function CheckoutPage() {
                       <b style={{ minWidth: 16, textAlign: "center" }}>{it.quantity}</b>
                       <button type="button" className="ck-q" aria-label={`Añadir una unidad de ${it.name}`} onClick={() => setQuantity(it.id, it.quantity + 1)}>+</button>
                     </div>
-                    <b style={{ color: "#d1406f" }}>{money(it.price * it.quantity)}</b>
+                    <b style={{ color: "#e0698f" }}>{money(it.price * it.quantity)}</b>
                   </div>
                 </div>
                 <button type="button" onClick={() => removeItem(it.id)} aria-label={`Quitar ${it.name}`} title="Quitar" style={{ alignSelf: "flex-start", border: "none", background: "none", cursor: "pointer", color: "#9ca3af", fontSize: 16 }}>🗑</button>
@@ -272,9 +272,9 @@ export default function CheckoutPage() {
           </div>
           <div style={{ display: "flex", justifyContent: "space-between", alignItems: "baseline", marginTop: 16 }}>
             <span style={{ fontWeight: 700, color: "#4b5563" }}>Total a pagar</span>
-            <span style={{ fontSize: 26, fontWeight: 900, color: "#d1406f" }}>{money(total)}</span>
+            <span style={{ fontSize: 26, fontWeight: 900, color: "#e0698f" }}>{money(total)}</span>
           </div>
-          <Link href="/catalogo" style={{ display: "inline-block", marginTop: 12, fontSize: 13, fontWeight: 700, color: "#d1406f", textDecoration: "none" }}>+ Agregar más productos</Link>
+          <Link href="/catalogo" style={{ display: "inline-block", marginTop: 12, fontSize: 13, fontWeight: 700, color: "#e0698f", textDecoration: "none" }}>+ Agregar más productos</Link>
         </div>
 
         <div style={{ display: "flex", flexDirection: "column", gap: 22, minWidth: 0 }}>
@@ -302,7 +302,7 @@ export default function CheckoutPage() {
                 </div>
                 <div style={{ display: "flex", flexDirection: "column", gap: 10 }}>
                   <label className={`ck-opt ${deliveryMethod === "fullmarket" ? "on" : ""}`}>
-                    <input type="radio" name="dm" checked={deliveryMethod === "fullmarket"} onChange={() => setDeliveryMethod("fullmarket")} style={{ marginTop: 3, accentColor: "#d1406f" }} />
+                    <input type="radio" name="dm" checked={deliveryMethod === "fullmarket"} onChange={() => setDeliveryMethod("fullmarket")} style={{ marginTop: 3, accentColor: "#e0698f" }} />
                     <span style={{ fontWeight: 700, fontSize: 14, color: "#374151" }}>Recojo en FullMarket / Arenales</span>
                   </label>
                   {deliveryMethod === "fullmarket" && (
@@ -313,7 +313,7 @@ export default function CheckoutPage() {
                   )}
 
                   <label className={`ck-opt ${deliveryMethod === "shalom" ? "on" : ""}`}>
-                    <input type="radio" name="dm" checked={deliveryMethod === "shalom"} onChange={() => setDeliveryMethod("shalom")} style={{ marginTop: 3, accentColor: "#d1406f" }} />
+                    <input type="radio" name="dm" checked={deliveryMethod === "shalom"} onChange={() => setDeliveryMethod("shalom")} style={{ marginTop: 3, accentColor: "#e0698f" }} />
                     <span style={{ fontWeight: 700, fontSize: 14, color: "#374151" }}>Envío por agencia Shalom/Olva <span style={{ color: "#9ca3af", fontWeight: 500 }}>— solo pedidos fuera de Lima</span></span>
                   </label>
                   {deliveryMethod === "shalom" && (
@@ -330,7 +330,7 @@ export default function CheckoutPage() {
                   )}
 
                   <label className={`ck-opt ${deliveryMethod === "motorizado" ? "on" : ""}`}>
-                    <input type="radio" name="dm" checked={deliveryMethod === "motorizado"} onChange={() => setDeliveryMethod("motorizado")} style={{ marginTop: 3, accentColor: "#d1406f" }} />
+                    <input type="radio" name="dm" checked={deliveryMethod === "motorizado"} onChange={() => setDeliveryMethod("motorizado")} style={{ marginTop: 3, accentColor: "#e0698f" }} />
                     <span style={{ fontWeight: 700, fontSize: 14, color: "#374151" }}>Envío con motorizado <span style={{ color: "#9ca3af", fontWeight: 500 }}>— coordinamos el punto de entrega por WhatsApp</span></span>
                   </label>
                 </div>
@@ -343,7 +343,7 @@ export default function CheckoutPage() {
           <div className="ck-card">
             <h2 className="ck-h"><span className="ck-n">3</span> Paga y sube tu comprobante</h2>
             <div style={{ background: "#fff3f7", border: "1px dashed #f290b1", borderRadius: 18, padding: 16 }}>
-              <p style={{ margin: "0 0 12px", color: "#762353", fontSize: 15 }}>Monto a pagar: <b style={{ fontSize: 22, color: "#d1406f" }}>{money(total)}</b></p>
+              <p style={{ margin: "0 0 12px", color: "#96507c", fontSize: 15 }}>Monto a pagar: <b style={{ fontSize: 22, color: "#e0698f" }}>{money(total)}</b></p>
               <div style={{ display: "flex", gap: 14, alignItems: "flex-start", flexWrap: "wrap" }}>
                 <div style={{ flex: "1 1 240px", minWidth: 0, display: "flex", flexDirection: "column", gap: 12 }}>
                   {[
@@ -353,8 +353,8 @@ export default function CheckoutPage() {
                   ].map((r) => (
                     <div key={r.k} style={{ display: "flex", alignItems: "center", justifyContent: "space-between", gap: 10 }}>
                       <div style={{ minWidth: 0 }}>
-                        <div style={{ fontSize: 12, color: "#b53160", fontWeight: 600 }}>{r.label}</div>
-                        <div style={{ fontWeight: 800, color: "#461438", letterSpacing: 0.3, wordBreak: "break-all" }}>{r.v}</div>
+                        <div style={{ fontSize: 12, color: "#cc5580", fontWeight: 600 }}>{r.label}</div>
+                        <div style={{ fontWeight: 800, color: "#5f2d52", letterSpacing: 0.3, wordBreak: "break-all" }}>{r.v}</div>
                       </div>
                       <button type="button" className={`ck-copy ${copied === r.k ? "ok" : ""}`} onClick={() => copy(r.k, r.v)}>{copied === r.k ? "¡Copiado!" : "Copiar"}</button>
                     </div>
@@ -364,7 +364,7 @@ export default function CheckoutPage() {
                   <img src="/qr.jpg" alt="QR para pagar con Yape" style={{ width: "100%", height: "100%", objectFit: "cover", padding: 5 }} />
                 </a>
               </div>
-              <p style={{ margin: "12px 0 0", fontSize: 12, color: "#d1406f" }}>💡 Paga desde tu app, toma captura del comprobante y súbela aquí abajo.</p>
+              <p style={{ margin: "12px 0 0", fontSize: 12, color: "#e0698f" }}>💡 Paga desde tu app, toma captura del comprobante y súbela aquí abajo.</p>
             </div>
 
             <div id="ck-proof" style={{ marginTop: 18 }}>
@@ -383,9 +383,9 @@ export default function CheckoutPage() {
 
             <div id="ck-terms" style={{ marginTop: 18 }}>
               <label style={{ display: "flex", gap: 10, alignItems: "flex-start", background: "#fff4f8", border: `1px solid ${err("terms") ? "#ef4444" : "#fedce8"}`, borderRadius: 12, padding: "12px 14px", cursor: "pointer" }}>
-                <input type="checkbox" checked={acceptedTerms} onChange={(e) => setAcceptedTerms(e.target.checked)} style={{ marginTop: 3, width: 18, height: 18, accentColor: "#d1406f", flexShrink: 0 }} />
+                <input type="checkbox" checked={acceptedTerms} onChange={(e) => setAcceptedTerms(e.target.checked)} style={{ marginTop: 3, width: 18, height: 18, accentColor: "#e0698f", flexShrink: 0 }} />
                 <span style={{ fontSize: 13, color: "#4b5563", lineHeight: 1.5 }}>
-                  He leído y acepto los <Link href="/terminos" target="_blank" style={{ color: "#d1406f", fontWeight: 700 }}>Términos y Condiciones</Link> de compra.
+                  He leído y acepto los <Link href="/terminos" target="_blank" style={{ color: "#e0698f", fontWeight: 700 }}>Términos y Condiciones</Link> de compra.
                 </span>
               </label>
               {err("terms") && <p className="ck-err">{err("terms")}</p>}
@@ -403,7 +403,7 @@ export default function CheckoutPage() {
             )}
 
             <button type="submit" disabled={status === "sending"}
-              style={{ width: "100%", marginTop: 16, background: "#d1406f", color: "#fff", border: "none", borderRadius: 16, padding: 17, fontSize: 17, fontWeight: 800, cursor: status === "sending" ? "wait" : "pointer", opacity: status === "sending" ? 0.7 : 1, boxShadow: "0 8px 20px rgba(209,64,111,.3)", fontFamily: "inherit" }}>
+              style={{ width: "100%", marginTop: 16, background: "#e0698f", color: "#fff", border: "none", borderRadius: 16, padding: 17, fontSize: 17, fontWeight: 800, cursor: status === "sending" ? "wait" : "pointer", opacity: status === "sending" ? 0.7 : 1, boxShadow: "0 8px 20px rgba(224,105,143,.3)", fontFamily: "inherit" }}>
               {status === "sending" ? "Enviando tu pedido…" : `Confirmar pedido · ${money(total)}`}
             </button>
             <p style={{ margin: "10px 0 0", textAlign: "center", fontSize: 12, color: "#9ca3af" }}>Al confirmar guardamos tu pedido y te pediremos avisarnos por WhatsApp.</p>

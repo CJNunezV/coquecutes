@@ -54,8 +54,8 @@ export const calendario = [
 ];
 
 export const tiposSubasta = {
-  subasta: { label: "Subasta", emoji: "🔨", grad: ["#8f2858", "#d2406f"] },
-  cartas:  { label: "Cartas",  emoji: "🃏", grad: ["#d2406f", "#f0789a"] },
+  subasta: { label: "Subasta", emoji: "🔨", grad: ["#8f2858", "#e0698f"] },
+  cartas:  { label: "Cartas",  emoji: "🃏", grad: ["#e0698f", "#f59ab6"] },
   figuras: { label: "Figuras", emoji: "🗿", grad: ["#1f9e8e", "#4fbfae"] },
   proxys:  { label: "Proxys",  emoji: "✨", grad: ["#e0a02e", "#ea6f98"] },
 };

@@ -55,7 +55,7 @@ export default function ProductDetailPage() {
         {/* COLUMNA IZQUIERDA: GALERÍA DE IMÁGENES (fija al hacer scroll) */}
         <div className="pd-gallery" style={{ flex: "1 1 320px", minWidth: 0, display: "flex", flexDirection: "column", gap: "16px", alignSelf: "flex-start" }}>
           {/* Foto Principal: la foto original cubre todo el espacio */}
-          <div style={{ width: "100%", maxWidth: "min(100%, calc((100vh - 190px) * 0.75))", margin: "0 auto", aspectRatio: "3 / 4", borderRadius: "28px", overflow: "hidden", position: "relative", background: "#fbeef3", border: "1px solid #ffebf2", boxShadow: "0 12px 30px rgba(118,35,83,0.10)" }}>
+          <div style={{ width: "100%", maxWidth: "min(100%, calc((100vh - 190px) * 0.75))", margin: "0 auto", aspectRatio: "3 / 4", borderRadius: "28px", overflow: "hidden", position: "relative", background: "#fbeef3", border: "1px solid #ffebf2", boxShadow: "0 12px 30px rgba(150,80,124,0.10)" }}>
             <img
               key={activeImage}
               className="pg-img"
@@ -77,8 +77,8 @@ export default function ProductDetailPage() {
                     aria-label={`Ver foto ${index + 1}`}
                     style={{
                       width: "78px", height: "78px", borderRadius: "16px", padding: 0, flexShrink: 0, cursor: "pointer", overflow: "hidden", background: "#fff",
-                      border: active ? "2px solid #d1406f" : "2px solid transparent",
-                      boxShadow: active ? "0 6px 16px rgba(209,64,111,0.25)" : "0 2px 8px rgba(0,0,0,0.08)",
+                      border: active ? "2px solid #e0698f" : "2px solid transparent",
+                      boxShadow: active ? "0 6px 16px rgba(224,105,143,0.25)" : "0 2px 8px rgba(0,0,0,0.08)",
                       opacity: active ? 1 : 0.8,
                       transition: "all .2s",
                     }}
@@ -94,8 +94,8 @@ export default function ProductDetailPage() {
 
         {/* COLUMNA DERECHA: INFORMACIÓN, MEDIDAS Y COMPRA */}
         <div style={{ flex: "1.2 1 320px", minWidth: 0, display: "flex", flexDirection: "column" }}>
-          <h1 style={{ fontSize: "28px", fontWeight: "800", color: "#461438", margin: "0 0 12px 0", lineHeight: "1.2" }}>{product.name}</h1>
-          <p style={{ fontSize: "26px", fontWeight: "900", color: "#d1406f", margin: "0 0 24px 0" }}>PEN {product.price.toFixed(2)}</p>
+          <h1 style={{ fontSize: "28px", fontWeight: "800", color: "#5f2d52", margin: "0 0 12px 0", lineHeight: "1.2" }}>{product.name}</h1>
+          <p style={{ fontSize: "26px", fontWeight: "900", color: "#e0698f", margin: "0 0 24px 0" }}>PEN {product.price.toFixed(2)}</p>
           
           <div style={{ height: "1px", backgroundColor: "#fdf0f5", marginBottom: "24px" }} />
           
@@ -208,7 +208,7 @@ export default function ProductDetailPage() {
             <button
               onClick={handleAddToCartAndPay}
               style={{
-                backgroundColor: "#d1406f",
+                backgroundColor: "#e0698f",
                 color: "#ffffff",
                 border: "none",
                 padding: "18px",
@@ -216,7 +216,7 @@ export default function ProductDetailPage() {
                 fontWeight: "700",
                 fontSize: "16px",
                 cursor: "pointer",
-                boxShadow: "0 4px 14px rgba(209,64,111, 0.25)",
+                boxShadow: "0 4px 14px rgba(224,105,143, 0.25)",
               }}
             >
               Comprar ahora

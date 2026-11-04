@@ -3,7 +3,11 @@ import TrustBar from "./TrustBar";
 import Header from "./Header"; // Importamos el componente cliente de forma segura
 import WhatsAppBubble from "./WhatsAppBubble";
 import CartDrawer from "./CartDrawer";
+import { Baloo_2, Nunito } from "next/font/google";
 import "./globals.css";
+
+const display = Baloo_2({ subsets: ["latin"], weight: ["500", "600", "700", "800"], variable: "--font-display", display: "swap" });
+const body = Nunito({ subsets: ["latin"], weight: ["400", "500", "600", "700", "800", "900"], variable: "--font-body", display: "swap" });
  
 export const metadata = {
   title: "Coquecutes",
@@ -12,12 +16,12 @@ export const metadata = {
  
 export default function RootLayout({ children }) {
   return (
-    <html lang="es">
+    <html lang="es" className={`${display.variable} ${body.variable}`}>
       <body style={{
         margin: 0,
-        fontFamily: "system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif",
+        fontFamily: "var(--font-body), system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif",
         background: "#fff8fb",
-        color: "#2a1224",
+        color: "#3d2434",
         minHeight: "100vh",
         display: "flex",
         flexDirection: "column"
@@ -32,8 +36,9 @@ export default function RootLayout({ children }) {
           {children}
         </main>
  
-        <footer style={{ padding: "24px", textAlign: "center", fontSize: "14px", color: "#f7c9d9", background: "linear-gradient(90deg,#3b1030,#52173f)", borderTop: "3px solid #f0d070" }}>
+        <footer style={{ padding: "24px", textAlign: "center", fontSize: "14px", color: "#f7c9d9", background: "linear-gradient(90deg,#6a3059,#7a3d68)", borderTop: "3px solid #f0d070" }}>
           © {new Date().getFullYear()} Coquecutes
+          <div style={{ marginTop: 8 }}><a href="/vender" style={{ color: "#f0d070", fontWeight: 700, textDecoration: "none" }}>Vender tus productos</a></div>
         </footer>
  
         <CartDrawer />

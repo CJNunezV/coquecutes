@@ -11,7 +11,7 @@ export const sorteo = {
 
 export const premios = [
   { puesto: 1, titulo: "First Partner", detalle: "Edición en chino · Una pieza de colección que puede ser tuya.", emoji: "🏆", grad: ["#f59e0b", "#ec4899"] },
-  { puesto: 2, titulo: "Poké Ball", detalle: "Edición en inglés", emoji: "🔴", grad: ["#ef4444", "#be185d"] },
+  { puesto: 2, titulo: "Poké Ball", detalle: "Edición en inglés", emoji: "🔴", grad: ["#ef4444", "#cc5580"] },
   { puesto: 3, titulo: "Deck TCG", detalle: "Producto ideal para jugadores de Pokémon TCG", emoji: "🎁", grad: ["#8b5cf6", "#6366f1"] },
 ];
 

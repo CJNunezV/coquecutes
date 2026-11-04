@@ -83,23 +83,23 @@ export default function Header() {
     <>
       <style dangerouslySetInnerHTML={{ __html: `
         .hd-link { color:#1f2937; text-decoration:none; font-weight:600; font-size:15px; padding:8px 4px; position:relative; transition:color .2s; white-space:nowrap; }
-        .hd-link:hover { color:#d1406f; }
-        .hd-link::after { content:""; position:absolute; left:4px; right:4px; bottom:2px; height:2px; background:#d1406f; transform:scaleX(0); transition:transform .25s; border-radius:2px; }
+        .hd-link:hover { color:#e0698f; }
+        .hd-link::after { content:""; position:absolute; left:4px; right:4px; bottom:2px; height:2px; background:#e0698f; transform:scaleX(0); transition:transform .25s; border-radius:2px; }
         .hd-link:hover::after { transform:scaleX(1); }
         .hd-trigger { background:none; border:none; cursor:pointer; font-family:inherit; display:flex; align-items:center; gap:5px; }
-        .hd-menu { position:absolute; top:100%; left:-12px; min-width:230px; padding:10px; margin-top:6px; background:#fff; border:1px solid #ffebf2; border-radius:16px; box-shadow:0 18px 40px rgba(118,35,83,0.18); opacity:0; visibility:hidden; transform:translateY(-6px); transition:opacity .2s, transform .2s, visibility .2s; z-index:200; }
+        .hd-menu { position:absolute; top:100%; left:-12px; min-width:230px; padding:10px; margin-top:6px; background:#fff; border:1px solid #ffebf2; border-radius:16px; box-shadow:0 18px 40px rgba(150,80,124,0.18); opacity:0; visibility:hidden; transform:translateY(-6px); transition:opacity .2s, transform .2s, visibility .2s; z-index:200; }
         .hd-menu::before { content:""; position:absolute; top:-12px; left:0; right:0; height:12px; }
         .hd-menu.is-open { opacity:1; visibility:visible; transform:translateY(0); }
         .hd-menu-item { display:flex; align-items:center; gap:12px; padding:12px 14px; border-radius:12px; color:#1f2937; text-decoration:none; font-weight:600; font-size:15px; transition:background .15s, color .15s; }
-        .hd-menu-item:hover { background:#fff3f7; color:#d1406f; }
+        .hd-menu-item:hover { background:#fff3f7; color:#e0698f; }
         .hd-menu-emoji { width:34px; height:34px; display:flex; align-items:center; justify-content:center; background:#fff3f7; border-radius:10px; font-size:18px; }
         .hd-icon { background:none; border:none; cursor:pointer; color:#1f2937; padding:8px; display:flex; border-radius:50%; transition:background .2s,color .2s; }
-        .hd-icon:hover { background:#fff3f7; color:#d1406f; }
-        .hd-sell { color:#d1406f; text-decoration:none; font-weight:700; font-size:14px; padding:9px 16px; border:1.5px solid #d1406f; border-radius:999px; white-space:nowrap; transition:all .2s; }
-        .hd-sell:hover { background:#d1406f; color:#fff; }
+        .hd-icon:hover { background:#fff3f7; color:#e0698f; }
+        .hd-sell { color:#e0698f; text-decoration:none; font-weight:700; font-size:14px; padding:9px 16px; border:1.5px solid #e0698f; border-radius:999px; white-space:nowrap; transition:all .2s; }
+        .hd-sell:hover { background:#e0698f; color:#fff; }
         @media (max-width: 900px) { .hd-hide-md { display:none !important; } }
         .hd-cart { color:#fff; border:none; cursor:pointer; padding:10px 16px; border-radius:20px; font-weight:600; font-size:14px; display:flex; align-items:center; gap:8px; font-family:inherit; transition:background .2s; flex-shrink:0; }
-        .hd-badge { background:#fff; color:#d1406f; border-radius:999px; min-width:20px; height:20px; padding:0 6px; font-size:12px; font-weight:800; display:inline-flex; align-items:center; justify-content:center; }
+        .hd-badge { background:#fff; color:#e0698f; border-radius:999px; min-width:20px; height:20px; padding:0 6px; font-size:12px; font-weight:800; display:inline-flex; align-items:center; justify-content:center; }
         @media (max-width: 600px) {
           .hd-hide-sm { display:none !important; } .hd-logo { height:44px !important; } .hd-cart-text { display:none; }
           .hd-header { padding:8px 12px !important; gap:6px !important; }
@@ -186,7 +186,7 @@ export default function Header() {
           onClick={() => window.dispatchEvent(new Event("cartOpen"))}
           aria-label={`Abrir carrito${totalItems > 0 ? ` (${totalItems} productos)` : ""}`}
           className="hd-cart"
-          style={{ backgroundColor: totalItems > 0 ? "#d1406f" : "#f394b4" }}
+          style={{ backgroundColor: totalItems > 0 ? "#e0698f" : "#f394b4" }}
         >
           <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
             <circle cx="8" cy="21" r="1" /><circle cx="19" cy="21" r="1" />

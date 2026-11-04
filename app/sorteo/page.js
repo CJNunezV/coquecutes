@@ -69,7 +69,7 @@ function Winners() {
       </div>
       <div style={{ display: "flex", justifyContent: "center", gap: "8px", marginTop: "14px" }}>
         {ganadores.map((_, i) => (
-          <span key={i} style={{ width: active === i ? "24px" : "8px", height: "8px", borderRadius: "99px", background: active === i ? "#f0789a" : "#fedce8", transition: "all .3s" }} />
+          <span key={i} style={{ width: active === i ? "24px" : "8px", height: "8px", borderRadius: "99px", background: active === i ? "#f59ab6" : "#fedce8", transition: "all .3s" }} />
         ))}
       </div>
     </div>
@@ -83,10 +83,10 @@ export default function SorteoPage() {
     <div style={{ maxWidth: "1100px", margin: "0 auto" }}>
       <style dangerouslySetInnerHTML={{ __html: `
         .sr-hero { border-radius:28px; padding:34px 36px; background:linear-gradient(135deg,#fdf2f8 0%,#fce7f3 45%,#ffebf2 100%); border:1px solid #fbcfe8; display:grid; grid-template-columns:1.1fr .9fr; gap:28px; align-items:center; }
-        .sr-badge { display:inline-block; padding:6px 14px; border-radius:999px; background:#fff; color:#be185d; font-weight:800; font-size:13px; border:1.5px solid #f9b4c6; }
-        .sr-btn { display:inline-block; padding:13px 22px; border-radius:16px; background:linear-gradient(135deg,#f0789a,#e66791); color:#fff; font-weight:800; text-decoration:none; font-size:15px; box-shadow:0 10px 24px rgba(236,72,153,.35); transition:transform .2s; }
+        .sr-badge { display:inline-block; padding:6px 14px; border-radius:999px; background:#fff; color:#cc5580; font-weight:800; font-size:13px; border:1.5px solid #f9b4c6; }
+        .sr-btn { display:inline-block; padding:13px 22px; border-radius:16px; background:linear-gradient(135deg,#f59ab6,#e66791); color:#fff; font-weight:800; text-decoration:none; font-size:15px; box-shadow:0 10px 24px rgba(236,72,153,.35); transition:transform .2s; }
         .sr-btn:hover { transform:translateY(-2px); }
-        .sr-h2 { font-size:24px; font-weight:800; color:#461438; margin:46px 0 6px; }
+        .sr-h2 { font-size:24px; font-weight:800; color:#5f2d52; margin:46px 0 6px; }
         .sr-sub { color:#6b7280; margin:0 0 20px; font-size:15px; }
         .sr-prizes { display:grid; grid-template-columns:1.4fr 1fr 1fr; gap:16px; }
         .sr-prize { border-radius:24px; padding:24px; color:#fff; position:relative; overflow:hidden; min-height:200px; display:flex; flex-direction:column; justify-content:flex-end; transition:transform .3s; }
@@ -100,8 +100,8 @@ export default function SorteoPage() {
         .sr-win { margin:0; flex:0 0 calc((100% - 32px) / 3); scroll-snap-align:start; border-radius:22px; overflow:hidden; background:#fff; border:1px solid #f1f1f4; box-shadow:0 10px 24px rgba(47,13,39,.06); position:relative; }
         .sr-win img { width:100%; aspect-ratio:3/4; object-fit:cover; display:block; }
         .sr-win figcaption { position:absolute; left:0; right:0; bottom:0; padding:30px 16px 14px; color:#fff; background:linear-gradient(transparent,rgba(53,14,43,.78)); display:flex; flex-direction:column; }
-        .sr-arrow { position:absolute; top:42%; z-index:2; width:44px; height:44px; border-radius:50%; border:none; background:#fff; color:#d1406f; font-size:26px; line-height:1; cursor:pointer; box-shadow:0 8px 18px rgba(47,13,39,.18); transition:background .2s,color .2s,transform .2s; }
-        .sr-arrow:hover { background:#d1406f; color:#fff; transform:scale(1.1); }
+        .sr-arrow { position:absolute; top:42%; z-index:2; width:44px; height:44px; border-radius:50%; border:none; background:#fff; color:#e0698f; font-size:26px; line-height:1; cursor:pointer; box-shadow:0 8px 18px rgba(47,13,39,.18); transition:background .2s,color .2s,transform .2s; }
+        .sr-arrow:hover { background:#e0698f; color:#fff; transform:scale(1.1); }
         .sr-prev { left:-14px; } .sr-next { right:-14px; }
         @media (max-width:860px) { .sr-hero { grid-template-columns:1fr; padding:24px 20px; } .sr-prizes, .sr-steps { grid-template-columns:1fr; } .sr-win { flex-basis:calc((100% - 16px) / 2); } }
         @media (max-width:520px) { .sr-win { flex-basis:82%; } .sr-prev { left:2px; } .sr-next { right:2px; } }
@@ -111,24 +111,24 @@ export default function SorteoPage() {
       <section className="sr-hero">
         <div>
           <span className="sr-badge">¡En Coquecutes ganas más! · {sorteo.mes}</span>
-          <h1 style={{ fontSize: "clamp(34px,5.5vw,52px)", lineHeight: 1.05, fontWeight: 800, margin: "16px 0 12px", color: "#461438" }}>
-            Sorteo <span style={{ color: "#f0789a" }}>del mes</span>
+          <h1 style={{ fontSize: "clamp(34px,5.5vw,52px)", lineHeight: 1.05, fontWeight: 800, margin: "16px 0 12px", color: "#5f2d52" }}>
+            Sorteo <span style={{ color: "#f59ab6" }}>del mes</span>
           </h1>
           <p style={{ margin: "0 0 8px", color: "#4b5563", lineHeight: 1.6, fontSize: "16px" }}>
             Cada subasta que ganas es un ticket para el sorteo mensual. Mientras más ganas, más oportunidades tienes.
           </p>
-          {sorteo.transmision && <p style={{ margin: "0 0 18px", color: "#d1406f", fontWeight: 700, fontSize: "14px" }}>📺 {sorteo.transmision}</p>}
+          {sorteo.transmision && <p style={{ margin: "0 0 18px", color: "#e0698f", fontWeight: 700, fontSize: "14px" }}>📺 {sorteo.transmision}</p>}
           {cd && !cd.done && (
             <div style={{ display: "flex", gap: "8px", margin: "0 0 20px" }}>
               {[["d", "días"], ["h", "horas"], ["m", "min"], ["s", "seg"]].map(([k, l]) => (
                 <div key={k} style={{ minWidth: "58px", textAlign: "center", padding: "8px 4px", borderRadius: "14px", background: "#fff", border: "1px solid #fbcfe8" }}>
-                  <div style={{ fontSize: "24px", fontWeight: 800, color: "#be185d", fontVariantNumeric: "tabular-nums", lineHeight: 1 }}>{String(cd[k]).padStart(2, "0")}</div>
+                  <div style={{ fontSize: "24px", fontWeight: 800, color: "#cc5580", fontVariantNumeric: "tabular-nums", lineHeight: 1 }}>{String(cd[k]).padStart(2, "0")}</div>
                   <div style={{ fontSize: "10px", color: "#9ca3af", textTransform: "uppercase", marginTop: "3px" }}>{l}</div>
                 </div>
               ))}
             </div>
           )}
-          {!sorteo.fechaSorteo && <p style={{ margin: "0 0 18px", color: "#be185d", fontWeight: 800 }}>🗓️ Sorteo a fin de mes</p>}
+          {!sorteo.fechaSorteo && <p style={{ margin: "0 0 18px", color: "#cc5580", fontWeight: 800 }}>🗓️ Sorteo a fin de mes</p>}
           <Link href="/subastas" className="sr-btn">Quiero mis tickets · Ver subastas</Link>
         </div>
         <img src={sorteo.flyer} alt={`Sorteo del mes ${sorteo.mes}`} style={{ width: "100%", borderRadius: "22px", boxShadow: "0 18px 40px rgba(190,24,93,.18)", display: "block" }} />
@@ -158,7 +158,7 @@ export default function SorteoPage() {
           {tickets.map((t) => (
             <div key={t.titulo} className="sr-step">
               <div style={{ fontSize: "34px", marginBottom: "8px" }}>{t.emoji}</div>
-              <strong style={{ color: "#461438", fontSize: "17px" }}>{t.titulo}</strong>
+              <strong style={{ color: "#5f2d52", fontSize: "17px" }}>{t.titulo}</strong>
               <p style={{ margin: "6px 0 0", fontSize: "14px", color: "#6b7280", lineHeight: 1.55 }}>{t.texto}</p>
             </div>
           ))}
@@ -175,7 +175,7 @@ export default function SorteoPage() {
       )}
 
       {/* ---------- CTA ---------- */}
-      <section style={{ margin: "46px 0 10px", padding: "28px", borderRadius: "24px", background: "linear-gradient(135deg,#4f163d,#a62d5c)", color: "#fff", display: "flex", gap: "16px", alignItems: "center", justifyContent: "space-between", flexWrap: "wrap" }}>
+      <section style={{ margin: "46px 0 10px", padding: "28px", borderRadius: "24px", background: "linear-gradient(135deg,#704066,#a62d5c)", color: "#fff", display: "flex", gap: "16px", alignItems: "center", justifyContent: "space-between", flexWrap: "wrap" }}>
         <div>
           <strong style={{ fontSize: "20px" }}>¿Dudas sobre el sorteo o tus tickets?</strong>
           <p style={{ margin: "4px 0 0", opacity: 0.85, fontSize: "14px" }}>Escríbenos y te decimos cuántos tickets llevas.</p>

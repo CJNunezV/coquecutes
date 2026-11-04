@@ -91,7 +91,7 @@ export default function Hero() {
         border: "1px solid #ffebf2",
         marginBottom: "48px",
         background:
-          "radial-gradient(900px 400px at 85% 20%, rgba(236,72,153,0.18), transparent 60%), radial-gradient(800px 500px at 10% 90%, rgba(209,64,111,0.20), transparent 60%), linear-gradient(135deg, #461438 0%, #4f163d 55%, #762353 100%)",
+          "radial-gradient(900px 400px at 85% 20%, rgba(236,72,153,0.18), transparent 60%), radial-gradient(800px 500px at 10% 90%, rgba(224,105,143,0.20), transparent 60%), linear-gradient(135deg, #5f2d52 0%, #704066 55%, #96507c 100%)",
       }}
     >
       <style dangerouslySetInnerHTML={{ __html: `
@@ -103,12 +103,12 @@ export default function Hero() {
         @keyframes zhFloat { 0%,100% { transform: translateY(0) rotate(var(--r)); } 50% { transform: translateY(-14px) rotate(var(--r)); } }
         .zh-grad { background:linear-gradient(90deg,#f9b4c6,#fabdd2); -webkit-background-clip:text; background-clip:text; color:transparent; }
         .zh-badge { display:inline-flex; align-items:center; gap:8px; color:#fedce8; font-size:13px; font-weight:600; }
-        .zh-badge::before { content:"✓"; display:inline-flex; align-items:center; justify-content:center; width:20px; height:20px; border-radius:50%; background:#f0789a; color:#fff; font-size:12px; }
-        .zh-cta { display:inline-block; background:linear-gradient(90deg,#f0789a,#d1406f); color:#fff; padding:16px 36px; border-radius:16px; font-weight:800; font-size:16px; text-decoration:none; box-shadow:0 10px 28px rgba(236,72,153,0.4); transition:transform .2s, box-shadow .2s; }
+        .zh-badge::before { content:"✓"; display:inline-flex; align-items:center; justify-content:center; width:20px; height:20px; border-radius:50%; background:#f59ab6; color:#fff; font-size:12px; }
+        .zh-cta { display:inline-block; background:linear-gradient(90deg,#f59ab6,#e0698f); color:#fff; padding:16px 36px; border-radius:16px; font-weight:800; font-size:16px; text-decoration:none; box-shadow:0 10px 28px rgba(236,72,153,0.4); transition:transform .2s, box-shadow .2s; }
         .zh-cta:hover { transform: translateY(-2px); box-shadow:0 14px 34px rgba(236,72,153,0.5); }
         .zh-search { display:flex; align-items:center; background:#fff; border-radius:14px; padding:6px 6px 6px 16px; max-width:460px; box-shadow:0 8px 24px rgba(0,0,0,0.25); }
         .zh-search input { flex:1; border:none; outline:none; font-size:15px; padding:10px 8px; background:transparent; color:#1f2937; min-width:0; }
-        .zh-search button { border:none; background:#d1406f; color:#fff; width:42px; height:42px; border-radius:10px; cursor:pointer; display:flex; align-items:center; justify-content:center; }
+        .zh-search button { border:none; background:#e0698f; color:#fff; width:42px; height:42px; border-radius:10px; cursor:pointer; display:flex; align-items:center; justify-content:center; }
         .zh-visual { position:relative; height:420px; }
         .zh-dots { position:absolute; left:0; right:0; bottom:22px; display:flex; justify-content:center; gap:10px; z-index:3; }
         .zh-dot { width:11px; height:11px; border-radius:999px; border:none; padding:0; cursor:pointer; background:rgba(255,255,255,0.4); transition:all .3s; }

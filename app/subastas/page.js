@@ -83,10 +83,10 @@ function Countdown({ ms }) {
 
 /* ---------- Calendario del mes (como el flyer) ---------- */
 const EV = {
-  subasta: { bg: "#f6c453", fg: "#3b1030", ring: "#3b1030" },
-  envio: { bg: "#e53935", fg: "#fff", ring: "#3b1030" },
-  entrega: { bg: "#22c55e", fg: "#06240f", ring: "#3b1030" },
-  sorteo: { bg: "#fde3ec", fg: "#d2406f", ring: "#d2406f" },
+  subasta: { bg: "#f6c453", fg: "#6a3059", ring: "#6a3059" },
+  envio: { bg: "#e53935", fg: "#fff", ring: "#6a3059" },
+  entrega: { bg: "#22c55e", fg: "#06240f", ring: "#6a3059" },
+  sorteo: { bg: "#fde3ec", fg: "#e0698f", ring: "#e0698f" },
 };
 const TruckIcon = () => (
   <svg width="62%" height="62%" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M3 5h10v9H3zM13 8h4l3 3v3h-7zM6.5 15.5a1.8 1.8 0 1 0 .01 0zm10 0a1.8 1.8 0 1 0 .01 0z" /><circle cx="6.5" cy="16" r="1.9" /><circle cx="16.5" cy="16" r="1.9" /></svg>
@@ -154,37 +154,37 @@ export default function SubastasPage() {
   return (
     <div style={{ maxWidth: "1100px", margin: "0 auto" }}>
       <style dangerouslySetInnerHTML={{ __html: `
-        .sb-hero { border-radius:28px; padding:34px 36px; color:#fff; background:linear-gradient(135deg,#4f163d 0%,#762353 55%,#a62d5c 100%); position:relative; overflow:hidden; display:flex; gap:28px; align-items:center; justify-content:space-between; flex-wrap:wrap; }
+        .sb-hero { border-radius:28px; padding:34px 36px; color:#fff; background:linear-gradient(135deg,#704066 0%,#96507c 55%,#a62d5c 100%); position:relative; overflow:hidden; display:flex; gap:28px; align-items:center; justify-content:space-between; flex-wrap:wrap; }
         .sb-hero::after { content:""; position:absolute; right:-80px; top:-80px; width:300px; height:300px; border-radius:50%; background:radial-gradient(circle,rgba(236,72,153,.45),transparent 70%); pointer-events:none; }
         .sb-live { display:inline-flex; align-items:center; gap:8px; padding:6px 14px; border-radius:999px; background:rgba(255,255,255,.14); font-size:13px; font-weight:700; }
         .sb-dot { width:9px; height:9px; border-radius:50%; background:#f58bab; box-shadow:0 0 0 0 rgba(244,114,182,.7); animation:sbPulse 1.6s infinite; }
         @keyframes sbPulse { 70% { box-shadow:0 0 0 10px rgba(244,114,182,0);} 100% { box-shadow:0 0 0 0 rgba(244,114,182,0);} }
         .sb-fb { display:inline-flex; align-items:center; gap:10px; padding:14px 24px; border-radius:16px; background:#1877f2; color:#fff; font-weight:800; text-decoration:none; font-size:15px; box-shadow:0 10px 24px rgba(24,119,242,.4); transition:transform .2s, background .2s; }
         .sb-fb:hover { transform:translateY(-2px); background:#0f63d0; }
-        .sb-cta { display:inline-block; padding:13px 22px; border-radius:16px; background:linear-gradient(135deg,#f0789a,#e66791); color:#fff; font-weight:800; text-decoration:none; font-size:15px; box-shadow:0 10px 24px rgba(236,72,153,.35); transition:transform .2s; }
+        .sb-cta { display:inline-block; padding:13px 22px; border-radius:16px; background:linear-gradient(135deg,#f59ab6,#e66791); color:#fff; font-weight:800; text-decoration:none; font-size:15px; box-shadow:0 10px 24px rgba(236,72,153,.35); transition:transform .2s; }
         .sb-cta:hover { transform:translateY(-2px); }
-        .sb-h2 { font-size:24px; font-weight:800; color:#461438; margin:44px 0 6px; }
+        .sb-h2 { font-size:24px; font-weight:800; color:#5f2d52; margin:44px 0 6px; }
         .sb-sub { color:#6b7280; margin:0 0 20px; font-size:15px; }
         .sb-week { display:grid; grid-template-columns:repeat(3,1fr); gap:16px; }
         .sb-day { border-radius:22px; padding:20px; background:#fff; border:2px solid #ffebf2; text-decoration:none; display:block; transition:transform .25s, box-shadow .25s, border-color .25s; }
-        .sb-day:hover { transform:translateY(-4px); box-shadow:0 14px 28px rgba(209,64,111,.14); border-color:#f394b4; }
+        .sb-day:hover { transform:translateY(-4px); box-shadow:0 14px 28px rgba(224,105,143,.14); border-color:#f394b4; }
         .sb-chip { display:inline-flex; align-items:center; gap:6px; padding:5px 12px; border-radius:999px; font-size:13px; font-weight:800; color:#fff; }
-        .sb-cal { background:#fff; border:2px solid #ffebf2; border-radius:22px; padding:18px; margin-bottom:22px; box-shadow:0 8px 22px rgba(209,64,111,.08); }
-        .sb-cal-title { font-size:22px; font-weight:900; color:#d2406f; margin:0 0 12px; letter-spacing:.3px; text-transform:uppercase; }
+        .sb-cal { background:#fff; border:2px solid #ffebf2; border-radius:22px; padding:18px; margin-bottom:22px; box-shadow:0 8px 22px rgba(224,105,143,.08); }
+        .sb-cal-title { font-size:22px; font-weight:900; color:#e0698f; margin:0 0 12px; letter-spacing:.3px; text-transform:uppercase; }
         .sb-cal-grid { display:grid; grid-template-columns:repeat(7,1fr); border-top:1px solid #f1dfe7; border-left:1px solid #f1dfe7; }
-        .sb-cal-h { background:#fbe3ee; color:#52173f; font-size:12px; font-weight:800; letter-spacing:1px; text-align:center; padding:8px 2px; border-right:1px solid #f1dfe7; border-bottom:1px solid #f1dfe7; }
+        .sb-cal-h { background:#fbe3ee; color:#7a3d68; font-size:12px; font-weight:800; letter-spacing:1px; text-align:center; padding:8px 2px; border-right:1px solid #f1dfe7; border-bottom:1px solid #f1dfe7; }
         .sb-cal-c { position:relative; min-height:84px; border-right:1px solid #f1dfe7; border-bottom:1px solid #f1dfe7; display:flex; align-items:center; justify-content:center; padding:18px 2px 4px; }
         .sb-cal-c.is-empty { background:#fff8fb; }
-        .sb-cal-c.is-today { background:#fff3f7; box-shadow:inset 0 0 0 2px #d2406f; }
-        .sb-cal-d { position:absolute; top:5px; left:7px; font-size:12px; font-weight:800; color:#52173f; }
+        .sb-cal-c.is-today { background:#fff3f7; box-shadow:inset 0 0 0 2px #e0698f; }
+        .sb-cal-d { position:absolute; top:5px; left:7px; font-size:12px; font-weight:800; color:#7a3d68; }
         .sb-cal-dot { width:54px; height:54px; border-radius:50%; border:2.5px solid; display:flex; align-items:center; justify-content:center; font-weight:900; font-size:15px; }
-        .sb-cal-legend { display:flex; flex-wrap:wrap; gap:8px 22px; margin-top:14px; font-size:13px; font-weight:700; color:#52173f; }
+        .sb-cal-legend { display:flex; flex-wrap:wrap; gap:8px 22px; margin-top:14px; font-size:13px; font-weight:700; color:#7a3d68; }
         .sb-cal-legend span { display:inline-flex; align-items:center; gap:8px; }
-        .sb-cal-legend i { width:16px; height:16px; border-radius:50%; border:2px solid #3b1030; display:inline-block; }
+        .sb-cal-legend i { width:16px; height:16px; border-radius:50%; border:2px solid #6a3059; display:inline-block; }
         @media (max-width:640px) { .sb-cal { padding:12px; } .sb-cal-c { min-height:56px; padding-top:16px; } .sb-cal-dot { width:34px; height:34px; font-size:10.5px; border-width:2px; } .sb-cal-d { font-size:10px; left:4px; top:3px; } .sb-cal-h { font-size:10px; letter-spacing:0; } }
         .sb-steps { display:grid; grid-template-columns:repeat(4,1fr); gap:16px; }
         .sb-step { background:#fff; border-radius:20px; padding:20px; border:1px solid #f1f1f4; }
-        .sb-num { width:36px; height:36px; border-radius:12px; background:#fff3f7; color:#d1406f; font-weight:800; display:flex; align-items:center; justify-content:center; margin-bottom:12px; }
+        .sb-num { width:36px; height:36px; border-radius:12px; background:#fff3f7; color:#e0698f; font-weight:800; display:flex; align-items:center; justify-content:center; margin-bottom:12px; }
         @media (max-width:860px) { .sb-week { grid-template-columns:1fr; } .sb-steps { grid-template-columns:1fr 1fr; } .sb-hero { padding:26px 22px; } }
         @media (max-width:520px) { .sb-steps { grid-template-columns:1fr; } }
       ` }} />
@@ -232,11 +232,11 @@ export default function SubastasPage() {
               <a key={a.numero} className="sb-day" href={fbUrl(a)} target="_blank" rel="noopener noreferrer">
                 <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: "14px" }}>
                   <span className="sb-chip" style={{ background: gradBg(t.grad) }}>{t.emoji} {t.label}</span>
-                  <span style={{ fontSize: "13px", fontWeight: 800, color: "#d1406f" }}>#{a.numero}</span>
+                  <span style={{ fontSize: "13px", fontWeight: 800, color: "#e0698f" }}>#{a.numero}</span>
                 </div>
-                <div style={{ fontSize: "20px", fontWeight: 800, color: "#461438" }}>{whenLabel(a)}</div>
+                <div style={{ fontSize: "20px", fontWeight: 800, color: "#5f2d52" }}>{whenLabel(a)}</div>
                 <div style={{ fontSize: "14px", color: "#6b7280", margin: "2px 0 10px" }}>Cierre {horaLabel()}</div>
-                <div style={{ fontSize: "12px", fontWeight: 800, color: i === 0 ? "#be185d" : "#9ca3af", textTransform: "uppercase", letterSpacing: ".5px" }}>
+                <div style={{ fontSize: "12px", fontWeight: 800, color: i === 0 ? "#cc5580" : "#9ca3af", textTransform: "uppercase", letterSpacing: ".5px" }}>
                   {i === 0 ? "● Abierta ahora" : "Próxima"}
                 </div>
               </a>
@@ -253,7 +253,7 @@ export default function SubastasPage() {
           {reglas.map((r) => (
             <div key={r.n} className="sb-step">
               <div className="sb-num">{r.n}</div>
-              <strong style={{ color: "#461438" }}>{r.titulo}</strong>
+              <strong style={{ color: "#5f2d52" }}>{r.titulo}</strong>
               <p style={{ margin: "6px 0 0", fontSize: "14px", color: "#6b7280", lineHeight: 1.55 }}>{r.texto}</p>
             </div>
           ))}
@@ -265,7 +265,7 @@ export default function SubastasPage() {
         <div style={{ display: "flex", gap: "16px", alignItems: "center" }}>
           <span style={{ fontSize: "40px" }}>🎟️</span>
           <div>
-            <strong style={{ fontSize: "18px", color: "#461438" }}>Cada subasta ganada = 1 ticket para el sorteo del mes</strong>
+            <strong style={{ fontSize: "18px", color: "#5f2d52" }}>Cada subasta ganada = 1 ticket para el sorteo del mes</strong>
             <p style={{ margin: "4px 0 0", color: "#6b7280", fontSize: "14px" }}>{sorteo} Mira los premios y a los ganadores anteriores.</p>
           </div>
         </div>
@@ -275,7 +275,7 @@ export default function SubastasPage() {
       {/* ---------- Vende en subasta ---------- */}
       <section style={{ margin: "28px 0 10px", padding: "26px", borderRadius: "22px", background: "#fff3f7", display: "flex", gap: "16px", alignItems: "center", justifyContent: "space-between", flexWrap: "wrap" }}>
         <div>
-          <strong style={{ fontSize: "18px", color: "#461438" }}>¿Quieres subastar tus cartas, figuras o proxys?</strong>
+          <strong style={{ fontSize: "18px", color: "#5f2d52" }}>¿Quieres subastar tus cartas, figuras o proxys?</strong>
           <p style={{ margin: "4px 0 0", color: "#6b7280", fontSize: "14px" }}>Escríbenos y los ponemos en la próxima subasta.</p>
         </div>
         <a className="sb-cta" href={waLink("Hola Coquecutes, quiero poner mis productos en una subasta")} target="_blank" rel="noopener noreferrer">Quiero subastar</a>

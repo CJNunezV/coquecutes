@@ -33,7 +33,7 @@ export default function ProductCarousel({ products }) {
           borderRadius: "50%",
           border: "1px solid #f1dfe7",
           backgroundColor: "#ffffff",
-          color: "#d1406f",
+          color: "#e0698f",
           fontSize: "16px",
           fontWeight: "700",
           cursor: "pointer",
@@ -62,7 +62,7 @@ export default function ProductCarousel({ products }) {
           borderRadius: "50%",
           border: "1px solid #f1dfe7",
           backgroundColor: "#ffffff",
-          color: "#d1406f",
+          color: "#e0698f",
           fontSize: "16px",
           fontWeight: "700",
           cursor: "pointer",
@@ -170,13 +170,13 @@ export default function ProductCarousel({ products }) {
                     borderTop: "1px solid #fbeef3",
                   }}
                 >
-                  <span style={{ fontSize: "15px", fontWeight: "800", color: "#d1406f" }}>
+                  <span style={{ fontSize: "15px", fontWeight: "800", color: "#e0698f" }}>
                     PEN {product.price.toFixed(2)}
                   </span>
                   <span
                     style={{
                       backgroundColor: "#fff3f7",
-                      color: "#d1406f",
+                      color: "#e0698f",
                       padding: "6px 12px",
                       borderRadius: "10px",
                       fontWeight: "700",

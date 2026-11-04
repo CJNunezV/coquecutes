@@ -67,7 +67,7 @@ export default function HomePage() {
           style={{
             fontSize: "22px",
             fontWeight: "800",
-            color: "#461438",
+            color: "#5f2d52",
             margin: "0 0 20px 0",
           }}
         >
@@ -92,7 +92,7 @@ export default function HomePage() {
           style={{
             fontSize: "15px",
             fontStyle: "italic",
-            color: "#762353",
+            color: "#96507c",
             margin: "0 0 8px 0",
             lineHeight: "1.6",
           }}
@@ -100,7 +100,7 @@ export default function HomePage() {
           "El acabado es impecable y la carta queda perfecta adentro, ni un
           milímetro de juego."
         </p>
-        <p style={{ fontSize: "13px", color: "#d1406f", margin: 0, fontWeight: "600" }}>
+        <p style={{ fontSize: "13px", color: "#e0698f", margin: 0, fontWeight: "600" }}>
           — Cliente verificado
         </p>
       </Reveal>
@@ -122,14 +122,14 @@ export default function HomePage() {
           className="btn-primary"
           style={{
             display: "inline-block",
-            backgroundColor: "#d1406f",
+            backgroundColor: "#e0698f",
             color: "#ffffff",
             padding: "14px 28px",
             borderRadius: "16px",
             fontWeight: "700",
             fontSize: "15px",
             textDecoration: "none",
-            boxShadow: "0 4px 14px rgba(209,64,111, 0.25)",
+            boxShadow: "0 4px 14px rgba(224,105,143, 0.25)",
           }}
         >
           Elige tu case

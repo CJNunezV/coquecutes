@@ -5,15 +5,15 @@
 // Compra por lote: `por100` = soles que pagamos por cada 100 cartas (se calcula proporcional).
 export const lotes = [
   { id: "basicas", ejemplos: ["/cartas/cs-pal-004-en-n.webp", "/cartas/cs-meg-006-en-n.webp", "/cartas/cs-obf-012-en-n.webp"], label: "Cartas básicas", detalle: "Comunes y poco comunes (acabado normal)", por100: 15, emoji: "🃏" },
-  { id: "holoReverse", ejemplos: ["/proxys/Decks/slowking/567284_in_1000x1000.jpg", "/proxys/Decks/hydrapple/654349_in_1000x1000.jpg", "/proxys/Decks/slowking/693522_in_1000x1000.jpg"], label: "Holo / Reverse", detalle: "Holo y Reverse liso", por100: 20, emoji: "✨" },
-  { id: "patron", ejemplos: ["/proxys/Decks/Dragapult ex/676059_in_1000x1000.jpg", "/proxys/Decks/Dragapult ex/676060_in_1000x1000.jpg", "/proxys/Decks/Festival/550214_in_1000x1000.jpg"], label: "Holo · Patrón", detalle: "Reverse Holo con patrón", por100: 30, emoji: "🌟" },
+  { id: "holoReverse", ejemplos: ["/cartas/cs-pbl-005-en-r.webp", "/cartas/cs-por-005-en-r.webp", "/cartas/cs-por-032-la-r.webp"], label: "Holo / Reverse", detalle: "Holo y Reverse liso", por100: 20, emoji: "✨" },
+  { id: "patron", ejemplos: ["/cartas/cs-ssp-011-es-r.webp", "/cartas/cs-jtg-009-en-r.webp", "/cartas/cs-sfa-004-es-r.webp"], label: "Holo · Patrón", detalle: "Reverse Holo con patrón", por100: 30, emoji: "🌟" },
 ];
 
 // Cartas de valor: pagamos S/ por cada US$ de valor de mercado de la carta (rango según estado y cantidad).
 export const valor = [
-  { id: "ex", ejemplos: ["/proxys/Decks/Dragapult ex/610520_in_1000x1000.jpg", "/proxys/Decks/Ogerpon/589985_in_1000x1000.jpg", "/proxys/Decks/Ogerpon/676092_in_1000x1000.jpg"], label: "Cartas ex", min: 3.0, max: 3.1, emoji: "💎" },
-  { id: "fa", ejemplos: ["/proxys/Decks/hydrapple/567472_in_1000x1000.jpg", "/proxys/Decks/ns zoroark/623612_in_1000x1000.jpg", "/proxys/Decks/ns zoroark/610518_in_1000x1000.jpg"], label: "Full Art (FA)", min: 2.8, max: 3.0, emoji: "🎨" },
-  { id: "irsir", ejemplos: ["/CartasSueltas/par.253.altaria_ex.png", "/proxys/ExtendedArt/cartas/pre-glaceon-ex-150-131.jpg", "/proxys/ExtendedArt/cartas/dre-groudon-84.jpg"], label: "IR · SIR (Illustration Rare / Special)", min: 2.7, max: 2.85, emoji: "🌈" },
+  { id: "ex", ejemplos: ["/vender/dr-hawlucha.webp", "/vender/dr-gengar.webp", "/vender/dr-bellibolt.webp"], label: "Double Rare", min: 3.0, max: 3.1, emoji: "💎" },
+  { id: "fa", ejemplos: [], label: "Full Art (FA)", min: 2.8, max: 3.0, emoji: "🎨" },
+  { id: "irsir", ejemplos: ["/vender/sir-clefairy.webp", "/vender/ir-mimikyu.webp", "/vender/sir-grimmsnarl.webp"], label: "IR · SIR (Illustration Rare / Special)", min: 2.7, max: 2.85, emoji: "🌈" },
 ];
 
 export const pasos = [

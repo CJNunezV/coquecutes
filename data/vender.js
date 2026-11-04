@@ -12,8 +12,7 @@ export const lotes = [
 // Cartas de valor: pagamos S/ por cada US$ de valor de mercado de la carta (rango según estado y cantidad).
 export const valor = [
   { id: "ex", ejemplos: ["/vender/dr-hawlucha.webp", "/vender/dr-gengar.webp", "/vender/dr-bellibolt.webp"], label: "Double Rare", min: 3.0, max: 3.1, emoji: "💎" },
-  { id: "fa", ejemplos: [], label: "Full Art (FA)", min: 2.8, max: 3.0, emoji: "🎨" },
-  { id: "irsir", ejemplos: ["/vender/sir-clefairy.webp", "/vender/ir-mimikyu.webp", "/vender/sir-grimmsnarl.webp"], label: "IR · SIR (Illustration Rare / Special)", min: 2.7, max: 2.85, emoji: "🌈" },
+  { id: "irsir", ejemplos: ["/vender/sir-clefairy.webp", "/vender/ir-mimikyu.webp", "/vender/sir-grimmsnarl.webp"], label: "IR · SIR (Illustration Rare / Special)", min: 2.75, max: 2.9, emoji: "🌈" },
 ];
 
 export const pasos = [

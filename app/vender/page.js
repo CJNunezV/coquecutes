@@ -19,6 +19,7 @@ export default function VenderPage() {
         .vd-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:16px; }
         .vd-card { background:#fff; border:2px solid #ffebf2; border-radius:22px; padding:20px; transition:transform .25s, box-shadow .25s, border-color .25s; }
         .vd-card:hover { transform:translateY(-4px); box-shadow:0 14px 28px rgba(224,105,143,.14); border-color:#f394b4; }
+        .vd-grid-valor { grid-template-columns:repeat(var(--n),1fr); }
         .vd-price { font-size:34px; font-weight:900; color:#e0698f; line-height:1; margin:10px 0 2px; }
         .vd-small { font-size:13px; color:#6b7280; }
         .vd-steps { display:grid; grid-template-columns:repeat(4,1fr); gap:16px; }
@@ -75,7 +76,7 @@ export default function VenderPage() {
 
       <h2 className="vd-h2">Cartas de valor</h2>
       <p className="vd-sub">Te pagamos soles por cada dólar de valor de mercado de la carta.</p>
-      <div className="vd-grid">
+      <div className="vd-grid vd-grid-valor" style={{ "--n": valor.length }}>
         {valor.map((v) => (
           <div key={v.id} className="vd-card">
             <div style={{ fontSize: 30 }}>{v.emoji}</div>

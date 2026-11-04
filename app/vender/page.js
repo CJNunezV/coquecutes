@@ -76,13 +76,22 @@ export default function VenderPage() {
 
       <h2 className="vd-h2">Cartas de valor</h2>
       <p className="vd-sub">Te pagamos soles por cada dólar de valor de mercado de la carta.</p>
-      <div className="vd-grid vd-grid-valor" style={{ "--n": valor.length }}>
+      <div className="vd-grid vd-grid-valor" style={{ "--n": valor.length === 4 ? 2 : Math.min(valor.length, 3) }}>
         {valor.map((v) => (
           <div key={v.id} className="vd-card">
             <div style={{ fontSize: 30 }}>{v.emoji}</div>
             <strong style={{ color: "#5f2d52", fontSize: 18 }}>{v.label}</strong>
-            <div className="vd-price">S/{v.min.toFixed(2)} – {v.max.toFixed(2)}</div>
-            <div className="vd-small">por cada US$1 de valor de mercado</div>
+            {v.min == null ? (
+              <>
+                <div className="vd-price" style={{ fontSize: 24 }}>Cotización por WhatsApp</div>
+                <div className="vd-small">te pagamos según el valor de mercado de la carta</div>
+              </>
+            ) : (
+              <>
+                <div className="vd-price">S/{v.min.toFixed(2)} – {v.max.toFixed(2)}</div>
+                <div className="vd-small">por cada US$1 de valor de mercado</div>
+              </>
+            )}
             <div className="vd-ex">
               {(v.ejemplos || []).map((src) => (
                 <img key={src} src={img(src)} alt={`Ejemplo de ${v.label}`} loading="lazy" onError={(e) => { e.currentTarget.style.display = "none"; }} />

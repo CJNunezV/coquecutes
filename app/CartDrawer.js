@@ -95,7 +95,7 @@ export default function CartDrawer() {
             <div style={{ flex: 1, overflowY: "auto", padding: "0 20px" }}>
               {bulk.map((b) => (
                 <div key={b.group} style={{ margin: "14px 0 0", background: b.on ? "#e6f7f4" : "#fff8e1", border: `1px solid ${b.on ? "#9be0d4" : "#f0d070"}`, color: b.on ? "#0f6b5e" : "#7a5a00", borderRadius: 12, padding: "10px 12px", fontSize: 13, fontWeight: 600, lineHeight: 1.4 }}>
-                  {b.on ? `🎉 Precio al por mayor activado en proxys ${b.label}: ${money(b.price)} c/u` : `🎁 Añade ${b.missing} proxy${b.missing > 1 ? "s" : ""} más (${b.label}) y paga ${money(b.price)} c/u en vez de ${money(b.base)}`}
+                  {b.on ? `🎉 ¡Precio al por mayor activado en tus proxys!` : `🎁 Añade ${b.missing} proxy${b.missing > 1 ? "s" : ""} más (de cualquier diseño) y todos pasan a precio al por mayor desde ${money(b.price)} c/u`}
                 </div>
               ))}
               {cart.map((it) => (

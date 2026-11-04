@@ -22,6 +22,8 @@ export function bulkStatus(cart) {
     if (!i.bulk) return;
     const x = (g[i.bulk.group] = g[i.bulk.group] || { group: i.bulk.group, label: i.bulk.label || "", qty: 0, min: i.bulk.min, price: i.bulk.price, base: i.basePrice ?? i.price });
     x.qty += i.quantity;
+    x.price = Math.min(x.price, i.bulk.price);
+    x.base = Math.min(x.base, i.basePrice ?? i.price);
   });
   return Object.values(g).map((x) => ({ ...x, on: x.qty >= x.min, missing: Math.max(0, x.min - x.qty) }));
 }

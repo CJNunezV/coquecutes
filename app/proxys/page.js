@@ -37,7 +37,7 @@ const withType = (item, typeId, name) => {
 // Carta suelta: el precio depende del acabado (singlePrice)
 const singleItem = (s, typeId) => {
   const t = typeOf(typeId);
-  return { id: `${s.id}-${t.id}`, name: `Proxy ${s.name} (${s.set}) · ${t.label}`, price: t.singlePrice, image: s.image, bulk: t.bulkPrice ? { group: `single-${t.id}`, price: t.bulkPrice, min: proxyInfo.bulkMin || 5, label: t.label } : null };
+  return { id: `${s.id}-${t.id}`, name: `Proxy ${s.name} (${s.set}) · ${t.label}`, price: t.singlePrice, image: s.image, bulk: t.bulkPrice ? { group: "proxys-sueltas", price: t.bulkPrice, min: proxyInfo.bulkMin || 5, label: t.label } : null };
 };
 /* ---------- Contexto de la página: acabado por defecto + modal informativo ---------- */
 const Ui = createContext({ defaultType: "holo", openInfo: () => {}, openQuick: () => {} });
@@ -208,7 +208,7 @@ function QuickView({ s, cart, startType, onClose }) {
           <div style={{ fontSize: "12px", fontWeight: 800, color: "#e0698f", letterSpacing: "1px" }}>{s.set.toUpperCase()}</div>
           <h3 style={{ fontSize: "26px", fontWeight: 900, color: "#5f2d52", margin: "2px 0 8px", lineHeight: 1.15 }}>{s.name}</h3>
           <div style={{ fontSize: "28px", fontWeight: 900, color: "#e0698f", marginBottom: item.bulk ? "6px" : "14px" }}>S/{item.price.toFixed(2)}</div>
-          {item.bulk && <div className="px-bulk" style={{ marginBottom: "14px" }}>🎁 Al por mayor: <b>S/{item.bulk.price.toFixed(2)} c/u</b> desde {item.bulk.min} cartas sueltas del mismo acabado</div>}
+          {item.bulk && <div className="px-bulk" style={{ marginBottom: "14px" }}>🎁 Al por mayor: <b>S/{item.bulk.price.toFixed(2)} c/u</b> llevando {item.bulk.min} o más proxys (de cualquier diseño)</div>}
 
           <div style={{ fontSize: "12px", fontWeight: 800, color: "#5f2d52", letterSpacing: ".5px", marginBottom: "6px" }}>ACABADO</div>
           <TypePicker value={tid} onChange={setTid} priceKey="singlePrice" />

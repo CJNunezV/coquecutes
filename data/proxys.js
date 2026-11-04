@@ -6,7 +6,7 @@
 // Cada uno puede tener un video que explica de qué trata y cómo queda el acabado final.
 //
 //  singlePrice → precio de 1 carta suelta (al detal)
-//  bulkPrice   → precio por carta AL POR MAYOR (desde `proxyInfo.bulkMin` cartas sueltas del mismo acabado)
+//  bulkPrice   → precio por carta AL POR MAYOR (desde `proxyInfo.bulkMin` proxys sueltos en total, de cualquier diseño)
 //  extra   → soles que se SUMAN al precio base (0 = mismo precio)
 //  video   → "/proxys/videos/frio.mp4"  (archivo en /public/proxys/videos/)
 //            o un link de YouTube / Vimeo: "https://youtu.be/XXXX"
@@ -28,7 +28,8 @@ export const proxyInfo = {
   size: "Tamaño carta estándar (63 × 88 mm)",
   shipping: "Envío a todo el país",
   disclaimer: "Son PROXYS (fan made): reproducciones para coleccionar, jugar y disfrutar. No son cartas originales ni oficiales de Pokémon.",
-  // A partir de cuántas cartas sueltas del MISMO acabado se aplica el precio al por mayor
+  // A partir de cuántos proxys sueltos (de CUALQUIER diseño, sumados) se aplica el precio al por mayor.
+  // Cada carta paga el precio mayorista de su acabado (holo / relieve).
   bulkMin: 5,
   // Mensaje bonito que se muestra arriba en la página de Proxys
   fanMadeTitle: "Son PROXYS, no cartas originales",

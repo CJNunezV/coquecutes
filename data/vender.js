@@ -14,8 +14,8 @@ export const lotes = [
 export const valor = [
   { id: "ex", ejemplos: ["/vender/dr-hawlucha.webp", "/vender/dr-gengar.webp", "/vender/dr-bellibolt.webp"], label: "Double Rare", min: 3.0, max: 3.1, emoji: "💎" },
   { id: "irsir", ejemplos: ["/vender/sir-clefairy.webp", "/vender/ir-mimikyu.webp", "/vender/sir-grimmsnarl.webp"], label: "IR · SIR (Illustration Rare / Special)", min: 2.75, max: 2.9, emoji: "🌈" },
-  { id: "v", ejemplos: ["/vender/v-mewtwo.webp", "/vender/v-arceus.webp", "/vender/v-rayquaza.webp"], label: "Cartas V", min: null, max: null, emoji: "⚡" },
-  { id: "shiny", ejemplos: ["/vender/s-sirfetchd.webp", "/vender/s-dubwool.webp", "/vender/s-cinderace.webp"], label: "Shiny", min: null, max: null, emoji: "✨" },
+  { id: "v", ejemplos: ["/vender/v-mewtwo.webp", "/vender/v-arceus.webp", "/vender/v-rayquaza.webp"], label: "Cartas V", min: 3.0, max: 3.15, emoji: "⚡" },
+  { id: "shiny", ejemplos: ["/vender/s-sirfetchd.webp", "/vender/s-dubwool.webp", "/vender/s-cinderace.webp"], label: "Shiny", min: 2.9, max: 3.1, emoji: "✨" },
 ];
 
 export const pasos = [

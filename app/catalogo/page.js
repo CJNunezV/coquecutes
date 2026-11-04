@@ -8,6 +8,23 @@ import { cartas } from "../../data/cartas";
 
 const accents = ["#ffebf2", "#ffe5ee", "#ffe4e6", "#fef3c7", "#dcfce7"];
 
+// Clase de carta (filtro "Tipo de carta"). Si una carta trae `clase: "Shiny"` (o "Full Art", "Entrenadores"…)
+// en data/cartas.js, esa manda. Si no, se detecta por nombre/rareza/set.
+const CLASES = ["Básicas", "Holo", "ex", "V", "VSTAR", "Full Art", "Shiny", "Entrenadores", "Energías"];
+const claseDe = (c) => {
+  if (c.clase) return c.clase;
+  const n = String(c.name || ""), r = String(c.rarity || "");
+  if (/energ(y|ía|ia)\b/i.test(n) && !/\bex\b/i.test(n)) return "Energías";
+  if (/entrenador|trainer|supporter|partidario|objeto|estadio/i.test(String(c.stage || "") + " " + String(c.supertype || "") + " " + r)) return "Entrenadores";
+  if (c.shiny || /shiny|brillante/i.test(r) || /^SV\d/i.test(String(c.number || ""))) return "Shiny";
+  if (c.fullArt || /full art/i.test(r)) return "Full Art";
+  if (/\bVSTAR\b/.test(n)) return "VSTAR";
+  if (/\bV\b/.test(n)) return "V";
+  if (/\bex\b/i.test(n)) return "ex";
+  return c.finish && c.finish !== "Normal" ? "Holo" : "Básicas";
+};
+const finEmoji = (f) => (f === "Holo" ? "🔆 Holo" : f.includes("Liso") ? "🪞 Reverse · Liso" : "🔹 Reverse · Patrón");
+
 // Unifica todo en una sola lista con "kind"
 const allItems = [
   ...products.map((p) => ({
@@ -15,8 +32,8 @@ const allItems = [
     id: p.id, name: p.name, price: p.price, slug: p.slug,
     image: p.thumbnail || (p.images && p.images[0]) || "/placeholder.svg", zoom: p.thumbnailZoom || 85,
   })),
-  ...singleCards.map((c) => ({ kind: "carta", ...c })),
-  ...cartas.map((c) => ({ kind: "carta", ...c, border: c.yellowBorder ? "Contorno amarillo" : "" })),
+  ...singleCards.map((c) => ({ kind: "carta", ...c, clase: claseDe(c) })),
+  ...cartas.map((c) => ({ kind: "carta", ...c, clase: claseDe(c), border: c.yellowBorder ? "Contorno amarillo" : "" })),
   ...sealedProducts.map((s) => ({ kind: "sellado", ...s })),
 ];
 
@@ -50,13 +67,13 @@ export default function CatalogoPage() {
   const [cols, setCols] = useState(4);
   const [sort, setSort] = useState("default");
   const [added, setAdded] = useState(null);
-  const [f, setF] = useState({ q: "", lang: "", fin: "", type: "", exp: "", ill: "", border: "" });
+  const [f, setF] = useState({ q: "", lang: "", fin: "", clase: "", type: "", exp: "", ill: "", border: "" });
   const [showF, setShowF] = useState(false);
   const [qty, setQty] = useState({});
   const setFilter = (k, v) => { setF((o) => ({ ...o, [k]: o[k] === v && k !== "q" ? "" : v })); setLimit(0); };
   const [limit, setLimit] = useState(0);
   const activeF = Object.values(f).filter(Boolean).length;
-  const clearF = () => { setF({ q: "", lang: "", fin: "", type: "", exp: "", ill: "", border: "" }); setLimit(0); };
+  const clearF = () => { setF({ q: "", lang: "", fin: "", clase: "", type: "", exp: "", ill: "", border: "" }); setLimit(0); };
 
   useEffect(() => {
     const read = () => {
@@ -79,6 +96,7 @@ export default function CatalogoPage() {
   const matchCard = (c, skip) => {
     if (skip !== "lang" && f.lang && c.language !== f.lang) return false;
     if (skip !== "fin" && f.fin && c.finish !== f.fin) return false;
+    if (skip !== "clase" && f.clase && c.clase !== f.clase) return false;
     if (skip !== "type" && f.type && c.type !== f.type) return false;
     if (skip !== "exp" && f.exp && c.expansion !== f.exp) return false;
     if (skip !== "ill" && f.ill && c.illustrator !== f.ill) return false;
@@ -96,6 +114,7 @@ export default function CatalogoPage() {
     return [...m.entries()];
   };
   const optFinish = ["Normal", "Holo", "Reverse Holo · Patrón", "Reverse Holo · Liso"].map((v) => [v, opts("fin", "finish").find(([k]) => k === v)?.[1] || 0]);
+  const optClase = CLASES.map((v) => [v, opts("clase", "clase").find(([k]) => k === v)?.[1] || 0]).filter(([, n]) => n > 0);
   const optLang = ["Inglés", "Español"].map((v) => [v, opts("lang", "language").find(([k]) => k === v)?.[1] || 0]);
   const optType = ["Planta", "Psíquico", "Siniestro", "Agua", "Acero", "Incoloro", "Lucha", "Dragón"].map((v) => [v, opts("type", "type").find(([k]) => k === v)?.[1] || 0]);
   const optBorder = opts("border", "border");
@@ -133,7 +152,8 @@ export default function CatalogoPage() {
         {item.setCode && (
           <div className="cc-badges">
             <span className="cc-b">{item.langCode === "EN" ? "EN · Inglés" : "ES · Español"}</span>
-            {item.finish !== "Normal" && <span className="cc-b fin">{item.finish === "Holo" ? "✨ Holo" : "✨ " + item.finish.replace("Reverse Holo", "Reverse")}</span>}
+            {item.finish !== "Normal" && <span className="cc-b fin">{finEmoji(item.finish)}</span>}
+            {["ex", "V", "VSTAR", "Full Art", "Shiny", "Entrenadores", "Energías"].includes(item.clase) && <span className="cc-b fin">{item.clase === "Shiny" ? "✨ Shiny" : item.clase}</span>}
           </div>
         )}
       </div>
@@ -277,8 +297,13 @@ export default function CatalogoPage() {
                 <div className="cf-row"><span className="cf-lab">Idioma</span>
                   {optLang.map(([v, n]) => <Chip key={v} k="lang" v={v} n={n} />)}
                 </div>
+                {optClase.length > 0 && (
+                  <div className="cf-row"><span className="cf-lab">Tipo de carta</span>
+                    {optClase.map(([v, n]) => <Chip key={v} k="clase" v={v} n={n} label={v === "Shiny" ? "✨ Shiny" : v} />)}
+                  </div>
+                )}
                 <div className="cf-row"><span className="cf-lab">Acabado</span>
-                  {optFinish.map(([v, n]) => <Chip key={v} k="fin" v={v} n={n} label={v === "Normal" ? "Normal" : v === "Holo" ? "✨ Holo" : "✨ " + v.replace("Reverse Holo", "Reverse")} />)}
+                  {optFinish.map(([v, n]) => <Chip key={v} k="fin" v={v} n={n} label={v === "Normal" ? "Normal" : finEmoji(v)} />)}
                 </div>
                 {optBorder.length > 0 && (
                   <div className="cf-row"><span className="cf-lab">Contorno</span>
@@ -289,7 +314,7 @@ export default function CatalogoPage() {
                     ))}
                   </div>
                 )}
-                <div className="cf-row"><span className="cf-lab">Tipo</span>
+                <div className="cf-row"><span className="cf-lab">Elemento</span>
                   {optType.map(([v, n]) => (
                     <button key={v} className={`cf-chip ${f.type === v ? "on" : ""} ${n === 0 && f.type !== v ? "off" : ""}`} onClick={() => setFilter("type", v)}>
                       <span style={{ width: 10, height: 10, borderRadius: "50%", background: typeDot[v], display: "inline-block" }} />{v}<small>{n}</small>

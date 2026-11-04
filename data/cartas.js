@@ -1,6 +1,6 @@
 // Inventario de cartas sueltas (generado desde el binder escaneado).
 // Cada fila es UNA carta distinta (nombre + expansión + número + idioma + acabado).
-// `stock` = cuántas copias tienes. Precios: Normal S/1 (jugable en meta S/2.50) · Holo y Reverse Liso mín. S/2 (jugable S/3.50) · Reverse Patrón mín. S/3 (jugable S/4.50). `jugable: true` = aparece en listas del meta Standard (nov 2026); las Rara holo/reverse mantienen su precio si es mayor.
+// `stock` = cuántas copias tienes. Precios: Normal S/1 (jugable en meta S/2.50) · Holo y Reverse Liso S/2 (jugable S/3.50) · Reverse Patrón S/3 (jugable S/4.50). `jugable: true` = aparece en listas del meta Standard (nov 2026).
 // Acabado: Normal | Holo (brilla la ilustración) | Reverse Holo · Patrón / Liso (brilla todo menos la ilustración).
 // yellowBorder: true = carta con contorno amarillo (era Sword & Shield); alimenta el filtro "Contorno".
 // Para cambiar un precio o stock, edita su línea. Fotos: cartas en inglés y acabado Normal usan la imagen de TCGplayer (tcgId) con respaldo local (`imageLocal`); las Reverse/Holo y las de español usan tu foto en /public/cartas.
@@ -2489,7 +2489,7 @@ export const cartas = [
   "rarity": "Rara",
   "stage": "Básico",
   "illustrator": "GOSSAN",
-  "price": 7.0,
+  "price": 3.0,
   "stock": 1,
   "image": "/cartas/cs-ssp-011-es-r.webp",
   "tcgId": 590099
@@ -2623,7 +2623,7 @@ export const cartas = [
   "rarity": "Rara",
   "stage": "Básico",
   "illustrator": "Mitsuhiro Arita",
-  "price": 6.0,
+  "price": 2.0,
   "stock": 1,
   "image": "/cartas/cs-pfl-008-en-h.webp",
   "tcgId": 662161
@@ -3613,7 +3613,7 @@ export const cartas = [
   "rarity": "Rara",
   "stage": "Básico",
   "illustrator": "matazo",
-  "price": 6.0,
+  "price": 2.0,
   "stock": 1,
   "image": "/cartas/cs-sfa-021-es-h.webp",
   "tcgId": 560331
@@ -3751,7 +3751,7 @@ export const cartas = [
   "rarity": "Poco común",
   "stage": "Fase 1",
   "illustrator": "CHORISO",
-  "price": 3.0,
+  "price": 2.0,
   "stock": 1,
   "image": "/cartas/cs-pbl-030-en-r.webp",
   "tcgId": 704787
@@ -3810,7 +3810,7 @@ export const cartas = [
   "rarity": "Rara",
   "stage": "Fase 1",
   "illustrator": "MINAMINAMI Take",
-  "price": 6.0,
+  "price": 2.0,
   "stock": 1,
   "image": "/cartas/cs-pre-040-en-h.webp",
   "tcgId": 610395
@@ -4764,7 +4764,7 @@ export const cartas = [
   "rarity": "Poco común",
   "stage": "Fase 1",
   "illustrator": "Mori Yuu",
-  "price": 3.0,
+  "price": 2.0,
   "stock": 1,
   "image": "/cartas/cs-por-036-en-r.webp",
   "tcgId": 684421
@@ -4883,7 +4883,7 @@ export const cartas = [
   "rarity": "Rara",
   "stage": "Fase 1",
   "illustrator": "KIYOTAKA OSHIYAMA",
-  "price": 6.0,
+  "price": 2.0,
   "stock": 1,
   "image": "/cartas/cs-paf-063-en-h.webp",
   "tcgId": 534425
@@ -5176,7 +5176,7 @@ export const cartas = [
   "rarity": "Poco común",
   "stage": "Básico",
   "illustrator": "danciao",
-  "price": 3.0,
+  "price": 2.0,
   "stock": 2,
   "image": "/cartas/cs-twm-118-en-r.webp",
   "tcgId": 550162
@@ -5215,7 +5215,7 @@ export const cartas = [
   "rarity": "Poco común",
   "stage": "Fase 2",
   "illustrator": "Nisota Niso",
-  "price": 3.0,
+  "price": 2.0,
   "stock": 1,
   "image": "/cartas/cs-sfa-029-es-r.webp",
   "tcgId": 560339
@@ -5726,7 +5726,7 @@ export const cartas = [
   "rarity": "Rara",
   "stage": "Fase 1",
   "illustrator": "nagimiso",
-  "price": 6.0,
+  "price": 2.0,
   "stock": 1,
   "image": "/cartas/cs-sfa-033-es-h.webp",
   "tcgId": 560342
@@ -6003,7 +6003,7 @@ export const cartas = [
   "rarity": "Poco común",
   "stage": "Básico",
   "illustrator": "hncl",
-  "price": 3.0,
+  "price": 2.0,
   "stock": 1,
   "image": "/cartas/cs-pfl-062-en-r.webp",
   "tcgId": 660413
@@ -6720,7 +6720,7 @@ export const cartas = [
   "rarity": "Poco común",
   "stage": "Básico",
   "illustrator": "Naoyo Kimura",
-  "price": 3.0,
+  "price": 2.0,
   "stock": 1,
   "image": "/cartas/cs-pbl-017-en-r.webp",
   "tcgId": 704774
@@ -6739,7 +6739,7 @@ export const cartas = [
   "rarity": "Rara",
   "stage": "Básico",
   "illustrator": "Mitsuhiro Arita",
-  "price": 7.0,
+  "price": 2.0,
   "stock": 1,
   "image": "/cartas/cs-cri-019-en-r.webp",
   "tcgId": 693503
@@ -8102,7 +8102,7 @@ export const cartas = [
   "rarity": "Rara",
   "stage": "Fase 1",
   "illustrator": "kawayoo",
-  "price": 6.0,
+  "price": 2.0,
   "stock": 2,
   "image": "/cartas/cs-sfa-042-es-h.webp",
   "tcgId": 560352
@@ -8121,7 +8121,7 @@ export const cartas = [
   "rarity": "Rara",
   "stage": "Fase 1",
   "illustrator": "Oswaldo KATO",
-  "price": 6.0,
+  "price": 2.0,
   "stock": 1,
   "image": "/cartas/cs-pre-070-en-h.webp",
   "tcgId": 610425
@@ -8219,7 +8219,7 @@ export const cartas = [
   "rarity": "Poco común",
   "stage": "Fase 1",
   "illustrator": "toriyufu",
-  "price": 3.0,
+  "price": 2.0,
   "stock": 1,
   "image": "/cartas/cs-pfl-075-en-r.webp",
   "tcgId": 662129
@@ -9309,7 +9309,7 @@ export const cartas = [
   "rarity": "Rara",
   "stage": "Fase 1",
   "illustrator": "hncl",
-  "price": 6.0,
+  "price": 2.0,
   "stock": 2,
   "image": "/cartas/cs-pfl-079-en-h.webp",
   "tcgId": 662127
@@ -9467,7 +9467,7 @@ export const cartas = [
   "rarity": "Rara",
   "stage": "Fase 1",
   "illustrator": "matazo",
-  "price": 6.0,
+  "price": 2.0,
   "stock": 1,
   "image": "/cartas/cs-pre-078-en-h.webp",
   "tcgId": 610433
@@ -9525,7 +9525,7 @@ export const cartas = [
   "rarity": "Rara",
   "stage": "Fase 1",
   "illustrator": "hncl",
-  "price": 7.0,
+  "price": 2.0,
   "stock": 1,
   "image": "/cartas/cs-pfl-079-en-r.webp",
   "tcgId": 662127
@@ -11690,7 +11690,7 @@ export const cartas = [
   "rarity": "Rara",
   "stage": "Fase 2",
   "illustrator": "Jerky",
-  "price": 6.0,
+  "price": 2.0,
   "stock": 3,
   "image": "/cartas/cs-pfl-053-en-h.webp",
   "tcgId": 662159
@@ -11747,7 +11747,7 @@ export const cartas = [
   "rarity": "Poco común",
   "stage": "Fase 1",
   "illustrator": "Oswaldo KATO",
-  "price": 3.0,
+  "price": 2.0,
   "stock": 1,
   "image": "/cartas/cs-cri-047-en-r.webp",
   "tcgId": 693466
@@ -11883,7 +11883,7 @@ export const cartas = [
   "rarity": "Rara",
   "stage": "Básico",
   "illustrator": "Souichirou Gunjima",
-  "price": 6.0,
+  "price": 2.0,
   "stock": 1,
   "image": "/cartas/cs-pre-057-en-h.webp",
   "tcgId": 610412
@@ -11902,7 +11902,7 @@ export const cartas = [
   "rarity": "Rara",
   "stage": "Básico",
   "illustrator": "Souichirou Gunjima",
-  "price": 7.0,
+  "price": 3.0,
   "stock": 1,
   "image": "/cartas/cs-ssp-110-es-r.webp",
   "tcgId": 589980
@@ -12853,7 +12853,7 @@ export const cartas = [
   "rarity": "Rara",
   "stage": "Básico",
   "illustrator": "Teeziro",
-  "price": 6.0,
+  "price": 2.0,
   "stock": 1,
   "image": "/cartas/cs-tef-119-es-h.webp",
   "tcgId": 542863

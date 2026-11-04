@@ -5,7 +5,7 @@
 // Compra por lote: `por100` = soles que pagamos por cada 100 cartas (se calcula proporcional).
 export const lotes = [
   { id: "basicas", ejemplos: ["/cartas/cs-pal-004-en-n.webp", "/cartas/cs-meg-006-en-n.webp", "/cartas/cs-obf-012-en-n.webp"], label: "Cartas básicas", detalle: "Comunes y poco comunes (acabado normal)", por100: 15, emoji: "🃏" },
-  { id: "holoReverse", ejemplos: ["/cartas/cs-pbl-005-en-r.webp", "/cartas/cs-por-005-en-r.webp", "/cartas/cs-por-032-la-r.webp"], label: "Holo / Reverse", detalle: "Holo y Reverse liso", por100: 20, emoji: "✨" },
+  { id: "holoReverse", ejemplos: ["/cartas/cs-pbl-005-en-r.webp", "/cartas/cs-por-005-en-r.webp", "/cartas/cs-por-032-la-r.webp"], label: "Holo / Reverse", detalle: "Holo y Reverse liso", por100: 20, emoji: "🔆" },
   { id: "patron", ejemplos: ["/cartas/cs-ssp-011-es-r.webp", "/cartas/cs-jtg-009-en-r.webp", "/cartas/cs-sfa-004-es-r.webp"], label: "Holo · Patrón", detalle: "Reverse Holo con patrón", por100: 30, emoji: "🌟" },
 ];
 

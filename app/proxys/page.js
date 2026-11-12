@@ -2,7 +2,7 @@
 import { addToCart as addCartItem } from "../cart";
 import { useState, useEffect, useRef, useContext, createContext } from "react";
 import Link from "next/link";
-import { singles, extendedPacks, customTypes, customExamples, decks, proxyTypes, proxyInfo } from "../../data/proxys";
+import { singles, singleTemas, extendedPacks, customTypes, customExamples, decks, proxyTypes, proxyInfo } from "../../data/proxys";
 import { extendedSingles, extendedEvolutions, EXT_PRICE, EVO_PRICE, SPRITE } from "../../data/extendedArt";
 
 const WA = "51962376893";
@@ -281,35 +281,64 @@ function AddModal({ s, cart, onClose }) {
 function Singles({ cart }) {
   const ui = useContext(Ui);
   const [q, setQ] = useState("");
+  const [tema, setTema] = useState("todos");
   const [adding, setAdding] = useState(null);
-  const list = singles.filter((s) => (s.name + s.set).toLowerCase().includes(q.trim().toLowerCase()));
+  const query = q.trim().toLowerCase();
+  const matches = singles.filter((s) => !query || (s.name + " " + s.set + " " + (s.tema || "")).toLowerCase().includes(query));
   const minPrice = Math.min(...proxyTypes.map((t) => t.singlePrice));
+  const bulkFrom = Math.min(...proxyTypes.map((x) => x.bulkPrice || x.singlePrice));
+  const temas = singleTemas.map((t) => ({ ...t, items: matches.filter((s) => s.tema === t.id) })).filter((t) => t.items.length > 0);
+  const sinTema = matches.filter((s) => !singleTemas.some((t) => t.id === s.tema));
+  if (sinTema.length) temas.push({ id: "Más", emoji: "✨", desc: "", items: sinTema });
+  const shown = tema === "todos" || query ? temas : temas.filter((t) => t.id === tema);
+
+  const renderCard = (s) => (
+    <div className="px-lift" key={s.id}>
+      <button className="px-cardbtn" onClick={() => ui.openQuick(s, ui.defaultType)} aria-label={`Ver ${s.name} en grande`}>
+        <MiniCard grad={s.grad} image={s.thumb || s.image} title={s.name} sub={s.set} />
+        {s.nuevo && <span className="px-new">NUEVO</span>}
+        <span className="px-zoom">🔍 Ver en grande</span>
+      </button>
+      <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", margin: "10px 2px 10px" }}>
+        <strong style={{ color: "#e0698f", fontSize: "17px" }}>Desde S/{minPrice.toFixed(2)}</strong>
+        <span style={{ fontSize: "12px", color: "#9ca3af" }}>por unidad</span>
+      </div>
+      <div className="px-bulk px-bulk-card">
+        🎁 x{proxyInfo.bulkMin || 5}+ desde S/{bulkFrom.toFixed(2)} c/u
+      </div>
+      <button className="px-btn" onClick={() => setAdding(s)}>Añadir</button>
+    </div>
+  );
+
   return (
     <div>
       <div className="px-search">
         <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#e0698f" strokeWidth="2.4" strokeLinecap="round"><circle cx="11" cy="11" r="7" /><line x1="21" y1="21" x2="16.65" y2="16.65" /></svg>
-        <input value={q} onChange={(e) => { setQ(e.target.value); setLimit(24); }} placeholder="Busca por carta o set…" aria-label="Buscar cartas" />
+        <input value={q} onChange={(e) => setQ(e.target.value)} placeholder="Busca por carta o tema (Navidad, Perú, UNI…)" aria-label="Buscar cartas" />
       </div>
-      <div className="px-grid-cards">
-        {list.map((s, idx) => (
-          <div key={s.id} className="px-lift">
-            <button className="px-cardbtn" onClick={() => ui.openQuick(s, ui.defaultType)} aria-label={`Ver ${s.name} en grande`}>
-              <MiniCard grad={s.grad} image={s.image} title={s.name} sub={s.set} />
-              {idx < 4 && !q && <span className="px-new">NUEVO</span>}
-              <span className="px-zoom">🔍 Ver en grande</span>
-            </button>
-            <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", margin: "10px 2px 10px" }}>
-              <strong style={{ color: "#e0698f", fontSize: "17px" }}>Desde S/{minPrice.toFixed(2)}</strong>
-              <span style={{ fontSize: "12px", color: "#9ca3af" }}>por unidad</span>
+      {!query && (
+        <div className="px-temas" role="tablist" aria-label="Temas">
+          <button className={`px-tema ${tema === "todos" ? "is-active" : ""}`} onClick={() => setTema("todos")}>Todos <small>{singles.length}</small></button>
+          {singleTemas.map((t) => {
+            const n = singles.filter((s) => s.tema === t.id).length;
+            return n > 0 && <button key={t.id} className={`px-tema ${tema === t.id ? "is-active" : ""}`} onClick={() => setTema(t.id)}>{t.emoji} {t.id} <small>{n}</small></button>;
+          })}
+        </div>
+      )}
+      {shown.map((t) => (
+        <section key={t.id} className="px-tema-sec" id={`tema-${t.id}`}>
+          {(tema === "todos" || query) && (
+            <div className="px-tema-head">
+              <h3>{t.emoji} {t.id}</h3>
+              {t.desc && <p>{t.desc}</p>}
             </div>
-            <div className="px-bulk px-bulk-card">
-              🎁 x{proxyInfo.bulkMin || 5}+ desde S/{Math.min(...proxyTypes.map((x) => x.bulkPrice || x.singlePrice)).toFixed(2)} c/u
-            </div>
-            <button className="px-btn" onClick={() => setAdding(s)}>Añadir</button>
+          )}
+          <div className="px-grid-cards">
+            {t.items.map((s) => renderCard(s))}
           </div>
-        ))}
-      </div>
-      {list.length === 0 && (
+        </section>
+      ))}
+      {matches.length === 0 && (
         <p style={{ textAlign: "center", color: "#6b7280", padding: "30px 0" }}>
           No encontramos esa carta. <a href={waLink(`Hola Coquecutes, ¿pueden hacer el proxy de: ${q}?`)} target="_blank" rel="noopener noreferrer" style={{ color: "#e0698f", fontWeight: 700 }}>Pídela por WhatsApp</a>
         </p>
@@ -661,6 +690,16 @@ export default function ProxysPage() {
         .px-lift { transition:transform .25s, box-shadow .25s; } .px-lift:hover { transform:translateY(-5px); }
         .px-search { display:flex; align-items:center; gap:10px; background:#fff; border:1.5px solid #ffebf2; border-radius:14px; padding:4px 16px; max-width:440px; margin-bottom:26px; }
         .px-search input { flex:1; border:none; outline:none; font-size:15px; padding:12px 0; font-family:inherit; background:transparent; }
+        .px-temas { display:flex; gap:8px; flex-wrap:wrap; margin:0 0 26px; }
+        .px-tema { display:inline-flex; align-items:center; gap:6px; border:1.5px solid #f1dfe7; background:#fff; color:#6a3059; font-weight:700; font-size:14px; padding:8px 14px; border-radius:99px; cursor:pointer; font-family:inherit; transition:all .2s; }
+        .px-tema small { font-weight:700; font-size:11px; background:#fff1f6; color:#cc5580; border-radius:99px; padding:1px 7px; }
+        .px-tema:hover { border-color:#fabdd2; color:#e0698f; }
+        .px-tema.is-active { background:linear-gradient(90deg,#f59ab6,#e0698f); border-color:transparent; color:#fff; box-shadow:0 6px 16px rgba(224,105,143,.28); }
+        .px-tema.is-active small { background:rgba(255,255,255,.25); color:#fff; }
+        .px-tema-sec { margin:0 0 44px; }
+        .px-tema-head { margin:0 0 16px; padding-bottom:10px; border-bottom:2px dashed #fbc6d8; }
+        .px-tema-head h3 { margin:0; font-size:24px; color:#5f2d52; }
+        .px-tema-head p { margin:4px 0 0; color:#6b7280; font-size:14px; }
         .px-grid-cards { display:grid; grid-template-columns:repeat(auto-fill,minmax(160px,1fr)); gap:26px 20px; }
         .px-grid-decks { display:grid; grid-template-columns:repeat(auto-fill,minmax(260px,1fr)); gap:24px; }
         @keyframes pxFade { from { opacity:0 } to { opacity:1 } }
